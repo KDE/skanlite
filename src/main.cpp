@@ -7,12 +7,14 @@
 int main(int argc, char *argv[])
 {
     // about data
-    KAboutData aboutData( "glimpse", 0, ki18n("Glimpse"),
-                        "0.1", ki18n("This is an example application for libksane."),
-                        KAboutData::License_GPL, ki18n("(C) 2007 Kåre Särs"));
+    KAboutData aboutData("glimpse", "glimpse", ki18n("Glimpse"), "0.1",
+                         ki18n("This is an example application for libksane."),
+                         KAboutData::License_GPL,
+                         ki18n("(C) %{YEAR} Kåre Särs"));
+
     aboutData.addAuthor(ki18n("Kåre Särs"),
-                        ki18n("Maintainer"),
-                        "kare.sars@kolumbus.fi");
+                        ki18n("developer"),
+                        "kare.sars@kolumbus.fi", 0);
 
     KCmdLineArgs::init(argc, argv, &aboutData);
 

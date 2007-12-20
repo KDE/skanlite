@@ -1,9 +1,9 @@
-#include <QSettings>
 #include <QScrollArea>
 
 #include <KFileDialog>
 #include <KMessageBox>
 #include <KDebug>
+#include <KGlobal>
 
 #include "glimpse.h"
 #include "glimpse.moc"
@@ -41,9 +41,9 @@ Glimpse::Glimpse(const QString &device, QWidget *parent)
     connect (close, SIGNAL(clicked()), this, SLOT(close()));
 
     // open the scan device
-    if (ksanew->openDevice(device) == FALSE) {
+    if (ksanew->openDevice(device) == false) {
         QString dev = ksanew->selectDevice(NULL);
-        if (ksanew->openDevice(dev) == FALSE) {
+        if (ksanew->openDevice(dev) == false) {
             // could not open a scanner
             KMessageBox::sorry(0, i18n("Opening the selected scanner failed!"));
             exit(1);
@@ -55,13 +55,12 @@ Glimpse::Glimpse(const QString &device, QWidget *parent)
     connect(settingsUi.getDirButton, SIGNAL(clicked(void)), this, SLOT(setDir(void)));
     readSettings();
 
-    QSettings settings("OSS", "KSaneWidget");
-    if (settings.value("General/DontAskOnStart", FALSE).toBool() == FALSE) {
+    if (settingsUi.dontAskOnStart->isChecked() == false) {
         showSettingsDialog();
     }
 
     // default dir for save dialog
-    currentDir = settings.value("Automatic/Location", "./").toString();
+    currentDir = settingsUi.imgPrefix->text();
 
     connect(ksanew, SIGNAL(imageReady(QByteArray &, int, int, int, int)),
             this, SLOT(imageReady(QByteArray &, int, int, int, int)));
@@ -85,59 +84,48 @@ Glimpse::Glimpse(const QString &device, QWidget *parent)
 //************************************************************
 void Glimpse::readSettings(void)
 {
-    QSettings settings("OSS", "KSaneWidget");
-
     // enable the widgets to allow modifying
-    settingsUi.autoSaveRButton->setChecked(TRUE);
-    settingsUi.setQuality->setChecked(TRUE);
+    settingsUi.autoSaveRButton->setChecked(true);
+    settingsUi.setQuality->setChecked(true);
 
     // read the saved parameters
-    settingsUi.dontAskOnStart->setChecked(settings.value("General/DontAskOnStart", FALSE).toBool());
-    settingsUi.saveDirLEdit->setText(settings.value("Automatic/Location", "./").toString());
-    settingsUi.imgPrefix->setText(settings.value("Automatic/NamePrefix", "Image-").toString());
+    KConfigGroup asave(KGlobal::config(), "AutoSave");
+    settingsUi.saveDirLEdit->setText(asave.readEntry("Location", "./"));
+    settingsUi.imgPrefix->setText(asave.readEntry("NamePrefix", "Image-"));
     for (int i=0; i<settingsUi.imgFormat->count(); i++) {
-        if (settings.value("Automatic/ImgFormat", "PNG").toString() ==
-            settingsUi.imgFormat->itemText(i))
-        {
+        if (asave.readEntry("ImgFormat", "PNG") == settingsUi.imgFormat->itemText(i)) {
             settingsUi.imgFormat->setCurrentIndex(i);
             break;
         }
     }
-    settingsUi.imgQuality->setValue(settings.value("Automatic/ImgQuality", 45).toInt());
-    settingsUi.setQuality->setChecked(settings.value("Automatic/SetQuality", FALSE).toBool());
-    settingsUi.showB4Save->setChecked(settings.value("Automatic/ShowB4Save", TRUE).toBool());
-    if (settings.value("General/SaveMode", "Manual").toString() == QString("Manual")) {
-        settingsUi.manualSaveRButton->setChecked(TRUE);
-    }
-    else {
-        settingsUi.autoSaveRButton->setChecked(TRUE);
-    }
+    settingsUi.imgQuality->setValue(asave.readEntry("ImgQuality", 85));
+    settingsUi.setQuality->setChecked(asave.readEntry("SetQuality", false));
+    settingsUi.showB4Save->setChecked(asave.readEntry("ShowB4Save", true));
+
+    KConfigGroup general(KGlobal::config(), "General");
+    settingsUi.manualSaveRButton->setChecked(general.readEntry("SaveModeManual", true));
+    settingsUi.dontAskOnStart->setChecked(general.readEntry("DontAskOnStart", false));
+
 }
 
 //************************************************************
 void Glimpse::showSettingsDialog(void)
 {
-
     readSettings();
 
     // show the dialog
     if (settingsDialog->exec()) {
-        QSettings settings("OSS", "KSaneWidget");
-        //printf("save settings\n");
-        // Save mode
-        if (settingsUi.manualSaveRButton->isChecked()) {
-            settings.setValue("General/SaveMode", "Manual");
-        }
-        else {
-            settings.setValue("General/SaveMode", "Automatic");
-        }
-        settings.setValue("Automatic/Location", settingsUi.saveDirLEdit->text());
-        settings.setValue("Automatic/NamePrefix", settingsUi.imgPrefix->text());
-        settings.setValue("Automatic/ImgFormat", settingsUi.imgFormat->currentText());
-        settings.setValue("Automatic/SetQuality", settingsUi.setQuality->isChecked());
-        settings.setValue("Automatic/ImgQuality", settingsUi.imgQuality->value());
-        settings.setValue("Automatic/ShowB4Save", settingsUi.showB4Save->isChecked());
-        settings.setValue("General/DontAskOnStart", settingsUi.dontAskOnStart->isChecked());
+        KConfigGroup general(KGlobal::config(), "General");
+        general.writeEntry("SaveModeManual", settingsUi.manualSaveRButton->isChecked());
+        general.writeEntry("DontAskOnStart", settingsUi.dontAskOnStart->isChecked());
+
+        KConfigGroup asave(KGlobal::config(), "AutoSave");
+        asave.writeEntry("Location", settingsUi.saveDirLEdit->text());
+        asave.writeEntry("NamePrefix", settingsUi.imgPrefix->text());
+        asave.writeEntry("ImgFormat", settingsUi.imgFormat->currentText());
+        asave.writeEntry("SetQuality", settingsUi.setQuality->isChecked());
+        asave.writeEntry("ImgQuality", settingsUi.imgQuality->value());
+        asave.writeEntry("ShowB4Save", settingsUi.showB4Save->isChecked());
     }
     else {
         //Forget Changes
@@ -184,7 +172,7 @@ void Glimpse::imageReady(QByteArray &data, int w, int h, int bpl, int f)
     imgLabel->setPixmap(QPixmap::fromImage(img));
     imgLabel->resize(img.size());
 
-    if (settingsUi.showB4Save->isChecked() == TRUE) {
+    if (settingsUi.showB4Save->isChecked() == true) {
         if (settingsUi.manualSaveRButton->isChecked()) {
             connect (saveBtn, SIGNAL(clicked()), this, SLOT(saveImage()));
         }
@@ -276,7 +264,7 @@ void Glimpse::autoSaveImage()
 
     for (int i=0; i<1000; i++) {
         fname = settingsUi.saveDirLEdit->text();
-        if (fname.endsWith("/") == FALSE) {
+        if (fname.endsWith("/") == false) {
             fname += "/";
         }
         fname += settingsUi.imgPrefix->text();
@@ -284,7 +272,7 @@ void Glimpse::autoSaveImage()
         fname += settingsUi.imgFormat->currentText().toLower();
         //printf("filename = %s\n",qPrintable(fname));
         file.setFileName(fname);
-        if (file.exists() == FALSE) {
+        if (file.exists() == false) {
             break;
         }
     }
