@@ -22,7 +22,7 @@ class Glimpse : public QDialog
         void buildShowImage();
         void readSettings();
 
-    private slots:
+    private Q_SLOTS:
         void showSettingsDialog();
         void setDir();
         void imageReady(QByteArray &, int, int, int, int);
