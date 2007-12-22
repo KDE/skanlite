@@ -27,18 +27,20 @@ Glimpse::Glimpse(const QString &device, QWidget *parent)
     layout->addWidget(separator);
     layout->addLayout(btn_layout);
 
-    // add the settings and clode buttons to the bottom
+    // add the settings and close buttons to the bottom
     QPushButton *settingsBtn = new QPushButton(this);
-    settingsBtn->setText("Settings");
-    QPushButton *close = new QPushButton(this);
-    close->setText("Close");
+    settingsBtn->setText(i18n("Settings"));
+    settingsBtn->setIcon(SmallIcon("configure"));
+    QPushButton *closeBtn = new QPushButton(this);
+    closeBtn->setText(i18n("Close"));
+    closeBtn->setIcon(SmallIcon("dialog-close"));
 
     btn_layout->addWidget(settingsBtn);
     btn_layout->addStretch();
-    btn_layout->addWidget(close);
+    btn_layout->addWidget(closeBtn);
 
     connect (settingsBtn, SIGNAL(clicked()), this, SLOT(showSettingsDialog()));
-    connect (close, SIGNAL(clicked()), this, SLOT(close()));
+    connect (closeBtn, SIGNAL(clicked()), this, SLOT(close()));
 
     // open the scan device
     if (ksanew->openDevice(device) == false) {
@@ -52,6 +54,7 @@ Glimpse::Glimpse(const QString &device, QWidget *parent)
 
     settingsDialog = new QDialog(NULL);
     settingsUi.setupUi(settingsDialog);
+
     connect(settingsUi.getDirButton, SIGNAL(clicked(void)), this, SLOT(setDir(void)));
     readSettings();
 
@@ -113,6 +116,8 @@ void Glimpse::showSettingsDialog(void)
 {
     readSettings();
 
+    settingsUi.okButton->setIcon(SmallIcon("dialog-apply"));
+    settingsUi.cancelButton->setIcon(SmallIcon("dialog-cancel"));
     // show the dialog
     if (settingsDialog->exec()) {
         KConfigGroup general(KGlobal::config(), "General");
@@ -152,13 +157,16 @@ void Glimpse::buildShowImage(void)
     QHBoxLayout *btn_layout = new QHBoxLayout;
     s_layout->insertLayout(1, btn_layout, 0);
 
-    // add the Save and clode buttons to the bottom
+    // add the Save and close buttons to the bottom
     btn_layout->addStretch();
     saveBtn = new QPushButton;
-    saveBtn->setText("Save");
+    saveBtn->setText(i18n("Save"));
+    saveBtn->setIcon(SmallIcon("document-save"));
+
     btn_layout->addWidget(saveBtn);
     QPushButton *close = new QPushButton;
-    close->setText("Close");
+    close->setText(i18n("Close"));
+    close->setIcon(SmallIcon("dialog-close"));
     btn_layout->addWidget(close);
 
     connect (close, SIGNAL(clicked()), showImgDialog, SLOT(close()));
@@ -199,10 +207,10 @@ void Glimpse::saveImage()
     QString name;
     do {
         name = KFileDialog::getSaveFileName(currentDir, filter);
-        kDebug() << "-----Save-----" << name;
+        //kDebug() << "-----Save-----" << name;
 
         if (name.isEmpty()) {
-            kDebug() << "!!!!!!!!!!!!!Nothing to save!!!!!!!!!!!";
+            //kDebug() << "!!!!!!!!!!!!!Nothing to save!!!!!!!!!!!";
             return;
         }
 
