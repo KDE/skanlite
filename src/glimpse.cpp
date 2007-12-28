@@ -68,7 +68,7 @@ Glimpse::Glimpse(const QString &device, QWidget *parent)
     connect(ksanew, SIGNAL(imageReady(QByteArray &, int, int, int, int)),
             this, SLOT(imageReady(QByteArray &, int, int, int, int)));
 
-    setWindowTitle(qApp->applicationName());
+    setWindowTitle(ksanew->make()+ " " + ksanew->model() + " - Glimpse");
 
     // prepare the Show Image Dialog
     buildShowImage();
