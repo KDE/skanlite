@@ -63,7 +63,7 @@ Glimpse::Glimpse(const QString &device, QWidget *parent)
     }
 
     // default dir for save dialog
-    currentDir = settingsUi.imgPrefix->text();
+    currentDir = settingsUi.saveDirLEdit->text();
 
     connect(ksanew, SIGNAL(imageReady(QByteArray &, int, int, int, int)),
             this, SLOT(imageReady(QByteArray &, int, int, int, int)));
@@ -88,7 +88,6 @@ Glimpse::Glimpse(const QString &device, QWidget *parent)
 void Glimpse::readSettings(void)
 {
     // enable the widgets to allow modifying
-    settingsUi.autoSaveRButton->setChecked(true);
     settingsUi.setQuality->setChecked(true);
 
     // read the saved parameters
@@ -101,7 +100,7 @@ void Glimpse::readSettings(void)
             break;
         }
     }
-    settingsUi.imgQuality->setValue(asave.readEntry("ImgQuality", 85));
+    settingsUi.imgQuality->setValue(asave.readEntry("ImgQuality", 90));
     settingsUi.setQuality->setChecked(asave.readEntry("SetQuality", false));
     settingsUi.showB4Save->setChecked(asave.readEntry("ShowB4Save", true));
 
@@ -176,11 +175,13 @@ void Glimpse::buildShowImage(void)
 //************************************************************
 void Glimpse::imageReady(QByteArray &data, int w, int h, int bpl, int f)
 {
+    /* copy the image data into img */
     ksanew->makeQImage(data, w, h, bpl, (KSaneIface::KSaneWidget::ImageFormat)f, img);
-    imgLabel->setPixmap(QPixmap::fromImage(img));
-    imgLabel->resize(img.size());
 
     if (settingsUi.showB4Save->isChecked() == true) {
+        imgLabel->setPixmap(QPixmap::fromImage(img));
+        imgLabel->resize(img.size());
+        
         if (settingsUi.manualSaveRButton->isChecked()) {
             connect (saveBtn, SIGNAL(clicked()), this, SLOT(saveImage()));
         }
@@ -202,22 +203,41 @@ void Glimpse::imageReady(QByteArray &data, int w, int h, int bpl, int f)
 //************************************************************
 void Glimpse::saveImage()
 {
-    //QString filter = "image/png \n*.png\n*.jpg\n*.jpeg\n*.bmp\n*.ppm\n*.xbm\n*";
+    //QString filter = "*.png\n*.jpg\n*.jpeg\n*.bmp\n*.ppm\n*.xbm\n*";
     QString filter = "image/png image/jpg image/jpeg image/bmp image/ppm image/xbm";
-    QString name;
-    do {
-        name = KFileDialog::getSaveFileName(currentDir, filter);
-        //kDebug() << "-----Save-----" << name;
 
-        if (name.isEmpty()) {
+    QFile file;
+    QString fname;
+    int i;
+
+    // find next available file name for name suggestion
+    for (i=1; i<10000; i++) {
+        fname = currentDir;
+        if (fname.endsWith("/") == false) {
+            fname += "/";
+        }
+        fname += settingsUi.imgPrefix->text();
+        fname += QString().sprintf("%03d.",i);
+        fname += settingsUi.imgFormat->currentText().toLower();
+        file.setFileName(fname);
+        if (file.exists() == false) {
+            break;
+        }
+    }
+
+    do {
+        fname = KFileDialog::getSaveFileName(fname, filter);
+        //kDebug() << "-----Save-----" << fname;
+
+        if (fname.isEmpty()) {
             //kDebug() << "!!!!!!!!!!!!!Nothing to save!!!!!!!!!!!";
             return;
         }
 
-        QFileInfo file(name);
+        file.setFileName(fname);
         if (file.exists()) {
             if (KMessageBox::warningContinueCancel(this,
-                i18n("About to overwrite file \"%1\"\nAre you sure?", file.fileName()),
+                i18n("Do you want to overwrite \"%1\"?", file.fileName()),
                 i18n("Warning"),
                 KGuiItem(i18n("Overwrite")),
                 KStandardGuiItem::cancel(),
@@ -232,20 +252,27 @@ void Glimpse::saveImage()
         }
     } while (1);
 
-    // Now we should try to save the file
+    // Save last used dir
+    currentDir = fname;
 
-    QString type("PNG");
-    // figure out image type
+    // Figure out Image format
+    QString type(settingsUi.imgFormat->currentText());
     for (int i=0; i<typeList.size(); ++i) {
-        if (name.endsWith(typeList.at(i), Qt::CaseInsensitive)) {
+        if (fname.endsWith(typeList.at(i), Qt::CaseInsensitive)) {
             type = typeList.at(i);
             break;
         }
     }
 
-    //if (type == "NONE) {do seletc file type} for now default to PNG
+    // Get the quality
+    int quality = -1;
+    if (settingsUi.setQuality->isChecked()) {
+        quality = settingsUi.imgQuality->value();
+    }
 
-    if (img.save(name, type.toLatin1(), -1)) {
+    // Save
+    //kDebug() << "-------" << fname << type.toLatin1() << quality;
+    if (img.save(fname, type.toLatin1(), quality)) {
         disconnect(saveBtn, NULL, NULL, NULL);
         showImgDialog->close();
     }
@@ -258,10 +285,10 @@ void Glimpse::saveImage()
 //************************************************************
 void Glimpse::autoSaveImage()
 {
-    //printf("autoSaveImage\n");
     QFile file;
     QString fname;
     int quality;
+    int i;
 
     if (settingsUi.setQuality->isChecked()) {
         quality = settingsUi.imgQuality->value();
@@ -270,7 +297,7 @@ void Glimpse::autoSaveImage()
         quality = -1;
     }
 
-    for (int i=0; i<1000; i++) {
+    for (i=1; i<10000; i++) {
         fname = settingsUi.saveDirLEdit->text();
         if (fname.endsWith("/") == false) {
             fname += "/";
@@ -278,15 +305,20 @@ void Glimpse::autoSaveImage()
         fname += settingsUi.imgPrefix->text();
         fname += QString().sprintf("%03d.",i);
         fname += settingsUi.imgFormat->currentText().toLower();
-        //printf("filename = %s\n",qPrintable(fname));
+
         file.setFileName(fname);
         if (file.exists() == false) {
             break;
         }
     }
+    if (i==10000) {
+        KMessageBox::sorry(0, i18n("Could not find a suitable filename."));
+        return;
+    }
 
     if (img.save(fname,
-        qPrintable(settingsUi.imgFormat->currentText()), quality))
+                 qPrintable(settingsUi.imgFormat->currentText()), 
+                 quality))
     {
         disconnect(saveBtn, NULL, NULL, NULL);
         showImgDialog->close();
@@ -300,10 +332,6 @@ void Glimpse::autoSaveImage()
 void Glimpse::setDir(void)
 {
     QString dir = KFileDialog::getExistingDirectory(KUrl(settingsUi.saveDirLEdit->text()));
-/*            ( this, "Choose a directory",
-              settingsUi.saveDirLEdit->text(),
-              KFileDialog::ShowDirsOnly | KFileDialog::DontResolveSymlinks
-            );*/
     if (dir != QString("")) {
         settingsUi.saveDirLEdit->setText(dir);
     }
