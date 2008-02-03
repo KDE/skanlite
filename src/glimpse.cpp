@@ -27,6 +27,7 @@ Glimpse::Glimpse(const QString &device, QWidget *parent)
     layout->addWidget(separator);
     layout->addLayout(btn_layout);
 
+
     // add the settings and close buttons to the bottom
     QPushButton *settingsBtn = new QPushButton(this);
     settingsBtn->setText(i18n("Settings"));
@@ -42,18 +43,25 @@ Glimpse::Glimpse(const QString &device, QWidget *parent)
     connect (settingsBtn, SIGNAL(clicked()), this, SLOT(showSettingsDialog()));
     connect (closeBtn, SIGNAL(clicked()), this, SLOT(close()));
 
-    // open the scan device
-    if (ksanew->openDevice(device) == false) {
-        QString dev = ksanew->selectDevice(NULL);
-        if (ksanew->openDevice(dev) == false) {
-            // could not open a scanner
-            KMessageBox::sorry(0, i18n("Opening the selected scanner failed!"));
-            exit(1);
-        }
-    }
+    // Create the settings dialog
+    settingsDialog = new KDialog(0);
+    settingsDialog->setButtons(KDialog::Ok | KDialog::Cancel);
 
-    settingsDialog = new QDialog(NULL);
-    settingsUi.setupUi(settingsDialog);
+    QWidget *settingsWidget = new QWidget(settingsDialog);
+    settingsUi.setupUi(settingsWidget);
+
+    // add the supported image types
+    typeList << "PNG";
+    typeList << "JPG";
+    typeList << "JPEG";
+    typeList << "BMP";
+    typeList << "PPM";
+    typeList << "XBM";
+    typeList << "XPM";
+    settingsUi.imgFormat->addItems(typeList);
+
+    settingsDialog->setMainWidget(settingsWidget);
+
 
     connect(settingsUi.getDirButton, SIGNAL(clicked(void)), this, SLOT(setDir(void)));
     readSettings();
@@ -68,19 +76,19 @@ Glimpse::Glimpse(const QString &device, QWidget *parent)
     connect(ksanew, SIGNAL(imageReady(QByteArray &, int, int, int, int)),
             this, SLOT(imageReady(QByteArray &, int, int, int, int)));
 
+    // open the scan device
+    if (ksanew->openDevice(device) == false) {
+        QString dev = ksanew->selectDevice(NULL);
+        if (ksanew->openDevice(dev) == false) {
+            // could not open a scanner
+            KMessageBox::sorry(0, i18n("Opening the selected scanner failed!"));
+            exit(1);
+        }
+    }
     setWindowTitle(ksanew->make()+ " " + ksanew->model() + " - Glimpse");
 
     // prepare the Show Image Dialog
     buildShowImage();
-
-    typeList << "PNG";
-    typeList << "JPG";
-    typeList << "JPEG";
-    typeList << "BMP";
-    typeList << "PPM";
-    typeList << "XBM";
-    typeList << "XPM";
-    typeList << "PNG";
 
 }
 
@@ -105,7 +113,7 @@ void Glimpse::readSettings(void)
     settingsUi.showB4Save->setChecked(asave.readEntry("ShowB4Save", true));
 
     KConfigGroup general(KGlobal::config(), "General");
-    settingsUi.manualSaveRButton->setChecked(general.readEntry("SaveModeManual", true));
+    settingsUi.saveModeCB->setCurrentIndex(general.readEntry("SaveModeManual", true) ? 0:1);
     settingsUi.dontAskOnStart->setChecked(general.readEntry("DontAskOnStart", false));
 
 }
@@ -115,12 +123,12 @@ void Glimpse::showSettingsDialog(void)
 {
     readSettings();
 
-    settingsUi.okButton->setIcon(SmallIcon("dialog-apply"));
-    settingsUi.cancelButton->setIcon(SmallIcon("dialog-cancel"));
+    //settingsUi.okButton->setIcon(SmallIcon("dialog-ok-apply"));
+    //settingsUi.cancelButton->setIcon(SmallIcon("dialog-cancel"));
     // show the dialog
     if (settingsDialog->exec()) {
         KConfigGroup general(KGlobal::config(), "General");
-        general.writeEntry("SaveModeManual", settingsUi.manualSaveRButton->isChecked());
+        general.writeEntry("SaveModeManual", (settingsUi.saveModeCB->currentIndex() == 0));
         general.writeEntry("DontAskOnStart", settingsUi.dontAskOnStart->isChecked());
 
         KConfigGroup asave(KGlobal::config(), "AutoSave");
@@ -181,8 +189,8 @@ void Glimpse::imageReady(QByteArray &data, int w, int h, int bpl, int f)
     if (settingsUi.showB4Save->isChecked() == true) {
         imgLabel->setPixmap(QPixmap::fromImage(img));
         imgLabel->resize(img.size());
-        
-        if (settingsUi.manualSaveRButton->isChecked()) {
+
+        if (settingsUi.saveModeCB->currentIndex() == 0) {
             connect (saveBtn, SIGNAL(clicked()), this, SLOT(saveImage()));
         }
         else {
@@ -191,7 +199,7 @@ void Glimpse::imageReady(QByteArray &data, int w, int h, int bpl, int f)
         showImgDialog->exec();
     }
     else {
-        if (settingsUi.manualSaveRButton->isChecked()) {
+        if (settingsUi.saveModeCB->currentIndex() == 0) {
             saveImage();
         }
         else {
@@ -312,12 +320,12 @@ void Glimpse::autoSaveImage()
         }
     }
     if (i==10000) {
-        KMessageBox::sorry(0, i18n("Could not find a suitable filename."));
+        saveImage();
         return;
     }
 
     if (img.save(fname,
-                 qPrintable(settingsUi.imgFormat->currentText()), 
+                 qPrintable(settingsUi.imgFormat->currentText()),
                  quality))
     {
         disconnect(saveBtn, NULL, NULL, NULL);

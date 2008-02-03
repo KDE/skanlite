@@ -9,7 +9,7 @@ find_package(Ksane REQUIRED)
 
 set(glimpse_SRCS main.cpp glimpse.cpp)
 
-kde4_add_ui_files(glimpse_SRCS save_mode.ui)
+kde4_add_ui_files(glimpse_SRCS settings.ui)
 
 kde4_add_executable(glimpse ${glimpse_SRCS})
 

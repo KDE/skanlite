@@ -4,7 +4,7 @@
 
 #include <libksane/ksane.h>
 
-#include "ui_save_mode.h"
+#include "ui_settings.h"
 
 namespace KSaneIface
 {
@@ -32,8 +32,8 @@ class Glimpse : public QDialog
 
     private:
         KSaneIface::KSaneWidget *ksanew;
-        Ui::SaveMode             settingsUi;
-        QDialog                 *settingsDialog;
+        Ui::GlimpseSettings      settingsUi;
+        KDialog                 *settingsDialog;
         QDialog                 *showImgDialog;
         QImage                   img;
         QLabel                  *imgLabel;
