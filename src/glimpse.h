@@ -28,6 +28,7 @@ class Glimpse : public QDialog
         void imageReady(QByteArray &, int, int, int, int);
         void saveImage();
         void autoSaveImage();
+        void showAboutDialog();
 
 
     private:

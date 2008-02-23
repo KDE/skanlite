@@ -1,12 +1,14 @@
+#include "glimpse.h"
+#include "glimpse.moc"
+
 #include <QScrollArea>
 
 #include <KFileDialog>
 #include <KMessageBox>
 #include <KDebug>
 #include <KGlobal>
-
-#include "glimpse.h"
-#include "glimpse.moc"
+#include <KAboutApplicationDialog>
+#include <KComponentData>
 
 Glimpse::Glimpse(const QString &device, QWidget *parent)
     : QDialog(parent)
@@ -32,15 +34,19 @@ Glimpse::Glimpse(const QString &device, QWidget *parent)
     QPushButton *settingsBtn = new QPushButton(this);
     settingsBtn->setText(i18n("Settings"));
     settingsBtn->setIcon(SmallIcon("configure"));
+    QPushButton *aboutBtn = new QPushButton(this);
+    aboutBtn->setText(i18n("About"));
     QPushButton *closeBtn = new QPushButton(this);
     closeBtn->setText(i18n("Close"));
     closeBtn->setIcon(SmallIcon("dialog-close"));
 
     btn_layout->addWidget(settingsBtn);
+    btn_layout->addWidget(aboutBtn);
     btn_layout->addStretch();
     btn_layout->addWidget(closeBtn);
 
     connect (settingsBtn, SIGNAL(clicked()), this, SLOT(showSettingsDialog()));
+    connect (aboutBtn, SIGNAL(clicked()), this, SLOT(showAboutDialog()));
     connect (closeBtn, SIGNAL(clicked()), this, SLOT(close()));
 
     // Create the settings dialog
@@ -344,3 +350,12 @@ void Glimpse::setDir(void)
         settingsUi.saveDirLEdit->setText(dir);
     }
 }
+
+//************************************************************
+void Glimpse::showAboutDialog(void)
+{
+    KAboutApplicationDialog::KAboutApplicationDialog(
+            KGlobal::mainComponent().aboutData(), 0).exec();
+}
+
+
