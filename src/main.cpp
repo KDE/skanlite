@@ -17,6 +17,22 @@ int main(int argc, char *argv[])
                         ki18n("developer"),
                         "kare.sars@iki.fi", 0);
 
+    aboutData.addCredit(ki18n("Gilles Caulier"),
+                        ki18n("Importing libksane to extragear"),
+                              0, 0);
+
+    aboutData.addCredit(ki18n("Laurent Montel"),
+                        ki18n("Importing libksane to extragear"),
+                              0, 0);
+
+    aboutData.addCredit(ki18n("Chusslove Illich"),
+                        ki18n("Help with translations"),
+                              0, 0);
+
+    aboutData.addCredit(ki18n("Albert Astals Cid"),
+                        ki18n("Help with translations"),
+                              0, 0);
+
     KCmdLineArgs::init(argc, argv, &aboutData);
 
     KCmdLineOptions options;
