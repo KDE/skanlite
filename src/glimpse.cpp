@@ -84,7 +84,11 @@ Glimpse::Glimpse(const QString &device, QWidget *parent)
 
     // open the scan device
     if (ksanew->openDevice(device) == false) {
-        QString dev = ksanew->selectDevice(NULL);
+        QString dev = ksanew->selectDevice(0);
+        if (dev.isEmpty()) {
+            // either no scanner was found or then cancel was pressed.
+            exit(0);
+        }
         if (ksanew->openDevice(dev) == false) {
             // could not open a scanner
             KMessageBox::sorry(0, i18n("Opening the selected scanner failed!"));
