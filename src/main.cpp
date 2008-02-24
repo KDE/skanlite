@@ -27,9 +27,6 @@ int main(int argc, char *argv[])
     QString device = args->getOption("d");
 
     KApplication app;
-    
-    // get the translations for libksane
-    KGlobal::locale()->insertCatalog("libksane");
 
     Glimpse *ksane_test = new Glimpse(device, 0);
 
