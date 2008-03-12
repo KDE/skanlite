@@ -11,7 +11,7 @@ namespace KSaneIface
     class KSaneWidget;
 }
 
-class Glimpse : public QDialog
+class Glimpse : public KDialog
 {
     Q_OBJECT
 
@@ -35,10 +35,9 @@ class Glimpse : public QDialog
         KSaneIface::KSaneWidget *ksanew;
         Ui::GlimpseSettings      settingsUi;
         KDialog                 *settingsDialog;
-        QDialog                 *showImgDialog;
+        KDialog                 *showImgDialog;
         QImage                   img;
         QLabel                  *imgLabel;
-        QPushButton             *saveBtn;
         QStringList              filterList;
         QStringList              typeList;
         QString                  currentDir;

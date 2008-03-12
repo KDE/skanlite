@@ -11,43 +11,20 @@
 #include <KComponentData>
 
 Glimpse::Glimpse(const QString &device, QWidget *parent)
-    : QDialog(parent)
+    : KDialog(parent)
 {
+    setButtons(KDialog::Help | KDialog::User1 | KDialog::User2 | KDialog::Close);
+    setButtonText(KDialog::User1, i18n("Settings"));
+    setButtonIcon(KDialog::User1, KIcon("configure"));
+    setButtonText(KDialog::User2, i18n("About"));
+    //setButtonIcon(KDialog::User2, KIcon(""));
+    setHelp("glimpse");
+
     ksanew = new KSaneIface::KSaneWidget(this);
+    setMainWidget(ksanew);
 
-
-    QVBoxLayout *layout = new QVBoxLayout(this);
-    QHBoxLayout *btn_layout = new QHBoxLayout;
-
-    QFrame *separator = new QFrame(this);
-    separator->setFrameShape(QFrame::HLine);
-    separator->setFrameShadow(QFrame::Sunken);
-
-    layout->setMargin(2);
-    layout->setSpacing(2);
-    layout->addWidget(ksanew);
-    layout->addWidget(separator);
-    layout->addLayout(btn_layout);
-
-
-    // add the settings and close buttons to the bottom
-    QPushButton *settingsBtn = new QPushButton(this);
-    settingsBtn->setText(i18n("Settings"));
-    settingsBtn->setIcon(SmallIcon("configure"));
-    QPushButton *aboutBtn = new QPushButton(this);
-    aboutBtn->setText(i18n("About"));
-    QPushButton *closeBtn = new QPushButton(this);
-    closeBtn->setText(i18n("Close"));
-    closeBtn->setIcon(SmallIcon("dialog-close"));
-
-    btn_layout->addWidget(settingsBtn);
-    btn_layout->addWidget(aboutBtn);
-    btn_layout->addStretch();
-    btn_layout->addWidget(closeBtn);
-
-    connect (settingsBtn, SIGNAL(clicked()), this, SLOT(showSettingsDialog()));
-    connect (aboutBtn, SIGNAL(clicked()), this, SLOT(showAboutDialog()));
-    connect (closeBtn, SIGNAL(clicked()), this, SLOT(close()));
+    connect (this, SIGNAL(user1Clicked()), this, SLOT(showSettingsDialog()));
+    connect (this, SIGNAL(user2Clicked()), this, SLOT(showAboutDialog()));
 
     // Create the settings dialog
     settingsDialog = new KDialog(0);
@@ -133,8 +110,6 @@ void Glimpse::showSettingsDialog(void)
 {
     readSettings();
 
-    //settingsUi.okButton->setIcon(SmallIcon("dialog-ok-apply"));
-    //settingsUi.cancelButton->setIcon(SmallIcon("dialog-cancel"));
     // show the dialog
     if (settingsDialog->exec()) {
         KConfigGroup general(KGlobal::config(), "General");
@@ -159,34 +134,16 @@ void Glimpse::showSettingsDialog(void)
 //************************************************************
 void Glimpse::buildShowImage(void)
 {
-    showImgDialog = new QDialog(0);
+    showImgDialog = new KDialog(0);
+    showImgDialog->setButtons(KDialog::User1 | KDialog::Close);
+    showImgDialog->setButtonText(KDialog::User1, i18n("Save"));
+    showImgDialog->setButtonIcon(KDialog::User1, KIcon("document-save"));
 
-    QVBoxLayout *s_layout = new QVBoxLayout;
-    s_layout->setSpacing(2);
-    s_layout->setMargin(0);
-    showImgDialog->setLayout(s_layout);
-
-    QScrollArea *img_area = new QScrollArea;
-    s_layout->addWidget(img_area);
+    QScrollArea *img_area = new QScrollArea(showImgDialog);
     imgLabel = new QLabel(showImgDialog);
     img_area->setWidget(imgLabel);
 
-    QHBoxLayout *btn_layout = new QHBoxLayout;
-    s_layout->insertLayout(1, btn_layout, 0);
-
-    // add the Save and close buttons to the bottom
-    btn_layout->addStretch();
-    saveBtn = new QPushButton;
-    saveBtn->setText(i18n("Save"));
-    saveBtn->setIcon(SmallIcon("document-save"));
-
-    btn_layout->addWidget(saveBtn);
-    QPushButton *close = new QPushButton;
-    close->setText(i18n("Close"));
-    close->setIcon(SmallIcon("dialog-close"));
-    btn_layout->addWidget(close);
-
-    connect (close, SIGNAL(clicked()), showImgDialog, SLOT(close()));
+    showImgDialog->setMainWidget(img_area);
 }
 
 
@@ -201,10 +158,10 @@ void Glimpse::imageReady(QByteArray &data, int w, int h, int bpl, int f)
         imgLabel->resize(img.size());
 
         if (settingsUi.saveModeCB->currentIndex() == 0) {
-            connect (saveBtn, SIGNAL(clicked()), this, SLOT(saveImage()));
+            connect (showImgDialog, SIGNAL(user1Clicked()), this, SLOT(saveImage()));
         }
         else {
-            connect (saveBtn, SIGNAL(clicked()), this, SLOT(autoSaveImage()));
+            connect (showImgDialog, SIGNAL(user1Clicked()), this, SLOT(autoSaveImage()));
         }
         showImgDialog->exec();
     }
@@ -291,7 +248,7 @@ void Glimpse::saveImage()
     // Save
     //kDebug() << "-------" << fname << type.toLatin1() << quality;
     if (img.save(fname, type.toLatin1(), quality)) {
-        disconnect(saveBtn, NULL, NULL, NULL);
+        disconnect(showImgDialog, SIGNAL(user1Clicked()), NULL, NULL);
         showImgDialog->close();
     }
     else {
@@ -338,7 +295,7 @@ void Glimpse::autoSaveImage()
                  qPrintable(settingsUi.imgFormat->currentText()),
                  quality))
     {
-        disconnect(saveBtn, NULL, NULL, NULL);
+        disconnect(showImgDialog, SIGNAL(user1Clicked()), NULL, NULL);
         showImgDialog->close();
     }
     else {
