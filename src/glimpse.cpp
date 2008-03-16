@@ -307,7 +307,7 @@ void Glimpse::autoSaveImage()
 void Glimpse::setDir(void)
 {
     QString dir = KFileDialog::getExistingDirectory(KUrl(settingsUi.saveDirLEdit->text()));
-    if (dir != QString("")) {
+    if (!dir.isEmpty()) {
         settingsUi.saveDirLEdit->setText(dir);
     }
 }
