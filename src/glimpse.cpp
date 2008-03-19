@@ -179,6 +179,7 @@ void Glimpse::imageReady(QByteArray &data, int w, int h, int bpl, int f)
         imgLabel->setPixmap(QPixmap::fromImage(img));
         imgLabel->resize(img.size());
 
+        disconnect(showImgDialog, SIGNAL(user1Clicked()), NULL, NULL);
         if (settingsUi.saveModeCB->currentIndex() == 0) {
             connect (showImgDialog, SIGNAL(user1Clicked()), this, SLOT(saveImage()));
         }
@@ -270,7 +271,6 @@ void Glimpse::saveImage()
     // Save
     //kDebug() << "-------" << fname << type.toLatin1() << quality;
     if (img.save(fname, type.toLatin1(), quality)) {
-        disconnect(showImgDialog, SIGNAL(user1Clicked()), NULL, NULL);
         showImgDialog->close();
     }
     else {
@@ -317,7 +317,6 @@ void Glimpse::autoSaveImage()
                  qPrintable(settingsUi.imgFormat->currentText()),
                  quality))
     {
-        disconnect(showImgDialog, SIGNAL(user1Clicked()), NULL, NULL);
         showImgDialog->close();
     }
     else {
