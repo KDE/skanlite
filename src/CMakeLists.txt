@@ -3,7 +3,7 @@ project(glimpse)
 find_package(KDE4 REQUIRED)
 include(KDE4Defaults)
 include_directories (${KDE4_INCLUDES})
-find_package(Ksane REQUIRED)
+find_package(KSane REQUIRED)
 
 set(glimpse_SRCS main.cpp glimpse.cpp)
 
