@@ -1,0 +1,11 @@
+# KDE Config File
+[Desktop Entry]
+Type=Application
+Exec=glimpse -caption "%c" %i
+Icon=glimpse
+X-DocPath=glimpse/index.html
+Terminal=false
+Name=Glimpse
+GenericName=Image Scanning Application
+Comment=Scan and save images
+Categories=Qt;KDE;Graphics

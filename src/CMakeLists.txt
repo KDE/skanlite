@@ -16,3 +16,4 @@ kde4_add_executable(glimpse ${glimpse_SRCS})
 target_link_libraries(glimpse ${KDE4_KDEUI_LIBS} ${KDE4_KIO_LIBS} ${KSANE_LIBRARY})
 
 install(TARGETS glimpse DESTINATION ${BIN_INSTALL_DIR})
+install( FILES glimpse.desktop DESTINATION ${XDG_APPS_INSTALL_DIR} )
