@@ -1,4 +1,3 @@
-# KDE Config File
 [Desktop Entry]
 Type=Application
 Exec=skanlite -caption "%c" %i
@@ -12,4 +11,4 @@ GenericName[sv]=Bildläsningsprogram
 Comment=Scan and save images
 Comment[et]=Piltide skaneerimine ja salvestamine
 Comment[sv]=Läs in och spara bilder
-Categories=Qt;KDE;Graphics
+Categories=Qt;KDE;Graphics;
