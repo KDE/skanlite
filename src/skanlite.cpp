@@ -66,6 +66,7 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     settingsUi.imgFormat->addItems(typeList);
 
     settingsDialog->setMainWidget(settingsWidget);
+    settingsDialog->setWindowTitle(i18n("Skanlite Settings"));
 
 
     connect(settingsUi.getDirButton, SIGNAL(clicked(void)), this, SLOT(setDir(void)));
