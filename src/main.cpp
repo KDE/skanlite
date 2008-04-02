@@ -24,12 +24,12 @@
 #include <kaboutdata.h>
 #include <kglobal.h>
 
-#include "glimpse.h"
+#include "skanlite.h"
 
 int main(int argc, char *argv[])
 {
     // about data
-    KAboutData aboutData("glimpse", "glimpse", ki18n("Glimpse"), "0.1",
+    KAboutData aboutData("skanlite", "skanlite", ki18n("Skanlite"), "0.1",
                          ki18n("This is an example application for libksane."),
                          KAboutData::License_GPL,
                          ki18n("(C) %{YEAR} Kåre Särs"));
@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
 
     KApplication app;
 
-    Glimpse *ksane_test = new Glimpse(device, 0);
+    Skanlite *ksane_test = new Skanlite(device, 0);
 
     ksane_test->show();
 

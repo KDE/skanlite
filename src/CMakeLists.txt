@@ -1,17 +1,17 @@
-project(glimpse)
+project(skanlite)
 
 find_package(KDE4 REQUIRED)
 include(KDE4Defaults)
 include_directories (${KDE4_INCLUDES})
 find_package(KSane REQUIRED)
 
-set(glimpse_SRCS main.cpp glimpse.cpp)
+set(skanlite_SRCS main.cpp skanlite.cpp)
 
-kde4_add_ui_files(glimpse_SRCS settings.ui)
+kde4_add_ui_files(skanlite_SRCS settings.ui)
 
-kde4_add_executable(glimpse ${glimpse_SRCS})
+kde4_add_executable(skanlite ${skanlite_SRCS})
 
-target_link_libraries(glimpse ${KDE4_KDEUI_LIBS} ${KDE4_KIO_LIBS} ${KSANE_LIBRARY})
+target_link_libraries(skanlite ${KDE4_KDEUI_LIBS} ${KDE4_KIO_LIBS} ${KSANE_LIBRARY})
 
-install(TARGETS glimpse DESTINATION ${BIN_INSTALL_DIR})
-install( FILES glimpse.desktop DESTINATION ${XDG_APPS_INSTALL_DIR} )
+install(TARGETS skanlite DESTINATION ${BIN_INSTALL_DIR})
+install( FILES skanlite.desktop DESTINATION ${XDG_APPS_INSTALL_DIR} )

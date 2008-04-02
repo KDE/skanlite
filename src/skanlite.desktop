@@ -1,11 +1,11 @@
 # KDE Config File
 [Desktop Entry]
 Type=Application
-Exec=glimpse -caption "%c" %i
-Icon=glimpse
-X-DocPath=glimpse/index.html
+Exec=skanlite -caption "%c" %i
+Icon=skanlite
+X-DocPath=skanlite/index.html
 Terminal=false
-Name=Glimpse
+Name=Skanlite
 GenericName=Image Scanning Application
 GenericName[et]=Piltide skaneerimise rakendus
 GenericName[sv]=Bildläsningsprogram

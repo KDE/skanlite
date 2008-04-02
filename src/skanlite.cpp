@@ -20,8 +20,8 @@
  *
  * ============================================================ */
 
-#include "glimpse.h"
-#include "glimpse.moc"
+#include "skanlite.h"
+#include "skanlite.moc"
 
 #include <QScrollArea>
 
@@ -32,7 +32,7 @@
 #include <KAboutApplicationDialog>
 #include <KComponentData>
 
-Glimpse::Glimpse(const QString &device, QWidget *parent)
+Skanlite::Skanlite(const QString &device, QWidget *parent)
     : KDialog(parent)
 {
     setButtons(KDialog::Help | KDialog::User1 | KDialog::User2 | KDialog::Close);
@@ -40,7 +40,7 @@ Glimpse::Glimpse(const QString &device, QWidget *parent)
     setButtonIcon(KDialog::User1, KIcon("configure"));
     setButtonText(KDialog::User2, i18n("About"));
     //setButtonIcon(KDialog::User2, KIcon(""));
-    setHelp("glimpse");
+    setHelp("skanlite");
 
     ksanew = new KSaneIface::KSaneWidget(this);
     setMainWidget(ksanew);
@@ -94,7 +94,7 @@ Glimpse::Glimpse(const QString &device, QWidget *parent)
             exit(1);
         }
     }
-    setWindowTitle(ksanew->make()+ ' ' + ksanew->model() + " - Glimpse");
+    setWindowTitle(ksanew->make()+ ' ' + ksanew->model() + " - Skanlite");
 
     // prepare the Show Image Dialog
     buildShowImage();
@@ -102,7 +102,7 @@ Glimpse::Glimpse(const QString &device, QWidget *parent)
 }
 
 //************************************************************
-void Glimpse::readSettings(void)
+void Skanlite::readSettings(void)
 {
     // enable the widgets to allow modifying
     settingsUi.setQuality->setChecked(true);
@@ -128,7 +128,7 @@ void Glimpse::readSettings(void)
 }
 
 //************************************************************
-void Glimpse::showSettingsDialog(void)
+void Skanlite::showSettingsDialog(void)
 {
     readSettings();
 
@@ -154,7 +154,7 @@ void Glimpse::showSettingsDialog(void)
 
 
 //************************************************************
-void Glimpse::buildShowImage(void)
+void Skanlite::buildShowImage(void)
 {
     showImgDialog = new KDialog(0);
     showImgDialog->setButtons(KDialog::User1 | KDialog::Close);
@@ -170,7 +170,7 @@ void Glimpse::buildShowImage(void)
 
 
 //************************************************************
-void Glimpse::imageReady(QByteArray &data, int w, int h, int bpl, int f)
+void Skanlite::imageReady(QByteArray &data, int w, int h, int bpl, int f)
 {
     /* copy the image data into img */
     ksanew->makeQImage(data, w, h, bpl, (KSaneIface::KSaneWidget::ImageFormat)f, img);
@@ -199,7 +199,7 @@ void Glimpse::imageReady(QByteArray &data, int w, int h, int bpl, int f)
 }
 
 //************************************************************
-void Glimpse::saveImage()
+void Skanlite::saveImage()
 {
     //QString filter = "*.png\n*.jpg\n*.jpeg\n*.bmp\n*.ppm\n*.xbm\n*";
     QString filter = "image/png image/jpg image/jpeg image/bmp image/ppm image/xbm";
@@ -280,7 +280,7 @@ void Glimpse::saveImage()
 }
 
 //************************************************************
-void Glimpse::autoSaveImage()
+void Skanlite::autoSaveImage()
 {
     QFile file;
     QString fname;
@@ -325,7 +325,7 @@ void Glimpse::autoSaveImage()
 }
 
 //************************************************************
-void Glimpse::setDir(void)
+void Skanlite::setDir(void)
 {
     QString dir = KFileDialog::getExistingDirectory(KUrl(settingsUi.saveDirLEdit->text()));
     if (!dir.isEmpty()) {
@@ -334,7 +334,7 @@ void Glimpse::setDir(void)
 }
 
 //************************************************************
-void Glimpse::showAboutDialog(void)
+void Skanlite::showAboutDialog(void)
 {
     KAboutApplicationDialog::KAboutApplicationDialog(
             KGlobal::mainComponent().aboutData(), 0).exec();

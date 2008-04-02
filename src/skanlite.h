@@ -20,8 +20,8 @@
  *
  * ============================================================ */
 
-#ifndef GLIMPSE_H
-#define GLIMPSE_H
+#ifndef SKANLITE_H
+#define SKANLITE_H
 
 #include <libksane/ksane.h>
 
@@ -32,12 +32,12 @@ namespace KSaneIface
     class KSaneWidget;
 }
 
-class Glimpse : public KDialog
+class Skanlite : public KDialog
 {
     Q_OBJECT
 
     public:
-        explicit Glimpse(const QString& device, QWidget *parent = 0);
+        explicit Skanlite(const QString& device, QWidget *parent = 0);
 
     private:
         void buildShowImage();
@@ -54,7 +54,7 @@ class Glimpse : public KDialog
 
     private:
         KSaneIface::KSaneWidget *ksanew;
-        Ui::GlimpseSettings      settingsUi;
+        Ui::SkanliteSettings      settingsUi;
         KDialog                 *settingsDialog;
         KDialog                 *showImgDialog;
         QImage                   img;

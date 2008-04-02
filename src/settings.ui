@@ -1,6 +1,6 @@
 <ui version="4.0" >
- <class>GlimpseSettings</class>
- <widget class="QWidget" name="GlimpseSettings" >
+ <class>SkanliteSettings</class>
+ <widget class="QWidget" name="SkanliteSettings" >
   <property name="geometry" >
    <rect>
     <x>0</x>
