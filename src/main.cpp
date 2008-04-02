@@ -30,9 +30,9 @@ int main(int argc, char *argv[])
 {
     // about data
     KAboutData aboutData("skanlite", "skanlite", ki18n("Skanlite"), "0.1",
-                         ki18n("This is an example application for libksane."),
+                         ki18n("This is a scanning application for KDE based on libksane."),
                          KAboutData::License_GPL,
-                         ki18n("(C) %{YEAR} Kåre Särs"));
+                         ki18n("(C) 2008 Kåre Särs"));
 
     aboutData.addAuthor(ki18n("Kåre Särs"),
                         ki18n("developer"),
