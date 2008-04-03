@@ -174,7 +174,7 @@ void Skanlite::buildShowImage(void)
 void Skanlite::imageReady(QByteArray &data, int w, int h, int bpl, int f)
 {
     /* copy the image data into img */
-    ksanew->makeQImage(data, w, h, bpl, (KSaneIface::KSaneWidget::ImageFormat)f, img);
+    img = ksanew->toQImage(data, w, h, bpl, (KSaneIface::KSaneWidget::ImageFormat)f);
 
     if (settingsUi.showB4Save->isChecked() == true) {
         imgLabel->setPixmap(QPixmap::fromImage(img));
