@@ -41,12 +41,12 @@
 
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2008-03-23</date>
+<date>2008-04-05</date>
 <releaseinfo>0.0.3</releaseinfo>
 
 <abstract>
 <para>
-&skanlite; is a image scanning application that does nothing more than scan and save images.
+&skanlite; is an image scanning application that does nothing more than scan and save images.
 </para>
 <para>&skanlite; is based on libksane, a KDE interface for SANE library to control flat scanners.</para>
 </abstract>
