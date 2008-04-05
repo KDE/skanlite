@@ -43,7 +43,7 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     setButtonIcon(KDialog::User1, KIcon("configure"));
     setButtonText(KDialog::User2, i18n("About"));
     //setButtonIcon(KDialog::User2, KIcon(""));
-    setHelp("skanlite");
+    setHelp("index", "skanlite");
 
     ksanew = new KSaneIface::KSaneWidget(this);
     setMainWidget(ksanew);
