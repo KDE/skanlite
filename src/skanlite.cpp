@@ -23,14 +23,17 @@
 #include "skanlite.h"
 #include "skanlite.moc"
 
+#include <QApplication>
 #include <QScrollArea>
 
-#include <KFileDialog>
-#include <KMessageBox>
-#include <KDebug>
-#include <KGlobal>
 #include <KAboutApplicationDialog>
+#include <KAction>
 #include <KComponentData>
+#include <KDebug>
+#include <KFileDialog>
+#include <KGlobal>
+#include <KMessageBox>
+#include <KStandardAction>
 
 Skanlite::Skanlite(const QString &device, QWidget *parent)
     : KDialog(parent)
@@ -72,10 +75,6 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     connect(settingsUi.getDirButton, SIGNAL(clicked(void)), this, SLOT(setDir(void)));
     readSettings();
 
-    if (settingsUi.dontAskOnStart->isChecked() == false) {
-        showSettingsDialog();
-    }
-
     // default dir for save dialog
     currentDir = settingsUi.saveDirLEdit->text();
 
@@ -97,9 +96,10 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     }
     setWindowTitle(ksanew->make()+ ' ' + ksanew->model() + " - Skanlite");
 
+    addAction(KStandardAction::quit(qApp, SLOT(quit()), this));
+
     // prepare the Show Image Dialog
     buildShowImage();
-
 }
 
 //************************************************************
@@ -110,7 +110,7 @@ void Skanlite::readSettings(void)
 
     // read the saved parameters
     KConfigGroup asave(KGlobal::config(), "AutoSave");
-    settingsUi.saveDirLEdit->setText(asave.readEntry("Location", "./"));
+    settingsUi.saveDirLEdit->setText(asave.readEntry("Location", QDir::homePath()));
     settingsUi.imgPrefix->setText(asave.readEntry("NamePrefix", "Image-"));
     for (int i=0; i<settingsUi.imgFormat->count(); i++) {
         if (asave.readEntry("ImgFormat", "PNG") == settingsUi.imgFormat->itemText(i)) {
@@ -124,7 +124,6 @@ void Skanlite::readSettings(void)
 
     KConfigGroup general(KGlobal::config(), "General");
     settingsUi.saveModeCB->setCurrentIndex(general.readEntry("SaveModeManual", true) ? 0:1);
-    settingsUi.dontAskOnStart->setChecked(general.readEntry("DontAskOnStart", false));
 
 }
 
@@ -137,7 +136,6 @@ void Skanlite::showSettingsDialog(void)
     if (settingsDialog->exec()) {
         KConfigGroup general(KGlobal::config(), "General");
         general.writeEntry("SaveModeManual", (settingsUi.saveModeCB->currentIndex() == 0));
-        general.writeEntry("DontAskOnStart", settingsUi.dontAskOnStart->isChecked());
 
         KConfigGroup asave(KGlobal::config(), "AutoSave");
         asave.writeEntry("Location", settingsUi.saveDirLEdit->text());
