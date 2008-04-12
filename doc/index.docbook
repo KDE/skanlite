@@ -2,7 +2,7 @@
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
   <!ENTITY skanlite "<application>Skanlite</application>">
   <!ENTITY kappname "&skanlite;">
-  <!ENTITY package "playground/graphics">
+  <!ENTITY package "extragear/graphics">
   <!ENTITY % addindex "IGNORE">
   <!ENTITY % English "INCLUDE"><!-- change language only here -->
 ]>
@@ -229,7 +229,7 @@ You will see the progress of the scan.
 </screenshot>
 
 <para>
-If <guilabel>Preview image before save</guilabel> is selected in the settings, the scanned image is displayed in a preview window as you can see below on the screenshot. If <guibutton>Save</guibutton> is pressed, the image is saved and if <guibutton>Close</guibutton> is pressed the preview is discarded and you return to the main window.
+If <guilabel>Preview image before saving</guilabel> is selected in the settings, the scanned image is displayed in a preview window as you can see below on the screenshot. If <guibutton>Save</guibutton> is pressed, the image is saved and if <guibutton>Close</guibutton> is pressed the preview is discarded and you return to the main window.
 </para>
 <screenshot>
      <screeninfo>The Preview Window</screeninfo>
@@ -254,7 +254,7 @@ By clicking the <guibutton>Settings</guibutton> button, the settings dialog is b
      <screeninfo>Here's a screenshot of &skanlite; settings dialog</screeninfo>
 	<mediaobject>
 	  <imageobject>
-	    <imagedata fileref="first-dialog.png" format="PNG"/>
+	    <imagedata fileref="settings.png" format="PNG"/>
 	  </imageobject>
 	    <textobject>
 	    <phrase>&skanlite; settings dialog</phrase>
