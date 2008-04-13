@@ -42,6 +42,10 @@ int main(int argc, char *argv[])
                         ki18n("Importing libksane to extragear"),
                               0, 0);
 
+    aboutData.addCredit(ki18n("Anne-Marie Mahfouf"),
+                        ki18n("Writing the user manual"),
+                              0, 0);
+
     aboutData.addCredit(ki18n("Laurent Montel"),
                         ki18n("Importing libksane to extragear"),
                               0, 0);
