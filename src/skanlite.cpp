@@ -249,8 +249,8 @@ void Skanlite::saveImage()
         }
     } while (1);
 
-    // Save last used dir
-    currentDir = fname;
+    // Save last used dir, but remove the file name.
+    currentDir = fname.left(fname.lastIndexOf('/'));
 
     // Figure out Image format
     QString type(settingsUi.imgFormat->currentText());
