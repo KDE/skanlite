@@ -13,7 +13,7 @@ kde4_add_ui_files(skanlite_SRCS settings.ui)
 
 kde4_add_executable(skanlite ${skanlite_SRCS})
 
-target_link_libraries(skanlite ${KDE4_KDEUI_LIBS} ${KDE4_KIO_LIBS} ${KSANE_LIBRARY})
+target_link_libraries(skanlite ${KDE4_KIO_LIBS} ${KSANE_LIBRARY})
 
 install(TARGETS skanlite DESTINATION ${BIN_INSTALL_DIR})
 install( FILES skanlite.desktop DESTINATION ${XDG_APPS_INSTALL_DIR} )
