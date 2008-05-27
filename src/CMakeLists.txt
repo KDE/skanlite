@@ -15,5 +15,5 @@ kde4_add_executable(skanlite ${skanlite_SRCS})
 
 target_link_libraries(skanlite ${KDE4_KIO_LIBS} ${KSANE_LIBRARY})
 
-install(TARGETS skanlite DESTINATION ${BIN_INSTALL_DIR})
+install(TARGETS skanlite ${INSTALL_TARGETS_DEFAULT_ARGS})
 install( FILES skanlite.desktop DESTINATION ${XDG_APPS_INSTALL_DIR} )
