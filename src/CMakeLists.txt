@@ -1,10 +1,10 @@
 project(skanlite)
 
-SET(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
-
 find_package(KDE4 REQUIRED)
 include(KDE4Defaults)
 include_directories (${KDE4_INCLUDES})
+
+SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
 find_package(KSane REQUIRED)
 
 set(skanlite_SRCS main.cpp skanlite.cpp)
