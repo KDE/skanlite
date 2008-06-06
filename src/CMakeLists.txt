@@ -5,7 +5,14 @@ include(KDE4Defaults)
 include_directories (${KDE4_INCLUDES})
 
 SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
-MACRO_OPTIONAL_FIND_PACKAGE(KSane)
+include(MacroOptionalDependPackage)
+macro_optional_depend_package(KSane "ksane")
+if(DEPEND_PACKAGE_KSane)
+    macro_optional_find_package(KSane)
+else(DEPEND_PACKAGE_KSane)
+    set(KSANE_FOUND FALSE)
+endif(DEPEND_PACKAGE_KSane)
+
 
 set(skanlite_SRCS main.cpp skanlite.cpp)
 
