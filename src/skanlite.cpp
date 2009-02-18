@@ -43,6 +43,8 @@ enum {
     SAVE_MODE_AUTO = 2
 };
 
+#include <errno.h>
+
 Skanlite::Skanlite(const QString &device, QWidget *parent)
     : KDialog(parent)
 {
@@ -110,6 +112,28 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     buildShowImage();
 
     firstImage = true;
+}
+
+QString getSystemErrorMessage()
+{
+    if (errno != 0) {
+        return QString::fromLocal8Bit(strerror(errno));
+    }
+    else {
+        return QString();
+    }
+}
+
+// Pops up message box similar to what perror() would print
+void perrorMessageBox(const QString &text)
+{
+    QString errmsg = getSystemErrorMessage();
+    if (errmsg.isEmpty()) {
+        KMessageBox::sorry(0, text);
+    }
+    else {
+        KMessageBox::sorry(0, text + ": " + errmsg);
+    }
 }
 
 //************************************************************
@@ -302,7 +326,7 @@ void Skanlite::doSaveImage(bool askFilename)
         showImgDialog->close();
     }
     else {
-        KMessageBox::sorry(0, i18n("Saving Failed!"));
+        perrorMessageBox(i18n("Failed to save image"));
     }
 
 }
@@ -348,7 +372,7 @@ void Skanlite::autoSaveImage()
         showImgDialog->close();
     }
     else {
-        KMessageBox::sorry(0, i18n("Auto Saving Failed!"));
+        perrorMessageBox(i18n("Failed to save image"));
     }
 }
 
