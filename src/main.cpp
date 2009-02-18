@@ -38,6 +38,10 @@ int main(int argc, char *argv[])
                         ki18n("developer"),
                         "kare.sars@iki.fi", 0);
 
+    aboutData.addAuthor(ki18n("Arseniy Lartsev"),
+                        ki18n("contributor"),
+                        0, 0);
+
     aboutData.addCredit(ki18n("Gilles Caulier"),
                         ki18n("Importing libksane to extragear"),
                               0, 0);

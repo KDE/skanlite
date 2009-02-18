@@ -28,6 +28,11 @@
      </item>
      <item>
       <property name="text" >
+       <string>Open the save dialog for the first image only</string>
+      </property>
+     </item>
+     <item>
+      <property name="text" >
        <string>Save without asking for a filename</string>
       </property>
      </item>

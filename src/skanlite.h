@@ -42,6 +42,7 @@ class Skanlite : public KDialog
     private:
         void buildShowImage();
         void readSettings();
+        void doSaveImage(bool askFilename = true);
 
     private Q_SLOTS:
         void showSettingsDialog();
@@ -62,6 +63,7 @@ class Skanlite : public KDialog
         QStringList              filterList;
         QStringList              typeList;
         QString                  currentDir;
+        bool                     firstImage;
 
 };
 

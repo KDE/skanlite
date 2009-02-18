@@ -1,6 +1,7 @@
 /* ============================================================
 *
 * Copyright (C) 2007-2008 by Kare Sars <kare dot sars at iki dot fi>
+* Copyright (C) 2009 by Arseniy Lartsev <receive-spam at yandex dot ru>
 *
 * This program is free software; you can redistribute it and/or
 * modify it under the terms of the GNU General Public License as
@@ -34,6 +35,13 @@
 #include <KGlobal>
 #include <KMessageBox>
 #include <KStandardAction>
+
+// Order of items in save mode combo-box
+enum {
+    SAVE_MODE_MANUAL = 0,
+    SAVE_MODE_ASK_FIRST = 1,
+    SAVE_MODE_AUTO = 2
+};
 
 Skanlite::Skanlite(const QString &device, QWidget *parent)
     : KDialog(parent)
@@ -100,6 +108,8 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
 
     // prepare the Show Image Dialog
     buildShowImage();
+
+    firstImage = true;
 }
 
 //************************************************************
@@ -123,7 +133,7 @@ void Skanlite::readSettings(void)
     settingsUi.showB4Save->setChecked(asave.readEntry("ShowB4Save", true));
 
     KConfigGroup general(KGlobal::config(), "General");
-    settingsUi.saveModeCB->setCurrentIndex(general.readEntry("SaveModeManual", true) ? 0:1);
+    settingsUi.saveModeCB->setCurrentIndex(general.readEntry("SaveMode", (int)SAVE_MODE_MANUAL));
 
 }
 
@@ -131,11 +141,12 @@ void Skanlite::readSettings(void)
 void Skanlite::showSettingsDialog(void)
 {
     readSettings();
+    int saveMode = settingsUi.saveModeCB->currentIndex();
 
     // show the dialog
     if (settingsDialog->exec()) {
         KConfigGroup general(KGlobal::config(), "General");
-        general.writeEntry("SaveModeManual", (settingsUi.saveModeCB->currentIndex() == 0));
+        general.writeEntry("SaveMode", settingsUi.saveModeCB->currentIndex());
 
         KConfigGroup asave(KGlobal::config(), "AutoSave");
         asave.writeEntry("Location", settingsUi.saveDirLEdit->text());
@@ -144,6 +155,13 @@ void Skanlite::showSettingsDialog(void)
         asave.writeEntry("SetQuality", settingsUi.setQuality->isChecked());
         asave.writeEntry("ImgQuality", settingsUi.imgQuality->value());
         asave.writeEntry("ShowB4Save", settingsUi.showB4Save->isChecked());
+        if ((saveMode != SAVE_MODE_ASK_FIRST) &&
+            (settingsUi.saveModeCB->currentIndex() == SAVE_MODE_ASK_FIRST))
+        {
+            firstImage = true;
+        }
+        general.sync();
+        asave.sync();
     }
     else {
         //Forget Changes
@@ -179,7 +197,7 @@ void Skanlite::imageReady(QByteArray &data, int w, int h, int bpl, int f)
         imgLabel->resize(img.size());
 
         disconnect(showImgDialog, SIGNAL(user1Clicked()), NULL, NULL);
-        if (settingsUi.saveModeCB->currentIndex() == 0) {
+        if (settingsUi.saveModeCB->currentIndex() != SAVE_MODE_AUTO) {
             connect (showImgDialog, SIGNAL(user1Clicked()), this, SLOT(saveImage()));
         }
         else {
@@ -188,7 +206,7 @@ void Skanlite::imageReady(QByteArray &data, int w, int h, int bpl, int f)
         showImgDialog->exec();
     }
     else {
-        if (settingsUi.saveModeCB->currentIndex() == 0) {
+        if (settingsUi.saveModeCB->currentIndex() != SAVE_MODE_AUTO) {
             saveImage();
         }
         else {
@@ -199,6 +217,15 @@ void Skanlite::imageReady(QByteArray &data, int w, int h, int bpl, int f)
 
 //************************************************************
 void Skanlite::saveImage()
+{
+    bool askFilename =
+      (settingsUi.saveModeCB->currentIndex() == SAVE_MODE_MANUAL) || firstImage;
+    doSaveImage(askFilename);
+    firstImage = false;
+}
+
+//************************************************************
+void Skanlite::doSaveImage(bool askFilename)
 {
     //QString filter = "*.png\n*.jpg\n*.jpeg\n*.bmp\n*.ppm\n*.xbm\n*";
     QString filter = "image/png image/jpg image/jpeg image/bmp image/ppm image/xbm";
@@ -222,32 +249,34 @@ void Skanlite::saveImage()
         }
     }
 
-    do {
-        fname = KFileDialog::getSaveFileName(fname, filter);
-        //kDebug() << "-----Save-----" << fname;
-
-        if (fname.isEmpty()) {
-            //kDebug() << "!!!!!!!!!!!!!Nothing to save!!!!!!!!!!!";
-            return;
-        }
-
-        file.setFileName(fname);
-        if (file.exists()) {
-            if (KMessageBox::warningContinueCancel(this,
-                i18n("Do you want to overwrite \"%1\"?", file.fileName()),
-                QString(),
-                KGuiItem(i18n("Overwrite")),
-                KStandardGuiItem::cancel(),
-                QString("editorWindowSaveOverwrite")
-                ) ==  KMessageBox::Continue)
-            {
+    if (askFilename || file.exists()) {
+        do {
+            fname = KFileDialog::getSaveFileName(fname, filter);
+            //kDebug() << "-----Save-----" << fname;
+            
+            if (fname.isEmpty()) {
+                //kDebug() << "!!!!!!!!!!!!!Nothing to save!!!!!!!!!!!";
+                return;
+            }
+            
+            file.setFileName(fname);
+            if (file.exists()) {
+                if (KMessageBox::warningContinueCancel(this,
+                    i18n("Do you want to overwrite \"%1\"?", file.fileName()),
+                     QString(),
+                     KGuiItem(i18n("Overwrite")),
+                     KStandardGuiItem::cancel(),
+                     QString("editorWindowSaveOverwrite")
+                     ) ==  KMessageBox::Continue)
+                     {
+                         break;
+                     }
+            }
+            else {
                 break;
             }
-        }
-        else {
-            break;
-        }
-    } while (1);
+        } while (1);
+    }
 
     // Save last used dir, but remove the file name.
     currentDir = fname.left(fname.lastIndexOf('/'));
