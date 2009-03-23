@@ -100,7 +100,7 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
         }
         if (ksanew->openDevice(dev) == false) {
             // could not open a scanner
-            KMessageBox::sorry(0, i18n("Opening the selected scanner failed!"));
+            KMessageBox::sorry(0, i18n("Opening the selected scanner failed."));
             exit(1);
         }
     }
