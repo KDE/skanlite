@@ -29,7 +29,7 @@
 int main(int argc, char *argv[])
 {
     // about data
-    KAboutData aboutData("scanner", "skanlite", ki18n("Skanlite"), "0.3",
+    KAboutData aboutData("Skanlite", "skanlite", ki18n("Skanlite"), "0.3",
                          ki18n("This is a scanning application for KDE based on libksane."),
                          KAboutData::License_GPL,
                          ki18n("(C) 2008 Kåre Särs"));
@@ -61,6 +61,8 @@ int main(int argc, char *argv[])
     aboutData.addCredit(ki18n("Albert Astals Cid"),
                         ki18n("Help with translations"),
                               0, 0);
+
+    aboutData.setProgramIconName("scanner");
 
     KCmdLineArgs::init(argc, argv, &aboutData);
 
