@@ -1,2 +1,4 @@
 -Make the final image dialog image zoomable 
 -Add scan profiles (settings/options) 
+-Start the file number scanning from a specified number or previously saved.
+-Add a copy/print mode.
