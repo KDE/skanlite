@@ -26,6 +26,7 @@
 #include <libksane/ksane.h>
 
 #include "ui_settings.h"
+#include "ImageViewer.h"
 
 namespace KSaneIface
 {
@@ -54,16 +55,17 @@ class Skanlite : public KDialog
 
 
     private:
-        KSaneIface::KSaneWidget *ksanew;
-        Ui::SkanliteSettings      settingsUi;
-        KDialog                 *settingsDialog;
-        KDialog                 *showImgDialog;
-        QImage                   img;
-        QLabel                  *imgLabel;
-        QStringList              filterList;
-        QStringList              typeList;
-        QString                  currentDir;
-        bool                     firstImage;
+        KSaneIface::KSaneWidget *m_ksanew;
+        Ui::SkanliteSettings     m_settingsUi;
+        KDialog                 *m_settingsDialog;
+        KDialog                 *m_showImgDialog;
+        KDialog                 *m_profilesDialog;
+        QImage                   m_img;
+        ImageViewer              m_imageViewer;
+        QStringList              m_filterList;
+        QStringList              m_typeList;
+        QString                  m_currentDir;
+        bool                     m_firstImage;
 
 };
 

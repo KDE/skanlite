@@ -52,66 +52,65 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     setButtonText(KDialog::User1, i18n("Settings"));
     setButtonIcon(KDialog::User1, KIcon("configure"));
     setButtonText(KDialog::User2, i18n("About"));
-    //setButtonIcon(KDialog::User2, KIcon(""));
     setHelp("index", "skanlite");
 
-    ksanew = new KSaneIface::KSaneWidget(this);
-    setMainWidget(ksanew);
+    m_ksanew = new KSaneIface::KSaneWidget(this);
+    setMainWidget(m_ksanew);
 
     connect (this, SIGNAL(user1Clicked()), this, SLOT(showSettingsDialog()));
     connect (this, SIGNAL(user2Clicked()), this, SLOT(showAboutDialog()));
-
+    
     // Create the settings dialog
-    settingsDialog = new KDialog(0);
-    settingsDialog->setButtons(KDialog::Ok | KDialog::Cancel);
+    m_settingsDialog = new KDialog(0);
+    m_settingsDialog->setButtons(KDialog::Ok | KDialog::Cancel);
 
-    QWidget *settingsWidget = new QWidget(settingsDialog);
-    settingsUi.setupUi(settingsWidget);
+    QWidget *settingsWidget = new QWidget(m_settingsDialog);
+    m_settingsUi.setupUi(settingsWidget);
 
     // add the supported image types
-    typeList << "PNG";
-    typeList << "JPG";
-    typeList << "JPEG";
-    typeList << "BMP";
-    typeList << "PPM";
-    typeList << "XBM";
-    typeList << "XPM";
-    settingsUi.imgFormat->addItems(typeList);
+    m_typeList << "PNG";
+    m_typeList << "JPG";
+    m_typeList << "JPEG";
+    m_typeList << "BMP";
+    m_typeList << "PPM";
+    m_typeList << "XBM";
+    m_typeList << "XPM";
+    m_settingsUi.imgFormat->addItems(m_typeList);
 
-    settingsDialog->setMainWidget(settingsWidget);
-    settingsDialog->setWindowTitle(i18n("Skanlite Settings"));
+    m_settingsDialog->setMainWidget(settingsWidget);
+    m_settingsDialog->setWindowTitle(i18n("Skanlite Settings"));
 
 
-    connect(settingsUi.getDirButton, SIGNAL(clicked(void)), this, SLOT(setDir(void)));
+    connect(m_settingsUi.getDirButton, SIGNAL(clicked(void)), this, SLOT(setDir(void)));
     readSettings();
 
     // default dir for save dialog
-    currentDir = settingsUi.saveDirLEdit->text();
+    m_currentDir = m_settingsUi.saveDirLEdit->text();
 
-    connect(ksanew, SIGNAL(imageReady(QByteArray &, int, int, int, int)),
+    connect(m_ksanew, SIGNAL(imageReady(QByteArray &, int, int, int, int)),
             this, SLOT(imageReady(QByteArray &, int, int, int, int)));
 
     // open the scan device
-    if (ksanew->openDevice(device) == false) {
-        QString dev = ksanew->selectDevice(0);
+    if (m_ksanew->openDevice(device) == false) {
+        QString dev = m_ksanew->selectDevice(0);
         if (dev.isEmpty()) {
             // either no scanner was found or then cancel was pressed.
             exit(0);
         }
-        if (ksanew->openDevice(dev) == false) {
+        if (m_ksanew->openDevice(dev) == false) {
             // could not open a scanner
             KMessageBox::sorry(0, i18n("Opening the selected scanner failed."));
             exit(1);
         }
     }
-    setWindowTitle(ksanew->make()+ ' ' + ksanew->model() + " - Skanlite");
+    setWindowTitle(m_ksanew->make()+ ' ' + m_ksanew->model() + " - Skanlite");
 
     addAction(KStandardAction::quit(qApp, SLOT(quit()), this));
 
     // prepare the Show Image Dialog
     buildShowImage();
 
-    firstImage = true;
+    m_firstImage = true;
 }
 
 QString getSystemErrorMessage()
@@ -140,52 +139,75 @@ void perrorMessageBox(const QString &text)
 void Skanlite::readSettings(void)
 {
     // enable the widgets to allow modifying
-    settingsUi.setQuality->setChecked(true);
-
+    m_settingsUi.setQuality->setChecked(true);
+    m_settingsUi.setPreviewDPI->setChecked(true);
+    
     // read the saved parameters
-    KConfigGroup asave(KGlobal::config(), "AutoSave");
-    settingsUi.saveDirLEdit->setText(asave.readEntry("Location", QDir::homePath()));
-    settingsUi.imgPrefix->setText(asave.readEntry("NamePrefix", "Image-"));
-    for (int i=0; i<settingsUi.imgFormat->count(); i++) {
-        if (asave.readEntry("ImgFormat", "PNG") == settingsUi.imgFormat->itemText(i)) {
-            settingsUi.imgFormat->setCurrentIndex(i);
+    KConfigGroup saving(KGlobal::config(), "Image Saving");
+    m_settingsUi.saveModeCB->setCurrentIndex(saving.readEntry("SaveMode", (int)SAVE_MODE_MANUAL));
+    m_settingsUi.saveDirLEdit->setText(saving.readEntry("Location", QDir::homePath()));
+    m_settingsUi.imgPrefix->setText(saving.readEntry("NamePrefix", "Image-"));
+    for (int i=0; i<m_settingsUi.imgFormat->count(); i++) {
+        if (saving.readEntry("ImgFormat", "PNG") == m_settingsUi.imgFormat->itemText(i)) {
+            m_settingsUi.imgFormat->setCurrentIndex(i);
             break;
         }
     }
-    settingsUi.imgQuality->setValue(asave.readEntry("ImgQuality", 90));
-    settingsUi.setQuality->setChecked(asave.readEntry("SetQuality", false));
-    settingsUi.showB4Save->setChecked(asave.readEntry("ShowB4Save", true));
+    m_settingsUi.imgQuality->setValue(saving.readEntry("ImgQuality", 90));
+    m_settingsUi.setQuality->setChecked(saving.readEntry("SetQuality", false));
+    m_settingsUi.showB4Save->setChecked(saving.readEntry("ShowBeforeSave", true));
 
     KConfigGroup general(KGlobal::config(), "General");
-    settingsUi.saveModeCB->setCurrentIndex(general.readEntry("SaveMode", (int)SAVE_MODE_MANUAL));
-
+    m_settingsUi.previewDPI->setCurrentItem(general.readEntry("PreviewDPI", "100"), true);
+    m_settingsUi.setPreviewDPI->setChecked(general.readEntry("SetPreviewDPI", false));
+    
+    if (m_settingsUi.setPreviewDPI->isChecked()) {
+        m_ksanew->setPreviewResolution(m_settingsUi.previewDPI->currentText().toFloat());
+    }
+    else {
+        m_ksanew->setPreviewResolution(0.0);
+    }
+    
 }
 
 //************************************************************
 void Skanlite::showSettingsDialog(void)
 {
     readSettings();
-    int saveMode = settingsUi.saveModeCB->currentIndex();
+    int saveMode = m_settingsUi.saveModeCB->currentIndex();
 
     // show the dialog
-    if (settingsDialog->exec()) {
-        KConfigGroup general(KGlobal::config(), "General");
-        general.writeEntry("SaveMode", settingsUi.saveModeCB->currentIndex());
-
-        KConfigGroup asave(KGlobal::config(), "AutoSave");
-        asave.writeEntry("Location", settingsUi.saveDirLEdit->text());
-        asave.writeEntry("NamePrefix", settingsUi.imgPrefix->text());
-        asave.writeEntry("ImgFormat", settingsUi.imgFormat->currentText());
-        asave.writeEntry("SetQuality", settingsUi.setQuality->isChecked());
-        asave.writeEntry("ImgQuality", settingsUi.imgQuality->value());
-        asave.writeEntry("ShowB4Save", settingsUi.showB4Save->isChecked());
+    if (m_settingsDialog->exec()) {
+        
+        // now save the settings
+        KConfigGroup saving(KGlobal::config(), "Image Saving");
+        saving.writeEntry("SaveMode", m_settingsUi.saveModeCB->currentIndex());
+        saving.writeEntry("Location", m_settingsUi.saveDirLEdit->text());
+        saving.writeEntry("NamePrefix", m_settingsUi.imgPrefix->text());
+        saving.writeEntry("ImgFormat", m_settingsUi.imgFormat->currentText());
+        saving.writeEntry("SetQuality", m_settingsUi.setQuality->isChecked());
+        saving.writeEntry("ImgQuality", m_settingsUi.imgQuality->value());
+        saving.writeEntry("ShowBeforeSave", m_settingsUi.showB4Save->isChecked());
         if ((saveMode != SAVE_MODE_ASK_FIRST) &&
-            (settingsUi.saveModeCB->currentIndex() == SAVE_MODE_ASK_FIRST))
+            (m_settingsUi.saveModeCB->currentIndex() == SAVE_MODE_ASK_FIRST))
         {
-            firstImage = true;
+            m_firstImage = true;
         }
+        saving.sync();
+        
+        KConfigGroup general(KGlobal::config(), "General");
+        general.writeEntry("PreviewDPI", m_settingsUi.previewDPI->currentText());
+        general.writeEntry("SetPreviewDPI", m_settingsUi.setPreviewDPI->isChecked());
         general.sync();
-        asave.sync();
+
+        // the previewDPI has to be set here
+        if (m_settingsUi.setPreviewDPI->isChecked()) {
+            m_ksanew->setPreviewResolution(m_settingsUi.previewDPI->currentText().toFloat());
+        }
+        else {
+            m_ksanew->setPreviewResolution(0.0);
+        }
+        
     }
     else {
         //Forget Changes
@@ -197,16 +219,12 @@ void Skanlite::showSettingsDialog(void)
 //************************************************************
 void Skanlite::buildShowImage(void)
 {
-    showImgDialog = new KDialog(0);
-    showImgDialog->setButtons(KDialog::User1 | KDialog::Close);
-    showImgDialog->setButtonText(KDialog::User1, i18n("Save"));
-    showImgDialog->setButtonIcon(KDialog::User1, KIcon("document-save"));
+    m_showImgDialog = new KDialog(0);
+    m_showImgDialog->setButtons(KDialog::User1 | KDialog::Close);
+    m_showImgDialog->setButtonText(KDialog::User1, i18n("Save"));
+    m_showImgDialog->setButtonIcon(KDialog::User1, KIcon("document-save"));
 
-    QScrollArea *img_area = new QScrollArea(showImgDialog);
-    imgLabel = new QLabel(showImgDialog);
-    img_area->setWidget(imgLabel);
-
-    showImgDialog->setMainWidget(img_area);
+    m_showImgDialog->setMainWidget(&m_imageViewer);
 }
 
 
@@ -214,23 +232,22 @@ void Skanlite::buildShowImage(void)
 void Skanlite::imageReady(QByteArray &data, int w, int h, int bpl, int f)
 {
     /* copy the image data into img */
-    img = ksanew->toQImage(data, w, h, bpl, (KSaneIface::KSaneWidget::ImageFormat)f);
+    m_img = m_ksanew->toQImage(data, w, h, bpl, (KSaneIface::KSaneWidget::ImageFormat)f);
 
-    if (settingsUi.showB4Save->isChecked() == true) {
-        imgLabel->setPixmap(QPixmap::fromImage(img));
-        imgLabel->resize(img.size());
+    if (m_settingsUi.showB4Save->isChecked() == true) {
+        m_imageViewer.setQImage(&m_img);
 
-        disconnect(showImgDialog, SIGNAL(user1Clicked()), NULL, NULL);
-        if (settingsUi.saveModeCB->currentIndex() != SAVE_MODE_AUTO) {
-            connect (showImgDialog, SIGNAL(user1Clicked()), this, SLOT(saveImage()));
+        disconnect(m_showImgDialog, SIGNAL(user1Clicked()), NULL, NULL);
+        if (m_settingsUi.saveModeCB->currentIndex() != SAVE_MODE_AUTO) {
+            connect (m_showImgDialog, SIGNAL(user1Clicked()), this, SLOT(saveImage()));
         }
         else {
-            connect (showImgDialog, SIGNAL(user1Clicked()), this, SLOT(autoSaveImage()));
+            connect (m_showImgDialog, SIGNAL(user1Clicked()), this, SLOT(autoSaveImage()));
         }
-        showImgDialog->exec();
+        m_showImgDialog->exec();
     }
     else {
-        if (settingsUi.saveModeCB->currentIndex() != SAVE_MODE_AUTO) {
+        if (m_settingsUi.saveModeCB->currentIndex() != SAVE_MODE_AUTO) {
             saveImage();
         }
         else {
@@ -243,9 +260,9 @@ void Skanlite::imageReady(QByteArray &data, int w, int h, int bpl, int f)
 void Skanlite::saveImage()
 {
     bool askFilename =
-      (settingsUi.saveModeCB->currentIndex() == SAVE_MODE_MANUAL) || firstImage;
+      (m_settingsUi.saveModeCB->currentIndex() == SAVE_MODE_MANUAL) || m_firstImage;
     doSaveImage(askFilename);
-    firstImage = false;
+    m_firstImage = false;
 }
 
 //************************************************************
@@ -260,13 +277,13 @@ void Skanlite::doSaveImage(bool askFilename)
 
     // find next available file name for name suggestion
     for (i=1; i<10000; i++) {
-        fname = currentDir;
+        fname = m_currentDir;
         if (fname.endsWith('/') == false) {
             fname += '/';
         }
-        fname += settingsUi.imgPrefix->text();
+        fname += m_settingsUi.imgPrefix->text();
         fname += QString().sprintf("%03d.",i);
-        fname += settingsUi.imgFormat->currentText().toLower();
+        fname += m_settingsUi.imgFormat->currentText().toLower();
         file.setFileName(fname);
         if (file.exists() == false) {
             break;
@@ -303,27 +320,27 @@ void Skanlite::doSaveImage(bool askFilename)
     }
 
     // Save last used dir, but remove the file name.
-    currentDir = fname.left(fname.lastIndexOf('/'));
+    m_currentDir = fname.left(fname.lastIndexOf('/'));
 
     // Figure out Image format
-    QString type(settingsUi.imgFormat->currentText());
-    for (int i=0; i<typeList.size(); ++i) {
-        if (fname.endsWith(typeList.at(i), Qt::CaseInsensitive)) {
-            type = typeList.at(i);
+    QString type(m_settingsUi.imgFormat->currentText());
+    for (int i=0; i<m_typeList.size(); ++i) {
+        if (fname.endsWith(m_typeList.at(i), Qt::CaseInsensitive)) {
+            type = m_typeList.at(i);
             break;
         }
     }
 
     // Get the quality
     int quality = -1;
-    if (settingsUi.setQuality->isChecked()) {
-        quality = settingsUi.imgQuality->value();
+    if (m_settingsUi.setQuality->isChecked()) {
+        quality = m_settingsUi.imgQuality->value();
     }
 
     // Save
     //kDebug() << "-------" << fname << type.toLatin1() << quality;
-    if (img.save(fname, type.toLatin1(), quality)) {
-        showImgDialog->close();
+    if (m_img.save(fname, type.toLatin1(), quality)) {
+        m_showImgDialog->close();
     }
     else {
         perrorMessageBox(i18n("Failed to save image"));
@@ -339,21 +356,21 @@ void Skanlite::autoSaveImage()
     int quality;
     int i;
 
-    if (settingsUi.setQuality->isChecked()) {
-        quality = settingsUi.imgQuality->value();
+    if (m_settingsUi.setQuality->isChecked()) {
+        quality = m_settingsUi.imgQuality->value();
     }
     else {
         quality = -1;
     }
 
     for (i=1; i<10000; i++) {
-        fname = settingsUi.saveDirLEdit->text();
+        fname = m_settingsUi.saveDirLEdit->text();
         if (fname.endsWith('/') == false) {
             fname += '/';
         }
-        fname += settingsUi.imgPrefix->text();
+        fname += m_settingsUi.imgPrefix->text();
         fname += QString().sprintf("%03d.",i);
-        fname += settingsUi.imgFormat->currentText().toLower();
+        fname += m_settingsUi.imgFormat->currentText().toLower();
 
         file.setFileName(fname);
         if (file.exists() == false) {
@@ -365,11 +382,11 @@ void Skanlite::autoSaveImage()
         return;
     }
 
-    if (img.save(fname,
-                 qPrintable(settingsUi.imgFormat->currentText()),
+    if (m_img.save(fname,
+                 qPrintable(m_settingsUi.imgFormat->currentText()),
                  quality))
     {
-        showImgDialog->close();
+        m_showImgDialog->close();
     }
     else {
         perrorMessageBox(i18n("Failed to save image"));
@@ -379,9 +396,9 @@ void Skanlite::autoSaveImage()
 //************************************************************
 void Skanlite::setDir(void)
 {
-    QString dir = KFileDialog::getExistingDirectory(KUrl(settingsUi.saveDirLEdit->text()));
+    QString dir = KFileDialog::getExistingDirectory(KUrl(m_settingsUi.saveDirLEdit->text()));
     if (!dir.isEmpty()) {
-        settingsUi.saveDirLEdit->setText(dir);
+        m_settingsUi.saveDirLEdit->setText(dir);
     }
 }
 
