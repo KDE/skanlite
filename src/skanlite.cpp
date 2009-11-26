@@ -35,6 +35,7 @@
 #include <KGlobal>
 #include <KMessageBox>
 #include <KStandardAction>
+#include <kdeversion.h>
 
 // Order of items in save mode combo-box
 enum {
@@ -157,6 +158,7 @@ void Skanlite::readSettings(void)
     m_settingsUi.setQuality->setChecked(saving.readEntry("SetQuality", false));
     m_settingsUi.showB4Save->setChecked(saving.readEntry("ShowBeforeSave", true));
 
+    #if KDE_IS_VERSION(4, 3, 65)
     KConfigGroup general(KGlobal::config(), "General");
     m_settingsUi.previewDPI->setCurrentItem(general.readEntry("PreviewDPI", "100"), true);
     m_settingsUi.setPreviewDPI->setChecked(general.readEntry("SetPreviewDPI", false));
@@ -167,6 +169,9 @@ void Skanlite::readSettings(void)
     else {
         m_ksanew->setPreviewResolution(0.0);
     }
+    #else
+    m_settingsUi.generalGB->hide();
+    #endif
     
 }
 
@@ -195,6 +200,7 @@ void Skanlite::showSettingsDialog(void)
         }
         saving.sync();
         
+        #if KDE_IS_VERSION(4, 3, 65)
         KConfigGroup general(KGlobal::config(), "General");
         general.writeEntry("PreviewDPI", m_settingsUi.previewDPI->currentText());
         general.writeEntry("SetPreviewDPI", m_settingsUi.setPreviewDPI->isChecked());
@@ -207,7 +213,7 @@ void Skanlite::showSettingsDialog(void)
         else {
             m_ksanew->setPreviewResolution(0.0);
         }
-        
+        #endif
     }
     else {
         //Forget Changes
