@@ -411,8 +411,8 @@ void Skanlite::setDir(void)
 //************************************************************
 void Skanlite::showAboutDialog(void)
 {
-    KAboutApplicationDialog(
-            KGlobal::mainComponent().aboutData(), 0).exec();
+    KAboutApplicationDialog oKAboutDiag(KGlobal::mainComponent().aboutData(), 0);
+    oKAboutDiag.exec();
 }
 
 
