@@ -49,6 +49,7 @@ enum {
 Skanlite::Skanlite(const QString &device, QWidget *parent)
     : KDialog(parent)
 {
+    setAttribute(Qt::WA_DeleteOnClose);
     setButtons(KDialog::Help | KDialog::User1 | KDialog::User2 | KDialog::Close);
     setButtonText(KDialog::User1, i18n("Settings"));
     setButtonIcon(KDialog::User1, KIcon("configure"));
@@ -62,7 +63,7 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     connect (this, SIGNAL(user2Clicked()), this, SLOT(showAboutDialog()));
     
     // Create the settings dialog
-    m_settingsDialog = new KDialog(0);
+    m_settingsDialog = new KDialog(this);
     m_settingsDialog->setButtons(KDialog::Ok | KDialog::Cancel);
 
     QWidget *settingsWidget = new QWidget(m_settingsDialog);
@@ -225,7 +226,7 @@ void Skanlite::showSettingsDialog(void)
 //************************************************************
 void Skanlite::buildShowImage(void)
 {
-    m_showImgDialog = new KDialog(0);
+    m_showImgDialog = new KDialog(this);
     m_showImgDialog->setButtons(KDialog::User1 | KDialog::Close);
     m_showImgDialog->setButtonText(KDialog::User1, i18n("Save"));
     m_showImgDialog->setButtonIcon(KDialog::User1, KIcon("document-save"));
