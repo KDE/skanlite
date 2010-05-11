@@ -45,6 +45,7 @@ class ImageViewer : public QGraphicsView
         
     protected:
         void wheelEvent(QWheelEvent *e);
+        void drawBackground(QPainter *painter, const QRectF &rect); 
 
     private:
         struct Private;

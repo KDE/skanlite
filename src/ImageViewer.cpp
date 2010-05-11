@@ -37,7 +37,6 @@
 struct ImageViewer::Private
 {
     QGraphicsScene      *scene;
-    QGraphicsPixmapItem *pixmapItem;
     QImage              *img;
 
     QAction *zoomInAction;
@@ -55,10 +54,6 @@ ImageViewer::ImageViewer(QWidget *parent) : QGraphicsView(parent), d(new Private
     // Init the scene
     d->scene = new QGraphicsScene;
     setScene(d->scene);
-    d->pixmapItem = new QGraphicsPixmapItem;
-
-    d->scene->addItem(d->pixmapItem);
-    d->scene->setBackgroundBrush(Qt::gray);
 
     // create context menu
     d->zoomInAction = new QAction(KIcon("zoom-in"), i18n("Zoom In"), this);
@@ -91,11 +86,15 @@ void ImageViewer::setQImage(QImage *img)
 {
     if (img == 0) return;
 
-    d->pixmapItem->setPixmap(QPixmap::fromImage(*img));
-    d->pixmapItem->setShapeMode(QGraphicsPixmapItem::BoundingRectShape);
+    d->img = img;
     d->scene->setSceneRect(0, 0, img->width(), img->height());
-    d->pixmapItem->setZValue(0);
-    zoom2Fit();
+}
+
+// ------------------------------------------------------------------------
+void ImageViewer::drawBackground(QPainter *painter, const QRectF &rect)
+{
+    painter->fillRect(rect, QColor(0x70, 0x70, 0x70));
+    painter->drawImage(rect, *d->img, rect);
 }
 
 // ------------------------------------------------------------------------
@@ -120,7 +119,7 @@ void ImageViewer::zoomActualSize()
 // ------------------------------------------------------------------------
 void ImageViewer::zoom2Fit()
 {
-    fitInView(d->pixmapItem->boundingRect(), Qt::KeepAspectRatio);
+    fitInView(d->img->rect(), Qt::KeepAspectRatio);
 }
 
 // ------------------------------------------------------------------------

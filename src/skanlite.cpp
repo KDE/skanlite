@@ -230,6 +230,7 @@ void Skanlite::buildShowImage(void)
     m_showImgDialog->setButtons(KDialog::User1 | KDialog::Close);
     m_showImgDialog->setButtonText(KDialog::User1, i18n("Save"));
     m_showImgDialog->setButtonIcon(KDialog::User1, KIcon("document-save"));
+    m_showImgDialog->resize(640,  480);
 
     m_showImgDialog->setMainWidget(&m_imageViewer);
 }
@@ -243,6 +244,7 @@ void Skanlite::imageReady(QByteArray &data, int w, int h, int bpl, int f)
 
     if (m_settingsUi.showB4Save->isChecked() == true) {
         m_imageViewer.setQImage(&m_img);
+        m_imageViewer.zoom2Fit();
 
         disconnect(m_showImgDialog, SIGNAL(user1Clicked()), NULL, NULL);
         if (m_settingsUi.saveModeCB->currentIndex() != SAVE_MODE_AUTO) {
