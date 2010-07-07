@@ -6,9 +6,9 @@ include_directories (${KDE4_INCLUDES})
 
 find_package(KSane REQUIRED)
 
-set(skanlite_SRCS main.cpp skanlite.cpp ImageViewer.cpp)
+set(skanlite_SRCS main.cpp skanlite.cpp ImageViewer.cpp KSaneImageSaver.cpp SaveLocation.cpp)
 
-kde4_add_ui_files(skanlite_SRCS settings.ui)
+kde4_add_ui_files(skanlite_SRCS settings.ui SaveLocation.ui)
 
 kde4_add_executable(skanlite ${skanlite_SRCS})
 

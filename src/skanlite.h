@@ -24,6 +24,7 @@
 #define SKANLITE_H
 
 #include <libksane/ksane.h>
+#include <QDir>
 
 #include "ui_settings.h"
 #include "ImageViewer.h"
@@ -32,6 +33,8 @@ namespace KSaneIface
 {
     class KSaneWidget;
 }
+class KFileDialog;
+class SaveLocation;
 
 class Skanlite : public KDialog
 {
@@ -41,16 +44,14 @@ class Skanlite : public KDialog
         explicit Skanlite(const QString& device, QWidget *parent = 0);
 
     private:
-        void buildShowImage();
         void readSettings();
         void doSaveImage(bool askFilename = true);
 
     private Q_SLOTS:
         void showSettingsDialog();
-        void setDir();
+        void getDir();
         void imageReady(QByteArray &, int, int, int, int);
         void saveImage();
-        void autoSaveImage();
         void showAboutDialog();
 
 
@@ -59,12 +60,19 @@ class Skanlite : public KDialog
         Ui::SkanliteSettings     m_settingsUi;
         KDialog                 *m_settingsDialog;
         KDialog                 *m_showImgDialog;
-        KDialog                 *m_profilesDialog;
+        KFileDialog             *m_saveDialog;
+        SaveLocation            *m_saveLocation;
         QImage                   m_img;
+        QByteArray               m_data;
+        int                      m_width;
+        int                      m_height;
+        int                      m_bytesPerLine;
+        int                      m_format;
+        
         ImageViewer              m_imageViewer;
         QStringList              m_filterList;
+        QStringList              m_filter16BitList;
         QStringList              m_typeList;
-        QString                  m_currentDir;
         bool                     m_firstImage;
 
 };

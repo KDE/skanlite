@@ -75,9 +75,9 @@ int main(int argc, char *argv[])
 
     KApplication app;
 
-    Skanlite *ksane_test = new Skanlite(device, 0);
+    Skanlite *skanlite = new Skanlite(device, 0);
 
-    ksane_test->show();
+    skanlite->show();
 
     QObject::connect(&app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()));
 
