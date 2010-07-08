@@ -54,6 +54,8 @@ class Skanlite : public KDialog
         void saveImage();
         void showAboutDialog();
 
+    protected:
+        void closeEvent(QCloseEvent *event);
 
     private:
         KSaneIface::KSaneWidget *m_ksanew;

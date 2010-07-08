@@ -70,7 +70,7 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
 
     // read the size here...
     KConfigGroup window(KGlobal::config(), "Window");
-    QSize rect = window.readEntry("Geometry", QSize(600,400));
+    QSize rect = window.readEntry("Geometry", QSize(740,400));
     resize(rect);
 
     qApp->processEvents();
@@ -161,9 +161,18 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     m_firstImage = true;
 }
 
+//************************************************************
+void Skanlite::closeEvent(QCloseEvent *event)
+{
+    KConfigGroup window(KGlobal::config(), "Window");
+    window.writeEntry("Geometry", size());
+
+    event->accept();
+}
+
 // Pops up message box similar to what perror() would print
 //************************************************************
-void perrorMessageBox(const QString &text)
+static void perrorMessageBox(const QString &text)
 {
     if (errno != 0) {
         KMessageBox::sorry(0, text + ": " + QString::fromLocal8Bit(strerror(errno)));
