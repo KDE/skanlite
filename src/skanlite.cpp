@@ -246,6 +246,11 @@ void Skanlite::showSettingsDialog(void)
             // 0.0 means default value.
             m_ksanew->setPreviewResolution(0.0);
         }
+        
+        // pressing OK in the settings dialog means use those settings.
+        m_saveLocation->saveDirLEdit->setText(m_settingsUi.saveDirLEdit->text());
+        m_saveLocation->imgPrefix->setText(m_settingsUi.imgPrefix->text());
+        m_saveLocation->imgFormat->setCurrentItem(m_settingsUi.imgFormat->currentText());
     }
     else {
         //Forget Changes
@@ -297,17 +302,11 @@ void Skanlite::saveImage()
         if (m_saveLocation->exec() != KFileDialog::Accepted) return;
         m_firstImage = false;
     }
-    
-    if (m_settingsUi.saveModeCB->currentIndex() == SAVE_MODE_MANUAL) {
-        dir = m_settingsUi.saveDirLEdit->text();
-        prefix = m_settingsUi.imgPrefix->text();
-        type = m_settingsUi.imgFormat->currentText().toLower();
-    }
-    else {
-        dir = m_saveLocation->saveDirLEdit->text();
-        prefix = m_saveLocation->imgPrefix->text();
-        type = m_saveLocation->imgFormat->currentText().toLower();
-    }
+
+    dir = m_saveLocation->saveDirLEdit->text();
+    prefix = m_saveLocation->imgPrefix->text();
+    type = m_saveLocation->imgFormat->currentText().toLower();
+
     // find next available file name for name suggestion
     for (i=1; i<1000000; i++) {
         fname = QString("%1%2.%3")
@@ -359,9 +358,6 @@ void Skanlite::saveImage()
         } while (1);
     }
 
-    // Save last used dir, but remove the file name.
-    m_saveLocation->saveDirLEdit->setText(fileInfo.absolutePath());
-
     m_firstImage = false;
 
     // Get the quality
@@ -401,6 +397,15 @@ void Skanlite::saveImage()
         }
     }
 
+    // Save last used dir, name and siffix.
+    m_saveLocation->saveDirLEdit->setText(fileInfo.absolutePath());
+    QString baseName = fileInfo.completeBaseName();
+    while(baseName[baseName.size()].isNumber()) {
+        kDebug() << baseName;
+        baseName.remove(baseName.size());
+    }
+    m_saveLocation->imgPrefix->setText(baseName);
+    m_saveLocation->imgFormat->setCurrentItem(fileInfo.suffix());
 }
 
 
