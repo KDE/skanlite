@@ -41,8 +41,8 @@
 
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2008-04-12</date>
-<releaseinfo>0.0.3</releaseinfo>
+<date>2010-10-23</date>
+<releaseinfo>0.5</releaseinfo>
 
 <abstract>
 <para>
@@ -132,23 +132,23 @@ The user can choose the scanner to be used and press <guibutton>OK</guibutton> t
 </screenshot>
 
 <para>
-In the main window, the user has two sets of scan options: <guilabel>Basic Options</guilabel> and <guilabel>Other Options</guilabel>. The <guilabel>Basic Options</guilabel> tab contains the most common parameters that the SANE scanner backends provide, while the <guilabel>Other Options</guilabel> tab contains all the other options. The options listed here depend on SANE support for your driver: libksane (which &skanlite; uses) should be able to display most of the types of parameters that SANE provides (analog gamma tables are not supported at this time).
+In the main window, the user has two sets of scan options: <guilabel>Basic Options</guilabel> and <guilabel>Scanner Specific Options</guilabel>. The <guilabel>Basic Options</guilabel> tab contains the most common parameters that the SANE scanner backends provide, while the <guilabel>Scanner Specific Options</guilabel> tab contains all the options of the backend. The options listed here depend on SANE support for your driver: libksane (which &skanlite; uses) should be able to display most of the types of parameters that SANE provides (analog gamma tables are not supported at this time).
 </para>
 
 <screenshot>
-     <screeninfo>Other Options tab</screeninfo>
+     <screeninfo>Scanner Specific Options tab</screeninfo>
 	<mediaobject>
 	  <imageobject>
 	    <imagedata fileref="other-options.png" format="PNG"/>
 	  </imageobject>
 	    <textobject>
-	    <phrase>Other Options tab</phrase>
+	    <phrase>Scanner Specific Options tab</phrase>
 	  </textobject>
 	</mediaobject>
 </screenshot>
 
 <para>
-The other options contains more detailed options of the backends. &skanlite; (libksane) does not have any special handling for these options.
+The scanner specific options contains more detailed options of the backends. &skanlite; (libksane) does not have any special handling for these options.
 </para>
 
 <sect1 id="scanning">
@@ -229,7 +229,7 @@ You will see the progress of the scan.
 </screenshot>
 
 <para>
-If <guilabel>Preview image before saving</guilabel> is selected in the settings, the scanned image is displayed in a preview window as you can see below on the screenshot. If <guibutton>Save</guibutton> is pressed, the image is saved and if <guibutton>Close</guibutton> is pressed the preview is discarded and you return to the main window.
+If <guilabel>Preview before saving</guilabel> is selected in the settings, the scanned image is displayed in a preview window as you can see below on the screenshot. If <guibutton>Save</guibutton> is pressed, the image is saved and if <guibutton>Close</guibutton> is pressed the preview is discarded and you return to the main window.
 </para>
 <screenshot>
      <screeninfo>The Preview Window</screeninfo>
@@ -264,8 +264,8 @@ By clicking the <guibutton>Settings</guibutton> button, the settings dialog is b
 
 <para><variablelist>
 <varlistentry>
-<term><guilabel>Preview the image before saving</guilabel></term>
-<listitem><para>The user can chose to preview the image before saving. In this case the <guilabel>Preview the image before saving</guilabel> option can be left checked. If the user does not want to preview the image this option should then be unchecked.
+<term><guilabel>Preview before saving</guilabel></term>
+<listitem><para>The user can chose to preview the image before saving. In this case the <guilabel>Preview before saving</guilabel> option can be left checked. If the user does not want to preview the image this option should then be unchecked.
 </para></listitem>
 </varlistentry>
 <varlistentry>
@@ -285,8 +285,8 @@ By clicking the <guibutton>Settings</guibutton> button, the settings dialog is b
 </para><para>You can also choose the save format of the file, default is png.</para></listitem>
 </varlistentry>
 <varlistentry>
-<term><guilabel>Specify image save quality</guilabel></term>
-<listitem><para>The user can chose to specify the image quality to be used for saving the images. The image quality setting affects the compression level used for saving. If <guilabel>Specify image save quality</guilabel> is not checked, the quality is the default value chosen by Qt.
+<term><guilabel>Specify save quality</guilabel></term>
+<listitem><para>The user can chose to specify the image quality to be used for saving the images. The image quality setting affects the compression level used for saving. If <guilabel>Specify save quality</guilabel> is not checked, the quality is the default value chosen by Qt.
 </para></listitem>
 </varlistentry>
 </variablelist></para>
