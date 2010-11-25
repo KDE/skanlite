@@ -53,6 +53,7 @@ class Skanlite : public KDialog
         void imageReady(QByteArray &, int, int, int, int);
         void saveImage();
         void showAboutDialog();
+        void saveWindowSize();
 
     protected:
         void closeEvent(QCloseEvent *event);

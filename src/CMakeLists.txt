@@ -5,6 +5,7 @@ include(KDE4Defaults)
 include_directories (${KDE4_INCLUDES})
 
 find_package(KSane REQUIRED)
+find_package(PNG REQUIRED)
 
 set(skanlite_SRCS main.cpp skanlite.cpp ImageViewer.cpp KSaneImageSaver.cpp SaveLocation.cpp)
 

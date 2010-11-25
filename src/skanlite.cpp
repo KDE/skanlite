@@ -75,9 +75,10 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
 
     qApp->processEvents();
 
+    connect (this, SIGNAL(closeClicked()), this, SLOT(saveWindowSize()));
     connect (this, SIGNAL(user1Clicked()), this, SLOT(showSettingsDialog()));
     connect (this, SIGNAL(user2Clicked()), this, SLOT(showAboutDialog()));
-    
+
     // Create the settings dialog
     m_settingsDialog = new KDialog(this);
     m_settingsDialog->setButtons(KDialog::Ok | KDialog::Cancel);
@@ -164,12 +165,17 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
 //************************************************************
 void Skanlite::closeEvent(QCloseEvent *event)
 {
-    KConfigGroup window(KGlobal::config(), "Window");
-    window.writeEntry("Geometry", size());
-
+    saveWindowSize();
     event->accept();
 }
 
+//************************************************************
+void Skanlite::saveWindowSize()
+{
+    KConfigGroup window(KGlobal::config(), "Window");
+    window.writeEntry("Geometry", size());
+    window.sync();
+}
 // Pops up message box similar to what perror() would print
 //************************************************************
 static void perrorMessageBox(const QString &text)
