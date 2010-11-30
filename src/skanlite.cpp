@@ -73,8 +73,6 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     QSize rect = window.readEntry("Geometry", QSize(740,400));
     resize(rect);
 
-    qApp->processEvents();
-
     connect (this, SIGNAL(closeClicked()), this, SLOT(saveWindowSize()));
     connect (this, SIGNAL(user1Clicked()), this, SLOT(showSettingsDialog()));
     connect (this, SIGNAL(user2Clicked()), this, SLOT(showAboutDialog()));
@@ -138,9 +136,14 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
             KMessageBox::sorry(0, i18n("Opening the selected scanner failed."));
             exit(1);
         }
+        else {
+            setWindowTitle(m_ksanew->make()+ ' ' + m_ksanew->model() + " - Skanlite");
+        }
     }
-    setWindowTitle(m_ksanew->make()+ ' ' + m_ksanew->model() + " - Skanlite");
-
+    else {
+        setWindowTitle(device + " - Skanlite");
+    }
+    
     addAction(KStandardAction::quit(qApp, SLOT(quit()), this));
 
     // prepare the Show Image Dialog
@@ -201,7 +204,7 @@ void Skanlite::readSettings(void)
     if (m_settingsUi.saveModeCB->currentIndex() != SAVE_MODE_ASK_FIRST) m_firstImage = false;
     m_settingsUi.saveDirLEdit->setText(saving.readEntry("Location", QDir::homePath()));
     m_settingsUi.imgPrefix->setText(saving.readEntry("NamePrefix", "Image-"));
-    m_settingsUi.imgFormat->setCurrentItem(saving.readEntry("ImgFormat", "PNG"));
+    m_settingsUi.imgFormat->setCurrentItem(saving.readEntry("ImgFormat", "png"));
     m_settingsUi.imgQuality->setValue(saving.readEntry("ImgQuality", 90));
     m_settingsUi.setQuality->setChecked(saving.readEntry("SetQuality", false));
     m_settingsUi.showB4Save->setChecked(saving.readEntry("ShowBeforeSave", true));
@@ -216,14 +219,13 @@ void Skanlite::readSettings(void)
     else {
         m_ksanew->setPreviewResolution(0.0);
     }
-    
 }
 
 //************************************************************
 void Skanlite::showSettingsDialog(void)
 {
-    m_firstImage = true;
     readSettings();
+    m_firstImage = true;
 
     // show the dialog
     if (m_settingsDialog->exec()) {
@@ -382,7 +384,7 @@ void Skanlite::saveImage()
         }
 
         KSaneImageSaver saver;
-        if (saver.savePngSync(fname, m_data, m_width, m_height, m_format)) {
+        if (saver.savePngSync(fileInfo.absoluteFilePath(), m_data, m_width, m_height, m_format)) {
             m_showImgDialog->close(); // closing the window if it is closed should not be a problem.
         }
         else {
@@ -395,8 +397,8 @@ void Skanlite::saveImage()
         if (m_img.width() < 1) {
             m_img = m_ksanew->toQImage(m_data, m_width, m_height, m_bytesPerLine, (KSaneIface::KSaneWidget::ImageFormat)m_format);
         }
-        if (m_img.save(fname, 0, quality)) {
-            m_showImgDialog->close(); // closing the window if it is closed should not be a problem.
+        if (m_img.save(fileInfo.absoluteFilePath(), 0, quality)) {
+            m_showImgDialog->close(); // calling close() on a closed window does nothing.
         }
         else {
             perrorMessageBox(i18n("Failed to save image"));

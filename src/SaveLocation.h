@@ -1,6 +1,6 @@
 /* ============================================================
-* Date        : 2009-08-26
-* Description : Preview image viewer.
+* Date        : 2010-07-07
+* Description : Save location settings dialog.
 *
 * Copyright (C) 2008 by Kare Sars <kare dot sars at iki dot fi>
 *
