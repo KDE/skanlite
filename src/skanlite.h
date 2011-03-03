@@ -46,6 +46,7 @@ class Skanlite : public KDialog
     private:
         void readSettings();
         void doSaveImage(bool askFilename = true);
+        void loadScannerOptions();
 
     private Q_SLOTS:
         void showSettingsDialog();
@@ -54,6 +55,9 @@ class Skanlite : public KDialog
         void saveImage();
         void showAboutDialog();
         void saveWindowSize();
+
+        void saveScannerOptions();
+        void defaultScannerOptions();
 
     protected:
         void closeEvent(QCloseEvent *event);
@@ -65,19 +69,20 @@ class Skanlite : public KDialog
         KDialog                 *m_showImgDialog;
         KFileDialog             *m_saveDialog;
         SaveLocation            *m_saveLocation;
+        QString                  m_deviceName;
+        QMap<QString,QString>    m_defaultScanOpts;
         QImage                   m_img;
         QByteArray               m_data;
         int                      m_width;
         int                      m_height;
         int                      m_bytesPerLine;
         int                      m_format;
-        
+
         ImageViewer              m_imageViewer;
         QStringList              m_filterList;
         QStringList              m_filter16BitList;
         QStringList              m_typeList;
         bool                     m_firstImage;
-
 };
 
 #endif

@@ -40,7 +40,7 @@ class SaveLocation : public KDialog, public Ui_SaveLocation
         
     private Q_SLOTS:
         void update();
-        void getDir(void);
+        void getDir();
 };
 
 #endif

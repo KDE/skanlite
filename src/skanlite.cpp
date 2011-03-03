@@ -57,7 +57,8 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
 {
     setAttribute(Qt::WA_DeleteOnClose);
 
-    setButtons(KDialog::Help | KDialog::User1 | KDialog::User2 | KDialog::Close);
+    setButtons(KDialog::Help | KDialog::User2 | KDialog::User1 | KDialog::Close);
+
     setButtonText(KDialog::User1, i18n("Settings"));
     setButtonIcon(KDialog::User1, KIcon("configure"));
     setButtonText(KDialog::User2, i18n("About"));
@@ -74,6 +75,7 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     resize(rect);
 
     connect (this, SIGNAL(closeClicked()), this, SLOT(saveWindowSize()));
+    connect (this, SIGNAL(closeClicked()), this, SLOT(saveScannerOptions()));
     connect (this, SIGNAL(user1Clicked()), this, SLOT(showSettingsDialog()));
     connect (this, SIGNAL(user2Clicked()), this, SLOT(showAboutDialog()));
 
@@ -83,6 +85,7 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
 
     QWidget *settingsWidget = new QWidget(m_settingsDialog);
     m_settingsUi.setupUi(settingsWidget);
+    m_settingsUi.revertOptions->setIcon(KIcon("edit-undo"));
     m_saveLocation = new SaveLocation(this);
 
     // add the supported image types
@@ -113,7 +116,8 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     m_settingsDialog->setWindowTitle(i18n("Skanlite Settings"));
 
 
-    connect(m_settingsUi.getDirButton, SIGNAL(clicked(void)), this, SLOT(getDir(void)));
+    connect(m_settingsUi.getDirButton, SIGNAL(clicked()), this, SLOT(getDir()));
+    connect(m_settingsUi.revertOptions, SIGNAL(clicked()), this, SLOT(defaultScannerOptions()));
     readSettings();
 
     // default directory for the save dialog
@@ -138,12 +142,14 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
         }
         else {
             setWindowTitle(m_ksanew->make()+ ' ' + m_ksanew->model() + " - Skanlite");
+            m_deviceName = QString("%1:%2").arg(m_ksanew->make()).arg(m_ksanew->model());
         }
     }
     else {
         setWindowTitle(device + " - Skanlite");
+        m_deviceName = device;
     }
-    
+
     addAction(KStandardAction::quit(qApp, SLOT(quit()), this));
 
     // prepare the Show Image Dialog
@@ -161,7 +167,13 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     m_saveDialog->setOperationMode(KFileDialog::Saving);
     m_saveDialog->setMode(KFile::File);
     m_saveDialog->setCaption(i18n("New Image File Name"));
-    
+
+    // save the default sane options for later use
+    m_ksanew->getOptVals(m_defaultScanOpts);
+
+    // load saved options
+    loadScannerOptions();
+
     m_firstImage = true;
 }
 
@@ -169,6 +181,7 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
 void Skanlite::closeEvent(QCloseEvent *event)
 {
     saveWindowSize();
+    saveScannerOptions();
     event->accept();
 }
 
@@ -212,7 +225,7 @@ void Skanlite::readSettings(void)
     KConfigGroup general(KGlobal::config(), "General");
     m_settingsUi.previewDPI->setCurrentItem(general.readEntry("PreviewDPI", "100"), true);
     m_settingsUi.setPreviewDPI->setChecked(general.readEntry("SetPreviewDPI", false));
-    
+
     if (m_settingsUi.setPreviewDPI->isChecked()) {
         m_ksanew->setPreviewResolution(m_settingsUi.previewDPI->currentText().toFloat());
     }
@@ -229,8 +242,8 @@ void Skanlite::showSettingsDialog(void)
 
     // show the dialog
     if (m_settingsDialog->exec()) {
-        
-        // now save the settings
+
+    // now save the settings
         KConfigGroup saving(KGlobal::config(), "Image Saving");
         saving.writeEntry("SaveMode", m_settingsUi.saveModeCB->currentIndex());
         saving.writeEntry("Location", m_settingsUi.saveDirLEdit->text());
@@ -240,8 +253,8 @@ void Skanlite::showSettingsDialog(void)
         saving.writeEntry("ImgQuality", m_settingsUi.imgQuality->value());
         saving.writeEntry("ShowBeforeSave", m_settingsUi.showB4Save->isChecked());
         saving.sync();
-        
-        KConfigGroup general(KGlobal::config(), "General");
+
+    KConfigGroup general(KGlobal::config(), "General");
         general.writeEntry("PreviewDPI", m_settingsUi.previewDPI->currentText());
         general.writeEntry("SetPreviewDPI", m_settingsUi.setPreviewDPI->isChecked());
         general.sync();
@@ -254,8 +267,8 @@ void Skanlite::showSettingsDialog(void)
             // 0.0 means default value.
             m_ksanew->setPreviewResolution(0.0);
         }
-        
-        // pressing OK in the settings dialog means use those settings.
+
+    // pressing OK in the settings dialog means use those settings.
         m_saveLocation->saveDirLEdit->setText(m_settingsUi.saveDirLEdit->text());
         m_saveLocation->imgPrefix->setText(m_settingsUi.imgPrefix->text());
         m_saveLocation->imgFormat->setCurrentItem(m_settingsUi.imgFormat->currentText());
@@ -279,11 +292,7 @@ void Skanlite::imageReady(QByteArray &data, int w, int h, int bpl, int f)
 
     if (m_settingsUi.showB4Save->isChecked() == true) {
         /* copy the image data into m_img and show it*/
-        #if KDE_IS_VERSION(4, 5, 65)
         m_img = m_ksanew->toQImageSilent(data, w, h, bpl, (KSaneIface::KSaneWidget::ImageFormat)f);
-        #else
-        m_img = m_ksanew->toQImage(data, w, h, bpl, (KSaneIface::KSaneWidget::ImageFormat)f);
-        #endif
         m_imageViewer.setQImage(&m_img);
         m_imageViewer.zoom2Fit();
         m_showImgDialog->exec();
@@ -327,7 +336,7 @@ void Skanlite::saveImage()
             break;
         }
     }
-    
+
     if (m_settingsUi.saveModeCB->currentIndex() == SAVE_MODE_MANUAL) {
         // ask for a filename if requested.
         m_saveDialog->setSelection(fileInfo.absoluteFilePath());
@@ -432,4 +441,36 @@ void Skanlite::showAboutDialog(void)
     KAboutApplicationDialog(KGlobal::mainComponent().aboutData(), 0).exec();
 }
 
+//************************************************************
+void Skanlite::saveScannerOptions()
+{
+    if (!m_ksanew) return;
+
+    KConfigGroup options(KGlobal::config(), QString("Options For %1").arg(m_deviceName));
+    QMap <QString, QString> opts;
+    m_ksanew->getOptVals(opts);
+    QMap<QString, QString>::const_iterator it = opts.constBegin();
+    while (it != opts.constEnd()) {
+        options.writeEntry(it.key(), it.value());
+        ++it;
+    }
+    options.sync();
+}
+
+//************************************************************
+void Skanlite::defaultScannerOptions()
+{
+    if (!m_ksanew) return;
+
+    m_ksanew->setOptVals(m_defaultScanOpts);
+}
+
+//************************************************************
+void Skanlite::loadScannerOptions()
+{
+    if (!m_ksanew) return;
+
+    KConfigGroup scannerOptions(KGlobal::config(), QString("Options For %1").arg(m_deviceName));
+    m_ksanew->setOptVals(scannerOptions.entryMap());
+}
 
