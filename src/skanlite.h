@@ -29,12 +29,10 @@
 #include "ui_settings.h"
 #include "ImageViewer.h"
 
-namespace KSaneIface
-{
-    class KSaneWidget;
-}
 class KFileDialog;
 class SaveLocation;
+
+using namespace KSaneIface;
 
 class Skanlite : public KDialog
 {
@@ -59,11 +57,16 @@ class Skanlite : public KDialog
         void saveScannerOptions();
         void defaultScannerOptions();
 
+        void availableDevices(const QList<KSaneWidget::DeviceInfo> &deviceList);
+
+        void alertUser(int type, const QString &strStatus);
+        void buttonPressed(const QString &optionName, const QString &optionLabel, bool pressed);
+        
     protected:
         void closeEvent(QCloseEvent *event);
 
     private:
-        KSaneIface::KSaneWidget *m_ksanew;
+        KSaneWidget             *m_ksanew;
         Ui::SkanliteSettings     m_settingsUi;
         KDialog                 *m_settingsDialog;
         KDialog                 *m_showImgDialog;
@@ -84,6 +87,7 @@ class Skanlite : public KDialog
         QStringList              m_typeList;
         bool                     m_firstImage;
 };
+
 
 #endif
 

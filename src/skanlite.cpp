@@ -67,7 +67,18 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     m_firstImage = true;
 
     m_ksanew = new KSaneIface::KSaneWidget(this);
+    connect(m_ksanew, SIGNAL(imageReady(QByteArray &, int, int, int, int)),
+            this,     SLOT(imageReady(QByteArray &, int, int, int, int)));
+    connect(m_ksanew, SIGNAL(availableDevices(QList<KSaneWidget::DeviceInfo>)),
+            this,     SLOT(availableDevices(QList<KSaneWidget::DeviceInfo>)));
+    connect(m_ksanew, SIGNAL(userMessage(int, QString)),
+            this,     SLOT(alertUser(int, QString)));
+    connect(m_ksanew, SIGNAL(buttonPressed(QString, QString, bool)),
+            this,     SLOT(buttonPressed(QString, QString, bool)));
+
     setMainWidget(m_ksanew);
+
+    m_ksanew->initGetDeviceList();
 
     // read the size here...
     KConfigGroup window(KGlobal::config(), "Window");
@@ -125,9 +136,6 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     m_saveLocation->imgPrefix->setText(m_settingsUi.imgPrefix->text());
     m_saveLocation->imgFormat->setCurrentItem(m_settingsUi.imgFormat->currentText());
 
-    connect(m_ksanew, SIGNAL(imageReady(QByteArray &, int, int, int, int)),
-            this, SLOT(imageReady(QByteArray &, int, int, int, int)));
-
     // open the scan device
     if (m_ksanew->openDevice(device) == false) {
         QString dev = m_ksanew->selectDevice(0);
@@ -174,6 +182,8 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     // load saved options
     loadScannerOptions();
 
+    m_ksanew->initGetDeviceList();
+    
     m_firstImage = true;
 }
 
@@ -225,13 +235,14 @@ void Skanlite::readSettings(void)
     KConfigGroup general(KGlobal::config(), "General");
     m_settingsUi.previewDPI->setCurrentItem(general.readEntry("PreviewDPI", "100"), true);
     m_settingsUi.setPreviewDPI->setChecked(general.readEntry("SetPreviewDPI", false));
-
     if (m_settingsUi.setPreviewDPI->isChecked()) {
         m_ksanew->setPreviewResolution(m_settingsUi.previewDPI->currentText().toFloat());
     }
     else {
         m_ksanew->setPreviewResolution(0.0);
     }
+    m_settingsUi.u_disableSelections->setChecked(general.readEntry("DisableAutoSelection", false));
+    m_ksanew->enableAutoSelect(!m_settingsUi.u_disableSelections->isChecked());
 }
 
 //************************************************************
@@ -254,9 +265,10 @@ void Skanlite::showSettingsDialog(void)
         saving.writeEntry("ShowBeforeSave", m_settingsUi.showB4Save->isChecked());
         saving.sync();
 
-    KConfigGroup general(KGlobal::config(), "General");
+        KConfigGroup general(KGlobal::config(), "General");
         general.writeEntry("PreviewDPI", m_settingsUi.previewDPI->currentText());
         general.writeEntry("SetPreviewDPI", m_settingsUi.setPreviewDPI->isChecked());
+        general.writeEntry("DisableAutoSelection", m_settingsUi.u_disableSelections->isChecked());
         general.sync();
 
         // the previewDPI has to be set here
@@ -474,3 +486,28 @@ void Skanlite::loadScannerOptions()
     m_ksanew->setOptVals(scannerOptions.entryMap());
 }
 
+//************************************************************
+void Skanlite::availableDevices(const QList<KSaneWidget::DeviceInfo> &deviceList)
+{
+    for (int i=0; i<deviceList.size(); i++) {
+        kDebug() << deviceList[i].name;
+    }
+}
+
+//************************************************************
+void Skanlite::alertUser(int type, const QString &strStatus)
+{
+    switch (type) {
+        case KSaneWidget::ErrorGeneral:
+            KMessageBox::sorry(0, strStatus, "Skanlite Test");
+            break;
+        default:
+            KMessageBox::information(0, strStatus, "Skanlite Test");
+    }
+}
+
+//************************************************************
+void Skanlite::buttonPressed(const QString &optionName, const QString &optionLabel, bool pressed)
+{
+    kDebug() << "Button" << optionName << optionLabel << ((pressed) ? "pressed" : "released");
+}
