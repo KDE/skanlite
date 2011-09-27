@@ -337,7 +337,7 @@ void Skanlite::saveImage()
     type = m_saveLocation->imgFormat->currentText().toLower();
 
     // find next available file name for name suggestion
-    for (i=1; i<1000000; i++) {
+    for (i=1; i<1000000; ++i) {
         fname = QString("%1%2.%3")
         .arg(m_settingsUi.imgPrefix->text())
         .arg(i, 4, 10, QChar('0'))
