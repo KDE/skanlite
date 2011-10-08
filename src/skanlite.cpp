@@ -279,8 +279,9 @@ void Skanlite::showSettingsDialog(void)
             // 0.0 means default value.
             m_ksanew->setPreviewResolution(0.0);
         }
+        m_ksanew->enableAutoSelect(!m_settingsUi.u_disableSelections->isChecked());
 
-    // pressing OK in the settings dialog means use those settings.
+        // pressing OK in the settings dialog means use those settings.
         m_saveLocation->saveDirLEdit->setText(m_settingsUi.saveDirLEdit->text());
         m_saveLocation->imgPrefix->setText(m_settingsUi.imgPrefix->text());
         m_saveLocation->imgFormat->setCurrentItem(m_settingsUi.imgFormat->currentText());
