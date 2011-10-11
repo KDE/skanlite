@@ -27,28 +27,28 @@
 <address>&Anne-Marie.Mahfouf.mail;</address>
 </affiliation>
 </author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
 </authorgroup>
 
-<!-- TRANS:ROLES_OF_TRANSLATORS -->
 <copyright>
 <year>2008</year>
 <holder>Kåre Särs</holder>
 </copyright>
 <copyright>
 <year>2008</year>
-<holder>Anne-Marie Mahfouf</holder>
+<holder>&Anne-Marie.Mahfouf;</holder>
 </copyright>
 
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2010-10-23</date>
-<releaseinfo>0.5</releaseinfo>
+<date>2011-10-09</date>
+<releaseinfo>0.7 (&kde; 4.7)</releaseinfo>
 
 <abstract>
 <para>
 &skanlite; is an image scanning application that does nothing more than scan and save images.
 </para>
-<para>&skanlite; is based on libksane, a KDE interface for SANE library to control flat scanners.</para>
+<para>&skanlite; is based on libksane, a &kde; interface for SANE library to control flat scanners.</para>
 </abstract>
 
 <keywordset>
@@ -62,12 +62,12 @@
 
 <chapter id="introduction">
 <title>Introduction</title>
-<para>&skanlite; is a simple image scanning application that does nothing more than scan and save images. &skanlite; can open a save dialog for every image scanned or save the images immediately in a specified directory with auto-generated names and format. The user can also choose to show the scanned image before saving.</para>
+<para>&skanlite; is a simple image scanning application that does nothing more than scan and save images. &skanlite; can open a save dialog for every image scanned or save the images immediately in a specified folder with auto-generated names and format. The user can also choose to show the scanned image before saving.</para>
 <para>
 &skanlite; can save images in the following formats:
 <itemizedlist>
 <listitem><para>
-jpeg, jpg
+jpeg, jpg, jpeg 2000
 </para></listitem>
 <listitem><para>
 png
@@ -83,6 +83,30 @@ xbm
 </para></listitem>
 <listitem><para>
 xpm
+</para></listitem>
+<listitem><para>
+tiff
+</para></listitem>
+<listitem><para>
+pgm
+</para></listitem>
+<listitem><para>
+pbm
+</para></listitem>
+<listitem><para>
+mng
+</para></listitem>
+<listitem><para>
+tga
+</para></listitem>
+<listitem><para>
+rgb
+</para></listitem>
+<listitem><para>
+pcx
+</para></listitem>
+<listitem><para>
+eps
 </para></listitem>
 </itemizedlist>
 </para>
@@ -244,6 +268,41 @@ If <guilabel>Preview before saving</guilabel> is selected in the settings, the s
 </screenshot>
 </sect1>
 
+<sect1 id="scanning-multiple-selections">
+<title>Scanning Multiple Selections</title>
+<para>
+Sometimes you need only certain parts of an image.
+Instead of scanning the whole picture and then using a graphics
+application (&eg; &kolourpaint;) to save the different image parts into separate
+files, use &skanlite;'s  multiple selection feature.
+</para>
+<screenshot>
+     <screeninfo>Multiple Selections</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="multiple-selections.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase>Multiple Selections</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para>Scan a preview and then use the &LMB; to select the first part of the image in the preview.
+Hoover the selected area with mouse cursor and click on the green <guiicon>+</guiicon> icon
+to select the area.  Selected areas are indicated by a red border.
+Now select the next parts of the image in the same way.</para>
+<para>To remove a single selection hoover the area with the mouse cursor and click on the red
+<guiicon>-</guiicon> icon. With <guilabel>Clear Selections</guilabel> from the context menu launched with the
+&RMB; all selections in a preview can be removed.
+</para>
+<para>If you placed two separate images or photos on you scanner and started a preview 
+&skanlite; automatically preselect the different areas. This behavour can be switched off in the settings dialog.
+</para>
+<para>If you are satisfied with your choice starting the final batch scan of all selections. The images are saved
+using the batch renaming feature described in the settings dialog.
+</para>
+</sect1>
+
 <sect1 id="settings">
 <title>&skanlite; settings</title>
 <para>
@@ -264,31 +323,56 @@ By clicking the <guibutton>Settings</guibutton> button, the settings dialog is b
 
 <para><variablelist>
 <varlistentry>
-<term><guilabel>Preview before saving</guilabel></term>
+<term><guilabel>Preview before saving:</guilabel></term>
 <listitem><para>The user can chose to preview the image before saving. In this case the <guilabel>Preview before saving</guilabel> option can be left checked. If the user does not want to preview the image this option should then be unchecked.
 </para></listitem>
 </varlistentry>
 <varlistentry>
 <term><guilabel>Save Mode:</guilabel></term>
-<listitem><para> This setting allows you to choose how &skanlite; will save the images. If you choose <guilabel>Open the save dialog for every image</guilabel> then the save dialog will be opened for every scanned image. If you prefer &skanlite; to auto-save (by auto-generating a name and saving the image in a predefined directory) then you can choose <guilabel>Save without asking for a filename</guilabel>.
+<listitem><para> This setting allows you to choose how &skanlite; will save the images. If you choose <guilabel>Open the save dialog for every image</guilabel> then the save dialog will be opened for every scanned image. If you prefer &skanlite; to auto-save (by auto-generating a name and saving the image in a predefined folder) then you can choose <guilabel>Save without asking for a filename</guilabel> 
+or <guilabel>Open the save dialog for the first image only</guilabel>.
 </para></listitem>
 </varlistentry>
 <varlistentry>
 <term><guilabel>Save Location:</guilabel></term>
-<listitem><para> This setting defines where the images should be saved when <guilabel>Save without asking for a filename</guilabel> is chosen in the previous option. If the save dialog is to be opened for every image the default save location for the dialog will be the same as this parameter. The default save location is your home directory and you can change this location by clicking on the <guibutton>...</guibutton> button.
+<listitem><para> This setting defines where the images should be saved when <guilabel>Save without asking for a filename</guilabel> is chosen in the previous option. If the save dialog is to be opened for every image the default save location for the dialog will be the same as this parameter. The default save location is your home folder and you can change this location by clicking on the <guibutton>...</guibutton> button.
 </para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guilabel>Name &amp; Format:</guilabel></term>
+<term><guilabel>Name Format:</guilabel></term>
 <listitem><para> This parameter defines the image prefix for the auto-saved images and is also the suggested name for the image in the save dialog. The auto-saved image will have a numeric suffix (the ### will be replaced by numbers) that is increased every time an image is saved.
 </para><para>You can also choose the save format of the file, default is png.</para></listitem>
 </varlistentry>
 <varlistentry>
-<term><guilabel>Specify save quality</guilabel></term>
-<listitem><para>The user can chose to specify the image quality to be used for saving the images. The image quality setting affects the compression level used for saving. If <guilabel>Specify save quality</guilabel> is not checked, the quality is the default value chosen by Qt.
+<term><guilabel>Specify save quality:</guilabel></term>
+<listitem><para>The user can chose to specify the image quality to be used for saving the images. The image quality setting affects the compression level used for saving. If <guilabel>Specify save quality</guilabel> is not checked, the quality is the default value chosen by &Qt;.
 </para></listitem>
 </varlistentry>
+<!--
+<varlistentry>
+<term><guilabel>Set preview resolution (DPI)</guilabel></term>
+<listitem><para>???</para></listitem>
+</varlistentry>
+-->
+<varlistentry>
+<term><guilabel>Disable automatic selections</guilabel></term>
+<listitem><para>After a preview, libksane does try to automatically select the 
+images in the preview and should batch scan the selected areas.
+If you have enabled this option and place two photos 
+on the scanner and do a preview, &skanlite; will automatically add 
+selections of the photos.</para>
+<para>If on the other hand you are usually scanning documents it might be that the 
+automatic selection will select a lot of different parts in the documents and 
+you have to manually remove the selections. To avoid that disable this option.
+</para></listitem>
+</varlistentry>
+<!--
+<varlistentry>
+<term><guilabel>Revert scanner options to default values</guilabel></term>
+<listitem><para>???</para></listitem>
+</varlistentry>
+-->
 </variablelist></para>
 </sect1>
 
@@ -309,7 +393,7 @@ At the bottom of the main window you find the <guibutton>Help</guibutton>, <guib
 	</mediaobject>
 </screenshot>
 
-<para>The <guibutton>Help</guibutton> button brings up the KDE Help center with the &skanlite; manual. The <guibutton>About</guibutton> button brings up the KDE About dialog for &skanlite;. The <guibutton>Settings</guibutton> button displays the settings dialog and the <guibutton>Close</guibutton> button is used to exit &skanlite;.</para>
+<para>The <guibutton>Help</guibutton> button brings up the &kde; Help center with the &skanlite; manual. The <guibutton>About</guibutton> button brings up the &kde; About dialog for &skanlite;. The <guibutton>Settings</guibutton> button displays the settings dialog and the <guibutton>Close</guibutton> button is used to exit &skanlite;.</para>
 </sect1>
 </chapter>
 
