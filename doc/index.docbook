@@ -288,15 +288,15 @@ files, use &skanlite;'s  multiple selection feature.
 	</mediaobject>
 </screenshot>
 <para>Scan a preview and then use the &LMB; to select the first part of the image in the preview.
-Hoover the selected area with mouse cursor and click on the green <guiicon>+</guiicon> icon
+Hover the selected area with mouse cursor and click on the green <guiicon>+</guiicon> icon
 to select the area.  Selected areas are indicated by a red border.
 Now select the next parts of the image in the same way.</para>
-<para>To remove a single selection hoover the area with the mouse cursor and click on the red
+<para>To remove a single selection hover the area with the mouse cursor and click on the red
 <guiicon>-</guiicon> icon. With <guilabel>Clear Selections</guilabel> from the context menu launched with the
 &RMB; all selections in a preview can be removed.
 </para>
 <para>If you placed two separate images or photos on you scanner and started a preview 
-&skanlite; automatically preselect the different areas. This behavour can be switched off in the settings dialog.
+&skanlite; automatically preselect the different areas. This behaviour can be switched off in the settings dialog.
 </para>
 <para>If you are satisfied with your choice starting the final batch scan of all selections. The images are saved
 using the batch renaming feature described in the settings dialog.
