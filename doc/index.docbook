@@ -138,6 +138,27 @@ eps
 <para>
 The user can choose the scanner to be used and press <guibutton>OK</guibutton> to open the scanner. Pressing <guibutton>Cancel</guibutton> will cause &skanlite; to exit.
 </para>
+
+<screenshot>
+     <screeninfo>No scanner found</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="no-scanner-found.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase>No scanner found</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para>
+In case no devices were found, maybe because the scanner is not plugged in or 
+switched off, correct that. Then the <guibutton>Reload device list</guibutton> 
+can be used to reload the list of scanners.</para> 
+<note><para>Not all drivers/backends support this feature. In that case quit &skanlite;, 
+connect your scanner and restart the application.</para>
+</note>
+
 </sect1>
 </chapter>
 
@@ -174,6 +195,10 @@ In the main window, the user has two sets of scan options: <guilabel>Basic Optio
 <para>
 The scanner specific options contains more detailed options of the backends. &skanlite; (libksane) does not have any special handling for these options.
 </para>
+
+<para>If you are satified with your settings, you can use the little arrow on the top of the options splitter. 
+When clicked it collapses or expands the options. The collapser can overlap the preview area, but fades
+away when the mouse cursor moves out of the collapser.</para>  
 
 <sect1 id="scanning">
 <title>Scanning</title>
@@ -221,6 +246,7 @@ To better select the image the user can zoom in, out, to the current selection o
 	  </textobject>
 	</mediaobject>
 </screenshot>
+
 <para>
 When the image is selected the  final image can be acquired by pressing the final scan button.
 </para>
@@ -349,30 +375,37 @@ or <guilabel>Open the save dialog for the first image only</guilabel>.
 <listitem><para>The user can chose to specify the image quality to be used for saving the images. The image quality setting affects the compression level used for saving. If <guilabel>Specify save quality</guilabel> is not checked, the quality is the default value chosen by &Qt;.
 </para></listitem>
 </varlistentry>
-<!--
 <varlistentry>
 <term><guilabel>Set preview resolution (DPI)</guilabel></term>
-<listitem><para>???</para></listitem>
+<listitem><para>&skanlite; is using heuristics to try to get a sane resolution, 
+but if that fails and the resolution is too high or low, then the preview 
+resolution can be manually set with this option.
+</para></listitem>
 </varlistentry>
--->
 <varlistentry>
 <term><guilabel>Disable automatic selections</guilabel></term>
-<listitem><para>After a preview, libksane does try to automatically select the 
-images in the preview and should batch scan the selected areas.
-If you have enabled this option and place two photos 
+<listitem><para>By default automatic selections are enabled; and after a preview, 
+libksane does try to automatically select the images in the preview and should 
+batch scan the selected areas. &eg; if you place two photos 
 on the scanner and do a preview, &skanlite; will automatically add 
 selections of the photos.</para>
 <para>If on the other hand you are usually scanning documents it might be that the 
 automatic selection will select a lot of different parts in the documents and 
-you have to manually remove the selections. To avoid that disable this option.
-</para></listitem>
+you have to manually remove the selections. To avoid that tick the checkbox and
+disable automatic selection.
+</para>
+</listitem>
 </varlistentry>
-<!--
 <varlistentry>
 <term><guilabel>Revert scanner options to default values</guilabel></term>
-<listitem><para>???</para></listitem>
+<listitem><para>
+The last used settings are reloaded on startup. If you have screwed up the options 
+(for example if you have changed the color correction settings, available
+in some backends, without knowing what they mean), the image can start to look very odd. 
+For that scenario this option provides a way to revert the setting to the default values, 
+which are a combination of backend and libksane defaults.
+</para></listitem>
 </varlistentry>
--->
 </variablelist></para>
 </sect1>
 
