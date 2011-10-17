@@ -196,7 +196,7 @@ In the main window, the user has two sets of scan options: <guilabel>Basic Optio
 The scanner specific options contains more detailed options of the backends. &skanlite; (libksane) does not have any special handling for these options.
 </para>
 
-<para>If you are satified with your settings, you can use the little arrow on the top of the options splitter. 
+<para>If you are satisfied with your settings, you can use the little arrow on the top of the options splitter. 
 When clicked it collapses or expands the options. The collapser can overlap the preview area, but fades
 away when the mouse cursor moves out of the collapser.</para>  
 
