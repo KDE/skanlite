@@ -41,8 +41,8 @@
 
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2011-10-09</date>
-<releaseinfo>0.7 (&kde; 4.7)</releaseinfo>
+<date>2011-11-29</date>
+<releaseinfo>0.8</releaseinfo>
 
 <abstract>
 <para>
@@ -64,49 +64,16 @@
 <title>Introduction</title>
 <para>&skanlite; is a simple image scanning application that does nothing more than scan and save images. &skanlite; can open a save dialog for every image scanned or save the images immediately in a specified folder with auto-generated names and format. The user can also choose to show the scanned image before saving.</para>
 <para>
-&skanlite; can save images in the following formats:
+&skanlite; can save images in all the formats supported by KDE. For example the following formats:
 <itemizedlist>
+<listitem><para>
+png (8 and 16 bits per color)
+</para></listitem>
 <listitem><para>
 jpeg, jpg, jpeg 2000
 </para></listitem>
 <listitem><para>
-png
-</para></listitem>
-<listitem><para>
 bmp
-</para></listitem>
-<listitem><para>
-ppm
-</para></listitem>
-<listitem><para>
-xbm
-</para></listitem>
-<listitem><para>
-xpm
-</para></listitem>
-<listitem><para>
-tiff
-</para></listitem>
-<listitem><para>
-pgm
-</para></listitem>
-<listitem><para>
-pbm
-</para></listitem>
-<listitem><para>
-mng
-</para></listitem>
-<listitem><para>
-tga
-</para></listitem>
-<listitem><para>
-rgb
-</para></listitem>
-<listitem><para>
-pcx
-</para></listitem>
-<listitem><para>
-eps
 </para></listitem>
 </itemizedlist>
 </para>
