@@ -213,8 +213,9 @@ bool KSaneImageSaver::Private::savePng()
     for (int i=0; i<m_data.size(); i+=2) {
         tmp = m_data[i];
         m_data[i] = m_data[i+1];
+        m_data[i+1] = tmp;
     }
-    
+
     row_ptr = (png_bytep)m_data.data();
 
     for (int i=0; i<m_height; i++) {
