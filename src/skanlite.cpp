@@ -226,7 +226,7 @@ void Skanlite::readSettings(void)
     m_settingsUi.saveModeCB->setCurrentIndex(saving.readEntry("SaveMode", (int)SAVE_MODE_MANUAL));
     if (m_settingsUi.saveModeCB->currentIndex() != SAVE_MODE_ASK_FIRST) m_firstImage = false;
     m_settingsUi.saveDirLEdit->setText(saving.readEntry("Location", QDir::homePath()));
-    m_settingsUi.imgPrefix->setText(saving.readEntry("NamePrefix", "Image-"));
+    m_settingsUi.imgPrefix->setText(saving.readEntry("NamePrefix", i18nc("prefix for auto naming", "Image-")));
     m_settingsUi.imgFormat->setCurrentItem(saving.readEntry("ImgFormat", "png"));
     m_settingsUi.imgQuality->setValue(saving.readEntry("ImgQuality", 90));
     m_settingsUi.setQuality->setChecked(saving.readEntry("SetQuality", false));
