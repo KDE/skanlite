@@ -25,6 +25,9 @@
         <property name="text">
          <string>Preview before saving:</string>
         </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
         <property name="buddy">
          <cstring>showB4Save</cstring>
         </property>
@@ -108,7 +111,7 @@
       <item row="5" column="0">
        <widget class="QLabel" name="label_2">
         <property name="text">
-         <string>Name &amp; Format:</string>
+         <string>Name &amp;&amp; Format:</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
