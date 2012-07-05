@@ -1,6 +1,6 @@
 /* ============================================================
 *
-* Copyright (C) 2007-2008 by Kare Sars <kare dot sars at iki dot fi>
+* Copyright (C) 2007-2012 by Kåre Särs <kare.sars@iki .fi>
 *
 * This program is free software; you can redistribute it and/or
 * modify it under the terms of the GNU General Public License as
@@ -25,14 +25,15 @@
 #include <kglobal.h>
 
 #include "skanlite.h"
+#include "version.h"
 
 int main(int argc, char *argv[])
 {
     // about data
-    KAboutData aboutData("Skanlite", "skanlite", ki18n("Skanlite"), "0.7",
+    KAboutData aboutData("Skanlite", "skanlite", ki18n("Skanlite"), skanlite_version,
                          ki18n("This is a scanning application for KDE based on libksane."),
                          KAboutData::License_GPL,
-                         ki18n("(C) 2008 Kåre Särs"));
+                         ki18n("(C) 2008-2012 Kåre Särs"));
 
     aboutData.addAuthor(ki18n("Kåre Särs"),
                         ki18n("developer"),

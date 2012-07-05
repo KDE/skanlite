@@ -2,7 +2,7 @@
 * Date        : 2010-07-02
 * Description : Image saver class for libksane image data.
 *
-* Copyright (C) 2010 by Kare Sars <kare dot sars at iki dot fi>
+* Copyright (C) 2010-2012 by Kåre Särs <kare.sars@iki .fi>
 *
 * This program is free software; you can redistribute it and/or
 * modify it under the terms of the GNU General Public License as
@@ -22,8 +22,8 @@
 *
 * ============================================================ */
 
-#ifndef KSANE_IMAGE_SAVER_H
-#define KSANE_IMAGE_SAVER_H
+#ifndef KSaneImageSaver_h
+#define KSaneImageSaver_h
 
 #include <libksane/ksane.h>
 

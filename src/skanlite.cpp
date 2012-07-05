@@ -1,6 +1,6 @@
 /* ============================================================
 *
-* Copyright (C) 2007-2008 by Kare Sars <kare dot sars at iki dot fi>
+* Copyright (C) 2007-2012 by Kåre Särs <kare.sars@iki .fi>
 * Copyright (C) 2009 by Arseniy Lartsev <receive-spam at yandex dot ru>
 *
 * This program is free software; you can redistribute it and/or
@@ -42,13 +42,6 @@
 #include <KStandardAction>
 #include <KImageIO>
 #include <kdeversion.h>
-
-// Order of items in save mode combo-box
-enum {
-    SAVE_MODE_MANUAL = 0,
-    SAVE_MODE_ASK_FIRST = 1,
-    SAVE_MODE_AUTO = 2
-};
 
 #include <errno.h>
 
@@ -223,8 +216,8 @@ void Skanlite::readSettings(void)
 
     // read the saved parameters
     KConfigGroup saving(KGlobal::config(), "Image Saving");
-    m_settingsUi.saveModeCB->setCurrentIndex(saving.readEntry("SaveMode", (int)SAVE_MODE_MANUAL));
-    if (m_settingsUi.saveModeCB->currentIndex() != SAVE_MODE_ASK_FIRST) m_firstImage = false;
+    m_settingsUi.saveModeCB->setCurrentIndex(saving.readEntry("SaveMode", (int)SaveModeManual));
+    if (m_settingsUi.saveModeCB->currentIndex() != SaveModeAskFirst) m_firstImage = false;
     m_settingsUi.saveDirLEdit->setText(saving.readEntry("Location", QDir::homePath()));
     m_settingsUi.imgPrefix->setText(saving.readEntry("NamePrefix", i18nc("prefix for auto naming", "Image-")));
     m_settingsUi.imgFormat->setCurrentItem(saving.readEntry("ImgFormat", "png"));
@@ -320,27 +313,22 @@ void Skanlite::imageReady(QByteArray &data, int w, int h, int bpl, int f)
 //************************************************************
 void Skanlite::saveImage()
 {
-    QFileInfo fileInfo;
-    QString fname;
-    QString dir;
-    QString prefix;
-    QString type;
-    int i;
-
     // ask the first time if we are in "ask on first" mode
-    if ((m_settingsUi.saveModeCB->currentIndex() == SAVE_MODE_ASK_FIRST) && m_firstImage) {
+    if ((m_settingsUi.saveModeCB->currentIndex() == SaveModeAskFirst) && m_firstImage) {
         if (m_saveLocation->exec() != KFileDialog::Accepted) return;
         m_firstImage = false;
     }
 
-    dir = m_saveLocation->saveDirLEdit->text();
-    prefix = m_saveLocation->imgPrefix->text();
-    type = m_saveLocation->imgFormat->currentText().toLower();
-
+    QString dir = m_saveLocation->saveDirLEdit->text();
+    QString prefix = m_saveLocation->imgPrefix->text();
+    QString type = m_saveLocation->imgFormat->currentText().toLower();
+    
     // find next available file name for name suggestion
-    for (i=1; i<1000000; ++i) {
+    QFileInfo fileInfo;
+    QString fname;
+    for (int i=1; i<1000000; ++i) {
         fname = QString("%1%2.%3")
-        .arg(m_settingsUi.imgPrefix->text())
+        .arg(prefix)
         .arg(i, 4, 10, QChar('0'))
         .arg(type);
 
@@ -350,7 +338,7 @@ void Skanlite::saveImage()
         }
     }
 
-    if (m_settingsUi.saveModeCB->currentIndex() == SAVE_MODE_MANUAL) {
+    if (m_settingsUi.saveModeCB->currentIndex() == SaveModeManual) {
         // ask for a filename if requested.
         m_saveDialog->setSelection(fileInfo.absoluteFilePath());
 
@@ -427,15 +415,17 @@ void Skanlite::saveImage()
         }
     }
 
-    // Save last used dir, name and siffix.
-    m_saveLocation->saveDirLEdit->setText(fileInfo.absolutePath());
-    QString baseName = fileInfo.completeBaseName();
-    while(baseName[baseName.size()].isNumber()) {
-        kDebug() << baseName;
-        baseName.remove(baseName.size());
+    if (m_settingsUi.saveModeCB->currentIndex() == SaveModeManual) {
+        // Save last used dir, prefix and suffix.
+        m_saveLocation->saveDirLEdit->setText(fileInfo.absolutePath());
+        QString baseName = fileInfo.completeBaseName();
+        while ((baseName.size() > 1) && (baseName[baseName.size()-1].isNumber())) {
+            //kDebug() << baseName;
+            baseName.remove(baseName.size()-1, 1);
+        }
+        m_saveLocation->imgPrefix->setText(baseName);
+        m_saveLocation->imgFormat->setCurrentItem(fileInfo.suffix());
     }
-    m_saveLocation->imgPrefix->setText(baseName);
-    m_saveLocation->imgFormat->setCurrentItem(fileInfo.suffix());
 }
 
 

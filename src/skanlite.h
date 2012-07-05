@@ -1,6 +1,6 @@
 /* ============================================================
  *
- * Copyright (C) 2007-2008 by Kare Sars <kare dot sars at iki dot fi>
+ * Copyright (C) 2007-2012 by Kåre Särs <kare.sars@iki .fi>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -20,8 +20,8 @@
  *
  * ============================================================ */
 
-#ifndef SKANLITE_H
-#define SKANLITE_H
+#ifndef Skanlite_h
+#define Skanlite_h
 
 #include <libksane/ksane.h>
 #include <QDir>
@@ -42,6 +42,12 @@ class Skanlite : public KDialog
         explicit Skanlite(const QString& device, QWidget *parent = 0);
 
     private:
+        // Order of items in save mode combo-box
+        enum SaveMode {
+            SaveModeManual = 0,
+            SaveModeAskFirst = 1,
+        };
+
         void readSettings();
         void doSaveImage(bool askFilename = true);
         void loadScannerOptions();
@@ -61,7 +67,7 @@ class Skanlite : public KDialog
 
         void alertUser(int type, const QString &strStatus);
         void buttonPressed(const QString &optionName, const QString &optionLabel, bool pressed);
-        
+
     protected:
         void closeEvent(QCloseEvent *event);
 

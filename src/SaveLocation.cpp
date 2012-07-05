@@ -2,7 +2,7 @@
 * Date        : 2010-07-07
 * Description : Save location settings dialog.
 *
-* Copyright (C) 2010 by Kare Sars <kare dot sars at iki dot fi>
+* Copyright (C) 2010-2012 by Kare Sars <kare.sars@iki.fi>
 *
 * This program is free software; you can redistribute it and/or
 * modify it under the terms of the GNU General Public License as

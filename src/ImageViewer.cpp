@@ -2,7 +2,7 @@
 * Date        : 2008-08-26
 * Description : Preview image viewer.
 *
-* Copyright (C) 2008 by Kare Sars <kare dot sars at iki dot fi>
+* Copyright (C) 2008-2012 by Kåre Särs <kare.sars@iki .fi>
 *
 * This program is free software; you can redistribute it and/or
 * modify it under the terms of the GNU General Public License as
