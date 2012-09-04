@@ -142,12 +142,12 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
             exit(1);
         }
         else {
-            setWindowTitle(m_ksanew->make()+ ' ' + m_ksanew->model() + " - Skanlite");
+            setWindowTitle(i18nc("@title:window %1 = scanner maker, %2 = scanner model", "%1 %2 - Skanlite", m_ksanew->make(), m_ksanew->model()));
             m_deviceName = QString("%1:%2").arg(m_ksanew->make()).arg(m_ksanew->model());
         }
     }
     else {
-        setWindowTitle(device + " - Skanlite");
+        setWindowTitle(i18nc("@title:window %1 = scanner device", "%1 - Skanlite", device));
         m_deviceName = device;
     }
 
@@ -200,7 +200,7 @@ void Skanlite::saveWindowSize()
 static void perrorMessageBox(const QString &text)
 {
     if (errno != 0) {
-        KMessageBox::sorry(0, text + ": " + QString::fromLocal8Bit(strerror(errno)));
+        KMessageBox::sorry(0, i18n("%1: %2", text, QString::fromLocal8Bit(strerror(errno))));
     }
     else {
         KMessageBox::sorry(0, text);
