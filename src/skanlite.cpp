@@ -176,7 +176,7 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     loadScannerOptions();
 
     m_ksanew->initGetDeviceList();
-    
+
     m_firstImage = true;
 }
 
@@ -245,8 +245,7 @@ void Skanlite::showSettingsDialog(void)
 
     // show the dialog
     if (m_settingsDialog->exec()) {
-
-    // now save the settings
+        // save the settings
         KConfigGroup saving(KGlobal::config(), "Image Saving");
         saving.writeEntry("SaveMode", m_settingsUi.saveModeCB->currentIndex());
         saving.writeEntry("Location", m_settingsUi.saveDirLEdit->text());
@@ -458,6 +457,9 @@ void Skanlite::showAboutDialog(void)
 //************************************************************
 void Skanlite::saveScannerOptions()
 {
+    KConfigGroup saving(KGlobal::config(), "Image Saving");
+    saving.writeEntry("NumberStartsFrom", m_saveLocation->u_numStartFrom->value());
+
     if (!m_ksanew) return;
 
     KConfigGroup options(KGlobal::config(), QString("Options For %1").arg(m_deviceName));
@@ -482,6 +484,9 @@ void Skanlite::defaultScannerOptions()
 //************************************************************
 void Skanlite::loadScannerOptions()
 {
+    KConfigGroup saving(KGlobal::config(), "Image Saving");
+    m_saveLocation->u_numStartFrom->setValue(saving.readEntry("NumberStartsFrom", 1));
+
     if (!m_ksanew) return;
 
     KConfigGroup scannerOptions(KGlobal::config(), QString("Options For %1").arg(m_deviceName));
