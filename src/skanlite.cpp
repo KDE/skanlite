@@ -114,7 +114,7 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
         }
     }
     m_settingsUi.imgFormat->addItems(m_typeList);
-    m_saveLocation->imgFormat->addItems(m_typeList);
+    m_saveLocation->u_imgFormat->addItems(m_typeList);
 
     m_settingsDialog->setMainWidget(settingsWidget);
     m_settingsDialog->setWindowTitle(i18n("Skanlite Settings"));
@@ -125,9 +125,9 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     readSettings();
 
     // default directory for the save dialog
-    m_saveLocation->saveDirLEdit->setText(m_settingsUi.saveDirLEdit->text());
-    m_saveLocation->imgPrefix->setText(m_settingsUi.imgPrefix->text());
-    m_saveLocation->imgFormat->setCurrentItem(m_settingsUi.imgFormat->currentText());
+    m_saveLocation->u_saveDirLEdit->setText(m_settingsUi.saveDirLEdit->text());
+    m_saveLocation->u_imgPrefix->setText(m_settingsUi.imgPrefix->text());
+    m_saveLocation->u_imgFormat->setCurrentItem(m_settingsUi.imgFormat->currentText());
 
     // open the scan device
     if (m_ksanew->openDevice(device) == false) {
@@ -242,7 +242,6 @@ void Skanlite::readSettings(void)
 void Skanlite::showSettingsDialog(void)
 {
     readSettings();
-    m_firstImage = true;
 
     // show the dialog
     if (m_settingsDialog->exec()) {
@@ -275,9 +274,11 @@ void Skanlite::showSettingsDialog(void)
         m_ksanew->enableAutoSelect(!m_settingsUi.u_disableSelections->isChecked());
 
         // pressing OK in the settings dialog means use those settings.
-        m_saveLocation->saveDirLEdit->setText(m_settingsUi.saveDirLEdit->text());
-        m_saveLocation->imgPrefix->setText(m_settingsUi.imgPrefix->text());
-        m_saveLocation->imgFormat->setCurrentItem(m_settingsUi.imgFormat->currentText());
+        m_saveLocation->u_saveDirLEdit->setText(m_settingsUi.saveDirLEdit->text());
+        m_saveLocation->u_imgPrefix->setText(m_settingsUi.imgPrefix->text());
+        m_saveLocation->u_imgFormat->setCurrentItem(m_settingsUi.imgFormat->currentText());
+
+        m_firstImage = true;
     }
     else {
         //Forget Changes
@@ -319,14 +320,15 @@ void Skanlite::saveImage()
         m_firstImage = false;
     }
 
-    QString dir = m_saveLocation->saveDirLEdit->text();
-    QString prefix = m_saveLocation->imgPrefix->text();
-    QString type = m_saveLocation->imgFormat->currentText().toLower();
-    
+    QString dir = m_saveLocation->u_saveDirLEdit->text();
+    QString prefix = m_saveLocation->u_imgPrefix->text();
+    QString type = m_saveLocation->u_imgFormat->currentText().toLower();
+    int fileNumber = m_saveLocation->u_numStartFrom->value();
+
     // find next available file name for name suggestion
     QFileInfo fileInfo;
     QString fname;
-    for (int i=1; i<1000000; ++i) {
+    for (int i=fileNumber; i<=m_saveLocation->u_numStartFrom->maximum(); ++i) {
         fname = QString("%1%2.%3")
         .arg(prefix)
         .arg(i, 4, 10, QChar('0'))
@@ -415,16 +417,25 @@ void Skanlite::saveImage()
         }
     }
 
+    // Save the file base name without number
+    QString baseName = fileInfo.completeBaseName();
+    while ((baseName.size() > 1) && (baseName[baseName.size()-1].isNumber())) {
+        baseName.remove(baseName.size()-1, 1);
+    }
+    m_saveLocation->u_imgPrefix->setText(baseName);
+
+    // Save the number
+    QString fileNumStr = fileInfo.completeBaseName();
+    fileNumStr.remove(baseName);
+    fileNumber = fileNumStr.toInt();
+    if (fileNumber) {
+        m_saveLocation->u_numStartFrom->setValue(fileNumber+1);
+    }
+
     if (m_settingsUi.saveModeCB->currentIndex() == SaveModeManual) {
         // Save last used dir, prefix and suffix.
-        m_saveLocation->saveDirLEdit->setText(fileInfo.absolutePath());
-        QString baseName = fileInfo.completeBaseName();
-        while ((baseName.size() > 1) && (baseName[baseName.size()-1].isNumber())) {
-            //kDebug() << baseName;
-            baseName.remove(baseName.size()-1, 1);
-        }
-        m_saveLocation->imgPrefix->setText(baseName);
-        m_saveLocation->imgFormat->setCurrentItem(fileInfo.suffix());
+        m_saveLocation->u_saveDirLEdit->setText(fileInfo.absolutePath());
+        m_saveLocation->u_imgFormat->setCurrentItem(fileInfo.suffix());
     }
 }
 

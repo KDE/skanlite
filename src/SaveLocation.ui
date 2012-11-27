@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>346</width>
-    <height>90</height>
+    <width>347</width>
+    <height>110</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -30,10 +30,10 @@
    <item row="0" column="1">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QLineEdit" name="saveDirLEdit"/>
+      <widget class="QLineEdit" name="u_saveDirLEdit"/>
      </item>
      <item>
-      <widget class="QPushButton" name="getDirButton">
+      <widget class="QPushButton" name="u_getDirButton">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -60,7 +60,7 @@
    <item row="1" column="1">
     <layout class="QHBoxLayout">
      <item>
-      <widget class="QLineEdit" name="imgPrefix">
+      <widget class="QLineEdit" name="u_imgPrefix">
        <property name="text">
         <string/>
        </property>
@@ -74,21 +74,38 @@
       </widget>
      </item>
      <item>
-      <widget class="KComboBox" name="imgFormat"/>
+      <widget class="KComboBox" name="u_imgFormat"/>
      </item>
     </layout>
    </item>
-   <item row="2" column="1">
-    <widget class="QLabel" name="resultValue">
+   <item row="3" column="1">
+    <widget class="QLabel" name="u_resultValue">
      <property name="text">
       <string>/home/joe/example.png</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="0">
-    <widget class="QLabel" name="resultValue_2">
+   <item row="3" column="0">
+    <widget class="QLabel" name="resultLabel">
      <property name="text">
       <string>Example:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="numStartFromLabel">
+     <property name="text">
+      <string>Start numbering from:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QSpinBox" name="u_numStartFrom">
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>999999</number>
      </property>
     </widget>
    </item>

@@ -33,10 +33,10 @@ SaveLocation::SaveLocation(QWidget *parent) : KDialog(parent)
     QWidget *container = new QWidget(this);
     setupUi(container);
     setMainWidget(container);
-    connect(saveDirLEdit, SIGNAL(textChanged(QString)), this, SLOT(update()));
-    connect(imgPrefix,    SIGNAL(textChanged(QString)), this, SLOT(update()));
-    connect(imgFormat,    SIGNAL(activated(QString)),   this, SLOT(update()));
-    connect(getDirButton, SIGNAL(clicked()),            this, SLOT(getDir()));
+    connect(u_saveDirLEdit, SIGNAL(textChanged(QString)), this, SLOT(update()));
+    connect(u_imgPrefix,    SIGNAL(textChanged(QString)), this, SLOT(update()));
+    connect(u_imgFormat,    SIGNAL(activated(QString)),   this, SLOT(update()));
+    connect(u_getDirButton, SIGNAL(clicked()),            this, SLOT(getDir()));
 }
 
 // ------------------------------------------------------------------------
@@ -47,15 +47,15 @@ SaveLocation::~SaveLocation()
 // ------------------------------------------------------------------------
 void SaveLocation::update()
 {
-    QString name = QString("%1%2.%3").arg(imgPrefix->text()).arg("0123").arg(imgFormat->currentText());
-    resultValue->setText(QFileInfo(saveDirLEdit->text(), name).absoluteFilePath());
+    QString name = QString("%1%2.%3").arg(u_imgPrefix->text()).arg("0123").arg(u_imgFormat->currentText());
+    u_resultValue->setText(QFileInfo(u_saveDirLEdit->text(), name).absoluteFilePath());
 }
 
 // ------------------------------------------------------------------------
 void SaveLocation::getDir(void)
 {
-    QString newDir = KFileDialog::getExistingDirectory(saveDirLEdit->text());
+    QString newDir = KFileDialog::getExistingDirectory(u_saveDirLEdit->text());
     if (!newDir.isEmpty()) {
-        saveDirLEdit->setText(newDir);
+        u_saveDirLEdit->setText(newDir);
     }
 }
