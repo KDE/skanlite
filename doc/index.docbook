@@ -31,7 +31,7 @@
 </authorgroup>
 
 <copyright>
-<year>2008</year>
+<year>2008, 2013</year>
 <holder>Kåre Särs</holder>
 </copyright>
 <copyright>
@@ -41,8 +41,8 @@
 
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2011-11-29</date>
-<releaseinfo>0.8</releaseinfo>
+<date>2013-02-08</date>
+<releaseinfo>1.0</releaseinfo>
 
 <abstract>
 <para>
@@ -303,15 +303,15 @@ By clicking the <guibutton>Settings</guibutton> button, the settings dialog is b
 </para>
 
 <screenshot>
-     <screeninfo>Here's a screenshot of &skanlite; settings dialog</screeninfo>
-	<mediaobject>
-	  <imageobject>
-	    <imagedata fileref="settings.png" format="PNG"/>
-	  </imageobject>
-	    <textobject>
-	    <phrase>&skanlite; settings dialog</phrase>
-	  </textobject>
-	</mediaobject>
+    <screeninfo>Here's a screenshot of &skanlite; settings dialog</screeninfo>
+    <mediaobject>
+        <imageobject>
+            <imagedata fileref="settings.png" format="PNG"/>
+        </imageobject>
+        <textobject>
+            <phrase>&skanlite; settings dialog</phrase>
+        </textobject>
+    </mediaobject>
 </screenshot>
 
 <para><variablelist>
@@ -322,26 +322,44 @@ By clicking the <guibutton>Settings</guibutton> button, the settings dialog is b
 </varlistentry>
 <varlistentry>
 <term><guilabel>Save Mode:</guilabel></term>
-<listitem><para> This setting allows you to choose how &skanlite; will save the images. If you choose <guilabel>Open the save dialog for every image</guilabel> then the save dialog will be opened for every scanned image. If you prefer &skanlite; to auto-save (by auto-generating a name and saving the image in a predefined folder) then you can choose <guilabel>Save without asking for a filename</guilabel> 
-or <guilabel>Open the save dialog for the first image only</guilabel>.
-</para></listitem>
+<listitem>
+<para> This setting allows you to choose how &skanlite; will save the images. If you choose <guilabel>Open the save dialog for every image</guilabel> the save dialog will be opened for every scanned image. If you prefer &skanlite; to auto-save (by auto-generating a name and saving the image in a predefined folder) you can choose <guilabel>Open the save dialog for the first image only</guilabel>. This option will open the following "Save Location" dialog for the first scanned image.</para>
+<para>
+    <screenshot>
+        <screeninfo>Here's a screenshot of &skanlite; save location dialog</screeninfo>
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="save-location.png" format="PNG"/>
+            </imageobject>
+            <textobject>
+                <phrase>&skanlite; Save Location dialog.</phrase>
+            </textobject>
+        </mediaobject>
+    </screenshot>
+</para>
+</listitem>
 </varlistentry>
+
 <varlistentry>
 <term><guilabel>Save Location:</guilabel></term>
-<listitem><para> This setting defines where the images should be saved when <guilabel>Save without asking for a filename</guilabel> is chosen in the previous option. If the save dialog is to be opened for every image the default save location for the dialog will be the same as this parameter. The default save location is your home folder and you can change this location by clicking on the <guibutton>...</guibutton> button.
-</para></listitem>
+<listitem><para> This setting defines the default save location and file naming. The default save location is your home folder and you can change this location by clicking on the <guibutton>...</guibutton> button.
+</para>
+</listitem>
 </varlistentry>
 
 <varlistentry>
 <term><guilabel>Name Format:</guilabel></term>
 <listitem><para> This parameter defines the image prefix for the auto-saved images and is also the suggested name for the image in the save dialog. The auto-saved image will have a numeric suffix (the ### will be replaced by numbers) that is increased every time an image is saved.
-</para><para>You can also choose the save format of the file, default is png.</para></listitem>
+</para><para>You can also choose the save format of the file, default is png.</para>
+</listitem>
 </varlistentry>
+
 <varlistentry>
 <term><guilabel>Specify save quality:</guilabel></term>
 <listitem><para>The user can chose to specify the image quality to be used for saving the images. The image quality setting affects the compression level used for saving. If <guilabel>Specify save quality</guilabel> is not checked, the quality is the default value chosen by &Qt;.
 </para></listitem>
 </varlistentry>
+
 <varlistentry>
 <term><guilabel>Set preview resolution (DPI)</guilabel></term>
 <listitem><para>&skanlite; is using heuristics to try to get a sane resolution, 
@@ -352,7 +370,7 @@ resolution can be manually set with this option.
 <varlistentry>
 <term><guilabel>Disable automatic selections</guilabel></term>
 <listitem><para>By default automatic selections are enabled; and after a preview, 
-libksane does try to automatically select the images in the preview and should 
+libksane does try to automatically select the images in the preview and should
 batch scan the selected areas. &eg; if you place two photos 
 on the scanner and do a preview, &skanlite; will automatically add 
 selections of the photos.</para>
