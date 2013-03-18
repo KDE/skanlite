@@ -1,3 +1,4 @@
+include_directories(${KSANE_INCLUDE_DIR})
 
 set(skanlite_SRCS main.cpp skanlite.cpp ImageViewer.cpp KSaneImageSaver.cpp SaveLocation.cpp)
 
