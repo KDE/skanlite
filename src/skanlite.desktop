@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Exec=skanlite -caption "%c" %i
+Exec=skanlite -caption %c %i
 Icon=scanner
 X-DocPath=skanlite/index.html
 Terminal=false
