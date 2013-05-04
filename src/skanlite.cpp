@@ -37,11 +37,14 @@
 #include <KComponentData>
 #include <KDebug>
 #include <KFileDialog>
+#include <KUrl>
 #include <KGlobal>
 #include <KMessageBox>
 #include <KStandardAction>
 #include <KImageIO>
 #include <kdeversion.h>
+#include <kio/netaccess.h>
+#include <KTemporaryFile>
 
 #include <errno.h>
 
@@ -323,9 +326,20 @@ void Skanlite::saveImage()
     QString prefix = m_saveLocation->u_imgPrefix->text();
     QString type = m_saveLocation->u_imgFormat->currentText().toLower();
     int fileNumber = m_saveLocation->u_numStartFrom->value();
+    QStringList filterList = m_filterList;
+    if ((m_format==KSaneIface::KSaneWidget::FormatRGB_16_C) ||
+        (m_format==KSaneIface::KSaneWidget::FormatGrayScale16))
+    {
+        filterList = m_filter16BitList;
+        if (type != "png") {
+            type = "png";
+            KMessageBox::information(this, i18n("The image will be saved in the PNG format, as Skanlite only supports saving 16 bit color images in the PNG format."));
+        }
+    }
+
 
     // find next available file name for name suggestion
-    QFileInfo fileInfo;
+    KUrl fileUrl;
     QString fname;
     for (int i=fileNumber; i<=m_saveLocation->u_numStartFrom->maximum(); ++i) {
         fname = QString("%1%2.%3")
@@ -333,35 +347,33 @@ void Skanlite::saveImage()
         .arg(i, 4, 10, QChar('0'))
         .arg(type);
 
-        fileInfo.setFile(dir, fname);
-        if (!fileInfo.exists()) {
-            break;
+        fileUrl = KUrl(QString("%1/%2").arg(dir).arg(fname));
+        if (fileUrl.isLocalFile()) {
+            if (!QFileInfo(fileUrl.toLocalFile()).exists()) {
+                break;
+            }
+        }
+        else {
+            if (!KIO::NetAccess::exists(fileUrl, true, this)) {
+                break;
+            }
         }
     }
 
     if (m_settingsUi.saveModeCB->currentIndex() == SaveModeManual) {
         // ask for a filename if requested.
-        m_saveDialog->setSelection(fileInfo.absoluteFilePath());
-
-        if ((m_format==KSaneIface::KSaneWidget::FormatRGB_16_C) ||
-            (m_format==KSaneIface::KSaneWidget::FormatGrayScale16))
-        {
-            m_saveDialog->setMimeFilter(m_filter16BitList, "image/"+type);
-        }
-        else {
-            m_saveDialog->setMimeFilter(m_filterList, "image/"+type);
-        }
+        m_saveDialog->setSelection(fileUrl.url());
+        m_saveDialog->setMimeFilter(filterList, "image/"+type);
 
         do {
             if (m_saveDialog->exec() != KFileDialog::Accepted) return;
 
-            fname = m_saveDialog->selectedUrl().toLocalFile();
+            fileUrl = m_saveDialog->selectedUrl();
             //kDebug() << "-----Save-----" << fname;
 
-            fileInfo.setFile(fname);
-            if (fileInfo.exists()) {
+            if (KIO::NetAccess::exists(fileUrl, true, this)) {
                 if (KMessageBox::warningContinueCancel(this,
-                    i18n("Do you want to overwrite \"%1\"?", fileInfo.fileName()),
+                    i18n("Do you want to overwrite \"%1\"?", fileUrl.fileName()),
                      QString(),
                      KGuiItem(i18n("Overwrite")),
                      KStandardGuiItem::cancel(),
@@ -385,34 +397,46 @@ void Skanlite::saveImage()
         quality = m_settingsUi.imgQuality->value();
     }
 
+    QFileInfo fileInfo(fileUrl.pathOrUrl());
+
+    //kDebug() << "suffix" << fileInfo.suffix() << "localFile" << fileUrl.pathOrUrl();
+    fname = fileUrl.url();
+    KTemporaryFile tmp;
+    if (!fileUrl.isLocalFile()) {
+        tmp.setSuffix('.'+fileInfo.suffix());
+        tmp.open();
+        fname = tmp.fileName();
+        tmp.close(); // we just want the filename
+    }
+
     // Save
     if ((m_format==KSaneIface::KSaneWidget::FormatRGB_16_C) ||
         (m_format==KSaneIface::KSaneWidget::FormatGrayScale16))
     {
-        if (QString::compare(fileInfo.suffix(), "png", Qt::CaseInsensitive) != 0) {
-            fname.replace(fileInfo.suffix(), "png");
-            KMessageBox::information(this, i18n("The image will be saved in the PNG format, as Skanlite only supports saving 16 bit color images in the PNG format."));
-        }
-
         KSaneImageSaver saver;
-        if (saver.savePngSync(fileInfo.absoluteFilePath(), m_data, m_width, m_height, m_format)) {
+        if (saver.savePngSync(fname, m_data, m_width, m_height, m_format)) {
             m_showImgDialog->close(); // closing the window if it is closed should not be a problem.
         }
         else {
             perrorMessageBox(i18n("Failed to save image"));
         }
     }
-    else 
-    {
+    else  {
         // create the image if needed.
         if (m_img.width() < 1) {
             m_img = m_ksanew->toQImage(m_data, m_width, m_height, m_bytesPerLine, (KSaneIface::KSaneWidget::ImageFormat)m_format);
         }
-        if (m_img.save(fileInfo.absoluteFilePath(), 0, quality)) {
+        if (m_img.save(fname, 0, quality)) {
             m_showImgDialog->close(); // calling close() on a closed window does nothing.
         }
         else {
             perrorMessageBox(i18n("Failed to save image"));
+        }
+    }
+
+    if (!fileUrl.isLocalFile()) {
+        if (!KIO::NetAccess::upload( fname, fileUrl, this )) {
+            KMessageBox::sorry(0, i18n("Failed to upload image"));
         }
     }
 
@@ -433,7 +457,7 @@ void Skanlite::saveImage()
 
     if (m_settingsUi.saveModeCB->currentIndex() == SaveModeManual) {
         // Save last used dir, prefix and suffix.
-        m_saveLocation->u_saveDirLEdit->setText(fileInfo.absolutePath());
+        m_saveLocation->u_saveDirLEdit->setText(fileUrl.upUrl().pathOrUrl());
         m_saveLocation->u_imgFormat->setCurrentItem(fileInfo.suffix());
     }
 }
