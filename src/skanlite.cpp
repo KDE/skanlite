@@ -400,7 +400,7 @@ void Skanlite::saveImage()
     QFileInfo fileInfo(fileUrl.pathOrUrl());
 
     //kDebug() << "suffix" << fileInfo.suffix() << "localFile" << fileUrl.pathOrUrl();
-    fname = fileUrl.url();
+    fname = fileUrl.pathOrUrl();
     KTemporaryFile tmp;
     if (!fileUrl.isLocalFile()) {
         tmp.setSuffix('.'+fileInfo.suffix());
