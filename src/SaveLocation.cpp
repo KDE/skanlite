@@ -36,6 +36,7 @@ SaveLocation::SaveLocation(QWidget *parent) : KDialog(parent)
     connect(u_saveDirLEdit, SIGNAL(textChanged(QString)), this, SLOT(update()));
     connect(u_imgPrefix,    SIGNAL(textChanged(QString)), this, SLOT(update()));
     connect(u_imgFormat,    SIGNAL(activated(QString)),   this, SLOT(update()));
+    connect(u_numStartFrom, SIGNAL(valueChanged(int)),    this, SLOT(update()));
     connect(u_getDirButton, SIGNAL(clicked()),            this, SLOT(getDir()));
 }
 
@@ -47,7 +48,10 @@ SaveLocation::~SaveLocation()
 // ------------------------------------------------------------------------
 void SaveLocation::update()
 {
-    QString name = QString("%1%2.%3").arg(u_imgPrefix->text()).arg("0123").arg(u_imgFormat->currentText());
+    if (sender() != u_numStartFrom) {
+        u_numStartFrom->setValue(1); // Reset the counter whenever the directory or the prefix is changed
+    }
+    QString name = QString("%1%2.%3").arg(u_imgPrefix->text()).arg(u_numStartFrom->value(), 4, 10, QLatin1Char('0')).arg(u_imgFormat->currentText());
     u_resultValue->setText(QFileInfo(u_saveDirLEdit->text(), name).absoluteFilePath());
 }
 

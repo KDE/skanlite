@@ -305,6 +305,7 @@ void Skanlite::imageReady(QByteArray &data, int w, int h, int bpl, int f)
         m_img = m_ksanew->toQImageSilent(data, w, h, bpl, (KSaneIface::KSaneWidget::ImageFormat)f);
         m_imageViewer.setQImage(&m_img);
         m_imageViewer.zoom2Fit();
+        m_showImgDialog->setDefaultButton(KDialog::User1);
         m_showImgDialog->exec();
         // save has been done as a result of save or then we got cancel
     }
