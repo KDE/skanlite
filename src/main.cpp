@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
     KAboutData aboutData("Skanlite", "skanlite", ki18n("Skanlite"), skanlite_version,
                          ki18n("This is a scanning application for KDE based on libksane."),
                          KAboutData::License_GPL,
-                         ki18n("(C) 2008-2012 Kåre Särs"));
+                         ki18n("(C) 2008-2014 Kåre Särs"));
 
     aboutData.addAuthor(ki18n("Kåre Särs"),
                         ki18n("developer"),
