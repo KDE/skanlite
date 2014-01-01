@@ -161,6 +161,7 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     m_showImgDialog->setButtons(KDialog::User1 | KDialog::Close);
     m_showImgDialog->setButtonText(KDialog::User1, i18n("Save"));
     m_showImgDialog->setButtonIcon(KDialog::User1, KIcon("document-save"));
+    m_showImgDialog->setDefaultButton(KDialog::User1);
     m_showImgDialog->resize(640,  480);
     m_showImgDialog->setMainWidget(&m_imageViewer);
     connect(m_showImgDialog, SIGNAL(user1Clicked()), this, SLOT(saveImage()));
