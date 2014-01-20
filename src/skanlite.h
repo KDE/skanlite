@@ -1,6 +1,7 @@
 /* ============================================================
  *
  * Copyright (C) 2007-2012 by Kåre Särs <kare.sars@iki .fi>
+ * Copyright (C) 2014 by Gregor Mitsch: port to KDE5 frameworks
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -23,8 +24,9 @@
 #ifndef Skanlite_h
 #define Skanlite_h
 
-#include <libksane/ksane.h>
 #include <QDir>
+
+#include <KSane/ksane.h>
 
 #include "ui_settings.h"
 #include "ImageViewer.h"

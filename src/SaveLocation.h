@@ -3,6 +3,7 @@
  * Description : Save location settings dialog.
  *
  * Copyright (C) 2008-2012 by Kåre Särs <kare.sars@iki .fi>
+ * Copyright (C) 2014 by Gregor Mitsch: port to KDE5 frameworks
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -26,8 +27,6 @@
 #define SAVE_LOCATION_H
 
 #include "ui_SaveLocation.h"
-
-#include <KUrl>
 
 #include <KDialog>
 
