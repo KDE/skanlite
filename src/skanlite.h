@@ -28,11 +28,13 @@
 
 #include <KSane/ksane.h>
 
+#include <KDialog>
+
 #include "ui_settings.h"
 #include "ImageViewer.h"
 
-class KFileDialog;
 class SaveLocation;
+class KAboutData;
 
 using namespace KSaneIface;
 
@@ -41,7 +43,8 @@ class Skanlite : public KDialog
     Q_OBJECT
 
     public:
-        explicit Skanlite(const QString& device, QWidget *parent = 0);
+        explicit Skanlite(const QString& device, QWidget* parent);
+        void setAboutData(KAboutData* aboutData);
 
     private:
         // Order of items in save mode combo-box
@@ -49,7 +52,7 @@ class Skanlite : public KDialog
             SaveModeManual = 0,
             SaveModeAskFirst = 1,
         };
-
+        
         void readSettings();
         void doSaveImage(bool askFilename = true);
         void loadScannerOptions();
@@ -74,11 +77,11 @@ class Skanlite : public KDialog
         void closeEvent(QCloseEvent *event);
 
     private:
+        KAboutData*              m_aboutData;
         KSaneWidget             *m_ksanew;
         Ui::SkanliteSettings     m_settingsUi;
         KDialog                 *m_settingsDialog;
         KDialog                 *m_showImgDialog;
-        KFileDialog             *m_saveDialog;
         SaveLocation            *m_saveLocation;
         QString                  m_deviceName;
         QMap<QString,QString>    m_defaultScanOpts;
@@ -95,7 +98,6 @@ class Skanlite : public KDialog
         QStringList              m_typeList;
         bool                     m_firstImage;
 };
-
 
 #endif
 

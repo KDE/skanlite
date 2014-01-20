@@ -3,6 +3,7 @@
 * Description : Save location settings dialog.
 *
 * Copyright (C) 2010-2012 by Kare Sars <kare.sars@iki.fi>
+* Copyright (C) 2014 by Gregor Mitsch: port to KDE5 frameworks
 *
 * This program is free software; you can redistribute it and/or
 * modify it under the terms of the GNU General Public License as
@@ -23,16 +24,15 @@
 * ============================================================ */
 
 #include "SaveLocation.h"
-#include "SaveLocation.moc"
 
-#include <KDebug>
-#include <KFileDialog>
+#include <QDebug>
+#include <QFileDialog>
 
-SaveLocation::SaveLocation(QWidget *parent) : KDialog(parent)
+SaveLocation::SaveLocation(QWidget *parent) : QDialog(parent)
 {
     QWidget *container = new QWidget(this);
     setupUi(container);
-    setMainWidget(container);
+    //setMainWidget(container); // FIXME KF5 needed or remove?
     connect(u_saveDirLEdit, SIGNAL(textChanged(QString)), this, SLOT(update()));
     connect(u_imgPrefix,    SIGNAL(textChanged(QString)), this, SLOT(update()));
     connect(u_imgFormat,    SIGNAL(activated(QString)),   this, SLOT(update()));
@@ -40,12 +40,10 @@ SaveLocation::SaveLocation(QWidget *parent) : KDialog(parent)
     connect(u_getDirButton, SIGNAL(clicked()),            this, SLOT(getDir()));
 }
 
-// ------------------------------------------------------------------------
 SaveLocation::~SaveLocation()
 {
 }
 
-// ------------------------------------------------------------------------
 void SaveLocation::update()
 {
     if (sender() != u_numStartFrom) {
@@ -55,10 +53,9 @@ void SaveLocation::update()
     u_resultValue->setText(QFileInfo(u_saveDirLEdit->text(), name).absoluteFilePath());
 }
 
-// ------------------------------------------------------------------------
 void SaveLocation::getDir(void)
 {
-    QString newDir = KFileDialog::getExistingDirectory(u_saveDirLEdit->text());
+    QString newDir = QFileDialog::getExistingDirectory(this, QString(), u_saveDirLEdit->text());
     if (!newDir.isEmpty()) {
         u_saveDirLEdit->setText(newDir);
     }

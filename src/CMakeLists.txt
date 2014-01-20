@@ -16,8 +16,9 @@ target_link_libraries(skanlite
     KF5::I18n
     KF5::PrintUtils
     KF5::Wallet
-    KF5::WidgetsAddons
+    #KF5::WidgetsAddons
     ${PNG_LIBRARY}
+    KF5::KDE4Support # FIXME KF5: remove that later
 )
 
 install(TARGETS skanlite ${INSTALL_TARGETS_DEFAULT_ARGS})

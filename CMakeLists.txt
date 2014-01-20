@@ -19,14 +19,24 @@ include(GenerateExportHeader)
 
 find_package(Qt5 ${REQUIRED_QT_VERSION} NO_MODULE REQUIRED Core Widgets)
 
+# be not so strict with the poor developer who just wants to use strings
+remove_definitions(-DQT_NO_CAST_TO_ASCII)
+remove_definitions(-DQT_NO_CAST_FROM_ASCII)
+remove_definitions(-DQT_NO_URL_CAST_FROM_STRING)
+remove_definitions(-DQT_NO_CAST_FROM_BYTEARRAY)
+
+set(KF5_VERSION "5.0.0")
+
 find_package(KF5 ${KF5_VERSION} REQUIRED
     COMPONENTS # alias to find_package(KFGuiAddons ${KF5_VERSION} REQUIRED)
         GuiAddons
+        I18n
+        Wallet # FIXME KF5 why is this needed?
+        PrintUtils # FIXME KF5 why is this needed?
         DocTools # yields kdoctools_create_handbook
         Sane # will find KF5Sane
+        KDE4Support # FIXME KF5 remove
 )
-
-set(KF5_VERSION "5.0.0")
 
 ecm_setup_version(
   ${KF5_VERSION}
@@ -35,15 +45,28 @@ ecm_setup_version(
   PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/src/version.h.cmake"
 )
 
-message(STATUS "KSANE_FOUND=${KSANE_FOUND}, KSANE_INCLUDE_DIR=${KSANE_INCLUDE_DIR}")
+# Dependencies
+set(REQUIRED_QT_VERSION "5.2.0")
+
+# Required Qt5 components to build this framework
+find_package(Qt5 ${REQUIRED_QT_VERSION} NO_MODULE REQUIRED Core)
 find_package(PNG REQUIRED)
+
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/version.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/src/version.h)
+
+# TODO: Add all required find_package() calls here
+
+# Subdirectories
+add_subdirectory(src)
+add_subdirectory(doc)
+add_subdirectory(autotests)
+add_subdirectory(tests)
+
+# FIXME KF5 review the stuff below later
+
+message(STATUS "KSANE_FOUND=${KSANE_FOUND}, KSANE_INCLUDE_DIR=${KSANE_INCLUDE_DIR}")
 
 set(SKANLITE_VERSION_MAJOR "1")
 set(SKANLITE_VERSION_MINOR "1")
 set(SKANLITE_VERSION_STRING "${SKANLITE_VERSION_MAJOR}.${SKANLITE_VERSION_MINOR}")
-
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/version.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/src/version.h)
-
-add_subdirectory(src)
-add_subdirectory(doc)
 

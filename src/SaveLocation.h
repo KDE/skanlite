@@ -28,9 +28,9 @@
 
 #include "ui_SaveLocation.h"
 
-#include <KDialog>
+#include <QDialog>
 
-class SaveLocation : public KDialog, public Ui_SaveLocation
+class SaveLocation : public QDialog, public Ui_SaveLocation
 {
     Q_OBJECT
 public:
@@ -40,7 +40,6 @@ public:
 private Q_SLOTS:
     void update();
     void getDir();
-
 };
 
 #endif

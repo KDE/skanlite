@@ -1,6 +1,7 @@
 /* ============================================================
 *
 * Copyright (C) 2007-2012 by Kåre Särs <kare.sars@iki .fi>
+* Copyright (C) 2014 by Gregor Mitsch: port to KDE5 frameworks
 *
 * This program is free software; you can redistribute it and/or
 * modify it under the terms of the GNU General Public License as
@@ -30,55 +31,54 @@
 int main(int argc, char *argv[])
 {
     // about data
-    KAboutData aboutData("Skanlite", "skanlite", ki18n("Skanlite"), skanlite_version,
-                         ki18n("This is a scanning application for KDE based on libksane."),
-                         KAboutData::License_GPL,
-                         ki18n("(C) 2008-2014 Kåre Särs"));
+    KAboutData aboutData("Skanlite", // appname
+                         "skanlite", // catalogName
+                         i18n("Skanlite"), // rogramName
+                         skanlite_version, // version
+                         i18n("This is a scanning application for KDE based on libksane."), // shortDescription 
+                         KAboutData::License_GPL, // licenseType
+                         i18n("(C) 2008-2014 Kåre Särs") // copyrightStatement
+                        );
 
-    aboutData.addAuthor(ki18n("Kåre Särs"),
-                        ki18n("developer"),
-                        "kare.sars@iki.fi", 0);
+    aboutData.addAuthor(i18n("Kåre Särs"),
+                        i18n("developer"),
+                        "kare.sars@iki.fi");
 
-    aboutData.addAuthor(ki18n("Arseniy Lartsev"),
-                        ki18n("contributor"),
-                        0, 0);
+    aboutData.addAuthor(i18n("Arseniy Lartsev"),
+                        i18n("contributor"));
 
-    aboutData.addCredit(ki18n("Gilles Caulier"),
-                        ki18n("Importing libksane to extragear"),
-                              0, 0);
+    aboutData.addCredit(i18n("Gilles Caulier"),
+                        i18n("Importing libksane to extragear"));
 
-    aboutData.addCredit(ki18n("Anne-Marie Mahfouf"),
-                        ki18n("Writing the user manual"),
-                              0, 0);
+    aboutData.addCredit(i18n("Anne-Marie Mahfouf"),
+                        i18n("Writing the user manual"));
 
-    aboutData.addCredit(ki18n("Laurent Montel"),
-                        ki18n("Importing libksane to extragear"),
-                              0, 0);
+    aboutData.addCredit(i18n("Laurent Montel"),
+                        i18n("Importing libksane to extragear"));
 
-    aboutData.addCredit(ki18n("Chusslove Illich"),
-                        ki18n("Help with translations"),
-                              0, 0);
+    aboutData.addCredit(i18n("Chusslove Illich"),
+                        i18n("Help with translations"));
 
-    aboutData.addCredit(ki18n("Albert Astals Cid"),
-                        ki18n("Help with translations"),
-                              0, 0);
+    aboutData.addCredit(i18n("Albert Astals Cid"),
+                        i18n("Help with translations"));
 
     aboutData.setProgramIconName("scanner");
 
-    KCmdLineArgs::init(argc, argv, &aboutData);
-
-    KCmdLineOptions options;
-    options.add("d <device>", ki18n("Sane scanner device name."));
-    KCmdLineArgs::addCmdLineOptions(options);
-    KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
-
-    QString device = args->getOption("d");
+    // FIXME KF5 is the command line parsing still working? (ported KCmdLineOptions to QCommandLineParser)
+    //KCmdLineArgs::init(argc, argv, &aboutData);
+    //KCmdLineOptions options;
+    //options.add("d <device>", ki18n("Sane scanner device name."));
+    //KCmdLineArgs::addCmdLineOptions(options);
+    //KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
+    //QString device = args->getOption("d");
+    QString device; // FIXME KF5
 
     KApplication app;
 
-    Skanlite *skanlite = new Skanlite(device, 0);
+    Skanlite skanliteDialog(device, 0);
+    skanliteDialog.setAboutData(&aboutData);
 
-    skanlite->show();
+    skanliteDialog.show();
 
     QObject::connect(&app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()));
 
