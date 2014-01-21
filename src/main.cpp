@@ -30,6 +30,8 @@
 
 int main(int argc, char *argv[])
 {
+    QApplication app(argc, argv);
+    
     // about data
     KAboutData aboutData("Skanlite", // appname
                          "skanlite", // catalogName
@@ -73,14 +75,11 @@ int main(int argc, char *argv[])
     //QString device = args->getOption("d");
     QString device; // FIXME KF5
 
-    KApplication app;
 
     Skanlite skanliteDialog(device, 0);
     skanliteDialog.setAboutData(&aboutData);
 
     skanliteDialog.show();
-
-    QObject::connect(&app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()));
 
     return app.exec();
 }

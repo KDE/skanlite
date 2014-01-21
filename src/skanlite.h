@@ -26,7 +26,7 @@
 
 #include <QDir>
 
-#include <KSane/ksane.h>
+#include <ksane.h>
 
 #include <KDialog>
 
