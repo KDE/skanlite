@@ -25,10 +25,9 @@
 #define Skanlite_h
 
 #include <QDir>
+#include <QDialog>
 
 #include <ksane.h>
-
-#include <KDialog>
 
 #include "ui_settings.h"
 #include "ImageViewer.h"
@@ -38,7 +37,7 @@ class KAboutData;
 
 using namespace KSaneIface;
 
-class Skanlite : public KDialog
+class Skanlite : public QDialog
 {
     Q_OBJECT
 
@@ -80,8 +79,8 @@ class Skanlite : public KDialog
         KAboutData*              m_aboutData;
         KSaneWidget             *m_ksanew;
         Ui::SkanliteSettings     m_settingsUi;
-        KDialog                 *m_settingsDialog;
-        KDialog                 *m_showImgDialog;
+        QDialog                 *m_settingsDialog;
+        QDialog                 *m_showImgDialog;
         SaveLocation            *m_saveLocation;
         QString                  m_deviceName;
         QMap<QString,QString>    m_defaultScanOpts;
