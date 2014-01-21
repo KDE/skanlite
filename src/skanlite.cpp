@@ -59,8 +59,7 @@ Skanlite::Skanlite(const QString& device, QWidget* parent)
 {
     setAttribute(Qt::WA_DeleteOnClose);
     
-    //new for KF5
-    QVBoxLayout *topLayout = new QVBoxLayout(this);
+    QVBoxLayout *mainLayout = new QVBoxLayout(this);
     
     QDialogButtonBox* dlgButtonBoxBottom = new QDialogButtonBox(this);
     dlgButtonBoxBottom->setStandardButtons(QDialogButtonBox::Help | QDialogButtonBox::Close);
@@ -69,7 +68,6 @@ Skanlite::Skanlite(const QString& device, QWidget* parent)
     // was "User1":
     QPushButton* btnSettings = dlgButtonBoxBottom->addButton(i18n("Settings"), QDialogButtonBox::ButtonRole::ActionRole);
     btnSettings->setIcon(QIcon::fromTheme("configure"));
-    //new end KF5
 
     m_firstImage = true;
 
@@ -83,9 +81,8 @@ Skanlite::Skanlite(const QString& device, QWidget* parent)
     connect(m_ksanew, SIGNAL(buttonPressed(QString, QString, bool)),
             this,     SLOT(buttonPressed(QString, QString, bool)));
 
-    // setMainWidget(m_ksanew); // FIXME KF5
-    topLayout->addWidget(m_ksanew);
-    topLayout->addWidget(dlgButtonBoxBottom);
+    mainLayout->addWidget(m_ksanew);
+    mainLayout->addWidget(dlgButtonBoxBottom);
 
     m_ksanew->initGetDeviceList();
 
@@ -104,50 +101,60 @@ Skanlite::Skanlite(const QString& device, QWidget* parent)
     //
     // Create the settings dialog
     //
-    m_settingsDialog = new QDialog(this);
-    //m_settingsDialog->setButtons(KDialog::Ok | KDialog::Cancel); // FIXME KF5
+    {
+        m_settingsDialog = new QDialog(this);
+                
+        QVBoxLayout *mainLayout = new QVBoxLayout(m_settingsDialog);
 
-    QWidget *settingsWidget = new QWidget(m_settingsDialog);
-    m_settingsUi.setupUi(settingsWidget);
-    m_settingsUi.revertOptions->setIcon(QIcon::fromTheme("edit-undo"));
-    m_saveLocation = new SaveLocation(this);
+        QWidget *settingsWidget = new QWidget(m_settingsDialog);
+        m_settingsUi.setupUi(settingsWidget);
+        m_settingsUi.revertOptions->setIcon(QIcon::fromTheme("edit-undo"));
+        m_saveLocation = new SaveLocation(this);
 
-    // add the supported image types
-    m_filterList = KImageIO::mimeTypes(KImageIO::Writing);
-    // Put first class citizens at first place
-    m_filterList.removeAll("image/jpeg");
-    m_filterList.removeAll("image/tiff");
-    m_filterList.removeAll("image/png");
-    m_filterList.insert(0, "image/png");
-    m_filterList.insert(1, "image/jpeg");
-    m_filterList.insert(2, "image/tiff");
+        // add the supported image types
+        m_filterList = KImageIO::mimeTypes(KImageIO::Writing);
+        // Put first class citizens at first place
+        m_filterList.removeAll("image/jpeg");
+        m_filterList.removeAll("image/tiff");
+        m_filterList.removeAll("image/png");
+        m_filterList.insert(0, "image/png");
+        m_filterList.insert(1, "image/jpeg");
+        m_filterList.insert(2, "image/tiff");
 
-    m_filter16BitList << "image/png";
-    //m_filter16BitList << "image/tiff";
+        m_filter16BitList << "image/png";
+        //m_filter16BitList << "image/tiff";
 
-    QString mime;
-    QStringList type;
-    foreach (mime , m_filterList) {
-        type = KImageIO::typeForMime(mime);
-        if (type.size() > 0) {
-            m_typeList << type.first();
+        QString mime;
+        QStringList type;
+        foreach (mime , m_filterList) {
+            type = KImageIO::typeForMime(mime);
+            if (type.size() > 0) {
+                m_typeList << type.first();
+            }
         }
+        m_settingsUi.imgFormat->addItems(m_typeList);
+        m_saveLocation->u_imgFormat->addItems(m_typeList);
+
+        mainLayout->addWidget(settingsWidget);
+        
+        QDialogButtonBox* dlgButtonBoxBottom = new QDialogButtonBox(this);
+        dlgButtonBoxBottom->setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Close);
+        connect(dlgButtonBoxBottom, &QDialogButtonBox::accepted, m_settingsDialog, &QDialog::accept);
+        connect(dlgButtonBoxBottom, &QDialogButtonBox::rejected, m_settingsDialog, &QDialog::reject);
+        
+        mainLayout->addWidget(dlgButtonBoxBottom);
+
+        m_settingsDialog->setWindowTitle(i18n("Skanlite Settings"));
+
+        connect(m_settingsUi.getDirButton, &QPushButton::clicked, this, &Skanlite::getDir);
+        connect(m_settingsUi.revertOptions, &QPushButton::clicked, this, &Skanlite::defaultScannerOptions);
+        readSettings();
+
+        // default directory for the save dialog
+        m_saveLocation->u_saveDirLEdit->setText(m_settingsUi.saveDirLEdit->text());
+        m_saveLocation->u_imgPrefix->setText(m_settingsUi.imgPrefix->text());
+        m_saveLocation->u_imgFormat->setCurrentItem(m_settingsUi.imgFormat->currentText());
     }
-    m_settingsUi.imgFormat->addItems(m_typeList);
-    m_saveLocation->u_imgFormat->addItems(m_typeList);
-
-    // m_settingsDialog->setMainWidget(settingsWidget); // FIXME KF5
-    m_settingsDialog->setWindowTitle(i18n("Skanlite Settings"));
-
-
-    connect(m_settingsUi.getDirButton, &QPushButton::clicked, this, &Skanlite::getDir);
-    connect(m_settingsUi.revertOptions, &QPushButton::clicked, this, &Skanlite::defaultScannerOptions);
-    readSettings();
-
-    // default directory for the save dialog
-    m_saveLocation->u_saveDirLEdit->setText(m_settingsUi.saveDirLEdit->text());
-    m_saveLocation->u_imgPrefix->setText(m_settingsUi.imgPrefix->text());
-    m_saveLocation->u_imgFormat->setCurrentItem(m_settingsUi.imgFormat->currentText());
 
     // open the scan device
     if (m_ksanew->openDevice(device) == false) {
@@ -171,7 +178,7 @@ Skanlite::Skanlite(const QString& device, QWidget* parent)
         m_deviceName = device;
     }
 
-    addAction(KStandardAction::quit(qApp, SLOT(quit()), this));
+    // addAction(KStandardAction::quit(qApp, SLOT(quit()), this)); // FIXME KF5 needed?
 
     // prepare the Show Image Dialog
     /* FIXME KF5
