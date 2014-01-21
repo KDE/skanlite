@@ -49,6 +49,7 @@
 #include <kio/global.h>
 #include <KSharedConfig>
 #include <KConfigGroup>
+#include <KHelpClient>
 
 #include <errno.h>
 
@@ -57,24 +58,18 @@ Skanlite::Skanlite(const QString& device, QWidget* parent)
     , m_aboutData(nullptr)
 {
     setAttribute(Qt::WA_DeleteOnClose);
-
-    // FIXME KF5
-    //setButtons(KDialog::Help | KDialog::User2 | KDialog::User1 | KDialog::Close);
-
-    // FIXME KF5
-    //setButtonText(KDialog::User1, i18n("Settings"));
-    //setButtonIcon(KDialog::User1, QIcon::fromTheme("configure"));
-    //setButtonText(KDialog::User2, i18n("About"));
-    //setHelp("index", "skanlite");
     
-    //new
+    //new for KF5
     QVBoxLayout *topLayout = new QVBoxLayout(this);
     
     QDialogButtonBox* dlgButtonBoxBottom = new QDialogButtonBox(this);
     dlgButtonBoxBottom->setStandardButtons(QDialogButtonBox::Help | QDialogButtonBox::Close);
-    QPushButton* btnAbout = dlgButtonBoxBottom->addButton(i18n("About"),  QDialogButtonBox::ButtonRole::ActionRole);
-    QPushButton* btnSettings = dlgButtonBoxBottom->addButton(i18n("Settings"),  QDialogButtonBox::ButtonRole::ActionRole);
-    //new end
+    // was "User2:
+    QPushButton* btnAbout = dlgButtonBoxBottom->addButton(i18n("About"), QDialogButtonBox::ButtonRole::ActionRole);
+    // was "User1":
+    QPushButton* btnSettings = dlgButtonBoxBottom->addButton(i18n("Settings"), QDialogButtonBox::ButtonRole::ActionRole);
+    btnSettings->setIcon(QIcon::fromTheme("configure"));
+    //new end KF5
 
     m_firstImage = true;
 
@@ -99,10 +94,12 @@ Skanlite::Skanlite(const QString& device, QWidget* parent)
     QSize rect = window.readEntry("Geometry", QSize(740,400));
     resize(rect);
 
-    connect (this, SIGNAL(closeClicked()), this, SLOT(saveWindowSize()));
-    connect (this, SIGNAL(closeClicked()), this, SLOT(saveScannerOptions()));
-    connect (this, SIGNAL(user1Clicked()), this, SLOT(showSettingsDialog()));
-    connect (this, SIGNAL(user2Clicked()), this, SLOT(showAboutDialog()));
+    connect(dlgButtonBoxBottom, &QDialogButtonBox::rejected, this, &QDialog::close);
+    connect(this, &QDialog::finished, this, &Skanlite::saveWindowSize);
+    connect(this, &QDialog::finished, this, &Skanlite::saveScannerOptions);
+    connect(btnSettings, &QPushButton::clicked, this, &Skanlite::showSettingsDialog);
+    connect(btnAbout, &QPushButton::clicked, this, &Skanlite::showAboutDialog);
+    connect(dlgButtonBoxBottom, &QDialogButtonBox::helpRequested, this, &Skanlite::showHelp);
 
     //
     // Create the settings dialog
@@ -199,6 +196,11 @@ Skanlite::Skanlite(const QString& device, QWidget* parent)
     m_ksanew->initGetDeviceList();
 
     m_firstImage = true;
+}
+
+void Skanlite::showHelp()
+{
+    KHelpClient::invokeHelp("index", "skanlite");
 }
 
 void Skanlite::setAboutData(KAboutData* aboutData)

@@ -71,6 +71,8 @@ class Skanlite : public QDialog
 
         void alertUser(int type, const QString &strStatus);
         void buttonPressed(const QString &optionName, const QString &optionLabel, bool pressed);
+        
+        void showHelp();
 
     protected:
         void closeEvent(QCloseEvent *event);

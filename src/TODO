@@ -1,3 +1,11 @@
+2014-01-21 Porting from KDE4 to 5
+=================================
+Issues:
+* Main dialog: Help and Close button do not have icons but they had before (is this a KF5 theme issue?)
+* Main dialog: Help button does not show help (is this a KF5 issue?)
+
+before 2014
+===========
 -Make the final image dialog image zoomable 
 -Add scan profiles (settings/options) 
 -Start the file number scanning from a specified number or previously saved.
