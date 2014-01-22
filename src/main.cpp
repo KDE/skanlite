@@ -20,25 +20,29 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>
 *
 * ============================================================ */
+
+#include <QCommandLineParser>
+#include <QCommandLineOption>
+
 #include <kapplication.h>
 #include <kcmdlineargs.h>
-#include <kaboutdata.h>
+#include <KAboutData>
 #include <kglobal.h>
 
 #include "skanlite.h"
 #include "version.h"
 
 int main(int argc, char *argv[])
-{
+{  
     QApplication app(argc, argv);
     
-    // about data
-    KAboutData aboutData("Skanlite", // appname
+    KAboutData aboutData("Skanlite", // componentName, k4: appName
                          "skanlite", // catalogName
-                         i18n("Skanlite"), // rogramName
+                         i18n("Skanlite"), // displayName, k4: programName
                          skanlite_version, // version
-                         i18n("This is a scanning application for KDE based on libksane."), // shortDescription 
+                         i18n("Scanning application for KDE based on libksane."), // shortDescription 
                          KAboutData::License_GPL, // licenseType
+                         QString(), // othe Text
                          i18n("(C) 2008-2014 Kåre Särs") // copyrightStatement
                         );
 
@@ -65,18 +69,21 @@ int main(int argc, char *argv[])
                         i18n("Help with translations"));
 
     aboutData.setProgramIconName("scanner");
+    
+    QCoreApplication::setApplicationVersion(aboutData.version());
+    QCommandLineParser parser;
+    aboutData.setupCommandLine(&parser);
+    parser.addHelpOption();
+    parser.addVersionOption();
+    QCommandLineOption deviceOption(QStringList() << "d" << "device", i18n("Sane scanner device name. Use 'test' for test device."), i18n("device"));
+    parser.addOption(deviceOption); 
+    parser.process(app); // the --author and --license is shown anyway but they work only with the following line
+    aboutData.processCommandLine(&parser);
+    
+    QString deviceName = parser.value(deviceOption);
+    qDebug() << QString("deviceOption value=%1").arg(deviceName);
 
-    // FIXME KF5 is the command line parsing still working? (ported KCmdLineOptions to QCommandLineParser)
-    //KCmdLineArgs::init(argc, argv, &aboutData);
-    //KCmdLineOptions options;
-    //options.add("d <device>", ki18n("Sane scanner device name."));
-    //KCmdLineArgs::addCmdLineOptions(options);
-    //KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
-    //QString device = args->getOption("d");
-    QString device; // FIXME KF5
-
-
-    Skanlite skanliteDialog(device, 0);
+    Skanlite skanliteDialog(deviceName, 0);
     skanliteDialog.setAboutData(&aboutData);
 
     skanliteDialog.show();

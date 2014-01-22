@@ -56,9 +56,7 @@
 Skanlite::Skanlite(const QString& device, QWidget* parent)
     : QDialog(parent)
     , m_aboutData(nullptr)
-{
-    setAttribute(Qt::WA_DeleteOnClose);
-    
+{  
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     
     QDialogButtonBox* dlgButtonBoxBottom = new QDialogButtonBox(this);

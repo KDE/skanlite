@@ -10,7 +10,7 @@ target_link_libraries(skanlite
   PUBLIC
     Qt5::Core
   PRIVATE
-  #  KF5::CoreAddons
+    KF5::CoreAddons
   #  Other private libs
     KF5::Sane
     KF5::I18n

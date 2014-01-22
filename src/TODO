@@ -2,7 +2,11 @@
 =================================
 Major issues
 ------------
-* Main dialog: press Close closes skanlite but it also crashes
+* Scan button: crash after scan
+
+Questions
+---------
+* Difference between "skanlite -d test" and one of the SANE test scanners test:0 or test:1
 
 Minor issues
 ------------

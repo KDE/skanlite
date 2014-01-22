@@ -29,6 +29,7 @@ set(KF5_VERSION "5.0.0")
 
 find_package(KF5 ${KF5_VERSION} REQUIRED
     COMPONENTS # alias to find_package(KFGuiAddons ${KF5_VERSION} REQUIRED)
+        CoreAddons
         GuiAddons
         I18n
         Wallet # FIXME KF5 why is this needed?
@@ -52,6 +53,8 @@ set(REQUIRED_QT_VERSION "5.2.0")
 find_package(Qt5 ${REQUIRED_QT_VERSION} NO_MODULE REQUIRED Core)
 find_package(PNG REQUIRED)
 
+set(SKANLITE_VERSION_STRING "1.1.0")
+
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/version.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/src/version.h)
 
 # TODO: Add all required find_package() calls here
@@ -61,12 +64,3 @@ add_subdirectory(src)
 add_subdirectory(doc)
 add_subdirectory(autotests)
 add_subdirectory(tests)
-
-# FIXME KF5 review the stuff below later
-
-message(STATUS "KSANE_FOUND=${KSANE_FOUND}, KSANE_INCLUDE_DIR=${KSANE_INCLUDE_DIR}")
-
-set(SKANLITE_VERSION_MAJOR "1")
-set(SKANLITE_VERSION_MINOR "1")
-set(SKANLITE_VERSION_STRING "${SKANLITE_VERSION_MAJOR}.${SKANLITE_VERSION_MINOR}")
-
