@@ -34,6 +34,7 @@
 #include <QFileDialog>
 #include <QUrl>
 #include <QDialogButtonBox>
+#include <QComboBox>
 
 #include <KAboutApplicationDialog>
 #include <KAction>
@@ -151,7 +152,7 @@ Skanlite::Skanlite(const QString& device, QWidget* parent)
         // default directory for the save dialog
         m_saveLocation->u_saveDirLEdit->setText(m_settingsUi.saveDirLEdit->text());
         m_saveLocation->u_imgPrefix->setText(m_settingsUi.imgPrefix->text());
-        m_saveLocation->u_imgFormat->setCurrentItem(m_settingsUi.imgFormat->currentText());
+        m_saveLocation->u_imgFormat->setCurrentText(m_settingsUi.imgFormat->currentText());
     }
 
     // open the scan device
@@ -306,7 +307,7 @@ void Skanlite::showSettingsDialog(void)
         // pressing OK in the settings dialog means use those settings.
         m_saveLocation->u_saveDirLEdit->setText(m_settingsUi.saveDirLEdit->text());
         m_saveLocation->u_imgPrefix->setText(m_settingsUi.imgPrefix->text());
-        m_saveLocation->u_imgFormat->setCurrentItem(m_settingsUi.imgFormat->currentText());
+        m_saveLocation->u_imgFormat->setCurrentText(m_settingsUi.imgFormat->currentText());
 
         m_firstImage = true;
     }
@@ -493,7 +494,7 @@ void Skanlite::saveImage()
     if (m_settingsUi.saveModeCB->currentIndex() == SaveModeManual) {
         // Save last used dir, prefix and suffix.
         m_saveLocation->u_saveDirLEdit->setText(KIO::upUrl(fileUrl).path());
-        m_saveLocation->u_imgFormat->setCurrentItem(fileInfo.suffix());
+        m_saveLocation->u_imgFormat->setCurrentText(fileInfo.suffix());
     }
 }
 

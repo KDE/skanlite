@@ -38,7 +38,7 @@ public:
     ~SaveLocation();
 
 private Q_SLOTS:
-    void update();
+    void updateGui();
     void getDir();
 };
 

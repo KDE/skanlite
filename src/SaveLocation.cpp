@@ -27,23 +27,25 @@
 
 #include <QDebug>
 #include <QFileDialog>
+#include <QPushButton>
+#include <QComboBox>
 
 SaveLocation::SaveLocation(QWidget *parent) : QDialog(parent)
 {
     setupUi(this);
     
-    connect(u_saveDirLEdit, SIGNAL(textChanged(QString)), this, SLOT(update()));
-    connect(u_imgPrefix,    SIGNAL(textChanged(QString)), this, SLOT(update()));
-    connect(u_imgFormat,    SIGNAL(activated(QString)),   this, SLOT(update()));
-    connect(u_numStartFrom, SIGNAL(valueChanged(int)),    this, SLOT(update()));
-    connect(u_getDirButton, SIGNAL(clicked()),            this, SLOT(getDir()));
+    connect(u_saveDirLEdit, SIGNAL(textChanged(QString)), this, SLOT(updateGui()));
+    connect(u_imgPrefix,    SIGNAL(textChanged(QString)), this, SLOT(updateGui()));
+    connect(u_imgFormat,    SIGNAL(activated(QString)),   this, SLOT(updateGui()));
+    connect(u_numStartFrom, SIGNAL(valueChanged(int)),    this, SLOT(updateGui()));
+    connect(u_getDirButton, &QPushButton::clicked,        this, &SaveLocation::getDir);
 }
 
 SaveLocation::~SaveLocation()
 {
 }
 
-void SaveLocation::update()
+void SaveLocation::updateGui()
 {
     if (sender() != u_numStartFrom) {
         u_numStartFrom->setValue(1); // Reset the counter whenever the directory or the prefix is changed

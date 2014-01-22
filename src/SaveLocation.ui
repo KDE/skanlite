@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>401</width>
-    <height>172</height>
+    <height>173</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -74,7 +74,7 @@
       </widget>
      </item>
      <item>
-      <widget class="KComboBox" name="u_imgFormat"/>
+      <widget class="QComboBox" name="u_imgFormat"/>
      </item>
     </layout>
    </item>
@@ -176,13 +176,6 @@
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>KComboBox</class>
-   <extends>QComboBox</extends>
-   <header>kcombobox.h</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>
