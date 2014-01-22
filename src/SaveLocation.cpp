@@ -30,9 +30,8 @@
 
 SaveLocation::SaveLocation(QWidget *parent) : QDialog(parent)
 {
-    QWidget *container = new QWidget(this);
-    setupUi(container);
-    //setMainWidget(container); // FIXME KF5 needed or remove?
+    setupUi(this);
+    
     connect(u_saveDirLEdit, SIGNAL(textChanged(QString)), this, SLOT(update()));
     connect(u_imgPrefix,    SIGNAL(textChanged(QString)), this, SLOT(update()));
     connect(u_imgFormat,    SIGNAL(activated(QString)),   this, SLOT(update()));

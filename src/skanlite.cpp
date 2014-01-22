@@ -176,8 +176,6 @@ Skanlite::Skanlite(const QString& device, QWidget* parent)
         m_deviceName = device;
     }
 
-    // addAction(KStandardAction::quit(qApp, SLOT(quit()), this)); // FIXME KF5 needed?
-
     // prepare the Show Image Dialog
     /* FIXME KF5
      * 
