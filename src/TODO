@@ -1,16 +1,16 @@
 2014-01-21 Porting from KDE4 to 5
 =================================
-Changes in 1.1.0 (from 1.0.0)
+Changes in 1.2.0 (from 1.1.0)
 -----------------------------
 * Save Image Dialog: "Close" button is now called "Discard" because it discards the currently scanned image
 
 Major issues
 ------------
-* Scan button: crash after scan
+* Save Image Dialog: KDE Save Dialog is borken (see https://git.reviewboard.kde.org/r/115238/)
 
 Questions
 ---------
-* Difference between "skanlite -d test" and one of the SANE test scanners test:0 or test:1
+* Difference between "skanlite -d test" and one of the SANE test scanners test:0 or test:1?
 
 Minor issues
 ------------

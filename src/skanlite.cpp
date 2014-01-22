@@ -35,16 +35,11 @@
 #include <QUrl>
 #include <QDialogButtonBox>
 #include <QComboBox>
+#include <QMessageBox>
 
 #include <KAboutApplicationDialog>
-#include <KAction>
-#include <KComponentData>
-#include <KDebug>
-#include <KGlobal>
 #include <KMessageBox>
-#include <KStandardAction>
 #include <KImageIO>
-#include <kdeversion.h>
 #include <kio/netaccess.h>
 #include <KTemporaryFile>
 #include <kio/global.h>
@@ -366,15 +361,15 @@ void Skanlite::saveImage()
 
     QString dir = m_saveLocation->u_saveDirLEdit->text();
     QString prefix = m_saveLocation->u_imgPrefix->text();
-    QString type = m_saveLocation->u_imgFormat->currentText().toLower();
+    QString imgFormat = m_saveLocation->u_imgFormat->currentText().toLower();
     int fileNumber = m_saveLocation->u_numStartFrom->value();
     QStringList filterList = m_filterList;
     if ((m_format==KSaneIface::KSaneWidget::FormatRGB_16_C) ||
         (m_format==KSaneIface::KSaneWidget::FormatGrayScale16))
     {
         filterList = m_filter16BitList;
-        if (type != "png") {
-            type = "png";
+        if (imgFormat != "png") {
+            imgFormat = "png";
             KMessageBox::information(this, i18n("The image will be saved in the PNG format, as Skanlite only supports saving 16 bit color images in the PNG format."));
         }
     }
@@ -387,7 +382,7 @@ void Skanlite::saveImage()
         fname = QString("%1%2.%3")
         .arg(prefix)
         .arg(i, 4, 10, QChar('0'))
-        .arg(type);
+        .arg(imgFormat);
 
         fileUrl = QUrl(QString("%1/%2").arg(dir).arg(fname));
         if (fileUrl.isLocalFile()) {
@@ -409,8 +404,13 @@ void Skanlite::saveImage()
         saveDialog.setFileMode(QFileDialog::AnyFile);
         
         // ask for a filename if requested.
+        qDebug() << fileUrl.url();
         saveDialog.selectFile(fileUrl.url());
-        //saveDialog.setMimeTypeFilters(filterList, "image/"+type); // FIXME KF5 API changed
+        
+        //saveDialog.setMimeTypeFilters(filterList, "image/"+type); // FIXME KF5: review if works when QFileDialog is fixed by KDE frameworks team
+        QStringList actualFilterList = filterList;
+        actualFilterList << ("image/" + imgFormat);
+        saveDialog.setMimeTypeFilters(actualFilterList);
 
         do {            
             if (saveDialog.exec() != QFileDialog::Accepted) return;
@@ -569,7 +569,7 @@ void Skanlite::loadScannerOptions()
 void Skanlite::availableDevices(const QList<KSaneWidget::DeviceInfo> &deviceList)
 {
     for (int i=0; i<deviceList.size(); i++) {
-        kDebug() << deviceList[i].name;
+        qDebug() << deviceList[i].name;
     }
 }
 
@@ -588,5 +588,5 @@ void Skanlite::alertUser(int type, const QString &strStatus)
 //************************************************************
 void Skanlite::buttonPressed(const QString &optionName, const QString &optionLabel, bool pressed)
 {
-    kDebug() << "Button" << optionName << optionLabel << ((pressed) ? "pressed" : "released");
+    qDebug() << "Button" << optionName << optionLabel << ((pressed) ? "pressed" : "released");
 }
