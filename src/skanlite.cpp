@@ -177,19 +177,32 @@ Skanlite::Skanlite(const QString& device, QWidget* parent)
         m_deviceName = device;
     }
 
-    // prepare the Show Image Dialog
-    /* FIXME KF5
-     * 
-    m_showImgDialog = new KDialog(this);
-    m_showImgDialog->setButtons(KDialog::User1 | KDialog::Close);
-    m_showImgDialog->setButtonText(KDialog::User1, i18n("Save"));
-    m_showImgDialog->setButtonIcon(KDialog::User1, QIcon::fromTheme("document-save"));
-    m_showImgDialog->setDefaultButton(KDialog::User1);
-    m_showImgDialog->resize(640,  480);
-    m_showImgDialog->setMainWidget(&m_imageViewer);
-    connect(m_showImgDialog, SIGNAL(user1Clicked()), this, SLOT(saveImage()));
+    // prepare the Show Image Dialog 
+    {
+        /* FIXME KF5
+        * 
+        m_showImgDialog->setButtonIcon(KDialog::User1, QIcon::fromTheme("document-save")); // still needed?
+        m_showImgDialog->setDefaultButton(KDialog::User1); // still needed?
+        connect(m_showImgDialog, SIGNAL(user1Clicked()), this, SLOT(saveImage()));
+        */        
+        m_showImgDialog = new QDialog(this);
+        
+        QVBoxLayout *mainLayout = new QVBoxLayout(m_showImgDialog);
+        
+        QDialogButtonBox* dlgBtnBoxBottom = new QDialogButtonBox(m_showImgDialog);
+        // "Close" (now Discard) and "User1"=Save
+        dlgBtnBoxBottom->setStandardButtons(QDialogButtonBox::Discard | QDialogButtonBox::Save);
+
+        mainLayout->addWidget(&m_imageViewer);
+        mainLayout->addWidget(dlgBtnBoxBottom);
+        
+        m_showImgDialog->resize(640, 480);
+        connect(dlgBtnBoxBottom, SIGNAL(accepted()), this, SLOT(saveImage()));
+        connect(dlgBtnBoxBottom, SIGNAL(accepted()), m_showImgDialog, SLOT(accept()));
+        connect(dlgBtnBoxBottom->button(QDialogButtonBox::Discard),
+                                        SIGNAL(clicked()), m_showImgDialog, SLOT(reject()));
+    }    
     
-    */
 
     // save the default sane options for later use
     m_ksanew->getOptVals(m_defaultScanOpts);
@@ -346,6 +359,8 @@ void Skanlite::imageReady(QByteArray &data, int w, int h, int bpl, int f)
 //************************************************************
 void Skanlite::saveImage()
 {
+    qDebug() << "saveImage()";
+    
     // ask the first time if we are in "ask on first" mode
     if ((m_settingsUi.saveModeCB->currentIndex() == SaveModeAskFirst) && m_firstImage) {
         if (m_saveLocation->exec() != QFileDialog::Accepted) return;

@@ -79,11 +79,11 @@ class Skanlite : public QDialog
 
     private:
         KAboutData*              m_aboutData;
-        KSaneWidget             *m_ksanew;
+        KSaneWidget             *m_ksanew = nullptr;
         Ui::SkanliteSettings     m_settingsUi;
-        QDialog                 *m_settingsDialog;
-        QDialog                 *m_showImgDialog;
-        SaveLocation            *m_saveLocation;
+        QDialog                 *m_settingsDialog = nullptr;
+        QDialog                 *m_showImgDialog = nullptr;
+        SaveLocation            *m_saveLocation = nullptr;
         QString                  m_deviceName;
         QMap<QString,QString>    m_defaultScanOpts;
         QImage                   m_img;

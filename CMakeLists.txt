@@ -36,7 +36,7 @@ find_package(KF5 ${KF5_VERSION} REQUIRED
         PrintUtils # FIXME KF5 why is this needed?
         DocTools # yields kdoctools_create_handbook
         Sane # will find KF5Sane
-        KDE4Support # FIXME KF5 remove
+        KDE4Support # FIXME KF5 remove later
 )
 
 ecm_setup_version(
