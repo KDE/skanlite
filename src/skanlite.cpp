@@ -179,12 +179,6 @@ Skanlite::Skanlite(const QString& device, QWidget* parent)
 
     // prepare the Show Image Dialog 
     {
-        /* FIXME KF5
-        * 
-        m_showImgDialog->setButtonIcon(KDialog::User1, QIcon::fromTheme("document-save")); // still needed?
-        m_showImgDialog->setDefaultButton(KDialog::User1); // still needed?
-        connect(m_showImgDialog, SIGNAL(user1Clicked()), this, SLOT(saveImage()));
-        */        
         m_showImgDialog = new QDialog(this);
         
         QVBoxLayout *mainLayout = new QVBoxLayout(m_showImgDialog);
@@ -195,6 +189,9 @@ Skanlite::Skanlite(const QString& device, QWidget* parent)
 
         mainLayout->addWidget(&m_imageViewer);
         mainLayout->addWidget(dlgBtnBoxBottom);
+        
+        m_showImgDialogSaveButton = dlgBtnBoxBottom->button(QDialogButtonBox::Save);
+        m_showImgDialogSaveButton->setDefault(true); // still needed?
         
         m_showImgDialog->resize(640, 480);
         connect(dlgBtnBoxBottom, SIGNAL(accepted()), this, SLOT(saveImage()));
@@ -346,8 +343,8 @@ void Skanlite::imageReady(QByteArray &data, int w, int h, int bpl, int f)
         m_img = m_ksanew->toQImageSilent(data, w, h, bpl, (KSaneIface::KSaneWidget::ImageFormat)f);
         m_imageViewer.setQImage(&m_img);
         m_imageViewer.zoom2Fit();
-        // m_showImgDialog->setDefaultButton(KDialog::User1); // FIXME KF5
-        m_showImgDialog->exec(); // FIXME KF5 see above
+        m_showImgDialogSaveButton->setFocus();
+        m_showImgDialog->exec();
         // save has been done as a result of save or then we got cancel
     }
     else {

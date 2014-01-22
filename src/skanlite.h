@@ -83,6 +83,8 @@ class Skanlite : public QDialog
         Ui::SkanliteSettings     m_settingsUi;
         QDialog                 *m_settingsDialog = nullptr;
         QDialog                 *m_showImgDialog = nullptr;
+        // having this variable here is not so nice; ShowImgageDialog should be separate class
+        QPushButton             *m_showImgDialogSaveButton = nullptr;
         SaveLocation            *m_saveLocation = nullptr;
         QString                  m_deviceName;
         QMap<QString,QString>    m_defaultScanOpts;
