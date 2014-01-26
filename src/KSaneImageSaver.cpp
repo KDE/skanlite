@@ -26,9 +26,8 @@
 
 #include <png.h>
 
-#include <KDebug>
 #include <QMutex>
-
+#include <QDebug>
 
 struct KSaneImageSaver::Private
 {
@@ -82,7 +81,7 @@ bool KSaneImageSaver::savePng(const QString &name, const QByteArray &data, int w
 bool KSaneImageSaver::savePngSync(const QString &name, const QByteArray &data, int width, int height, int format)
 {
     if (!savePng(name, data, width, height, format)) {
-        kDebug() << "fail";
+        qDebug() << "fail";
         return false;
     }
     wait();
@@ -100,7 +99,7 @@ bool KSaneImageSaver::saveTiff(const QString &name, const QByteArray &data, int 
     d->m_format = format;
     d->m_type   = Private::ImageTypeTIFF;
 
-    kDebug() << "saving Tiff images is not yet supported";
+    qDebug() << "saving Tiff images is not yet supported";
     d->m_runMutex.unlock();
     return false;
 }

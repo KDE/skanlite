@@ -27,18 +27,6 @@ remove_definitions(-DQT_NO_CAST_FROM_BYTEARRAY)
 
 set(KF5_VERSION "5.0.0")
 
-find_package(KF5 ${KF5_VERSION} REQUIRED
-    COMPONENTS # alias to find_package(KFGuiAddons ${KF5_VERSION} REQUIRED)
-        CoreAddons
-        GuiAddons
-        I18n
-        Wallet # FIXME KF5 why is this needed?
-        PrintUtils # FIXME KF5 why is this needed?
-        DocTools # yields kdoctools_create_handbook
-        Sane # will find KF5Sane
-        KDE4Support # FIXME KF5 remove later
-)
-
 ecm_setup_version(
   ${KF5_VERSION}
   VARIABLE_PREFIX SKANLITE
@@ -57,7 +45,18 @@ set(SKANLITE_VERSION_STRING "1.1.0")
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/version.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/src/version.h)
 
-# TODO: Add all required find_package() calls here
+find_package(KF5 ${KF5_VERSION} REQUIRED
+    COMPONENTS # alias to find_package(KFGuiAddons ${KF5_VERSION} REQUIRED)
+        CoreAddons
+        GuiAddons
+        I18n
+        Wallet # FIXME KF5 minor: why is this needed?
+        XmlGui
+        KIO # contains the KIOWidgets which we use in target_link_libraries
+        PrintUtils # FIXME KF5 why is this needed?
+        DocTools # yields kdoctools_create_handbook
+        Sane # will find KF5Sane
+)
 
 # Subdirectories
 add_subdirectory(src)

@@ -34,11 +34,11 @@ SaveLocation::SaveLocation(QWidget *parent) : QDialog(parent)
 {
     setupUi(this);
     
-    connect(u_saveDirLEdit, SIGNAL(textChanged(QString)), this, SLOT(updateGui()));
+    connect(u_urlRequester, SIGNAL(textChanged(QString)), this, SLOT(updateGui()));
+    connect(u_urlRequester, &KUrlRequester::urlSelected,  this, &SaveLocation::getDir);
     connect(u_imgPrefix,    SIGNAL(textChanged(QString)), this, SLOT(updateGui()));
     connect(u_imgFormat,    SIGNAL(activated(QString)),   this, SLOT(updateGui()));
     connect(u_numStartFrom, SIGNAL(valueChanged(int)),    this, SLOT(updateGui()));
-    connect(u_getDirButton, &QPushButton::clicked,        this, &SaveLocation::getDir);
 }
 
 SaveLocation::~SaveLocation()
@@ -51,13 +51,13 @@ void SaveLocation::updateGui()
         u_numStartFrom->setValue(1); // Reset the counter whenever the directory or the prefix is changed
     }
     QString name = QString("%1%2.%3").arg(u_imgPrefix->text()).arg(u_numStartFrom->value(), 4, 10, QLatin1Char('0')).arg(u_imgFormat->currentText());
-    u_resultValue->setText(QFileInfo(u_saveDirLEdit->text(), name).absoluteFilePath());
+    u_resultValue->setText(QUrl(u_urlRequester->url().resolved(QUrl("name"))).toLocalFile());
 }
 
 void SaveLocation::getDir(void)
 {
-    QString newDir = QFileDialog::getExistingDirectory(this, QString(), u_saveDirLEdit->text());
+    QString newDir = QFileDialog::getExistingDirectory(this, QString(), u_urlRequester->url().toLocalFile());
     if (!newDir.isEmpty()) {
-        u_saveDirLEdit->setText(newDir);
+        u_urlRequester->setUrl(newDir);
     }
 }

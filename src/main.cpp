@@ -23,11 +23,10 @@
 
 #include <QCommandLineParser>
 #include <QCommandLineOption>
+#include <QDebug>
 
-#include <kapplication.h>
 #include <kcmdlineargs.h>
 #include <KAboutData>
-#include <kglobal.h>
 
 #include "skanlite.h"
 #include "version.h"
@@ -52,6 +51,9 @@ int main(int argc, char *argv[])
 
     aboutData.addAuthor(i18n("Arseniy Lartsev"),
                         i18n("contributor"));
+    
+    aboutData.addAuthor(i18n("Gregor Mi"),
+                        i18n("contributor"));    
 
     aboutData.addCredit(i18n("Gilles Caulier"),
                         i18n("Importing libksane to extragear"));

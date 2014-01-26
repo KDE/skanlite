@@ -27,7 +27,6 @@
 #include "KSaneImageSaver.h"
 #include "SaveLocation.h"
 
-
 #include <QApplication>
 #include <QScrollArea>
 #include <QStringList>
@@ -36,12 +35,17 @@
 #include <QDialogButtonBox>
 #include <QComboBox>
 #include <QMessageBox>
+#include <QTemporaryFile>
+#include <QDebug>
+#include <QImageWriter>
+#include <QMimeType>
+#include <QMimeDatabase>
 
 #include <KAboutApplicationDialog>
+#include <KLocalizedString>
 #include <KMessageBox>
-#include <KImageIO>
-#include <kio/netaccess.h>
-#include <KTemporaryFile>
+// #include <kio/netaccess.h> // FIXME KF5: see /usr/include/kio/netaccess.h
+#include <KIO/StatJob>
 #include <kio/global.h>
 #include <KSharedConfig>
 #include <KConfigGroup>
@@ -106,7 +110,15 @@ Skanlite::Skanlite(const QString& device, QWidget* parent)
         m_saveLocation = new SaveLocation(this);
 
         // add the supported image types
-        m_filterList = KImageIO::mimeTypes(KImageIO::Writing);
+        const QList<QByteArray> tmpList = QImageWriter::supportedMimeTypes();
+        m_filterList.clear();
+        foreach (auto ba, tmpList)
+        {
+            m_filterList.append(QString::fromLatin1(ba));
+        }
+
+        qDebug() << m_filterList;
+        
         // Put first class citizens at first place
         m_filterList.removeAll("image/jpeg");
         m_filterList.removeAll("image/tiff");
@@ -118,14 +130,18 @@ Skanlite::Skanlite(const QString& device, QWidget* parent)
         m_filter16BitList << "image/png";
         //m_filter16BitList << "image/tiff";
 
-        QString mime;
-        QStringList type;
-        foreach (mime , m_filterList) {
-            type = KImageIO::typeForMime(mime);
-            if (type.size() > 0) {
-                m_typeList << type.first();
+        // fill m_filterList (...) and m_typeList (list of file suffixes)
+        foreach (QString mimeStr, m_filterList) {
+            QMimeType mimeType = QMimeDatabase().mimeTypeForName(mimeStr);
+            m_filterList.append(mimeType.name());
+
+            QStringList fileSuffixes = mimeType.suffixes();
+
+            if (fileSuffixes.size() > 0) {
+                m_typeList << fileSuffixes.first();
             }
         }
+
         m_settingsUi.imgFormat->addItems(m_typeList);
         m_saveLocation->u_imgFormat->addItems(m_typeList);
 
@@ -145,7 +161,7 @@ Skanlite::Skanlite(const QString& device, QWidget* parent)
         readSettings();
 
         // default directory for the save dialog
-        m_saveLocation->u_saveDirLEdit->setText(m_settingsUi.saveDirLEdit->text());
+        m_saveLocation->u_urlRequester->setUrl(m_settingsUi.saveDirLEdit->text());
         m_saveLocation->u_imgPrefix->setText(m_settingsUi.imgPrefix->text());
         m_saveLocation->u_imgFormat->setCurrentText(m_settingsUi.imgFormat->currentText());
     }
@@ -217,7 +233,6 @@ void Skanlite::setAboutData(KAboutData* aboutData)
     m_aboutData = aboutData;
 }
 
-//************************************************************
 void Skanlite::closeEvent(QCloseEvent *event)
 {
     saveWindowSize();
@@ -225,13 +240,13 @@ void Skanlite::closeEvent(QCloseEvent *event)
     event->accept();
 }
 
-//************************************************************
 void Skanlite::saveWindowSize()
 {
     KConfigGroup window(KSharedConfig::openConfig(), "Window");
     window.writeEntry("Geometry", size());
     window.sync();
 }
+
 // Pops up message box similar to what perror() would print
 //************************************************************
 static void perrorMessageBox(const QString &text)
@@ -244,7 +259,6 @@ static void perrorMessageBox(const QString &text)
     }
 }
 
-//************************************************************
 void Skanlite::readSettings(void)
 {
     // enable the widgets to allow modifying
@@ -257,13 +271,16 @@ void Skanlite::readSettings(void)
     if (m_settingsUi.saveModeCB->currentIndex() != SaveModeAskFirst) m_firstImage = false;
     m_settingsUi.saveDirLEdit->setText(saving.readEntry("Location", QDir::homePath()));
     m_settingsUi.imgPrefix->setText(saving.readEntry("NamePrefix", i18nc("prefix for auto naming", "Image-")));
-    m_settingsUi.imgFormat->setCurrentItem(saving.readEntry("ImgFormat", "png"));
+    m_settingsUi.imgFormat->setCurrentText(saving.readEntry("ImgFormat", "png"));
     m_settingsUi.imgQuality->setValue(saving.readEntry("ImgQuality", 90));
     m_settingsUi.setQuality->setChecked(saving.readEntry("SetQuality", false));
     m_settingsUi.showB4Save->setChecked(saving.readEntry("ShowBeforeSave", true));
 
     KConfigGroup general(KSharedConfig::openConfig(), "General");
-    m_settingsUi.previewDPI->setCurrentItem(general.readEntry("PreviewDPI", "100"), true);
+    
+    //m_settingsUi.previewDPI->setCurrentItem(general.readEntry("PreviewDPI", "100"), true); // FIXME KF5 is the 'true' parameter still needed?
+    m_settingsUi.previewDPI->setCurrentText(general.readEntry("PreviewDPI", "100"));
+    
     m_settingsUi.setPreviewDPI->setChecked(general.readEntry("SetPreviewDPI", false));
     if (m_settingsUi.setPreviewDPI->isChecked()) {
         m_ksanew->setPreviewResolution(m_settingsUi.previewDPI->currentText().toFloat());
@@ -275,7 +292,6 @@ void Skanlite::readSettings(void)
     m_ksanew->enableAutoSelect(!m_settingsUi.u_disableSelections->isChecked());
 }
 
-//************************************************************
 void Skanlite::showSettingsDialog(void)
 {
     readSettings();
@@ -310,7 +326,7 @@ void Skanlite::showSettingsDialog(void)
         m_ksanew->enableAutoSelect(!m_settingsUi.u_disableSelections->isChecked());
 
         // pressing OK in the settings dialog means use those settings.
-        m_saveLocation->u_saveDirLEdit->setText(m_settingsUi.saveDirLEdit->text());
+        m_saveLocation->u_urlRequester->setUrl(m_settingsUi.saveDirLEdit->text());
         m_saveLocation->u_imgPrefix->setText(m_settingsUi.imgPrefix->text());
         m_saveLocation->u_imgFormat->setCurrentText(m_settingsUi.imgFormat->currentText());
 
@@ -322,8 +338,6 @@ void Skanlite::showSettingsDialog(void)
     }
 }
 
-
-//************************************************************
 void Skanlite::imageReady(QByteArray &data, int w, int h, int bpl, int f)
 {
     // save the image data
@@ -348,7 +362,6 @@ void Skanlite::imageReady(QByteArray &data, int w, int h, int bpl, int f)
     }
 }
 
-//************************************************************
 void Skanlite::saveImage()
 {
     qDebug() << "saveImage()";
@@ -359,7 +372,7 @@ void Skanlite::saveImage()
         m_firstImage = false;
     }
 
-    QString dir = m_saveLocation->u_saveDirLEdit->text();
+    QString dir = m_saveLocation->u_urlRequester->url().toLocalFile();
     QString prefix = m_saveLocation->u_imgPrefix->text();
     QString imgFormat = m_saveLocation->u_imgFormat->currentText().toLower();
     int fileNumber = m_saveLocation->u_numStartFrom->value();
@@ -373,7 +386,6 @@ void Skanlite::saveImage()
             KMessageBox::information(this, i18n("The image will be saved in the PNG format, as Skanlite only supports saving 16 bit color images in the PNG format."));
         }
     }
-
 
     // find next available file name for name suggestion
     QUrl fileUrl;
@@ -391,8 +403,14 @@ void Skanlite::saveImage()
             }
         }
         else {
-            if (!KIO::NetAccess::exists(fileUrl, true, this)) {
+            //if (!KIO::NetAccess::exists(fileUrl, true, this)) { // FIXME KF5 ok?
+            KIO::StatJob* statJob = KIO::stat(fileUrl);
+            if (!statJob->exec()) {
                 break;
+            }
+            else {
+                //statJob-> // FIXME KF5 TODO: determine if stat was ok, if not then break
+                //break;
             }
         }
     }
@@ -405,12 +423,16 @@ void Skanlite::saveImage()
         
         // ask for a filename if requested.
         qDebug() << fileUrl.url();
+        // qDebug() <<  fileUrl.toLocalFile(); // returns ""
         saveDialog.selectFile(fileUrl.url());
         
-        //saveDialog.setMimeTypeFilters(filterList, "image/"+type); // FIXME KF5: review if works when QFileDialog is fixed by KDE frameworks team
         QStringList actualFilterList = filterList;
-        actualFilterList << ("image/" + imgFormat);
+        QString currentMimeFilter = "image/" + imgFormat;
         saveDialog.setMimeTypeFilters(actualFilterList);
+
+        // FIXME KF5 / WAIT: probably due to a bug in QFileDialog integration the desired file type filter will not be selected (it defaults to the first one: png)
+        // saveDialog.selectMimeTypeFilter(currentMimeFilter); // does not work
+        // saveDialog.selectNameFilter("*." + imgFormat); // does not work either
 
         do {            
             if (saveDialog.exec() != QFileDialog::Accepted) return;
@@ -419,7 +441,9 @@ void Skanlite::saveImage()
             fileUrl = saveDialog.selectedUrls().first();
             //kDebug() << "-----Save-----" << fname;
 
-            if (KIO::NetAccess::exists(fileUrl, true, this)) {
+            //if (KIO::NetAccess::exists(fileUrl, true, this)) { // FIXME KF5
+            if (false) {
+            
                 if (KMessageBox::warningContinueCancel(this,
                     i18n("Do you want to overwrite \"%1\"?", fileUrl.fileName()),
                      QString(),
@@ -449,9 +473,9 @@ void Skanlite::saveImage()
 
     //kDebug() << "suffix" << fileInfo.suffix() << "localFile" << fileUrl.pathOrUrl();
     fname = fileUrl.path();
-    KTemporaryFile tmp;
+    QTemporaryFile tmp;
     if (!fileUrl.isLocalFile()) {
-        tmp.setSuffix('.'+fileInfo.suffix());
+        // tmp.setSuffix('.'+fileInfo.suffix()); // FIXME KF5 needed?
         tmp.open();
         fname = tmp.fileName();
         tmp.close(); // we just want the filename
@@ -483,9 +507,12 @@ void Skanlite::saveImage()
     }
 
     if (!fileUrl.isLocalFile()) {
-        if (!KIO::NetAccess::upload( fname, fileUrl, this )) {
-            KMessageBox::sorry(0, i18n("Failed to upload image"));
-        }
+        
+        // FIXME KF5:
+//         if (!KIO::NetAccess::upload( fname, fileUrl, this )) {
+//             KMessageBox::sorry(0, i18n("Failed to upload image"));
+//         }
+        
     }
 
     // Save the file base name without number
@@ -505,28 +532,26 @@ void Skanlite::saveImage()
 
     if (m_settingsUi.saveModeCB->currentIndex() == SaveModeManual) {
         // Save last used dir, prefix and suffix.
-        m_saveLocation->u_saveDirLEdit->setText(KIO::upUrl(fileUrl).path());
+        m_saveLocation->u_urlRequester->setUrl(KIO::upUrl(fileUrl).path());
         m_saveLocation->u_imgFormat->setCurrentText(fileInfo.suffix());
     }
 }
 
-
-//************************************************************
 void Skanlite::getDir(void)
 {
-    QString dir = QFileDialog::getExistingDirectory(this, QString(), m_settingsUi.saveDirLEdit->text());
+    // FIXME KF5 / WAIT: this is not working yet due to a bug in frameworkintegration:
+    // see commit: 2c1ee08a21a1f16f9c2523718224598de8fc0d4f for kf5/src/frameworks/frameworkintegration/tests/qfiledialogtest.cpp
+    QString dir = QFileDialog::getExistingDirectory(m_settingsDialog, QString(), m_settingsUi.saveDirLEdit->text());
     if (!dir.isEmpty()) {
         m_settingsUi.saveDirLEdit->setText(dir);
     }
 }
 
-//************************************************************
 void Skanlite::showAboutDialog(void)
 {
     KAboutApplicationDialog(*m_aboutData).exec();
 }
 
-//************************************************************
 void Skanlite::saveScannerOptions()
 {
     KConfigGroup saving(KSharedConfig::openConfig(), "Image Saving");
@@ -545,7 +570,6 @@ void Skanlite::saveScannerOptions()
     options.sync();
 }
 
-//************************************************************
 void Skanlite::defaultScannerOptions()
 {
     if (!m_ksanew) return;
@@ -553,7 +577,6 @@ void Skanlite::defaultScannerOptions()
     m_ksanew->setOptVals(m_defaultScanOpts);
 }
 
-//************************************************************
 void Skanlite::loadScannerOptions()
 {
     KConfigGroup saving(KSharedConfig::openConfig(), "Image Saving");
@@ -565,7 +588,6 @@ void Skanlite::loadScannerOptions()
     m_ksanew->setOptVals(scannerOptions.entryMap());
 }
 
-//************************************************************
 void Skanlite::availableDevices(const QList<KSaneWidget::DeviceInfo> &deviceList)
 {
     for (int i=0; i<deviceList.size(); i++) {
@@ -573,7 +595,6 @@ void Skanlite::availableDevices(const QList<KSaneWidget::DeviceInfo> &deviceList
     }
 }
 
-//************************************************************
 void Skanlite::alertUser(int type, const QString &strStatus)
 {
     switch (type) {
@@ -585,7 +606,6 @@ void Skanlite::alertUser(int type, const QString &strStatus)
     }
 }
 
-//************************************************************
 void Skanlite::buttonPressed(const QString &optionName, const QString &optionLabel, bool pressed)
 {
     qDebug() << "Button" << optionName << optionLabel << ((pressed) ? "pressed" : "released");

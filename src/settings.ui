@@ -133,7 +133,7 @@
          </widget>
         </item>
         <item>
-         <widget class="KComboBox" name="imgFormat"/>
+         <widget class="QComboBox" name="imgFormat"/>
         </item>
        </layout>
       </item>
@@ -238,7 +238,7 @@
        </widget>
       </item>
       <item row="0" column="2">
-       <widget class="KComboBox" name="previewDPI">
+       <widget class="QComboBox" name="previewDPI">
         <property name="enabled">
          <bool>false</bool>
         </property>
@@ -335,13 +335,6 @@
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>KComboBox</class>
-   <extends>QComboBox</extends>
-   <header>kcombobox.h</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections>
   <connection>

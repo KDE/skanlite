@@ -29,10 +29,10 @@
 #include <QGraphicsScene>
 #include <QScrollBar>
 #include <QAction>
-#include <KIcon>
-#include <KLocale>
+#include <QDebug>
+#include <QIcon>
 
-#include <KDebug>
+#include <KLocalizedString>
 
 struct ImageViewer::Private
 {
@@ -56,16 +56,16 @@ ImageViewer::ImageViewer(QWidget *parent) : QGraphicsView(parent), d(new Private
     setScene(d->scene);
 
     // create context menu
-    d->zoomInAction = new QAction(KIcon("zoom-in"), i18n("Zoom In"), this);
+    d->zoomInAction = new QAction(QIcon::fromTheme("zoom-in"), i18n("Zoom In"), this);
     connect(d->zoomInAction, SIGNAL(triggered()), this, SLOT(zoomIn()));
     
-    d->zoomOutAction = new QAction(KIcon("zoom-out"), i18n("Zoom Out"), this);
+    d->zoomOutAction = new QAction(QIcon::fromTheme("zoom-out"), i18n("Zoom Out"), this);
     connect(d->zoomOutAction, SIGNAL(triggered()), this, SLOT(zoomOut()));
     
-    d->zoom100Action = new QAction(KIcon("zoom-fit-best"), i18n("Zoom to Actual size"), this);
+    d->zoom100Action = new QAction(QIcon::fromTheme("zoom-fit-best"), i18n("Zoom to Actual size"), this);
     connect(d->zoom100Action, SIGNAL(triggered()), this, SLOT(zoomActualSize()));
     
-    d->zoom2FitAction = new QAction(KIcon("document-preview"), i18n("Zoom to Fit"), this);
+    d->zoom2FitAction = new QAction(QIcon::fromTheme("document-preview"), i18n("Zoom to Fit"), this);
     connect(d->zoom2FitAction, SIGNAL(triggered()), this, SLOT(zoom2Fit()));
     
     addAction(d->zoomInAction);

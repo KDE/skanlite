@@ -6,7 +6,11 @@ Changes in 1.2.0 (from 1.1.0)
 
 Major issues
 ------------
+* fix all KIO::NetAccess
+* Settings dialog: ...-Button to select target directory shows wrong dialog due to bug in frameworksintegration
+  * see comments in 'void Skanlite::getDir(void)'
 * Save Image Dialog: KDE Save Dialog is borken (see https://git.reviewboard.kde.org/r/115238/)
+   * probably due to a bug in QFileDialog integration the desired file type filter will not be selected (it defaults to png)
 
 Questions
 ---------
@@ -18,6 +22,7 @@ Minor issues
 * Main dialog: Help and Close button do not have icons but they had before (is this a KF5 theme issue?)
 * Settings dialog: Ok, Cancel button has no icons (is this a KF5 theme issue?)
 * Show image dialog: Save button has no image (is this a KF5 theme issue?)
+* see FIXME KF5
 
 before 2014
 ===========
