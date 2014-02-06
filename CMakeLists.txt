@@ -25,7 +25,7 @@ remove_definitions(-DQT_NO_CAST_FROM_ASCII)
 remove_definitions(-DQT_NO_URL_CAST_FROM_STRING)
 remove_definitions(-DQT_NO_CAST_FROM_BYTEARRAY)
 
-set(KF5_VERSION "5.0.0")
+set(KF5_VERSION "4.96.0")
 
 ecm_setup_version(
   ${KF5_VERSION}
