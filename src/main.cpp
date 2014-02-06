@@ -25,8 +25,8 @@
 #include <QCommandLineOption>
 #include <QDebug>
 
-#include <kcmdlineargs.h>
 #include <KAboutData>
+#include <KLocalizedString>
 
 #include "skanlite.h"
 #include "version.h"
