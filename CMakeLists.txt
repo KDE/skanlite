@@ -50,10 +50,8 @@ find_package(KF5 ${KF5_VERSION} REQUIRED
         CoreAddons
         GuiAddons
         I18n
-        Wallet # FIXME KF5 minor: why is this needed?
         XmlGui
         KIO # contains the KIOWidgets which we use in target_link_libraries
-        PrintUtils # FIXME KF5 why is this needed?
         DocTools # yields kdoctools_create_handbook
         Sane # will find KF5Sane
 )
