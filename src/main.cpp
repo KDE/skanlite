@@ -32,17 +32,17 @@
 #include "version.h"
 
 int main(int argc, char *argv[])
-{  
+{
     QApplication app(argc, argv);
-    
+
     KAboutData aboutData("Skanlite", // componentName, k4: appName
-                         "skanlite", // catalogName
                          i18n("Skanlite"), // displayName, k4: programName
                          skanlite_version, // version
-                         i18n("Scanning application for KDE based on libksane."), // shortDescription 
-                         KAboutData::License_GPL, // licenseType
-                         QString(), // othe Text
-                         i18n("(C) 2008-2014 Kåre Särs") // copyrightStatement
+                         i18n("Scanning application for KDE based on libksane."), // shortDescription
+                         KAboutLicense::GPL, // licenseType
+                         i18n("(C) 2008-2014 Kåre Särs"), // copyrightStatement
+                         QString(), // other Text
+                         QString() // homePageAddress
                         );
 
     aboutData.addAuthor(i18n("Kåre Särs"),
@@ -51,9 +51,9 @@ int main(int argc, char *argv[])
 
     aboutData.addAuthor(i18n("Arseniy Lartsev"),
                         i18n("contributor"));
-    
+
     aboutData.addAuthor(i18n("Gregor Mi"),
-                        i18n("contributor"));    
+                        i18n("contributor"));
 
     aboutData.addCredit(i18n("Gilles Caulier"),
                         i18n("Importing libksane to extragear"));
@@ -71,17 +71,17 @@ int main(int argc, char *argv[])
                         i18n("Help with translations"));
 
     aboutData.setProgramIconName("scanner");
-    
+
     QCoreApplication::setApplicationVersion(aboutData.version());
     QCommandLineParser parser;
     aboutData.setupCommandLine(&parser);
     parser.addHelpOption();
     parser.addVersionOption();
     QCommandLineOption deviceOption(QStringList() << "d" << "device", i18n("Sane scanner device name. Use 'test' for test device."), i18n("device"));
-    parser.addOption(deviceOption); 
+    parser.addOption(deviceOption);
     parser.process(app); // the --author and --license is shown anyway but they work only with the following line
     aboutData.processCommandLine(&parser);
-    
+
     QString deviceName = parser.value(deviceOption);
     qDebug() << QString("deviceOption value=%1").arg(deviceName);
 
