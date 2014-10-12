@@ -19,4 +19,4 @@ target_link_libraries(skanlite
 )
 
 install(TARGETS skanlite ${INSTALL_TARGETS_DEFAULT_ARGS})
-install(PROGRAMS skanlite.desktop DESTINATION ${XDG_APPS_INSTALL_DIR})
+install(PROGRAMS org.kde.skanlite.desktop DESTINATION ${XDG_APPS_INSTALL_DIR})

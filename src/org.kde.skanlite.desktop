@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Exec=skanlite -caption %c %i
+Exec=skanlite -qwindowtitle %c %i
 Icon=scanner
 X-DocPath=skanlite/index.html
 Terminal=false
@@ -151,3 +151,4 @@ Comment[x-test]=xxScan and save imagesxx
 Comment[zh_CN]=扫描和保存图像
 Comment[zh_TW]=掃描與儲存影像
 Categories=Qt;KDE;Graphics;Scanning;
+X-DBUS-ServiceName=org.kde.skanlite
