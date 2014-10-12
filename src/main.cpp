@@ -35,6 +35,8 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
+    KLocalizedString::setApplicationDomain("skanlite");
+
     KAboutData aboutData("Skanlite", // componentName, k4: appName
                          i18n("Skanlite"), // displayName, k4: programName
                          skanlite_version, // version
