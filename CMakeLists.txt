@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 2.8.12)
 project(skanlite)
 
 # ECM setup (Extended Cmake Modules)
-find_package(ECM 0.0.9 REQUIRED NO_MODULE)
+find_package(ECM 1.2.0 REQUIRED NO_MODULE)
 # ECM setup2 and include find same cmake module (copied from /usr/share/kde4/apps/cmake/modules/FindSane.cmake)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR} ${CMAKE_SOURCE_DIR}/cmake-modules)
 
@@ -25,7 +25,7 @@ remove_definitions(-DQT_NO_CAST_FROM_ASCII)
 remove_definitions(-DQT_NO_URL_CAST_FROM_STRING)
 remove_definitions(-DQT_NO_CAST_FROM_BYTEARRAY)
 
-set(KF5_VERSION "4.96.0")
+set(KF5_VERSION "5.2.0")
 
 ecm_setup_version(
   ${KF5_VERSION}
