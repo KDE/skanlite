@@ -34,11 +34,11 @@ SaveLocation::SaveLocation(QWidget *parent) : QDialog(parent)
 {
     setupUi(this);
     
-    connect(u_urlRequester, SIGNAL(textChanged(QString)), this, SLOT(updateGui()));
+    connect(u_urlRequester, &KUrlRequester::textChanged, this, &SaveLocation::updateGui);
     connect(u_urlRequester, &KUrlRequester::urlSelected,  this, &SaveLocation::getDir);
-    connect(u_imgPrefix,    SIGNAL(textChanged(QString)), this, SLOT(updateGui()));
-    connect(u_imgFormat,    SIGNAL(activated(QString)),   this, SLOT(updateGui()));
-    connect(u_numStartFrom, SIGNAL(valueChanged(int)),    this, SLOT(updateGui()));
+    connect(u_imgPrefix, &QLineEdit::textChanged, this, &SaveLocation::updateGui);
+    connect(u_imgFormat, static_cast<void (QComboBox::*)(const QString &)>(&QComboBox::activated), this, &SaveLocation::updateGui);
+    connect(u_numStartFrom, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &SaveLocation::updateGui);
 }
 
 SaveLocation::~SaveLocation()

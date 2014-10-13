@@ -56,16 +56,16 @@ ImageViewer::ImageViewer(QWidget *parent) : QGraphicsView(parent), d(new Private
 
     // create context menu
     d->zoomInAction = new QAction(QIcon::fromTheme("zoom-in"), i18n("Zoom In"), this);
-    connect(d->zoomInAction, SIGNAL(triggered()), this, SLOT(zoomIn()));
+    connect(d->zoomInAction, &QAction::triggered, this, &ImageViewer::zoomIn);
     
     d->zoomOutAction = new QAction(QIcon::fromTheme("zoom-out"), i18n("Zoom Out"), this);
-    connect(d->zoomOutAction, SIGNAL(triggered()), this, SLOT(zoomOut()));
+    connect(d->zoomOutAction, &QAction::triggered, this, &ImageViewer::zoomOut);
     
     d->zoom100Action = new QAction(QIcon::fromTheme("zoom-fit-best"), i18n("Zoom to Actual size"), this);
-    connect(d->zoom100Action, SIGNAL(triggered()), this, SLOT(zoomActualSize()));
+    connect(d->zoom100Action, &QAction::triggered, this, &ImageViewer::zoomActualSize);
     
     d->zoom2FitAction = new QAction(QIcon::fromTheme("document-preview"), i18n("Zoom to Fit"), this);
-    connect(d->zoom2FitAction, SIGNAL(triggered()), this, SLOT(zoom2Fit()));
+    connect(d->zoom2FitAction, &QAction::triggered, this, &ImageViewer::zoom2Fit);
     
     addAction(d->zoomInAction);
     addAction(d->zoomOutAction);

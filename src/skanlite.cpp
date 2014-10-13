@@ -70,14 +70,10 @@ Skanlite::Skanlite(const QString& device, QWidget* parent)
     m_firstImage = true;
 
     m_ksanew = new KSaneIface::KSaneWidget(this);
-    connect(m_ksanew, SIGNAL(imageReady(QByteArray &, int, int, int, int)),
-            this,     SLOT(imageReady(QByteArray &, int, int, int, int)));
-    connect(m_ksanew, SIGNAL(availableDevices(QList<KSaneWidget::DeviceInfo>)),
-            this,     SLOT(availableDevices(QList<KSaneWidget::DeviceInfo>)));
-    connect(m_ksanew, SIGNAL(userMessage(int, QString)),
-            this,     SLOT(alertUser(int, QString)));
-    connect(m_ksanew, SIGNAL(buttonPressed(QString, QString, bool)),
-            this,     SLOT(buttonPressed(QString, QString, bool)));
+    connect(m_ksanew, &KSaneWidget::imageReady, this, &Skanlite::imageReady);
+    connect(m_ksanew, &KSaneWidget::availableDevices, this, &Skanlite::availableDevices);
+    connect(m_ksanew, &KSaneWidget::userMessage, this, &Skanlite::alertUser);
+    connect(m_ksanew, &KSaneWidget::buttonPressed, this, &Skanlite::buttonPressed);
 
     mainLayout->addWidget(m_ksanew);
     mainLayout->addWidget(dlgButtonBoxBottom);
@@ -205,10 +201,9 @@ Skanlite::Skanlite(const QString& device, QWidget* parent)
         m_showImgDialogSaveButton->setDefault(true); // still needed?
         
         m_showImgDialog->resize(640, 480);
-        connect(dlgBtnBoxBottom, SIGNAL(accepted()), this, SLOT(saveImage()));
-        connect(dlgBtnBoxBottom, SIGNAL(accepted()), m_showImgDialog, SLOT(accept()));
-        connect(dlgBtnBoxBottom->button(QDialogButtonBox::Discard),
-                                        SIGNAL(clicked()), m_showImgDialog, SLOT(reject()));
+        connect(dlgBtnBoxBottom, &QDialogButtonBox::accepted, this, &Skanlite::saveImage);
+        connect(dlgBtnBoxBottom, &QDialogButtonBox::accepted, m_showImgDialog, &QDialog::accept);
+        connect(dlgBtnBoxBottom->button(QDialogButtonBox::Discard), &QPushButton::clicked, m_showImgDialog, &QDialog::reject);
     }    
     
 
