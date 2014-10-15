@@ -65,7 +65,7 @@ Skanlite::Skanlite(const QString& device, QWidget* parent)
     QPushButton* btnAbout = dlgButtonBoxBottom->addButton(i18n("About"), QDialogButtonBox::ButtonRole::ActionRole);
     // was "User1":
     QPushButton* btnSettings = dlgButtonBoxBottom->addButton(i18n("Settings"), QDialogButtonBox::ButtonRole::ActionRole);
-    btnSettings->setIcon(QIcon::fromTheme("configure"));
+    btnSettings->setIcon(QIcon::fromTheme(QLatin1String("configure")));
 
     m_firstImage = true;
 
@@ -102,7 +102,7 @@ Skanlite::Skanlite(const QString& device, QWidget* parent)
 
         QWidget *settingsWidget = new QWidget(m_settingsDialog);
         m_settingsUi.setupUi(settingsWidget);
-        m_settingsUi.revertOptions->setIcon(QIcon::fromTheme("edit-undo"));
+        m_settingsUi.revertOptions->setIcon(QIcon::fromTheme(QLatin1String("edit-undo")));
         m_saveLocation = new SaveLocation(this);
 
         // add the supported image types
@@ -116,14 +116,14 @@ Skanlite::Skanlite(const QString& device, QWidget* parent)
         qDebug() << m_filterList;
         
         // Put first class citizens at first place
-        m_filterList.removeAll("image/jpeg");
-        m_filterList.removeAll("image/tiff");
-        m_filterList.removeAll("image/png");
-        m_filterList.insert(0, "image/png");
-        m_filterList.insert(1, "image/jpeg");
-        m_filterList.insert(2, "image/tiff");
+        m_filterList.removeAll(QLatin1String("image/jpeg"));
+        m_filterList.removeAll(QLatin1String("image/tiff"));
+        m_filterList.removeAll(QLatin1String("image/png"));
+        m_filterList.insert(0, QLatin1String("image/png"));
+        m_filterList.insert(1,QLatin1String( "image/jpeg"));
+        m_filterList.insert(2, QLatin1String("image/tiff"));
 
-        m_filter16BitList << "image/png";
+        m_filter16BitList << QLatin1String("image/png");
         //m_filter16BitList << "image/tiff";
 
         // fill m_filterList (...) and m_typeList (list of file suffixes)
@@ -176,7 +176,7 @@ Skanlite::Skanlite(const QString& device, QWidget* parent)
         }
         else {
             setWindowTitle(i18nc("@title:window %1 = scanner maker, %2 = scanner model", "%1 %2 - Skanlite", m_ksanew->make(), m_ksanew->model()));
-            m_deviceName = QString("%1:%2").arg(m_ksanew->make()).arg(m_ksanew->model());
+            m_deviceName = QString::fromLatin1("%1:%2").arg(m_ksanew->make()).arg(m_ksanew->model());
         }
     }
     else {
@@ -220,7 +220,7 @@ Skanlite::Skanlite(const QString& device, QWidget* parent)
 
 void Skanlite::showHelp()
 {
-    KHelpClient::invokeHelp("index", "skanlite");
+    KHelpClient::invokeHelp(QLatin1String("index"), QLatin1String("skanlite"));
 }
 
 void Skanlite::setAboutData(KAboutData* aboutData)
@@ -376,8 +376,8 @@ void Skanlite::saveImage()
         (m_format==KSaneIface::KSaneWidget::FormatGrayScale16))
     {
         filterList = m_filter16BitList;
-        if (imgFormat != "png") {
-            imgFormat = "png";
+        if (imgFormat != QLatin1String("png")) {
+            imgFormat = QLatin1String("png");
             KMessageBox::information(this, i18n("The image will be saved in the PNG format, as Skanlite only supports saving 16 bit color images in the PNG format."));
         }
     }
@@ -386,12 +386,12 @@ void Skanlite::saveImage()
     QUrl fileUrl;
     QString fname;
     for (int i=fileNumber; i<=m_saveLocation->u_numStartFrom->maximum(); ++i) {
-        fname = QString("%1%2.%3")
+        fname = QString::fromLatin1("%1%2.%3")
         .arg(prefix)
-        .arg(i, 4, 10, QChar('0'))
+        .arg(i, 4, 10, QLatin1Char('0'))
         .arg(imgFormat);
 
-        fileUrl = QUrl(QString("%1/%2").arg(dir).arg(fname));
+        fileUrl = QUrl(QString::fromLatin1("%1/%2").arg(dir).arg(fname));
         if (fileUrl.isLocalFile()) {
             if (!QFileInfo(fileUrl.toLocalFile()).exists()) {
                 break;
@@ -422,7 +422,7 @@ void Skanlite::saveImage()
         saveDialog.selectFile(fileUrl.url());
         
         QStringList actualFilterList = filterList;
-        QString currentMimeFilter = "image/" + imgFormat;
+        //QString currentMimeFilter = QLatin1String("image/") + imgFormat;
         saveDialog.setMimeTypeFilters(actualFilterList);
 
         // FIXME KF5 / WAIT: probably due to a bug in QFileDialog integration the desired file type filter will not be selected (it defaults to the first one: png)
@@ -444,7 +444,7 @@ void Skanlite::saveImage()
                      QString(),
                      KGuiItem(i18n("Overwrite")),
                      KStandardGuiItem::cancel(),
-                     QString("editorWindowSaveOverwrite")
+                     QLatin1String("editorWindowSaveOverwrite")
                      ) ==  KMessageBox::Continue)
                      {
                          break;
@@ -554,7 +554,7 @@ void Skanlite::saveScannerOptions()
 
     if (!m_ksanew) return;
 
-    KConfigGroup options(KSharedConfig::openConfig(), QString("Options For %1").arg(m_deviceName));
+    KConfigGroup options(KSharedConfig::openConfig(), QString::fromLatin1("Options For %1").arg(m_deviceName));
     QMap <QString, QString> opts;
     m_ksanew->getOptVals(opts);
     QMap<QString, QString>::const_iterator it = opts.constBegin();
@@ -579,7 +579,7 @@ void Skanlite::loadScannerOptions()
 
     if (!m_ksanew) return;
 
-    KConfigGroup scannerOptions(KSharedConfig::openConfig(), QString("Options For %1").arg(m_deviceName));
+    KConfigGroup scannerOptions(KSharedConfig::openConfig(), QString::fromLatin1("Options For %1").arg(m_deviceName));
     m_ksanew->setOptVals(scannerOptions.entryMap());
 }
 
@@ -594,10 +594,10 @@ void Skanlite::alertUser(int type, const QString &strStatus)
 {
     switch (type) {
         case KSaneWidget::ErrorGeneral:
-            KMessageBox::sorry(0, strStatus, "Skanlite Test");
+            KMessageBox::sorry(0, strStatus, QLatin1String("Skanlite Test"));
             break;
         default:
-            KMessageBox::information(0, strStatus, "Skanlite Test");
+            KMessageBox::information(0, strStatus, QLatin1String("Skanlite Test"));
     }
 }
 

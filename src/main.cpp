@@ -37,9 +37,9 @@ int main(int argc, char *argv[])
 
     KLocalizedString::setApplicationDomain("skanlite");
 
-    KAboutData aboutData("Skanlite", // componentName, k4: appName
+    KAboutData aboutData(QLatin1String("Skanlite"), // componentName, k4: appName
                          i18n("Skanlite"), // displayName, k4: programName
-                         skanlite_version, // version
+                         QLatin1String(skanlite_version), // version
                          i18n("Scanning application for KDE based on libksane."), // shortDescription
                          KAboutLicense::GPL, // licenseType
                          i18n("(C) 2008-2014 Kåre Särs"), // copyrightStatement
@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
 
     aboutData.addAuthor(i18n("Kåre Särs"),
                         i18n("developer"),
-                        "kare.sars@iki.fi");
+                        QLatin1String("kare.sars@iki.fi"));
 
     aboutData.addAuthor(i18n("Arseniy Lartsev"),
                         i18n("contributor"));
@@ -72,20 +72,20 @@ int main(int argc, char *argv[])
     aboutData.addCredit(i18n("Albert Astals Cid"),
                         i18n("Help with translations"));
 
-    aboutData.setProgramIconName("scanner");
+    aboutData.setProgramIconName(QLatin1String("scanner"));
 
     QCoreApplication::setApplicationVersion(aboutData.version());
     QCommandLineParser parser;
     aboutData.setupCommandLine(&parser);
     parser.addHelpOption();
     parser.addVersionOption();
-    QCommandLineOption deviceOption(QStringList() << "d" << "device", i18n("Sane scanner device name. Use 'test' for test device."), i18n("device"));
+    QCommandLineOption deviceOption(QStringList() <<QLatin1String( "d") << QLatin1String("device"), i18n("Sane scanner device name. Use 'test' for test device."), i18n("device"));
     parser.addOption(deviceOption);
     parser.process(app); // the --author and --license is shown anyway but they work only with the following line
     aboutData.processCommandLine(&parser);
 
     QString deviceName = parser.value(deviceOption);
-    qDebug() << QString("deviceOption value=%1").arg(deviceName);
+    qDebug() << QString::fromLatin1("deviceOption value=%1").arg(deviceName);
 
     Skanlite skanliteDialog(deviceName, 0);
     skanliteDialog.setAboutData(&aboutData);

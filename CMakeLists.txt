@@ -20,8 +20,6 @@ include(GenerateExportHeader)
 find_package(Qt5 ${REQUIRED_QT_VERSION} NO_MODULE REQUIRED Core Widgets)
 
 # be not so strict with the poor developer who just wants to use strings
-remove_definitions(-DQT_NO_CAST_TO_ASCII)
-remove_definitions(-DQT_NO_CAST_FROM_ASCII)
 remove_definitions(-DQT_NO_URL_CAST_FROM_STRING)
 remove_definitions(-DQT_NO_CAST_FROM_BYTEARRAY)
 
