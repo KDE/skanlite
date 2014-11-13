@@ -391,7 +391,7 @@ void Skanlite::saveImage()
         .arg(i, 4, 10, QLatin1Char('0'))
         .arg(imgFormat);
 
-        fileUrl = QUrl(QString::fromLatin1("%1/%2").arg(dir).arg(fname));
+        fileUrl = QUrl::fromLocalFile(QString::fromLatin1("%1/%2").arg(dir).arg(fname));
         if (fileUrl.isLocalFile()) {
             if (!QFileInfo(fileUrl.toLocalFile()).exists()) {
                 break;
