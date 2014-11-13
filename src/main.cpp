@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
     aboutData.addCredit(i18n("Albert Astals Cid"),
                         i18n("Help with translations"));
 
-    aboutData.setProgramIconName(QLatin1String("scanner"));
+    app.setWindowIcon( QIcon::fromTheme( QLatin1String( "scanner" )));
 
     QCoreApplication::setApplicationVersion(aboutData.version());
     QCommandLineParser parser;
