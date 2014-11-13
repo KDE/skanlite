@@ -27,12 +27,17 @@
 
 #include <KAboutData>
 #include <KLocalizedString>
+#include <Kdelibs4ConfigMigrator>
 
 #include "skanlite.h"
 #include "version.h"
 
 int main(int argc, char *argv[])
 {
+    Kdelibs4ConfigMigrator migrate(QLatin1String("Skanlite"));
+    migrate.setConfigFiles(QStringList() << QLatin1String("Skanliterc"));
+    migrate.migrate();
+
     QApplication app(argc, argv);
 
     KLocalizedString::setApplicationDomain("skanlite");
@@ -72,19 +77,19 @@ int main(int argc, char *argv[])
     aboutData.addCredit(i18n("Albert Astals Cid"),
                         i18n("Help with translations"));
 
-    app.setWindowIcon( QIcon::fromTheme( QLatin1String( "scanner" )));
+    app.setWindowIcon(QIcon::fromTheme(QLatin1String("scanner")));
 
     QCoreApplication::setApplicationVersion(aboutData.version());
     QCommandLineParser parser;
     aboutData.setupCommandLine(&parser);
     parser.addHelpOption();
     parser.addVersionOption();
-    QCommandLineOption deviceOption(QStringList() <<QLatin1String( "d") << QLatin1String("device"), i18n("Sane scanner device name. Use 'test' for test device."), i18n("device"));
+    QCommandLineOption deviceOption(QStringList() << QLatin1String("d") << QLatin1String("device"), i18n("Sane scanner device name. Use 'test' for test device."), i18n("device"));
     parser.addOption(deviceOption);
     parser.process(app); // the --author and --license is shown anyway but they work only with the following line
     aboutData.processCommandLine(&parser);
 
-    QString deviceName = parser.value(deviceOption);
+    const QString deviceName = parser.value(deviceOption);
     qDebug() << QString::fromLatin1("deviceOption value=%1").arg(deviceName);
 
     Skanlite skanliteDialog(deviceName, 0);
