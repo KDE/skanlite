@@ -41,65 +41,65 @@ class Skanlite : public QDialog
 {
     Q_OBJECT
 
-    public:
-        explicit Skanlite(const QString& device, QWidget* parent);
-        void setAboutData(KAboutData* aboutData);
+public:
+    explicit Skanlite(const QString &device, QWidget *parent);
+    void setAboutData(KAboutData *aboutData);
 
-    private:
-        // Order of items in save mode combo-box
-        enum SaveMode {
-            SaveModeManual = 0,
-            SaveModeAskFirst = 1,
-        };
-        
-        void readSettings();
-        void doSaveImage(bool askFilename = true);
-        void loadScannerOptions();
+private:
+    // Order of items in save mode combo-box
+    enum SaveMode {
+        SaveModeManual = 0,
+        SaveModeAskFirst = 1,
+    };
 
-    private Q_SLOTS:
-        void showSettingsDialog();
-        void getDir();
-        void imageReady(QByteArray &, int, int, int, int);
-        void saveImage();
-        void showAboutDialog();
-        void saveWindowSize();
+    void readSettings();
+    void doSaveImage(bool askFilename = true);
+    void loadScannerOptions();
 
-        void saveScannerOptions();
-        void defaultScannerOptions();
+private Q_SLOTS:
+    void showSettingsDialog();
+    void getDir();
+    void imageReady(QByteArray &, int, int, int, int);
+    void saveImage();
+    void showAboutDialog();
+    void saveWindowSize();
 
-        void availableDevices(const QList<KSaneWidget::DeviceInfo> &deviceList);
+    void saveScannerOptions();
+    void defaultScannerOptions();
 
-        void alertUser(int type, const QString &strStatus);
-        void buttonPressed(const QString &optionName, const QString &optionLabel, bool pressed);
-        
-        void showHelp();
+    void availableDevices(const QList<KSaneWidget::DeviceInfo> &deviceList);
 
-    protected:
-        void closeEvent(QCloseEvent *event);
+    void alertUser(int type, const QString &strStatus);
+    void buttonPressed(const QString &optionName, const QString &optionLabel, bool pressed);
 
-    private:
-        KAboutData*              m_aboutData;
-        KSaneWidget             *m_ksanew = nullptr;
-        Ui::SkanliteSettings     m_settingsUi;
-        QDialog                 *m_settingsDialog = nullptr;
-        QDialog                 *m_showImgDialog = nullptr;
-        // having this variable here is not so nice; ShowImgageDialog should be separate class
-        QPushButton             *m_showImgDialogSaveButton = nullptr;
-        SaveLocation            *m_saveLocation = nullptr;
-        QString                  m_deviceName;
-        QMap<QString,QString>    m_defaultScanOpts;
-        QImage                   m_img;
-        QByteArray               m_data;
-        int                      m_width;
-        int                      m_height;
-        int                      m_bytesPerLine;
-        int                      m_format;
+    void showHelp();
 
-        ImageViewer              m_imageViewer;
-        QStringList              m_filterList;
-        QStringList              m_filter16BitList;
-        QStringList              m_typeList;
-        bool                     m_firstImage;
+protected:
+    void closeEvent(QCloseEvent *event);
+
+private:
+    KAboutData              *m_aboutData;
+    KSaneWidget             *m_ksanew = nullptr;
+    Ui::SkanliteSettings     m_settingsUi;
+    QDialog                 *m_settingsDialog = nullptr;
+    QDialog                 *m_showImgDialog = nullptr;
+    // having this variable here is not so nice; ShowImgageDialog should be separate class
+    QPushButton             *m_showImgDialogSaveButton = nullptr;
+    SaveLocation            *m_saveLocation = nullptr;
+    QString                  m_deviceName;
+    QMap<QString, QString>    m_defaultScanOpts;
+    QImage                   m_img;
+    QByteArray               m_data;
+    int                      m_width;
+    int                      m_height;
+    int                      m_bytesPerLine;
+    int                      m_format;
+
+    ImageViewer              m_imageViewer;
+    QStringList              m_filterList;
+    QStringList              m_filter16BitList;
+    QStringList              m_typeList;
+    bool                     m_firstImage;
 };
 
 #endif

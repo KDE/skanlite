@@ -33,30 +33,29 @@
 class KSaneImageSaver : public QThread
 {
     Q_OBJECT
-    public:
-        KSaneImageSaver(QObject *parent = 0);
-        ~KSaneImageSaver();
+public:
+    KSaneImageSaver(QObject *parent = 0);
+    ~KSaneImageSaver();
 
-        bool savePng(const QString &name, const QByteArray &data, int width, int height, int format);
+    bool savePng(const QString &name, const QByteArray &data, int width, int height, int format);
 
-        bool savePngSync(const QString &name, const QByteArray &data, int width, int height, int format);
+    bool savePngSync(const QString &name, const QByteArray &data, int width, int height, int format);
 
-        bool saveTiff(const QString &name, const QByteArray &data, int width, int height, int format);
+    bool saveTiff(const QString &name, const QByteArray &data, int width, int height, int format);
 
-        bool saveTiffSync(const QString &name, const QByteArray &data, int width, int height, int format);
+    bool saveTiffSync(const QString &name, const QByteArray &data, int width, int height, int format);
 
-    Q_SIGNALS:
-        void imageSaved(bool success);
-        
-    protected:
-        void run();
+Q_SIGNALS:
+    void imageSaved(bool success);
 
-    private:
-        struct Private;
-        Private * const d;
+protected:
+    void run();
+
+private:
+    struct Private;
+    Private *const d;
 
 };
 
 #endif
-
 
