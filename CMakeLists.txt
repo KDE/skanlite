@@ -23,7 +23,7 @@ find_package(Qt5 ${REQUIRED_QT_VERSION} NO_MODULE REQUIRED Core Widgets)
 remove_definitions(-DQT_NO_URL_CAST_FROM_STRING)
 remove_definitions(-DQT_NO_CAST_FROM_BYTEARRAY)
 
-set(KF5_VERSION "5.2.0")
+set(KF5_VERSION "5.1.0")
 
 ecm_setup_version(
   ${KF5_VERSION}
@@ -45,10 +45,9 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/version.h.cmake ${CMAKE_CURRENT_B
 
 find_package(KF5 ${KF5_VERSION} REQUIRED
     COMPONENTS # alias to find_package(KFGuiAddons ${KF5_VERSION} REQUIRED)
-        CoreAddons
-        GuiAddons
+        CoreAddons # KAboutData
         I18n
-        XmlGui
+        XmlGui # KAboutApplicationDialog
         KIO # contains the KIOWidgets which we use in target_link_libraries
         DocTools # yields kdoctools_create_handbook
         Sane # will find KF5Sane
