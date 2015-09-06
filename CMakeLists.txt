@@ -39,6 +39,8 @@ set(REQUIRED_QT_VERSION "5.2.0")
 find_package(Qt5 ${REQUIRED_QT_VERSION} NO_MODULE REQUIRED Core)
 find_package(PNG REQUIRED)
 
+include_directories(${PNG_INCLUDE_DIRS})
+
 set(SKANLITE_VERSION_STRING "1.1.0")
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/version.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/src/version.h)
