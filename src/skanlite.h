@@ -27,7 +27,7 @@
 #include <QDir>
 #include <QDialog>
 
-#include <ksane.h>
+#include <KSaneWidget>
 
 #include "ui_settings.h"
 #include "ImageViewer.h"

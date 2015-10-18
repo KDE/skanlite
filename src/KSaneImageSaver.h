@@ -26,9 +26,9 @@
 #ifndef KSaneImageSaver_h
 #define KSaneImageSaver_h
 
-#include "ksane.h"
-
+#include <QByteArray>
 #include <QThread>
+#include <QString>
 
 class KSaneImageSaver : public QThread
 {

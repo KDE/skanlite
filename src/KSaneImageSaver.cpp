@@ -29,6 +29,8 @@
 #include <QMutex>
 #include <QDebug>
 
+#include <KSaneWidget>
+
 struct KSaneImageSaver::Private {
     enum ImageType {
         ImageTypePNG,
