@@ -1,0 +1,5 @@
+.directory
+.kdev4/
+build/
+skanlite.kdev4
+src/.kdev_include_paths

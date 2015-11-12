@@ -23,19 +23,17 @@
 * ============================================================ */
 
 #include "ImageViewer.h"
-#include "ImageViewer.moc"
 
 #include <QGraphicsPixmapItem>
 #include <QGraphicsScene>
 #include <QScrollBar>
 #include <QAction>
-#include <KIcon>
-#include <KLocale>
+#include <QDebug>
+#include <QIcon>
 
-#include <KDebug>
+#include <KLocalizedString>
 
-struct ImageViewer::Private
-{
+struct ImageViewer::Private {
     QGraphicsScene      *scene;
     QImage              *img;
 
@@ -50,24 +48,24 @@ ImageViewer::ImageViewer(QWidget *parent) : QGraphicsView(parent), d(new Private
     //setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     //setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     setMouseTracking(true);
-    
+
     // Init the scene
     d->scene = new QGraphicsScene;
     setScene(d->scene);
 
     // create context menu
-    d->zoomInAction = new QAction(KIcon("zoom-in"), i18n("Zoom In"), this);
-    connect(d->zoomInAction, SIGNAL(triggered()), this, SLOT(zoomIn()));
-    
-    d->zoomOutAction = new QAction(KIcon("zoom-out"), i18n("Zoom Out"), this);
-    connect(d->zoomOutAction, SIGNAL(triggered()), this, SLOT(zoomOut()));
-    
-    d->zoom100Action = new QAction(KIcon("zoom-fit-best"), i18n("Zoom to Actual size"), this);
-    connect(d->zoom100Action, SIGNAL(triggered()), this, SLOT(zoomActualSize()));
-    
-    d->zoom2FitAction = new QAction(KIcon("document-preview"), i18n("Zoom to Fit"), this);
-    connect(d->zoom2FitAction, SIGNAL(triggered()), this, SLOT(zoom2Fit()));
-    
+    d->zoomInAction = new QAction(QIcon::fromTheme(QLatin1String("zoom-in")), i18n("Zoom In"), this);
+    connect(d->zoomInAction, &QAction::triggered, this, &ImageViewer::zoomIn);
+
+    d->zoomOutAction = new QAction(QIcon::fromTheme(QLatin1String("zoom-out")), i18n("Zoom Out"), this);
+    connect(d->zoomOutAction, &QAction::triggered, this, &ImageViewer::zoomOut);
+
+    d->zoom100Action = new QAction(QIcon::fromTheme(QLatin1String("zoom-fit-best")), i18n("Zoom to Actual size"), this);
+    connect(d->zoom100Action, &QAction::triggered, this, &ImageViewer::zoomActualSize);
+
+    d->zoom2FitAction = new QAction(QIcon::fromTheme(QLatin1String("document-preview")), i18n("Zoom to Fit"), this);
+    connect(d->zoom2FitAction, &QAction::triggered, this, &ImageViewer::zoom2Fit);
+
     addAction(d->zoomInAction);
     addAction(d->zoomOutAction);
     addAction(d->zoom100Action);
@@ -84,7 +82,9 @@ ImageViewer::~ImageViewer()
 // ------------------------------------------------------------------------
 void ImageViewer::setQImage(QImage *img)
 {
-    if (img == 0) return;
+    if (img == 0) {
+        return;
+    }
 
     d->img = img;
     d->scene->setSceneRect(0, 0, img->width(), img->height());
@@ -109,7 +109,6 @@ void ImageViewer::zoomOut()
     scale(1.0 / 1.5, 1.0 / 1.5);
 }
 
-
 // ------------------------------------------------------------------------
 void ImageViewer::zoomActualSize()
 {
@@ -125,8 +124,8 @@ void ImageViewer::zoom2Fit()
 // ------------------------------------------------------------------------
 void ImageViewer::wheelEvent(QWheelEvent *e)
 {
-    if(e->modifiers() == Qt::ControlModifier) {
-        if(e->delta() > 0) {
+    if (e->modifiers() == Qt::ControlModifier) {
+        if (e->delta() > 0) {
             zoomIn();
         } else {
             zoomOut();

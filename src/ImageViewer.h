@@ -31,28 +31,27 @@
 class ImageViewer : public QGraphicsView
 {
     Q_OBJECT
-    public:
-        ImageViewer(QWidget *parent = 0);
-        ~ImageViewer();
+public:
+    ImageViewer(QWidget *parent = 0);
+    ~ImageViewer();
 
-        void setQImage(QImage *img);
+    void setQImage(QImage *img);
 
-    public Q_SLOTS:
-        void zoomIn();
-        void zoomOut();
-        void zoom2Fit();
-        void zoomActualSize();
-        
-    protected:
-        void wheelEvent(QWheelEvent *e);
-        void drawBackground(QPainter *painter, const QRectF &rect); 
+public Q_SLOTS:
+    void zoomIn();
+    void zoomOut();
+    void zoom2Fit();
+    void zoomActualSize();
 
-    private:
-        struct Private;
-        Private * const d;
+protected:
+    void wheelEvent(QWheelEvent *e);
+    void drawBackground(QPainter *painter, const QRectF &rect);
+
+private:
+    struct Private;
+    Private *const d;
 
 };
 
 #endif
-
 

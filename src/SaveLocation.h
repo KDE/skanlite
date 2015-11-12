@@ -3,6 +3,7 @@
  * Description : Save location settings dialog.
  *
  * Copyright (C) 2008-2012 by Kåre Särs <kare.sars@iki .fi>
+ * Copyright (C) 2014 by Gregor Mitsch: port to KDE5 frameworks
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -27,11 +28,9 @@
 
 #include "ui_SaveLocation.h"
 
-#include <KUrl>
+#include <QDialog>
 
-#include <KDialog>
-
-class SaveLocation : public KDialog, public Ui_SaveLocation
+class SaveLocation : public QDialog, public Ui_SaveLocation
 {
     Q_OBJECT
 public:
@@ -39,11 +38,9 @@ public:
     ~SaveLocation();
 
 private Q_SLOTS:
-    void update();
+    void updateGui();
     void getDir();
-
 };
 
 #endif
-
 

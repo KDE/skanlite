@@ -26,12 +26,12 @@
 
 #include <png.h>
 
-#include <KDebug>
 #include <QMutex>
+#include <QDebug>
 
+#include <KSaneWidget>
 
-struct KSaneImageSaver::Private
-{
+struct KSaneImageSaver::Private {
     enum ImageType {
         ImageTypePNG,
         ImageTypeTIFF
@@ -40,7 +40,7 @@ struct KSaneImageSaver::Private
     bool   m_savedOk;
     QMutex m_runMutex;
     KSaneImageSaver *q;
-    
+
     QString    m_name;
     QByteArray m_data;
     int        m_width;
@@ -66,7 +66,9 @@ KSaneImageSaver::~KSaneImageSaver()
 
 bool KSaneImageSaver::savePng(const QString &name, const QByteArray &data, int width, int height, int format)
 {
-    if (!d->m_runMutex.tryLock()) return false;
+    if (!d->m_runMutex.tryLock()) {
+        return false;
+    }
 
     d->m_name   = name;
     d->m_data   = data;
@@ -82,7 +84,7 @@ bool KSaneImageSaver::savePng(const QString &name, const QByteArray &data, int w
 bool KSaneImageSaver::savePngSync(const QString &name, const QByteArray &data, int width, int height, int format)
 {
     if (!savePng(name, data, width, height, format)) {
-        kDebug() << "fail";
+        qDebug() << "fail";
         return false;
     }
     wait();
@@ -91,7 +93,9 @@ bool KSaneImageSaver::savePngSync(const QString &name, const QByteArray &data, i
 
 bool KSaneImageSaver::saveTiff(const QString &name, const QByteArray &data, int width, int height, int format)
 {
-    if (!d->m_runMutex.tryLock()) return false;
+    if (!d->m_runMutex.tryLock()) {
+        return false;
+    }
 
     d->m_name   = name;
     d->m_data   = data;
@@ -100,7 +104,7 @@ bool KSaneImageSaver::saveTiff(const QString &name, const QByteArray &data, int 
     d->m_format = format;
     d->m_type   = Private::ImageTypeTIFF;
 
-    kDebug() << "saving Tiff images is not yet supported";
+    qDebug() << "saving Tiff images is not yet supported";
     d->m_runMutex.unlock();
     return false;
 }
@@ -119,8 +123,7 @@ void KSaneImageSaver::run()
     if (d->m_type == Private::ImageTypeTIFF) {
         d->m_savedOk = d->saveTiff();
         emit imageSaved(d->m_savedOk);
-    }
-    else {
+    } else {
         d->m_savedOk = d->savePng();
         emit imageSaved(d->m_savedOk);
     }
@@ -143,7 +146,9 @@ bool KSaneImageSaver::Private::savePng()
 
     // open the file
     file = fopen(qPrintable(m_name), "wb");
-    if (!file) return false;
+    if (!file) {
+        return false;
+    }
 
     // create the png struct
     png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
@@ -156,34 +161,33 @@ bool KSaneImageSaver::Private::savePng()
     info_ptr = png_create_info_struct(png_ptr);
     if (!png_ptr) {
         fclose(file);
-        png_destroy_write_struct(&png_ptr,  (png_infopp)NULL);
+        png_destroy_write_struct(&png_ptr, (png_infopp)NULL);
         return false;
     }
-    
+
     // initialize IO
     png_init_io(png_ptr, file);
 
     // set the image attributes
-    switch ((KSaneIface::KSaneWidget::ImageFormat)m_format)
-    {
-        case KSaneIface::KSaneWidget::FormatGrayScale16:
-            png_set_IHDR(png_ptr, info_ptr, m_width, m_height, 16, PNG_COLOR_TYPE_GRAY,
-                         PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
-            sig_bit.gray = 16;
-            bytesPerPixel = 2;
-            break;
-        case KSaneIface::KSaneWidget::FormatRGB_16_C:
-            png_set_IHDR(png_ptr, info_ptr, m_width, m_height, 16, PNG_COLOR_TYPE_RGB,
-                         PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
-            sig_bit.red = 16;
-            sig_bit.green = 16;
-            sig_bit.blue = 16;
-            bytesPerPixel = 6;
-            break;
-        default:
-            fclose(file);
-            png_destroy_write_struct(&png_ptr,  (png_infopp)NULL);
-            return false;
+    switch ((KSaneIface::KSaneWidget::ImageFormat)m_format) {
+    case KSaneIface::KSaneWidget::FormatGrayScale16:
+        png_set_IHDR(png_ptr, info_ptr, m_width, m_height, 16, PNG_COLOR_TYPE_GRAY,
+                     PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
+        sig_bit.gray = 16;
+        bytesPerPixel = 2;
+        break;
+    case KSaneIface::KSaneWidget::FormatRGB_16_C:
+        png_set_IHDR(png_ptr, info_ptr, m_width, m_height, 16, PNG_COLOR_TYPE_RGB,
+                     PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
+        sig_bit.red = 16;
+        sig_bit.green = 16;
+        sig_bit.blue = 16;
+        bytesPerPixel = 6;
+        break;
+    default:
+        fclose(file);
+        png_destroy_write_struct(&png_ptr, (png_infopp)NULL);
+        return false;
     }
 
     png_set_sBIT(png_ptr, info_ptr, &sig_bit);
@@ -199,7 +203,7 @@ bool KSaneImageSaver::Private::savePng()
 //     text_ptr[2].text = "<long text>";
 //     text_ptr[2].compression = PNG_TEXT_COMPRESSION_zTXt;
 //     png_set_text(png_ptr, info_ptr, text_ptr, 2);
-    
+
     /* Write the file header information. */
     png_write_info(png_ptr, info_ptr);
 
@@ -212,16 +216,18 @@ bool KSaneImageSaver::Private::savePng()
     char tmp;
     // Make sure we have a buffer size that is divisible by 2
     int dataSize = m_data.size();
-    if ((dataSize % 2) > 0) dataSize--;
-    for (int i=0; i<dataSize; i+=2) {
+    if ((dataSize % 2) > 0) {
+        dataSize--;
+    }
+    for (int i = 0; i < dataSize; i += 2) {
         tmp = m_data[i];
-        m_data[i] = m_data[i+1];
-        m_data[i+1] = tmp;
+        m_data[i] = m_data[i + 1];
+        m_data[i + 1] = tmp;
     }
 
     row_ptr = (png_bytep)m_data.data();
 
-    for (int i=0; i<m_height; i++) {
+    for (int i = 0; i < m_height; i++) {
         png_write_rows(png_ptr, &row_ptr, 1);
         row_ptr += m_width * bytesPerPixel;
     }
@@ -230,7 +236,7 @@ bool KSaneImageSaver::Private::savePng()
     png_destroy_write_struct(&png_ptr, (png_infopp) & info_ptr);
     png_destroy_info_struct(png_ptr, (png_infopp) & info_ptr);
     fclose(file);
-    
+
     return true;
 }
 

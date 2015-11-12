@@ -1,6 +1,7 @@
 /* ============================================================
  *
  * Copyright (C) 2007-2012 by Kåre Särs <kare.sars@iki .fi>
+ * Copyright (C) 2014 by Gregor Mitsch: port to KDE5 frameworks
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -23,77 +24,83 @@
 #ifndef Skanlite_h
 #define Skanlite_h
 
-#include <libksane/ksane.h>
 #include <QDir>
+#include <QDialog>
+
+#include <KSaneWidget>
 
 #include "ui_settings.h"
 #include "ImageViewer.h"
 
-class KFileDialog;
 class SaveLocation;
+class KAboutData;
 
 using namespace KSaneIface;
 
-class Skanlite : public KDialog
+class Skanlite : public QDialog
 {
     Q_OBJECT
 
-    public:
-        explicit Skanlite(const QString& device, QWidget *parent = 0);
+public:
+    explicit Skanlite(const QString &device, QWidget *parent);
+    void setAboutData(KAboutData *aboutData);
 
-    private:
-        // Order of items in save mode combo-box
-        enum SaveMode {
-            SaveModeManual = 0,
-            SaveModeAskFirst = 1,
-        };
+private:
+    // Order of items in save mode combo-box
+    enum SaveMode {
+        SaveModeManual = 0,
+        SaveModeAskFirst = 1,
+    };
 
-        void readSettings();
-        void doSaveImage(bool askFilename = true);
-        void loadScannerOptions();
+    void readSettings();
+    void doSaveImage(bool askFilename = true);
+    void loadScannerOptions();
 
-    private Q_SLOTS:
-        void showSettingsDialog();
-        void getDir();
-        void imageReady(QByteArray &, int, int, int, int);
-        void saveImage();
-        void showAboutDialog();
-        void saveWindowSize();
+private Q_SLOTS:
+    void showSettingsDialog();
+    void getDir();
+    void imageReady(QByteArray &, int, int, int, int);
+    void saveImage();
+    void showAboutDialog();
+    void saveWindowSize();
 
-        void saveScannerOptions();
-        void defaultScannerOptions();
+    void saveScannerOptions();
+    void defaultScannerOptions();
 
-        void availableDevices(const QList<KSaneWidget::DeviceInfo> &deviceList);
+    void availableDevices(const QList<KSaneWidget::DeviceInfo> &deviceList);
 
-        void alertUser(int type, const QString &strStatus);
-        void buttonPressed(const QString &optionName, const QString &optionLabel, bool pressed);
+    void alertUser(int type, const QString &strStatus);
+    void buttonPressed(const QString &optionName, const QString &optionLabel, bool pressed);
 
-    protected:
-        void closeEvent(QCloseEvent *event);
+    void showHelp();
 
-    private:
-        KSaneWidget             *m_ksanew;
-        Ui::SkanliteSettings     m_settingsUi;
-        KDialog                 *m_settingsDialog;
-        KDialog                 *m_showImgDialog;
-        KFileDialog             *m_saveDialog;
-        SaveLocation            *m_saveLocation;
-        QString                  m_deviceName;
-        QMap<QString,QString>    m_defaultScanOpts;
-        QImage                   m_img;
-        QByteArray               m_data;
-        int                      m_width;
-        int                      m_height;
-        int                      m_bytesPerLine;
-        int                      m_format;
+protected:
+    void closeEvent(QCloseEvent *event);
 
-        ImageViewer              m_imageViewer;
-        QStringList              m_filterList;
-        QStringList              m_filter16BitList;
-        QStringList              m_typeList;
-        bool                     m_firstImage;
+private:
+    KAboutData              *m_aboutData;
+    KSaneWidget             *m_ksanew = nullptr;
+    Ui::SkanliteSettings     m_settingsUi;
+    QDialog                 *m_settingsDialog = nullptr;
+    QDialog                 *m_showImgDialog = nullptr;
+    // having this variable here is not so nice; ShowImgageDialog should be separate class
+    QPushButton             *m_showImgDialogSaveButton = nullptr;
+    SaveLocation            *m_saveLocation = nullptr;
+    QString                  m_deviceName;
+    QMap<QString, QString>    m_defaultScanOpts;
+    QImage                   m_img;
+    QByteArray               m_data;
+    int                      m_width;
+    int                      m_height;
+    int                      m_bytesPerLine;
+    int                      m_format;
+
+    ImageViewer              m_imageViewer;
+    QStringList              m_filterList;
+    QStringList              m_filter16BitList;
+    QStringList              m_typeList;
+    bool                     m_firstImage;
 };
-
 
 #endif
 

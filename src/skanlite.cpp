@@ -2,6 +2,7 @@
 *
 * Copyright (C) 2007-2012 by Kåre Särs <kare.sars@iki .fi>
 * Copyright (C) 2009 by Arseniy Lartsev <receive-spam at yandex dot ru>
+* Copyright (C) 2014 by Gregor Mitsch: port to KDE5 frameworks
 *
 * This program is free software; you can redistribute it and/or
 * modify it under the terms of the GNU General Public License as
@@ -22,115 +23,143 @@
 * ============================================================ */
 
 #include "skanlite.h"
-#include "skanlite.moc"
 
 #include "KSaneImageSaver.h"
 #include "SaveLocation.h"
 
-
 #include <QApplication>
 #include <QScrollArea>
 #include <QStringList>
+#include <QFileDialog>
+#include <QUrl>
+#include <QDialogButtonBox>
+#include <QComboBox>
+#include <QMessageBox>
+#include <QTemporaryFile>
+#include <QDebug>
+#include <QImageWriter>
+#include <QMimeType>
+#include <QMimeDatabase>
 
 #include <KAboutApplicationDialog>
-#include <KAction>
-#include <KComponentData>
-#include <KDebug>
-#include <KFileDialog>
-#include <KUrl>
-#include <KGlobal>
+#include <KLocalizedString>
 #include <KMessageBox>
-#include <KStandardAction>
-#include <KImageIO>
-#include <kdeversion.h>
-#include <kio/netaccess.h>
-#include <KTemporaryFile>
+// #include <kio/netaccess.h> // FIXME KF5: see /usr/include/kio/netaccess.h
+#include <KIO/StatJob>
+#include <kio/global.h>
+#include <KSharedConfig>
+#include <KConfigGroup>
+#include <KHelpClient>
 
 #include <errno.h>
 
 Skanlite::Skanlite(const QString &device, QWidget *parent)
-    : KDialog(parent)
+    : QDialog(parent)
+    , m_aboutData(nullptr)
 {
-    setAttribute(Qt::WA_DeleteOnClose);
+    QVBoxLayout *mainLayout = new QVBoxLayout(this);
 
-    setButtons(KDialog::Help | KDialog::User2 | KDialog::User1 | KDialog::Close);
-
-    setButtonText(KDialog::User1, i18n("Settings"));
-    setButtonIcon(KDialog::User1, KIcon("configure"));
-    setButtonText(KDialog::User2, i18n("About"));
-    setHelp("index", "skanlite");
+    QDialogButtonBox *dlgButtonBoxBottom = new QDialogButtonBox(this);
+    dlgButtonBoxBottom->setStandardButtons(QDialogButtonBox::Help | QDialogButtonBox::Close);
+    // was "User2:
+    QPushButton *btnAbout = dlgButtonBoxBottom->addButton(i18n("About"), QDialogButtonBox::ButtonRole::ActionRole);
+    // was "User1":
+    QPushButton *btnSettings = dlgButtonBoxBottom->addButton(i18n("Settings"), QDialogButtonBox::ButtonRole::ActionRole);
+    btnSettings->setIcon(QIcon::fromTheme(QLatin1String("configure")));
 
     m_firstImage = true;
 
     m_ksanew = new KSaneIface::KSaneWidget(this);
-    connect(m_ksanew, SIGNAL(imageReady(QByteArray &, int, int, int, int)),
-            this,     SLOT(imageReady(QByteArray &, int, int, int, int)));
-    connect(m_ksanew, SIGNAL(availableDevices(QList<KSaneWidget::DeviceInfo>)),
-            this,     SLOT(availableDevices(QList<KSaneWidget::DeviceInfo>)));
-    connect(m_ksanew, SIGNAL(userMessage(int, QString)),
-            this,     SLOT(alertUser(int, QString)));
-    connect(m_ksanew, SIGNAL(buttonPressed(QString, QString, bool)),
-            this,     SLOT(buttonPressed(QString, QString, bool)));
+    connect(m_ksanew, &KSaneWidget::imageReady, this, &Skanlite::imageReady);
+    connect(m_ksanew, &KSaneWidget::availableDevices, this, &Skanlite::availableDevices);
+    connect(m_ksanew, &KSaneWidget::userMessage, this, &Skanlite::alertUser);
+    connect(m_ksanew, &KSaneWidget::buttonPressed, this, &Skanlite::buttonPressed);
 
-    setMainWidget(m_ksanew);
+    mainLayout->addWidget(m_ksanew);
+    mainLayout->addWidget(dlgButtonBoxBottom);
 
     m_ksanew->initGetDeviceList();
 
     // read the size here...
-    KConfigGroup window(KGlobal::config(), "Window");
-    QSize rect = window.readEntry("Geometry", QSize(740,400));
+    KConfigGroup window(KSharedConfig::openConfig(), "Window");
+    QSize rect = window.readEntry("Geometry", QSize(740, 400));
     resize(rect);
 
-    connect (this, SIGNAL(closeClicked()), this, SLOT(saveWindowSize()));
-    connect (this, SIGNAL(closeClicked()), this, SLOT(saveScannerOptions()));
-    connect (this, SIGNAL(user1Clicked()), this, SLOT(showSettingsDialog()));
-    connect (this, SIGNAL(user2Clicked()), this, SLOT(showAboutDialog()));
+    connect(dlgButtonBoxBottom, &QDialogButtonBox::rejected, this, &QDialog::close);
+    connect(this, &QDialog::finished, this, &Skanlite::saveWindowSize);
+    connect(this, &QDialog::finished, this, &Skanlite::saveScannerOptions);
+    connect(btnSettings, &QPushButton::clicked, this, &Skanlite::showSettingsDialog);
+    connect(btnAbout, &QPushButton::clicked, this, &Skanlite::showAboutDialog);
+    connect(dlgButtonBoxBottom, &QDialogButtonBox::helpRequested, this, &Skanlite::showHelp);
 
+    //
     // Create the settings dialog
-    m_settingsDialog = new KDialog(this);
-    m_settingsDialog->setButtons(KDialog::Ok | KDialog::Cancel);
+    //
+    {
+        m_settingsDialog = new QDialog(this);
 
-    QWidget *settingsWidget = new QWidget(m_settingsDialog);
-    m_settingsUi.setupUi(settingsWidget);
-    m_settingsUi.revertOptions->setIcon(KIcon("edit-undo"));
-    m_saveLocation = new SaveLocation(this);
+        QVBoxLayout *mainLayout = new QVBoxLayout(m_settingsDialog);
 
-    // add the supported image types
-    m_filterList = KImageIO::mimeTypes(KImageIO::Writing);
-    // Put first class citizens at first place
-    m_filterList.removeAll("image/jpeg");
-    m_filterList.removeAll("image/tiff");
-    m_filterList.removeAll("image/png");
-    m_filterList.insert(0, "image/png");
-    m_filterList.insert(1, "image/jpeg");
-    m_filterList.insert(2, "image/tiff");
+        QWidget *settingsWidget = new QWidget(m_settingsDialog);
+        m_settingsUi.setupUi(settingsWidget);
+        m_settingsUi.revertOptions->setIcon(QIcon::fromTheme(QLatin1String("edit-undo")));
+        m_saveLocation = new SaveLocation(this);
 
-    m_filter16BitList << "image/png";
-    //m_filter16BitList << "image/tiff";
-
-    QString mime;
-    QStringList type;
-    foreach (mime , m_filterList) {
-        type = KImageIO::typeForMime(mime);
-        if (type.size() > 0) {
-            m_typeList << type.first();
+        // add the supported image types
+        const QList<QByteArray> tmpList = QImageWriter::supportedMimeTypes();
+        m_filterList.clear();
+        foreach (auto ba, tmpList) {
+            m_filterList.append(QString::fromLatin1(ba));
         }
+
+        qDebug() << m_filterList;
+
+        // Put first class citizens at first place
+        m_filterList.removeAll(QLatin1String("image/jpeg"));
+        m_filterList.removeAll(QLatin1String("image/tiff"));
+        m_filterList.removeAll(QLatin1String("image/png"));
+        m_filterList.insert(0, QLatin1String("image/png"));
+        m_filterList.insert(1, QLatin1String("image/jpeg"));
+        m_filterList.insert(2, QLatin1String("image/tiff"));
+
+        m_filter16BitList << QLatin1String("image/png");
+        //m_filter16BitList << "image/tiff";
+
+        // fill m_filterList (...) and m_typeList (list of file suffixes)
+        foreach (QString mimeStr, m_filterList) {
+            QMimeType mimeType = QMimeDatabase().mimeTypeForName(mimeStr);
+            m_filterList.append(mimeType.name());
+
+            QStringList fileSuffixes = mimeType.suffixes();
+
+            if (fileSuffixes.size() > 0) {
+                m_typeList << fileSuffixes.first();
+            }
+        }
+
+        m_settingsUi.imgFormat->addItems(m_typeList);
+        m_saveLocation->u_imgFormat->addItems(m_typeList);
+
+        mainLayout->addWidget(settingsWidget);
+
+        QDialogButtonBox *dlgButtonBoxBottom = new QDialogButtonBox(this);
+        dlgButtonBoxBottom->setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Close);
+        connect(dlgButtonBoxBottom, &QDialogButtonBox::accepted, m_settingsDialog, &QDialog::accept);
+        connect(dlgButtonBoxBottom, &QDialogButtonBox::rejected, m_settingsDialog, &QDialog::reject);
+
+        mainLayout->addWidget(dlgButtonBoxBottom);
+
+        m_settingsDialog->setWindowTitle(i18n("Skanlite Settings"));
+
+        connect(m_settingsUi.getDirButton, &QPushButton::clicked, this, &Skanlite::getDir);
+        connect(m_settingsUi.revertOptions, &QPushButton::clicked, this, &Skanlite::defaultScannerOptions);
+        readSettings();
+
+        // default directory for the save dialog
+        m_saveLocation->u_urlRequester->setUrl(m_settingsUi.saveDirLEdit->text());
+        m_saveLocation->u_imgPrefix->setText(m_settingsUi.imgPrefix->text());
+        m_saveLocation->u_imgFormat->setCurrentText(m_settingsUi.imgFormat->currentText());
     }
-    m_settingsUi.imgFormat->addItems(m_typeList);
-    m_saveLocation->u_imgFormat->addItems(m_typeList);
-
-    m_settingsDialog->setMainWidget(settingsWidget);
-    m_settingsDialog->setWindowTitle(i18n("Skanlite Settings"));
-
-
-    connect(m_settingsUi.getDirButton, SIGNAL(clicked()), this, SLOT(getDir()));
-    connect(m_settingsUi.revertOptions, SIGNAL(clicked()), this, SLOT(defaultScannerOptions()));
-    readSettings();
-
-    // default directory for the save dialog
-    m_saveLocation->u_saveDirLEdit->setText(m_settingsUi.saveDirLEdit->text());
-    m_saveLocation->u_imgPrefix->setText(m_settingsUi.imgPrefix->text());
-    m_saveLocation->u_imgFormat->setCurrentItem(m_settingsUi.imgFormat->currentText());
 
     // open the scan device
     if (m_ksanew->openDevice(device) == false) {
@@ -143,35 +172,36 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
             // could not open a scanner
             KMessageBox::sorry(0, i18n("Opening the selected scanner failed."));
             exit(1);
-        }
-        else {
+        } else {
             setWindowTitle(i18nc("@title:window %1 = scanner maker, %2 = scanner model", "%1 %2 - Skanlite", m_ksanew->make(), m_ksanew->model()));
-            m_deviceName = QString("%1:%2").arg(m_ksanew->make()).arg(m_ksanew->model());
+            m_deviceName = QString::fromLatin1("%1:%2").arg(m_ksanew->make()).arg(m_ksanew->model());
         }
-    }
-    else {
+    } else {
         setWindowTitle(i18nc("@title:window %1 = scanner device", "%1 - Skanlite", device));
         m_deviceName = device;
     }
 
-    addAction(KStandardAction::quit(qApp, SLOT(quit()), this));
-
     // prepare the Show Image Dialog
-    m_showImgDialog = new KDialog(this);
-    m_showImgDialog->setButtons(KDialog::User1 | KDialog::Close);
-    m_showImgDialog->setButtonText(KDialog::User1, i18n("Save"));
-    m_showImgDialog->setButtonIcon(KDialog::User1, KIcon("document-save"));
-    m_showImgDialog->setDefaultButton(KDialog::User1);
-    m_showImgDialog->resize(640,  480);
-    m_showImgDialog->setMainWidget(&m_imageViewer);
-    connect(m_showImgDialog, SIGNAL(user1Clicked()), this, SLOT(saveImage()));
+    {
+        m_showImgDialog = new QDialog(this);
 
+        QVBoxLayout *mainLayout = new QVBoxLayout(m_showImgDialog);
 
-    // prepare the save dialog
-    m_saveDialog = new KFileDialog(m_settingsUi.saveDirLEdit->text(), QString(), this);
-    m_saveDialog->setOperationMode(KFileDialog::Saving);
-    m_saveDialog->setMode(KFile::File);
-    m_saveDialog->setCaption(i18n("New Image File Name"));
+        QDialogButtonBox *dlgBtnBoxBottom = new QDialogButtonBox(m_showImgDialog);
+        // "Close" (now Discard) and "User1"=Save
+        dlgBtnBoxBottom->setStandardButtons(QDialogButtonBox::Discard | QDialogButtonBox::Save);
+
+        mainLayout->addWidget(&m_imageViewer);
+        mainLayout->addWidget(dlgBtnBoxBottom);
+
+        m_showImgDialogSaveButton = dlgBtnBoxBottom->button(QDialogButtonBox::Save);
+        m_showImgDialogSaveButton->setDefault(true); // still needed?
+
+        m_showImgDialog->resize(640, 480);
+        connect(dlgBtnBoxBottom, &QDialogButtonBox::accepted, this, &Skanlite::saveImage);
+        connect(dlgBtnBoxBottom, &QDialogButtonBox::accepted, m_showImgDialog, &QDialog::accept);
+        connect(dlgBtnBoxBottom->button(QDialogButtonBox::Discard), &QPushButton::clicked, m_showImgDialog, &QDialog::reject);
+    }
 
     // save the default sane options for later use
     m_ksanew->getOptVals(m_defaultScanOpts);
@@ -184,7 +214,16 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     m_firstImage = true;
 }
 
-//************************************************************
+void Skanlite::showHelp()
+{
+    KHelpClient::invokeHelp(QLatin1String("index"), QLatin1String("skanlite"));
+}
+
+void Skanlite::setAboutData(KAboutData *aboutData)
+{
+    m_aboutData = aboutData;
+}
+
 void Skanlite::closeEvent(QCloseEvent *event)
 {
     saveWindowSize();
@@ -192,26 +231,24 @@ void Skanlite::closeEvent(QCloseEvent *event)
     event->accept();
 }
 
-//************************************************************
 void Skanlite::saveWindowSize()
 {
-    KConfigGroup window(KGlobal::config(), "Window");
+    KConfigGroup window(KSharedConfig::openConfig(), "Window");
     window.writeEntry("Geometry", size());
     window.sync();
 }
+
 // Pops up message box similar to what perror() would print
 //************************************************************
 static void perrorMessageBox(const QString &text)
 {
     if (errno != 0) {
         KMessageBox::sorry(0, i18n("%1: %2", text, QString::fromLocal8Bit(strerror(errno))));
-    }
-    else {
+    } else {
         KMessageBox::sorry(0, text);
     }
 }
 
-//************************************************************
 void Skanlite::readSettings(void)
 {
     // enable the widgets to allow modifying
@@ -219,30 +256,33 @@ void Skanlite::readSettings(void)
     m_settingsUi.setPreviewDPI->setChecked(true);
 
     // read the saved parameters
-    KConfigGroup saving(KGlobal::config(), "Image Saving");
+    KConfigGroup saving(KSharedConfig::openConfig(), "Image Saving");
     m_settingsUi.saveModeCB->setCurrentIndex(saving.readEntry("SaveMode", (int)SaveModeManual));
-    if (m_settingsUi.saveModeCB->currentIndex() != SaveModeAskFirst) m_firstImage = false;
+    if (m_settingsUi.saveModeCB->currentIndex() != SaveModeAskFirst) {
+        m_firstImage = false;
+    }
     m_settingsUi.saveDirLEdit->setText(saving.readEntry("Location", QDir::homePath()));
     m_settingsUi.imgPrefix->setText(saving.readEntry("NamePrefix", i18nc("prefix for auto naming", "Image-")));
-    m_settingsUi.imgFormat->setCurrentItem(saving.readEntry("ImgFormat", "png"));
+    m_settingsUi.imgFormat->setCurrentText(saving.readEntry("ImgFormat", "png"));
     m_settingsUi.imgQuality->setValue(saving.readEntry("ImgQuality", 90));
     m_settingsUi.setQuality->setChecked(saving.readEntry("SetQuality", false));
     m_settingsUi.showB4Save->setChecked(saving.readEntry("ShowBeforeSave", true));
 
-    KConfigGroup general(KGlobal::config(), "General");
-    m_settingsUi.previewDPI->setCurrentItem(general.readEntry("PreviewDPI", "100"), true);
+    KConfigGroup general(KSharedConfig::openConfig(), "General");
+
+    //m_settingsUi.previewDPI->setCurrentItem(general.readEntry("PreviewDPI", "100"), true); // FIXME KF5 is the 'true' parameter still needed?
+    m_settingsUi.previewDPI->setCurrentText(general.readEntry("PreviewDPI", "100"));
+
     m_settingsUi.setPreviewDPI->setChecked(general.readEntry("SetPreviewDPI", false));
     if (m_settingsUi.setPreviewDPI->isChecked()) {
         m_ksanew->setPreviewResolution(m_settingsUi.previewDPI->currentText().toFloat());
-    }
-    else {
+    } else {
         m_ksanew->setPreviewResolution(0.0);
     }
     m_settingsUi.u_disableSelections->setChecked(general.readEntry("DisableAutoSelection", false));
     m_ksanew->enableAutoSelect(!m_settingsUi.u_disableSelections->isChecked());
 }
 
-//************************************************************
 void Skanlite::showSettingsDialog(void)
 {
     readSettings();
@@ -250,7 +290,7 @@ void Skanlite::showSettingsDialog(void)
     // show the dialog
     if (m_settingsDialog->exec()) {
         // save the settings
-        KConfigGroup saving(KGlobal::config(), "Image Saving");
+        KConfigGroup saving(KSharedConfig::openConfig(), "Image Saving");
         saving.writeEntry("SaveMode", m_settingsUi.saveModeCB->currentIndex());
         saving.writeEntry("Location", m_settingsUi.saveDirLEdit->text());
         saving.writeEntry("NamePrefix", m_settingsUi.imgPrefix->text());
@@ -260,7 +300,7 @@ void Skanlite::showSettingsDialog(void)
         saving.writeEntry("ShowBeforeSave", m_settingsUi.showB4Save->isChecked());
         saving.sync();
 
-        KConfigGroup general(KGlobal::config(), "General");
+        KConfigGroup general(KSharedConfig::openConfig(), "General");
         general.writeEntry("PreviewDPI", m_settingsUi.previewDPI->currentText());
         general.writeEntry("SetPreviewDPI", m_settingsUi.setPreviewDPI->isChecked());
         general.writeEntry("DisableAutoSelection", m_settingsUi.u_disableSelections->isChecked());
@@ -269,28 +309,24 @@ void Skanlite::showSettingsDialog(void)
         // the previewDPI has to be set here
         if (m_settingsUi.setPreviewDPI->isChecked()) {
             m_ksanew->setPreviewResolution(m_settingsUi.previewDPI->currentText().toFloat());
-        }
-        else {
+        } else {
             // 0.0 means default value.
             m_ksanew->setPreviewResolution(0.0);
         }
         m_ksanew->enableAutoSelect(!m_settingsUi.u_disableSelections->isChecked());
 
         // pressing OK in the settings dialog means use those settings.
-        m_saveLocation->u_saveDirLEdit->setText(m_settingsUi.saveDirLEdit->text());
+        m_saveLocation->u_urlRequester->setUrl(m_settingsUi.saveDirLEdit->text());
         m_saveLocation->u_imgPrefix->setText(m_settingsUi.imgPrefix->text());
-        m_saveLocation->u_imgFormat->setCurrentItem(m_settingsUi.imgFormat->currentText());
+        m_saveLocation->u_imgFormat->setCurrentText(m_settingsUi.imgFormat->currentText());
 
         m_firstImage = true;
-    }
-    else {
+    } else {
         //Forget Changes
         readSettings();
     }
 }
 
-
-//************************************************************
 void Skanlite::imageReady(QByteArray &data, int w, int h, int bpl, int f)
 {
     // save the image data
@@ -305,90 +341,111 @@ void Skanlite::imageReady(QByteArray &data, int w, int h, int bpl, int f)
         m_img = m_ksanew->toQImageSilent(data, w, h, bpl, (KSaneIface::KSaneWidget::ImageFormat)f);
         m_imageViewer.setQImage(&m_img);
         m_imageViewer.zoom2Fit();
-        m_showImgDialog->setDefaultButton(KDialog::User1);
+        m_showImgDialogSaveButton->setFocus();
         m_showImgDialog->exec();
         // save has been done as a result of save or then we got cancel
-    }
-    else {
+    } else {
         m_img = QImage(); // clear the image to ensure we save the correct one.
         saveImage();
     }
 }
 
-//************************************************************
 void Skanlite::saveImage()
 {
+    qDebug() << "saveImage()";
+
     // ask the first time if we are in "ask on first" mode
     if ((m_settingsUi.saveModeCB->currentIndex() == SaveModeAskFirst) && m_firstImage) {
-        if (m_saveLocation->exec() != KFileDialog::Accepted) return;
+        if (m_saveLocation->exec() != QFileDialog::Accepted) {
+            return;
+        }
         m_firstImage = false;
     }
 
-    QString dir = m_saveLocation->u_saveDirLEdit->text();
+    QString dir = m_saveLocation->u_urlRequester->url().toLocalFile();
     QString prefix = m_saveLocation->u_imgPrefix->text();
-    QString type = m_saveLocation->u_imgFormat->currentText().toLower();
+    QString imgFormat = m_saveLocation->u_imgFormat->currentText().toLower();
     int fileNumber = m_saveLocation->u_numStartFrom->value();
     QStringList filterList = m_filterList;
-    if ((m_format==KSaneIface::KSaneWidget::FormatRGB_16_C) ||
-        (m_format==KSaneIface::KSaneWidget::FormatGrayScale16))
-    {
+    if ((m_format == KSaneIface::KSaneWidget::FormatRGB_16_C) ||
+            (m_format == KSaneIface::KSaneWidget::FormatGrayScale16)) {
         filterList = m_filter16BitList;
-        if (type != "png") {
-            type = "png";
+        if (imgFormat != QLatin1String("png")) {
+            imgFormat = QLatin1String("png");
             KMessageBox::information(this, i18n("The image will be saved in the PNG format, as Skanlite only supports saving 16 bit color images in the PNG format."));
         }
     }
 
-
     // find next available file name for name suggestion
-    KUrl fileUrl;
+    QUrl fileUrl;
     QString fname;
-    for (int i=fileNumber; i<=m_saveLocation->u_numStartFrom->maximum(); ++i) {
-        fname = QString("%1%2.%3")
-        .arg(prefix)
-        .arg(i, 4, 10, QChar('0'))
-        .arg(type);
+    for (int i = fileNumber; i <= m_saveLocation->u_numStartFrom->maximum(); ++i) {
+        fname = QString::fromLatin1("%1%2.%3")
+                .arg(prefix)
+                .arg(i, 4, 10, QLatin1Char('0'))
+                .arg(imgFormat);
 
-        fileUrl = KUrl(QString("%1/%2").arg(dir).arg(fname));
+        fileUrl = QUrl::fromLocalFile(QString::fromLatin1("%1/%2").arg(dir).arg(fname));
         if (fileUrl.isLocalFile()) {
             if (!QFileInfo(fileUrl.toLocalFile()).exists()) {
                 break;
             }
-        }
-        else {
-            if (!KIO::NetAccess::exists(fileUrl, true, this)) {
+        } else {
+            //if (!KIO::NetAccess::exists(fileUrl, true, this)) { // FIXME KF5 ok?
+            KIO::StatJob *statJob = KIO::stat(fileUrl);
+            if (!statJob->exec()) {
                 break;
+            } else {
+                //statJob-> // FIXME KF5 TODO: determine if stat was ok, if not then break
+                //break;
             }
         }
     }
 
     if (m_settingsUi.saveModeCB->currentIndex() == SaveModeManual) {
+        // prepare the save dialog
+        QFileDialog saveDialog(this, i18n("New Image File Name"), m_settingsUi.saveDirLEdit->text());
+        saveDialog.setAcceptMode(QFileDialog::AcceptSave);
+        saveDialog.setFileMode(QFileDialog::AnyFile);
+
         // ask for a filename if requested.
-        m_saveDialog->setSelection(fileUrl.url());
-        m_saveDialog->setMimeFilter(filterList, "image/"+type);
+        qDebug() << fileUrl.url();
+        // qDebug() <<  fileUrl.toLocalFile(); // returns ""
+        saveDialog.selectFile(fileUrl.url());
+
+        QStringList actualFilterList = filterList;
+        //QString currentMimeFilter = QLatin1String("image/") + imgFormat;
+        saveDialog.setMimeTypeFilters(actualFilterList);
+
+        // FIXME KF5 / WAIT: probably due to a bug in QFileDialog integration the desired file type filter will not be selected (it defaults to the first one: png)
+        // saveDialog.selectMimeTypeFilter(currentMimeFilter); // does not work
+        // saveDialog.selectNameFilter("*." + imgFormat); // does not work either
 
         do {
-            if (m_saveDialog->exec() != KFileDialog::Accepted) return;
+            if (saveDialog.exec() != QFileDialog::Accepted) {
+                return;
+            }
 
-            fileUrl = m_saveDialog->selectedUrl();
+            Q_ASSERT(!saveDialog.selectedUrls().isEmpty());
+            fileUrl = saveDialog.selectedUrls().first();
             //kDebug() << "-----Save-----" << fname;
 
-            if (KIO::NetAccess::exists(fileUrl, true, this)) {
+            //if (KIO::NetAccess::exists(fileUrl, true, this)) { // FIXME KF5
+            if (false) {
+
                 if (KMessageBox::warningContinueCancel(this,
-                    i18n("Do you want to overwrite \"%1\"?", fileUrl.fileName()),
-                     QString(),
-                     KGuiItem(i18n("Overwrite")),
-                     KStandardGuiItem::cancel(),
-                     QString("editorWindowSaveOverwrite")
-                     ) ==  KMessageBox::Continue)
-                     {
-                         break;
-                     }
-            }
-            else {
+                                                       i18n("Do you want to overwrite \"%1\"?", fileUrl.fileName()),
+                                                       QString(),
+                                                       KGuiItem(i18n("Overwrite")),
+                                                       KStandardGuiItem::cancel(),
+                                                       QLatin1String("editorWindowSaveOverwrite")
+                                                      ) ==  KMessageBox::Continue) {
+                    break;
+                }
+            } else {
                 break;
             }
-        } while (1);
+        } while (true);
     }
 
     m_firstImage = false;
@@ -399,53 +456,52 @@ void Skanlite::saveImage()
         quality = m_settingsUi.imgQuality->value();
     }
 
-    QFileInfo fileInfo(fileUrl.pathOrUrl());
+    QFileInfo fileInfo(fileUrl.path());
 
     //kDebug() << "suffix" << fileInfo.suffix() << "localFile" << fileUrl.pathOrUrl();
-    fname = fileUrl.pathOrUrl();
-    KTemporaryFile tmp;
+    fname = fileUrl.path();
+    QTemporaryFile tmp;
     if (!fileUrl.isLocalFile()) {
-        tmp.setSuffix('.'+fileInfo.suffix());
+        // tmp.setSuffix('.'+fileInfo.suffix()); // FIXME KF5 needed?
         tmp.open();
         fname = tmp.fileName();
         tmp.close(); // we just want the filename
     }
 
     // Save
-    if ((m_format==KSaneIface::KSaneWidget::FormatRGB_16_C) ||
-        (m_format==KSaneIface::KSaneWidget::FormatGrayScale16))
-    {
+    if ((m_format == KSaneIface::KSaneWidget::FormatRGB_16_C) ||
+            (m_format == KSaneIface::KSaneWidget::FormatGrayScale16)) {
         KSaneImageSaver saver;
         if (saver.savePngSync(fname, m_data, m_width, m_height, m_format)) {
             m_showImgDialog->close(); // closing the window if it is closed should not be a problem.
-        }
-        else {
+        } else {
             perrorMessageBox(i18n("Failed to save image"));
         }
-    }
-    else  {
+    } else  {
         // create the image if needed.
         if (m_img.width() < 1) {
             m_img = m_ksanew->toQImage(m_data, m_width, m_height, m_bytesPerLine, (KSaneIface::KSaneWidget::ImageFormat)m_format);
         }
         if (m_img.save(fname, 0, quality)) {
             m_showImgDialog->close(); // calling close() on a closed window does nothing.
-        }
-        else {
+        } else {
             perrorMessageBox(i18n("Failed to save image"));
         }
     }
 
     if (!fileUrl.isLocalFile()) {
-        if (!KIO::NetAccess::upload( fname, fileUrl, this )) {
-            KMessageBox::sorry(0, i18n("Failed to upload image"));
-        }
+
+        // FIXME KF5:
+//         if (!KIO::NetAccess::upload( fname, fileUrl, this )) {
+//             KMessageBox::sorry(0, i18n("Failed to upload image"));
+//         }
+
     }
 
     // Save the file base name without number
     QString baseName = fileInfo.completeBaseName();
-    while ((baseName.size() > 1) && (baseName[baseName.size()-1].isNumber())) {
-        baseName.remove(baseName.size()-1, 1);
+    while ((baseName.size() > 1) && (baseName[baseName.size() - 1].isNumber())) {
+        baseName.remove(baseName.size() - 1, 1);
     }
     m_saveLocation->u_imgPrefix->setText(baseName);
 
@@ -454,41 +510,41 @@ void Skanlite::saveImage()
     fileNumStr.remove(baseName);
     fileNumber = fileNumStr.toInt();
     if (fileNumber) {
-        m_saveLocation->u_numStartFrom->setValue(fileNumber+1);
+        m_saveLocation->u_numStartFrom->setValue(fileNumber + 1);
     }
 
     if (m_settingsUi.saveModeCB->currentIndex() == SaveModeManual) {
         // Save last used dir, prefix and suffix.
-        m_saveLocation->u_saveDirLEdit->setText(fileUrl.upUrl().pathOrUrl());
-        m_saveLocation->u_imgFormat->setCurrentItem(fileInfo.suffix());
+        m_saveLocation->u_urlRequester->setUrl(KIO::upUrl(fileUrl).path());
+        m_saveLocation->u_imgFormat->setCurrentText(fileInfo.suffix());
     }
 }
 
-
-//************************************************************
 void Skanlite::getDir(void)
 {
-    QString dir = KFileDialog::getExistingDirectory(KUrl(m_settingsUi.saveDirLEdit->text()));
+    // FIXME KF5 / WAIT: this is not working yet due to a bug in frameworkintegration:
+    // see commit: 2c1ee08a21a1f16f9c2523718224598de8fc0d4f for kf5/src/frameworks/frameworkintegration/tests/qfiledialogtest.cpp
+    QString dir = QFileDialog::getExistingDirectory(m_settingsDialog, QString(), m_settingsUi.saveDirLEdit->text());
     if (!dir.isEmpty()) {
         m_settingsUi.saveDirLEdit->setText(dir);
     }
 }
 
-//************************************************************
 void Skanlite::showAboutDialog(void)
 {
-    KAboutApplicationDialog(KGlobal::mainComponent().aboutData(), 0).exec();
+    KAboutApplicationDialog(*m_aboutData).exec();
 }
 
-//************************************************************
 void Skanlite::saveScannerOptions()
 {
-    KConfigGroup saving(KGlobal::config(), "Image Saving");
+    KConfigGroup saving(KSharedConfig::openConfig(), "Image Saving");
     saving.writeEntry("NumberStartsFrom", m_saveLocation->u_numStartFrom->value());
 
-    if (!m_ksanew) return;
+    if (!m_ksanew) {
+        return;
+    }
 
-    KConfigGroup options(KGlobal::config(), QString("Options For %1").arg(m_deviceName));
+    KConfigGroup options(KSharedConfig::openConfig(), QString::fromLatin1("Options For %1").arg(m_deviceName));
     QMap <QString, QString> opts;
     m_ksanew->getOptVals(opts);
     QMap<QString, QString>::const_iterator it = opts.constBegin();
@@ -499,48 +555,47 @@ void Skanlite::saveScannerOptions()
     options.sync();
 }
 
-//************************************************************
 void Skanlite::defaultScannerOptions()
 {
-    if (!m_ksanew) return;
+    if (!m_ksanew) {
+        return;
+    }
 
     m_ksanew->setOptVals(m_defaultScanOpts);
 }
 
-//************************************************************
 void Skanlite::loadScannerOptions()
 {
-    KConfigGroup saving(KGlobal::config(), "Image Saving");
+    KConfigGroup saving(KSharedConfig::openConfig(), "Image Saving");
     m_saveLocation->u_numStartFrom->setValue(saving.readEntry("NumberStartsFrom", 1));
 
-    if (!m_ksanew) return;
+    if (!m_ksanew) {
+        return;
+    }
 
-    KConfigGroup scannerOptions(KGlobal::config(), QString("Options For %1").arg(m_deviceName));
+    KConfigGroup scannerOptions(KSharedConfig::openConfig(), QString::fromLatin1("Options For %1").arg(m_deviceName));
     m_ksanew->setOptVals(scannerOptions.entryMap());
 }
 
-//************************************************************
 void Skanlite::availableDevices(const QList<KSaneWidget::DeviceInfo> &deviceList)
 {
-    for (int i=0; i<deviceList.size(); i++) {
-        kDebug() << deviceList[i].name;
+    for (int i = 0; i < deviceList.size(); ++i) {
+        qDebug() << deviceList.at(i).name;
     }
 }
 
-//************************************************************
 void Skanlite::alertUser(int type, const QString &strStatus)
 {
     switch (type) {
-        case KSaneWidget::ErrorGeneral:
-            KMessageBox::sorry(0, strStatus, "Skanlite Test");
-            break;
-        default:
-            KMessageBox::information(0, strStatus, "Skanlite Test");
+    case KSaneWidget::ErrorGeneral:
+        KMessageBox::sorry(0, strStatus, QLatin1String("Skanlite Test"));
+        break;
+    default:
+        KMessageBox::information(0, strStatus, QLatin1String("Skanlite Test"));
     }
 }
 
-//************************************************************
 void Skanlite::buttonPressed(const QString &optionName, const QString &optionLabel, bool pressed)
 {
-    kDebug() << "Button" << optionName << optionLabel << ((pressed) ? "pressed" : "released");
+    qDebug() << "Button" << optionName << optionLabel << ((pressed) ? "pressed" : "released");
 }

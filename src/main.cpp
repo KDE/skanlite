@@ -1,6 +1,7 @@
 /* ============================================================
 *
 * Copyright (C) 2007-2012 by Kåre Särs <kare.sars@iki .fi>
+* Copyright (C) 2014 by Gregor Mitsch: port to KDE5 frameworks
 *
 * This program is free software; you can redistribute it and/or
 * modify it under the terms of the GNU General Public License as
@@ -19,68 +20,82 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>
 *
 * ============================================================ */
-#include <kapplication.h>
-#include <kcmdlineargs.h>
-#include <kaboutdata.h>
-#include <kglobal.h>
+
+#include <QCommandLineParser>
+#include <QCommandLineOption>
+#include <QDebug>
+
+#include <KAboutData>
+#include <KLocalizedString>
+#include <Kdelibs4ConfigMigrator>
 
 #include "skanlite.h"
 #include "version.h"
 
 int main(int argc, char *argv[])
 {
-    // about data
-    KAboutData aboutData("Skanlite", "skanlite", ki18n("Skanlite"), skanlite_version,
-                         ki18n("This is a scanning application for KDE based on libksane."),
-                         KAboutData::License_GPL,
-                         ki18n("(C) 2008-2014 Kåre Särs"));
+    Kdelibs4ConfigMigrator migrate(QLatin1String("Skanlite"));
+    migrate.setConfigFiles(QStringList() << QLatin1String("Skanliterc"));
+    migrate.migrate();
 
-    aboutData.addAuthor(ki18n("Kåre Särs"),
-                        ki18n("developer"),
-                        "kare.sars@iki.fi", 0);
+    QApplication app(argc, argv);
 
-    aboutData.addAuthor(ki18n("Arseniy Lartsev"),
-                        ki18n("contributor"),
-                        0, 0);
+    KLocalizedString::setApplicationDomain("skanlite");
 
-    aboutData.addCredit(ki18n("Gilles Caulier"),
-                        ki18n("Importing libksane to extragear"),
-                              0, 0);
+    KAboutData aboutData(QLatin1String("Skanlite"), // componentName, k4: appName
+                         i18n("Skanlite"), // displayName, k4: programName
+                         QLatin1String(skanlite_version), // version
+                         i18n("Scanning application for KDE based on libksane."), // shortDescription
+                         KAboutLicense::GPL, // licenseType
+                         i18n("(C) 2008-2014 Kåre Särs"), // copyrightStatement
+                         QString(), // other Text
+                         QString() // homePageAddress
+                        );
 
-    aboutData.addCredit(ki18n("Anne-Marie Mahfouf"),
-                        ki18n("Writing the user manual"),
-                              0, 0);
+    aboutData.addAuthor(i18n("Kåre Särs"),
+                        i18n("developer"),
+                        QLatin1String("kare.sars@iki.fi"));
 
-    aboutData.addCredit(ki18n("Laurent Montel"),
-                        ki18n("Importing libksane to extragear"),
-                              0, 0);
+    aboutData.addAuthor(i18n("Arseniy Lartsev"),
+                        i18n("contributor"));
 
-    aboutData.addCredit(ki18n("Chusslove Illich"),
-                        ki18n("Help with translations"),
-                              0, 0);
+    aboutData.addAuthor(i18n("Gregor Mi"),
+                        i18n("contributor"));
 
-    aboutData.addCredit(ki18n("Albert Astals Cid"),
-                        ki18n("Help with translations"),
-                              0, 0);
+    aboutData.addCredit(i18n("Gilles Caulier"),
+                        i18n("Importing libksane to extragear"));
 
-    aboutData.setProgramIconName("scanner");
+    aboutData.addCredit(i18n("Anne-Marie Mahfouf"),
+                        i18n("Writing the user manual"));
 
-    KCmdLineArgs::init(argc, argv, &aboutData);
+    aboutData.addCredit(i18n("Laurent Montel"),
+                        i18n("Importing libksane to extragear"));
 
-    KCmdLineOptions options;
-    options.add("d <device>", ki18n("Sane scanner device name."));
-    KCmdLineArgs::addCmdLineOptions(options);
-    KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
+    aboutData.addCredit(i18n("Chusslove Illich"),
+                        i18n("Help with translations"));
 
-    QString device = args->getOption("d");
+    aboutData.addCredit(i18n("Albert Astals Cid"),
+                        i18n("Help with translations"));
 
-    KApplication app;
+    app.setWindowIcon(QIcon::fromTheme(QLatin1String("scanner")));
 
-    Skanlite *skanlite = new Skanlite(device, 0);
+    QCoreApplication::setApplicationVersion(aboutData.version());
+    QCommandLineParser parser;
+    aboutData.setupCommandLine(&parser);
+    parser.addHelpOption();
+    parser.addVersionOption();
+    QCommandLineOption deviceOption(QStringList() << QLatin1String("d") << QLatin1String("device"), i18n("Sane scanner device name. Use 'test' for test device."), i18n("device"));
+    parser.addOption(deviceOption);
+    parser.process(app); // the --author and --license is shown anyway but they work only with the following line
+    aboutData.processCommandLine(&parser);
 
-    skanlite->show();
+    const QString deviceName = parser.value(deviceOption);
+    qDebug() << QString::fromLatin1("deviceOption value=%1").arg(deviceName);
 
-    QObject::connect(&app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()));
+    Skanlite skanliteDialog(deviceName, 0);
+    skanliteDialog.setAboutData(&aboutData);
+
+    skanliteDialog.show();
 
     return app.exec();
 }

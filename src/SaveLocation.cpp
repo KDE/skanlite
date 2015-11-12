@@ -3,6 +3,7 @@
 * Description : Save location settings dialog.
 *
 * Copyright (C) 2010-2012 by Kare Sars <kare.sars@iki.fi>
+* Copyright (C) 2014 by Gregor Mitsch: port to KDE5 frameworks
 *
 * This program is free software; you can redistribute it and/or
 * modify it under the terms of the GNU General Public License as
@@ -23,43 +24,41 @@
 * ============================================================ */
 
 #include "SaveLocation.h"
-#include "SaveLocation.moc"
 
-#include <KDebug>
-#include <KFileDialog>
+#include <QDebug>
+#include <QFileDialog>
+#include <QPushButton>
+#include <QComboBox>
 
-SaveLocation::SaveLocation(QWidget *parent) : KDialog(parent)
+SaveLocation::SaveLocation(QWidget *parent)
+    : QDialog(parent)
 {
-    QWidget *container = new QWidget(this);
-    setupUi(container);
-    setMainWidget(container);
-    connect(u_saveDirLEdit, SIGNAL(textChanged(QString)), this, SLOT(update()));
-    connect(u_imgPrefix,    SIGNAL(textChanged(QString)), this, SLOT(update()));
-    connect(u_imgFormat,    SIGNAL(activated(QString)),   this, SLOT(update()));
-    connect(u_numStartFrom, SIGNAL(valueChanged(int)),    this, SLOT(update()));
-    connect(u_getDirButton, SIGNAL(clicked()),            this, SLOT(getDir()));
+    setupUi(this);
+
+    connect(u_urlRequester, &KUrlRequester::textChanged, this, &SaveLocation::updateGui);
+    connect(u_urlRequester, &KUrlRequester::urlSelected,  this, &SaveLocation::getDir);
+    connect(u_imgPrefix, &QLineEdit::textChanged, this, &SaveLocation::updateGui);
+    connect(u_imgFormat, static_cast<void (QComboBox::*)(const QString &)>(&QComboBox::activated), this, &SaveLocation::updateGui);
+    connect(u_numStartFrom, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &SaveLocation::updateGui);
 }
 
-// ------------------------------------------------------------------------
 SaveLocation::~SaveLocation()
 {
 }
 
-// ------------------------------------------------------------------------
-void SaveLocation::update()
+void SaveLocation::updateGui()
 {
     if (sender() != u_numStartFrom) {
         u_numStartFrom->setValue(1); // Reset the counter whenever the directory or the prefix is changed
     }
-    QString name = QString("%1%2.%3").arg(u_imgPrefix->text()).arg(u_numStartFrom->value(), 4, 10, QLatin1Char('0')).arg(u_imgFormat->currentText());
-    u_resultValue->setText(QFileInfo(u_saveDirLEdit->text(), name).absoluteFilePath());
+    const QString name = QString::fromLatin1("%1%2.%3").arg(u_imgPrefix->text()).arg(u_numStartFrom->value(), 4, 10, QLatin1Char('0')).arg(u_imgFormat->currentText());
+    u_resultValue->setText(QUrl(u_urlRequester->url().resolved(QUrl(name))).toLocalFile());
 }
 
-// ------------------------------------------------------------------------
 void SaveLocation::getDir(void)
 {
-    QString newDir = KFileDialog::getExistingDirectory(u_saveDirLEdit->text());
+    const QString newDir = QFileDialog::getExistingDirectory(this, QString(), u_urlRequester->url().toLocalFile());
     if (!newDir.isEmpty()) {
-        u_saveDirLEdit->setText(newDir);
+        u_urlRequester->setUrl(newDir);
     }
 }

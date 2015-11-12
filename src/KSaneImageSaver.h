@@ -3,6 +3,7 @@
 * Description : Image saver class for libksane image data.
 *
 * Copyright (C) 2010-2012 by Kåre Särs <kare.sars@iki .fi>
+* Copyright (C) 2014 by Gregor Mitsch: port to KDE5 frameworks
 *
 * This program is free software; you can redistribute it and/or
 * modify it under the terms of the GNU General Public License as
@@ -25,37 +26,36 @@
 #ifndef KSaneImageSaver_h
 #define KSaneImageSaver_h
 
-#include <libksane/ksane.h>
-
+#include <QByteArray>
 #include <QThread>
+#include <QString>
 
 class KSaneImageSaver : public QThread
 {
     Q_OBJECT
-    public:
-        KSaneImageSaver(QObject *parent = 0);
-        ~KSaneImageSaver();
+public:
+    KSaneImageSaver(QObject *parent = 0);
+    ~KSaneImageSaver();
 
-        bool savePng(const QString &name, const QByteArray &data, int width, int height, int format);
+    bool savePng(const QString &name, const QByteArray &data, int width, int height, int format);
 
-        bool savePngSync(const QString &name, const QByteArray &data, int width, int height, int format);
+    bool savePngSync(const QString &name, const QByteArray &data, int width, int height, int format);
 
-        bool saveTiff(const QString &name, const QByteArray &data, int width, int height, int format);
+    bool saveTiff(const QString &name, const QByteArray &data, int width, int height, int format);
 
-        bool saveTiffSync(const QString &name, const QByteArray &data, int width, int height, int format);
+    bool saveTiffSync(const QString &name, const QByteArray &data, int width, int height, int format);
 
-    Q_SIGNALS:
-        void imageSaved(bool success);
-        
-    protected:
-        void run();
+Q_SIGNALS:
+    void imageSaved(bool success);
 
-    private:
-        struct Private;
-        Private * const d;
+protected:
+    void run();
+
+private:
+    struct Private;
+    Private *const d;
 
 };
 
 #endif
-
 
