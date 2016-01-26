@@ -52,7 +52,7 @@ void SaveLocation::updateGui()
         u_numStartFrom->setValue(1); // Reset the counter whenever the directory or the prefix is changed
     }
     const QString name = QString::fromLatin1("%1%2.%3").arg(u_imgPrefix->text()).arg(u_numStartFrom->value(), 4, 10, QLatin1Char('0')).arg(u_imgFormat->currentText());
-    u_resultValue->setText(QUrl(u_urlRequester->url().resolved(QUrl(name))).toLocalFile());
+    u_resultValue->setText(QUrl(u_urlRequester->url().resolved(QUrl(name))).toString(QUrl::PreferLocalFile | QUrl::NormalizePathSegments));
 }
 
 void SaveLocation::getDir(void)

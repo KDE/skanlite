@@ -34,11 +34,11 @@
 
 int main(int argc, char *argv[])
 {
+    QApplication app(argc, argv);
+
     Kdelibs4ConfigMigrator migrate(QLatin1String("Skanlite"));
     migrate.setConfigFiles(QStringList() << QLatin1String("Skanliterc"));
     migrate.migrate();
-
-    QApplication app(argc, argv);
 
     KLocalizedString::setApplicationDomain("skanlite");
 
@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
                          QLatin1String(skanlite_version), // version
                          i18n("Scanning application for KDE based on libksane."), // shortDescription
                          KAboutLicense::GPL, // licenseType
-                         i18n("(C) 2008-2014 Kåre Särs"), // copyrightStatement
+                         i18n("(C) 2008-2016 Kåre Särs"), // copyrightStatement
                          QString(), // other Text
                          QString() // homePageAddress
                         );
@@ -56,10 +56,10 @@ int main(int argc, char *argv[])
                         i18n("developer"),
                         QLatin1String("kare.sars@iki.fi"));
 
-    aboutData.addAuthor(i18n("Arseniy Lartsev"),
+    aboutData.addAuthor(i18n("Gregor Mi"),
                         i18n("contributor"));
 
-    aboutData.addAuthor(i18n("Gregor Mi"),
+    aboutData.addAuthor(i18n("Arseniy Lartsev"),
                         i18n("contributor"));
 
     aboutData.addCredit(i18n("Gilles Caulier"),

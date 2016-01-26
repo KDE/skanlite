@@ -44,8 +44,9 @@
 #include <KAboutApplicationDialog>
 #include <KLocalizedString>
 #include <KMessageBox>
-// #include <kio/netaccess.h> // FIXME KF5: see /usr/include/kio/netaccess.h
 #include <KIO/StatJob>
+#include <KIO/Job>
+#include <KJobWidgets>
 #include <kio/global.h>
 #include <KSharedConfig>
 #include <KConfigGroup>
@@ -123,7 +124,7 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
         m_filterList.insert(2, QLatin1String("image/tiff"));
 
         m_filter16BitList << QLatin1String("image/png");
-        //m_filter16BitList << "image/tiff";
+        //m_filter16BitList << QLatin1String("image/tiff");
 
         // fill m_filterList (...) and m_typeList (list of file suffixes)
         foreach (QString mimeStr, m_filterList) {
@@ -172,11 +173,13 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
             // could not open a scanner
             KMessageBox::sorry(0, i18n("Opening the selected scanner failed."));
             exit(1);
-        } else {
+        }
+        else {
             setWindowTitle(i18nc("@title:window %1 = scanner maker, %2 = scanner model", "%1 %2 - Skanlite", m_ksanew->make(), m_ksanew->model()));
             m_deviceName = QString::fromLatin1("%1:%2").arg(m_ksanew->make()).arg(m_ksanew->model());
         }
-    } else {
+    }
+    else {
         setWindowTitle(i18nc("@title:window %1 = scanner device", "%1 - Skanlite", device));
         m_deviceName = device;
     }
@@ -187,20 +190,21 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
 
         QVBoxLayout *mainLayout = new QVBoxLayout(m_showImgDialog);
 
-        QDialogButtonBox *dlgBtnBoxBottom = new QDialogButtonBox(m_showImgDialog);
+        QDialogButtonBox *imgButtonBox = new QDialogButtonBox(m_showImgDialog);
         // "Close" (now Discard) and "User1"=Save
-        dlgBtnBoxBottom->setStandardButtons(QDialogButtonBox::Discard | QDialogButtonBox::Save);
+        imgButtonBox->setStandardButtons(QDialogButtonBox::Discard | QDialogButtonBox::Save);
 
         mainLayout->addWidget(&m_imageViewer);
-        mainLayout->addWidget(dlgBtnBoxBottom);
+        mainLayout->addWidget(imgButtonBox);
 
-        m_showImgDialogSaveButton = dlgBtnBoxBottom->button(QDialogButtonBox::Save);
+        m_showImgDialogSaveButton = imgButtonBox->button(QDialogButtonBox::Save);
         m_showImgDialogSaveButton->setDefault(true); // still needed?
 
         m_showImgDialog->resize(640, 480);
-        connect(dlgBtnBoxBottom, &QDialogButtonBox::accepted, this, &Skanlite::saveImage);
-        connect(dlgBtnBoxBottom, &QDialogButtonBox::accepted, m_showImgDialog, &QDialog::accept);
-        connect(dlgBtnBoxBottom->button(QDialogButtonBox::Discard), &QPushButton::clicked, m_showImgDialog, &QDialog::reject);
+        connect(imgButtonBox, &QDialogButtonBox::accepted, this, &Skanlite::saveImage);
+        //connect(imgButtonBox, &QDialogButtonBox::accepted, m_showImgDialog, &QDialog::accept);
+        connect(imgButtonBox->button(QDialogButtonBox::Discard), &QPushButton::clicked, m_ksanew, &KSaneWidget::scanCancel);
+        connect(imgButtonBox->button(QDialogButtonBox::Discard), &QPushButton::clicked, m_showImgDialog, &QDialog::reject);
     }
 
     // save the default sane options for later use
@@ -352,17 +356,16 @@ void Skanlite::imageReady(QByteArray &data, int w, int h, int bpl, int f)
 
 void Skanlite::saveImage()
 {
-    qDebug() << "saveImage()";
-
     // ask the first time if we are in "ask on first" mode
     if ((m_settingsUi.saveModeCB->currentIndex() == SaveModeAskFirst) && m_firstImage) {
         if (m_saveLocation->exec() != QFileDialog::Accepted) {
+            m_ksanew->scanCancel(); // In case we are cancelling a document feeder scan
             return;
         }
         m_firstImage = false;
     }
 
-    QString dir = m_saveLocation->u_urlRequester->url().toLocalFile();
+    QString dir = m_saveLocation->u_urlRequester->url().url();
     QString prefix = m_saveLocation->u_imgPrefix->text();
     QString imgFormat = m_saveLocation->u_imgFormat->currentText().toLower();
     int fileNumber = m_saveLocation->u_numStartFrom->value();
@@ -376,6 +379,8 @@ void Skanlite::saveImage()
         }
     }
 
+    //qDebug() << dir << prefix << imgFormat;
+
     // find next available file name for name suggestion
     QUrl fileUrl;
     QString fname;
@@ -385,64 +390,69 @@ void Skanlite::saveImage()
                 .arg(i, 4, 10, QLatin1Char('0'))
                 .arg(imgFormat);
 
-        fileUrl = QUrl::fromLocalFile(QString::fromLatin1("%1/%2").arg(dir).arg(fname));
+        fileUrl = QUrl::fromUserInput(QStringLiteral("%1%2").arg(dir, fname));
+        //qDebug() << fileUrl;
         if (fileUrl.isLocalFile()) {
             if (!QFileInfo(fileUrl.toLocalFile()).exists()) {
                 break;
             }
-        } else {
-            //if (!KIO::NetAccess::exists(fileUrl, true, this)) { // FIXME KF5 ok?
-            KIO::StatJob *statJob = KIO::stat(fileUrl);
+        }
+        else {
+            KIO::StatJob *statJob = KIO::stat(fileUrl, KIO::StatJob::DestinationSide, 0);
+            KJobWidgets::setWindow(statJob, QApplication::activeWindow());
             if (!statJob->exec()) {
                 break;
-            } else {
-                //statJob-> // FIXME KF5 TODO: determine if stat was ok, if not then break
-                //break;
             }
         }
     }
 
     if (m_settingsUi.saveModeCB->currentIndex() == SaveModeManual) {
         // prepare the save dialog
-        QFileDialog saveDialog(this, i18n("New Image File Name"), m_settingsUi.saveDirLEdit->text());
+        QFileDialog saveDialog(this, i18n("New Image File Name"));
         saveDialog.setAcceptMode(QFileDialog::AcceptSave);
         saveDialog.setFileMode(QFileDialog::AnyFile);
 
         // ask for a filename if requested.
-        qDebug() << fileUrl.url();
-        // qDebug() <<  fileUrl.toLocalFile(); // returns ""
-        saveDialog.selectFile(fileUrl.url());
+        saveDialog.setDirectoryUrl(fileUrl.adjusted(QUrl::RemoveFilename));
+        saveDialog.selectUrl(fileUrl);
+        // NOTE it is probably a bug that both setDirectoryUrl and selectUrl have
+        // to be set to get remote urls to work
 
         QStringList actualFilterList = filterList;
-        //QString currentMimeFilter = QLatin1String("image/") + imgFormat;
+        QString currentMimeFilter = QLatin1String("image/") + imgFormat;
         saveDialog.setMimeTypeFilters(actualFilterList);
-
-        // FIXME KF5 / WAIT: probably due to a bug in QFileDialog integration the desired file type filter will not be selected (it defaults to the first one: png)
-        // saveDialog.selectMimeTypeFilter(currentMimeFilter); // does not work
-        // saveDialog.selectNameFilter("*." + imgFormat); // does not work either
+        saveDialog.selectMimeTypeFilter(currentMimeFilter);
+        //qDebug() << fileUrl.url() << fileUrl.toLocalFile() << currentMimeFilter;
 
         do {
             if (saveDialog.exec() != QFileDialog::Accepted) {
                 return;
             }
 
-            Q_ASSERT(!saveDialog.selectedUrls().isEmpty());
-            fileUrl = saveDialog.selectedUrls().first();
-            //kDebug() << "-----Save-----" << fname;
+            fileUrl = saveDialog.selectedUrls()[0];
 
-            //if (KIO::NetAccess::exists(fileUrl, true, this)) { // FIXME KF5
-            if (false) {
-
+            bool exists;
+            if (fileUrl.isLocalFile()) {
+                exists = QFileInfo(fileUrl.toLocalFile()).exists();
+            }
+            else {
+                KIO::StatJob *statJob = KIO::stat(fileUrl, KIO::StatJob::DestinationSide, 0);
+                KJobWidgets::setWindow(statJob, QApplication::activeWindow());
+                exists = statJob->exec();
+            }
+            if (exists) {
                 if (KMessageBox::warningContinueCancel(this,
-                                                       i18n("Do you want to overwrite \"%1\"?", fileUrl.fileName()),
-                                                       QString(),
-                                                       KGuiItem(i18n("Overwrite")),
-                                                       KStandardGuiItem::cancel(),
-                                                       QLatin1String("editorWindowSaveOverwrite")
-                                                      ) ==  KMessageBox::Continue) {
+                    i18n("Do you want to overwrite \"%1\"?", fileUrl.fileName()),
+                    QString(),
+                    KGuiItem(i18n("Overwrite")),
+                    KStandardGuiItem::cancel(),
+                    QLatin1String("editorWindowSaveOverwrite")
+                ) ==  KMessageBox::Continue)
+                {
                     break;
                 }
-            } else {
+            }
+            else {
                 break;
             }
         } while (true);
@@ -456,57 +466,67 @@ void Skanlite::saveImage()
         quality = m_settingsUi.imgQuality->value();
     }
 
-    QFileInfo fileInfo(fileUrl.path());
-
-    //kDebug() << "suffix" << fileInfo.suffix() << "localFile" << fileUrl.pathOrUrl();
-    fname = fileUrl.path();
-    QTemporaryFile tmp;
+    //qDebug() << "suffix" << QFileInfo(fileUrl.fileName()).suffix();
+    QString localName;
     if (!fileUrl.isLocalFile()) {
-        // tmp.setSuffix('.'+fileInfo.suffix()); // FIXME KF5 needed?
+        QTemporaryFile tmp;
         tmp.open();
-        fname = tmp.fileName();
+        localName = QStringLiteral("%1.%2").arg(tmp.fileName(), QFileInfo(fileUrl.fileName()).suffix());
         tmp.close(); // we just want the filename
+    }
+    else {
+        localName = fileUrl.toLocalFile();
     }
 
     // Save
     if ((m_format == KSaneIface::KSaneWidget::FormatRGB_16_C) ||
-            (m_format == KSaneIface::KSaneWidget::FormatGrayScale16)) {
+        (m_format == KSaneIface::KSaneWidget::FormatGrayScale16))
+    {
         KSaneImageSaver saver;
-        if (saver.savePngSync(fname, m_data, m_width, m_height, m_format)) {
+        if (saver.savePngSync(localName, m_data, m_width, m_height, m_format)) {
             m_showImgDialog->close(); // closing the window if it is closed should not be a problem.
-        } else {
-            perrorMessageBox(i18n("Failed to save image"));
         }
-    } else  {
+        else {
+            perrorMessageBox(i18n("Failed to save image"));
+            return;
+        }
+    }
+    else  {
         // create the image if needed.
         if (m_img.width() < 1) {
             m_img = m_ksanew->toQImage(m_data, m_width, m_height, m_bytesPerLine, (KSaneIface::KSaneWidget::ImageFormat)m_format);
         }
-        if (m_img.save(fname, 0, quality)) {
+        if (m_img.save(localName, 0, quality)) {
             m_showImgDialog->close(); // calling close() on a closed window does nothing.
-        } else {
+        }
+        else {
             perrorMessageBox(i18n("Failed to save image"));
+            return;
         }
     }
 
     if (!fileUrl.isLocalFile()) {
-
-        // FIXME KF5:
-//         if (!KIO::NetAccess::upload( fname, fileUrl, this )) {
-//             KMessageBox::sorry(0, i18n("Failed to upload image"));
-//         }
-
+        QFile tmpFile(localName);
+        tmpFile.open(QIODevice::ReadOnly);
+        auto uploadJob = KIO::storedPut(&tmpFile, fileUrl, -1);
+        KJobWidgets::setWindow(uploadJob, QApplication::activeWindow());
+        bool ok = uploadJob->exec();
+        tmpFile.close();
+        tmpFile.remove();
+        if (!ok) {
+            KMessageBox::sorry(0, i18n("Failed to upload image"));
+        }
     }
 
     // Save the file base name without number
-    QString baseName = fileInfo.completeBaseName();
+    QString baseName = QFileInfo(fileUrl.fileName()).completeBaseName();
     while ((baseName.size() > 1) && (baseName[baseName.size() - 1].isNumber())) {
         baseName.remove(baseName.size() - 1, 1);
     }
     m_saveLocation->u_imgPrefix->setText(baseName);
 
     // Save the number
-    QString fileNumStr = fileInfo.completeBaseName();
+    QString fileNumStr = QFileInfo(fileUrl.fileName()).completeBaseName();
     fileNumStr.remove(baseName);
     fileNumber = fileNumStr.toInt();
     if (fileNumber) {
@@ -515,8 +535,8 @@ void Skanlite::saveImage()
 
     if (m_settingsUi.saveModeCB->currentIndex() == SaveModeManual) {
         // Save last used dir, prefix and suffix.
-        m_saveLocation->u_urlRequester->setUrl(KIO::upUrl(fileUrl).path());
-        m_saveLocation->u_imgFormat->setCurrentText(fileInfo.suffix());
+        m_saveLocation->u_urlRequester->setUrl(KIO::upUrl(fileUrl).url());
+        m_saveLocation->u_imgFormat->setCurrentText(QFileInfo(fileUrl.fileName()).suffix());
     }
 }
 
