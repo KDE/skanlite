@@ -13,7 +13,7 @@ include(ECMGenerateHeaders)
 include(CMakePackageConfigHelpers)
 include(CheckFunctionExists)
 include(KDEInstallDirs) # yields ${XDG_APPS_INSTALL_DIR}
-include(KDEFrameworkCompilerSettings)
+include(KDEFrameworkCompilerSettings NO_POLICY_SCOPE)
 include(KDECMakeSettings)
 include(GenerateExportHeader)
 
