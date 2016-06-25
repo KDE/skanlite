@@ -56,6 +56,8 @@ find_package(KF5 ${KF5_VERSION} REQUIRED
         TextWidgets
 )
 
+add_definitions(-DQT_NO_URL_CAST_FROM_STRING)
+
 # Subdirectories
 add_subdirectory(src)
 add_subdirectory(doc)

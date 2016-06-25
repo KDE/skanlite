@@ -59,6 +59,6 @@ void SaveLocation::getDir(void)
 {
     const QString newDir = QFileDialog::getExistingDirectory(this, QString(), u_urlRequester->url().toLocalFile());
     if (!newDir.isEmpty()) {
-        u_urlRequester->setUrl(newDir);
+        u_urlRequester->setUrl(QUrl::fromLocalFile(newDir));
     }
 }

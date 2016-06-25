@@ -157,7 +157,7 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
         readSettings();
 
         // default directory for the save dialog
-        m_saveLocation->u_urlRequester->setUrl(m_settingsUi.saveDirLEdit->text());
+        m_saveLocation->u_urlRequester->setUrl(QUrl::fromUserInput(m_settingsUi.saveDirLEdit->text()));
         m_saveLocation->u_imgPrefix->setText(m_settingsUi.imgPrefix->text());
         m_saveLocation->u_imgFormat->setCurrentText(m_settingsUi.imgFormat->currentText());
     }
@@ -320,7 +320,7 @@ void Skanlite::showSettingsDialog(void)
         m_ksanew->enableAutoSelect(!m_settingsUi.u_disableSelections->isChecked());
 
         // pressing OK in the settings dialog means use those settings.
-        m_saveLocation->u_urlRequester->setUrl(m_settingsUi.saveDirLEdit->text());
+        m_saveLocation->u_urlRequester->setUrl(QUrl::fromUserInput(m_settingsUi.saveDirLEdit->text()));
         m_saveLocation->u_imgPrefix->setText(m_settingsUi.imgPrefix->text());
         m_saveLocation->u_imgFormat->setCurrentText(m_settingsUi.imgFormat->currentText());
 
@@ -535,7 +535,7 @@ void Skanlite::saveImage()
 
     if (m_settingsUi.saveModeCB->currentIndex() == SaveModeManual) {
         // Save last used dir, prefix and suffix.
-        m_saveLocation->u_urlRequester->setUrl(KIO::upUrl(fileUrl).url());
+        m_saveLocation->u_urlRequester->setUrl(KIO::upUrl(fileUrl));
         m_saveLocation->u_imgFormat->setCurrentText(QFileInfo(fileUrl.fileName()).suffix());
     }
 }
