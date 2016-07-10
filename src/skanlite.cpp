@@ -110,6 +110,9 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
         const QList<QByteArray> tmpList = QImageWriter::supportedMimeTypes();
         m_filterList.clear();
         foreach (auto ba, tmpList) {
+            if (ba.isEmpty()) {
+                continue;
+            }
             m_filterList.append(QString::fromLatin1(ba));
         }
 
