@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+ <id>org.kde.scanlite.desktop</id>
+ <metadata_license>CC0-1.0</metadata_license>
+ <project_license>GPL-2.0+ and GFDL-1.3</project_license>
+ <name>Skanlite</name>
+ <summary>Image Scanning Application</summary>
+ <description>
+  <p>
+   Skanlite is a simple image scanning application to scan and save images.
+   Skanlite is based on libksane, an interface for SANE library to control image scanners.
+  </p>
+  <p>Features:</p>
+  <ul>
+   <li>Save dialog for every image scanned or saving the images immediately in a specified folder with auto-generated names and format</li>
+   <li>Support for networks scanners</li>
+   <li>Preview with selection feature for the final scan</li>
+   <li>Scanning multiple selections of an image</li>
+  </ul>
+ </description>
+ <screenshots>
+  <screenshot type="default">
+   <image>https://www.kde.org/images/screenshots/skanlite.png</image>
+  </screenshot>
+ </screenshots>
+ <url type="homepage">https://www.kde.org/applications/graphics/skanlite/</url>
+ <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=skanlite</url>
+ <project_group>KDE</project_group>
+ <provides>
+    <binary>skanlite</binary>
+  </provides>
+</component>

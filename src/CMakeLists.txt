@@ -20,3 +20,4 @@ target_link_libraries(skanlite
 
 install(TARGETS skanlite ${INSTALL_TARGETS_DEFAULT_ARGS})
 install(PROGRAMS org.kde.skanlite.desktop DESTINATION ${XDG_APPS_INSTALL_DIR})
+install( FILES org.kde.skanlite.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR} )
