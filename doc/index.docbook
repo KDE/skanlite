@@ -1,8 +1,5 @@
 <?xml version="1.0" ?>
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
-  <!ENTITY skanlite "<application>Skanlite</application>">
-  <!ENTITY kappname "&skanlite;">
-  <!ENTITY package "extragear/graphics">
   <!ENTITY % addindex "IGNORE">
   <!ENTITY % English "INCLUDE"><!-- change language only here -->
 ]>
@@ -41,14 +38,14 @@
 
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2013-02-08</date>
-<releaseinfo>1.0</releaseinfo>
+<date>2016-08-24</date>
+<releaseinfo>2.0.0</releaseinfo>
 
 <abstract>
 <para>
 &skanlite; is an image scanning application that does nothing more than scan and save images.
 </para>
-<para>&skanlite; is based on libksane, a &kde; interface for SANE library to control flat scanners.</para>
+<para>&skanlite; is based on libksane, a &kde; interface for SANE library to control image scanners.</para>
 </abstract>
 
 <keywordset>
@@ -64,7 +61,7 @@
 <title>Introduction</title>
 <para>&skanlite; is a simple image scanning application that does nothing more than scan and save images. &skanlite; can open a save dialog for every image scanned or save the images immediately in a specified folder with auto-generated names and format. The user can also choose to show the scanned image before saving.</para>
 <para>
-&skanlite; can save images in all the formats supported by KDE. For example the following formats:
+&skanlite; can save images in all the formats supported by &Qt;. For example the following formats:
 <itemizedlist>
 <listitem><para>
 png (8 and 16 bits per color)
@@ -246,7 +243,7 @@ You will see the progress of the scan.
 </screenshot>
 
 <para>
-If <guilabel>Preview before saving</guilabel> is selected in the settings, the scanned image is displayed in a preview window as you can see below on the screenshot. If <guibutton>Save</guibutton> is pressed, the image is saved and if <guibutton>Close</guibutton> is pressed the preview is discarded and you return to the main window.
+If <guilabel>Preview before saving</guilabel> is selected in the settings, the scanned image is displayed in a preview window as you can see below on the screenshot. If <guibutton>Save</guibutton> is pressed, the image is saved and if <guibutton>Discard</guibutton> is pressed the preview is discarded and you return to the main window.
 </para>
 <screenshot>
      <screeninfo>The Preview Window</screeninfo>
@@ -439,27 +436,6 @@ Contributors:
 &skanlite; is licensed under the GPL and the libksane library, used by &skanlite;,  is licensed under the LGPL. Note: libsane is licensed under GPL with an exception.
 </para>
 </chapter>
-
-
-
-<appendix id="installation">
-<title>Installation</title>
-
-<sect1 id="getting-skanlite">
-<title>How to obtain &skanlite;</title>
-
-&install.intro.documentation;
-
-</sect1>
-
-<sect1 id="compilation">
-<title>Compilation and Installation</title>
-
-&install.compile.documentation;
-
-</sect1>
-
-</appendix>
 
 &documentation.index;
 </book>
