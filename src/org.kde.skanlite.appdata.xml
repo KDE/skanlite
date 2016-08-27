@@ -7,6 +7,7 @@
   <name xml:lang="ca">Skanlite</name>
   <name xml:lang="nl">Skanlite</name>
   <name xml:lang="pt">Skanlite</name>
+  <name xml:lang="sk">Skanlite</name>
   <name xml:lang="sv">Skanlite</name>
   <name xml:lang="uk">Skanlite</name>
   <name xml:lang="x-test">xxSkanlitexx</name>
@@ -14,6 +15,7 @@
   <summary xml:lang="ca">Aplicació per a la digitalització d'imatges</summary>
   <summary xml:lang="nl">Afbeeldingscanprogramma</summary>
   <summary xml:lang="pt">Aplicação de Digitalização de Imagens</summary>
+  <summary xml:lang="sk">Aplikácia na skenovanie obrázkov</summary>
   <summary xml:lang="sv">Bildinläsningsprogram</summary>
   <summary xml:lang="uk">Програма для сканування зображень</summary>
   <summary xml:lang="x-test">xxImage Scanning Applicationxx</summary>
@@ -32,6 +34,7 @@
     <p xml:lang="ca">Característiques:</p>
     <p xml:lang="nl">Mogelijkheden:</p>
     <p xml:lang="pt">Funcionalidades:</p>
+    <p xml:lang="sk">Funkcie:</p>
     <p xml:lang="sv">Funktioner:</p>
     <p xml:lang="uk">Можливості:</p>
     <p xml:lang="x-test">xxFeatures:xx</p>
