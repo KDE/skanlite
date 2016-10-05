@@ -18,6 +18,7 @@
   <name xml:lang="sv">Skanlite</name>
   <name xml:lang="uk">Skanlite</name>
   <name xml:lang="x-test">xxSkanlitexx</name>
+  <name xml:lang="zh-CN">Skanlite</name>
   <summary>Image Scanning Application</summary>
   <summary xml:lang="ca">Aplicació per a la digitalització d'imatges</summary>
   <summary xml:lang="ca-valencia">Aplicació per a la digitalització d'imatges</summary>
@@ -62,6 +63,7 @@
     <p xml:lang="sv">Funktioner:</p>
     <p xml:lang="uk">Можливості:</p>
     <p xml:lang="x-test">xxFeatures:xx</p>
+    <p xml:lang="zh-CN">功能：</p>
     <ul>
       <li>Save dialog for every image scanned or saving the images immediately in a specified folder with auto-generated names and format</li>
       <li xml:lang="ca">Diàleg per desar cada imatge escanejada o desar les imatges immediatament en una carpeta especificada amb noms i format generats automàticament</li>
