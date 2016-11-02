@@ -53,7 +53,6 @@ find_package(KF5 ${KF5_VERSION} REQUIRED
         KIO # contains the KIOWidgets which we use in target_link_libraries
         DocTools # yields kdoctools_create_handbook
         Sane # will find KF5Sane
-        TextWidgets
 )
 
 add_definitions(-DQT_NO_URL_CAST_FROM_STRING)
