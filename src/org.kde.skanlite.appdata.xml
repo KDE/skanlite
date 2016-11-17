@@ -10,6 +10,7 @@
   <name xml:lang="de">Skanlite</name>
   <name xml:lang="en-GB">Skanlite</name>
   <name xml:lang="es">Skanlite</name>
+  <name xml:lang="it">Skanlite</name>
   <name xml:lang="nl">Skanlite</name>
   <name xml:lang="pl">Skanlite</name>
   <name xml:lang="pt">Skanlite</name>
@@ -26,6 +27,7 @@
   <summary xml:lang="de">Anwendung zum Scannen von Bildern</summary>
   <summary xml:lang="en-GB">Image Scanning Application</summary>
   <summary xml:lang="es">Aplicación para escanear imágenes</summary>
+  <summary xml:lang="it">Applicazione per la scansione delle immagini</summary>
   <summary xml:lang="nl">Afbeeldingscanprogramma</summary>
   <summary xml:lang="pl">Program do skanowania obrazów</summary>
   <summary xml:lang="pt">Aplicação de Digitalização de Imagens</summary>
@@ -42,6 +44,7 @@
     <p xml:lang="ca-valencia">Skanlite és una senzilla aplicació per escanejar imatges i guardar-les. Skanlite es basa en «libsane», una interfície per a la biblioteca SANE que controla els escàners d'imatges.</p>
     <p xml:lang="en-GB">Skanlite is a simple image scanning application to scan and save images. Skanlite is based on libksane, an interface for SANE library to control image scanners.</p>
     <p xml:lang="es">Skanlite es una sencilla aplicación para escanear y guardar imágenes. Skanlite se basa en libksane, una interfaz para la biblioteca SANE que permite controlar escáneres.</p>
+    <p xml:lang="it">Skanlite è una semplice applicazione per la scansione e il salvataggio delle immagini. Skanlite si basa su libksane, un'interfaccia per la libreria SANE per il controllo degli scanner per immagini.</p>
     <p xml:lang="nl">Skanlite is eenvoudige toepassing voor het scannen en opslaan van afbeeldingen. Skanlite is gebaseerd op libksane, een interface voor de SANE-bibliotheek voor de besturing van afbeeldingsscanners.</p>
     <p xml:lang="pl">Skanlite jest prostą aplikacją do skanowania i zapisywania obrazów. Skanlite jest oparty na libksane, interfejsie dla biblioteki SANE do obsługi skanerów obrazów.</p>
     <p xml:lang="pt">O Skanlite é uma aplicação simples de digitalização de imagens para digitalizar e gravar as imagens. O Skanlite baseia-se na 'libksane', uma interface para a biblioteca SANE que controla os 'scanners' de imagens.</p>
@@ -55,6 +58,7 @@
     <p xml:lang="de">Funktionen:</p>
     <p xml:lang="en-GB">Features:</p>
     <p xml:lang="es">Características:</p>
+    <p xml:lang="it">Funzionalità:</p>
     <p xml:lang="nl">Mogelijkheden:</p>
     <p xml:lang="pl">Możliwości:</p>
     <p xml:lang="pt">Funcionalidades:</p>
@@ -70,6 +74,7 @@
       <li xml:lang="ca-valencia">Diàleg per guardar cada imatge escanejada o guardar les imatges immediatament en una carpeta especificada amb noms i format generats automàticament</li>
       <li xml:lang="en-GB">Save dialog for every image scanned or saving the images immediately in a specified folder with auto-generated names and format</li>
       <li xml:lang="es">Diálogo para guardar las imágenes escaneadas o para guardarlas inmediatamente en la carpeta indicada con nombres generados automáticamente y en el formato indicado.</li>
+      <li xml:lang="it">Finestra di dialogo per ogni scansione immagine o salvataggio immediato delle immagini in una cartella specifica con nomi e formati generati in automatico</li>
       <li xml:lang="nl">De dialoog voor opslaan van elke gescande afbeelding of het onmiddellijk in een een gespecificeerde map opslaan met automatisch gegenereerde namen en formaten.</li>
       <li xml:lang="pl">Okno dialogowe zapisywania dla każdego zeskanowanego obrazu lub zapisywanie obrazów bezpośrednio w podanym katalogu z samodzielnie utworzonymi nazwami i wybranym formatem</li>
       <li xml:lang="pt">Janela de gravação para todas as imagens digitalizadas ou gravação imediata das imagens numa pasta à escolha, com nomes e formato gerados automaticamente</li>
@@ -82,6 +87,7 @@
       <li xml:lang="de">Unterstützung für Netzwerk-Scanner</li>
       <li xml:lang="en-GB">Support for networks scanners</li>
       <li xml:lang="es">Permite el uso de escáneres en red.</li>
+      <li xml:lang="it">Supporto per scanner di rete</li>
       <li xml:lang="nl">Ondersteuning voor scanners in het netwerk</li>
       <li xml:lang="pl">Obsługa skanerów w sieci</li>
       <li xml:lang="pt">Suporte para 'scanners' na rede</li>
@@ -93,6 +99,7 @@
       <li xml:lang="ca-valencia">Vista prèvia amb la característica de selecció per a l'escaneig final</li>
       <li xml:lang="en-GB">Preview with selection feature for the final scan</li>
       <li xml:lang="es">Vista previa con función de selección para el escaneo final.</li>
+      <li xml:lang="it">Anteprima con funzionalità di selezione per la scansione finale</li>
       <li xml:lang="nl">Voorbeeldweergave met geselecteerde functie voor de uiteindelijke scan</li>
       <li xml:lang="pl">Podgląd z możliwością zaznaczenia ostatecznego skanowania</li>
       <li xml:lang="pt">Antevisão com funcionalidade de selecção para a digitalização final</li>
@@ -104,6 +111,7 @@
       <li xml:lang="ca-valencia">Escaneig de múltiples seleccions d'una imatge</li>
       <li xml:lang="en-GB">Scanning multiple selections of an image</li>
       <li xml:lang="es">Escanear múltiples selecciones de una imagen.</li>
+      <li xml:lang="it">Selezioni multiple di scansione di un'immagine</li>
       <li xml:lang="nl">Scannen van meerdere selecties van een afbeelding</li>
       <li xml:lang="pl">Skanowanie wielu obszarów obrazu</li>
       <li xml:lang="pt">Digitalização de várias selecções numa imagem</li>
