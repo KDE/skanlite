@@ -447,7 +447,7 @@ void Skanlite::saveImage()
                 if (KMessageBox::warningContinueCancel(this,
                     i18n("Do you want to overwrite \"%1\"?", fileUrl.fileName()),
                     QString(),
-                    KGuiItem(i18n("Overwrite")),
+                    KStandardGuiItem::overwrite(),
                     KStandardGuiItem::cancel(),
                     QLatin1String("editorWindowSaveOverwrite")
                 ) ==  KMessageBox::Continue)
