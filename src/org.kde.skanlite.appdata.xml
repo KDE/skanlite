@@ -22,7 +22,6 @@
   <name xml:lang="x-test">xxSkanlitexx</name>
   <name xml:lang="zh-CN">Skanlite</name>
   <summary>Image Scanning Application</summary>
-  <summary xml:lang="ast">Aplicación d'escanéu d'imáxenes</summary>
   <summary xml:lang="ca">Aplicació per a la digitalització d'imatges</summary>
   <summary xml:lang="ca-valencia">Aplicació per a la digitalització d'imatges</summary>
   <summary xml:lang="cs">Aplikace pro skenování obrázků</summary>
@@ -54,7 +53,6 @@
     <p xml:lang="uk">Skanlite — проста програма для сканування зображень і збереження даних зображень до файлів. Роботу Skanlite засновано на бібліотеці libksane, інтерфейсі до бібліотек SANE для керування сканерами зображень.</p>
     <p xml:lang="x-test">xxSkanlite is a simple image scanning application to scan and save images. Skanlite is based on libksane, an interface for SANE library to control image scanners.xx</p>
     <p>Features:</p>
-    <p xml:lang="ast">Carauterístiques:</p>
     <p xml:lang="ca">Característiques:</p>
     <p xml:lang="ca-valencia">Característiques:</p>
     <p xml:lang="cs">Vlastnosti:</p>
