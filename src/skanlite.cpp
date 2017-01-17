@@ -471,10 +471,22 @@ void Skanlite::saveImage()
 
     //qDebug() << "suffix" << QFileInfo(fileUrl.fileName()).suffix();
     QString localName;
+
+    QString suffix = QFileInfo(fileUrl.fileName()).suffix();
+    const char *fileFormat = nullptr;
+    if (suffix.isEmpty()) {
+        fileFormat = "png";
+    }
+
     if (!fileUrl.isLocalFile()) {
         QTemporaryFile tmp;
         tmp.open();
-        localName = QStringLiteral("%1.%2").arg(tmp.fileName(), QFileInfo(fileUrl.fileName()).suffix());
+        if (suffix.isEmpty()) {
+            localName = tmp.fileName();
+        }
+        else {
+            localName = QStringLiteral("%1.%2").arg(tmp.fileName(), suffix);
+        }
         tmp.close(); // we just want the filename
     }
     else {
@@ -499,7 +511,7 @@ void Skanlite::saveImage()
         if (m_img.width() < 1) {
             m_img = m_ksanew->toQImage(m_data, m_width, m_height, m_bytesPerLine, (KSaneIface::KSaneWidget::ImageFormat)m_format);
         }
-        if (m_img.save(localName, 0, quality)) {
+        if (m_img.save(localName, fileFormat, quality)) {
             m_showImgDialog->close(); // calling close() on a closed window does nothing.
         }
         else {
