@@ -35,8 +35,8 @@ SaveLocation::SaveLocation(QWidget *parent)
 {
     setupUi(this);
 
-    connect(u_urlRequester, &KUrlRequester::textChanged, this, &SaveLocation::updateGui);
-    connect(u_urlRequester, &KUrlRequester::urlSelected,  this, &SaveLocation::getDir);
+    u_urlRequester->setMode(KFile::Directory);
+    connect(u_urlRequester, &KUrlRequester::textChanged, this, &SaveLocation::updateGui);    
     connect(u_imgPrefix, &QLineEdit::textChanged, this, &SaveLocation::updateGui);
     connect(u_imgFormat, static_cast<void (QComboBox::*)(const QString &)>(&QComboBox::activated), this, &SaveLocation::updateGui);
     connect(u_numStartFrom, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &SaveLocation::updateGui);
@@ -52,7 +52,9 @@ void SaveLocation::updateGui()
         u_numStartFrom->setValue(1); // Reset the counter whenever the directory or the prefix is changed
     }
     const QString name = QString::fromLatin1("%1%2.%3").arg(u_imgPrefix->text()).arg(u_numStartFrom->value(), 4, 10, QLatin1Char('0')).arg(u_imgFormat->currentText());
-    u_resultValue->setText(QUrl(u_urlRequester->url().resolved(QUrl(name))).toString(QUrl::PreferLocalFile | QUrl::NormalizePathSegments));
+    QString dir = u_urlRequester->url().toString();
+    if (!dir.endsWith(QDir::separator())) dir = dir.append(QDir::separator()); //make sure whole value is processed as path to directory
+    u_resultValue->setText(QUrl(dir).resolved(QUrl(name)).toString(QUrl::PreferLocalFile | QUrl::NormalizePathSegments));
 }
 
 void SaveLocation::getDir(void)
