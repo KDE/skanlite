@@ -68,7 +68,7 @@
        <item>
         <widget class="QLabel" name="numberLabel">
          <property name="text">
-          <string>###.</string>
+          <string>####.</string>
          </property>
         </widget>
        </item>
