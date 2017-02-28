@@ -498,7 +498,7 @@ void Skanlite::saveImage()
         (m_format == KSaneIface::KSaneWidget::FormatGrayScale16))
     {
         KSaneImageSaver saver;
-        if (saver.savePngSync(localName, m_data, m_width, m_height, m_format)) {
+        if (saver.savePngSync(localName, m_data, m_width, m_height, m_format, m_ksanew->currentDPI())) {
             m_showImgDialog->close(); // closing the window if it is closed should not be a problem.
         }
         else {

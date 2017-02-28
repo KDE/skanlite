@@ -37,9 +37,9 @@ public:
     KSaneImageSaver(QObject *parent = 0);
     ~KSaneImageSaver();
 
-    bool savePng(const QString &name, const QByteArray &data, int width, int height, int format);
+    bool savePng(const QString &name, const QByteArray &data, int width, int height, int format, int dpi);
 
-    bool savePngSync(const QString &name, const QByteArray &data, int width, int height, int format);
+    bool savePngSync(const QString &name, const QByteArray &data, int width, int height, int format, int dpi);
 
     bool saveTiff(const QString &name, const QByteArray &data, int width, int height, int format);
 

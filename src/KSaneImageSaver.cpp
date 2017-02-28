@@ -46,6 +46,7 @@ struct KSaneImageSaver::Private {
     int        m_width;
     int        m_height;
     int        m_format;
+    int        m_dpi;
     ImageType  m_type;
 
     bool savePng();
@@ -64,7 +65,7 @@ KSaneImageSaver::~KSaneImageSaver()
     delete d;
 }
 
-bool KSaneImageSaver::savePng(const QString &name, const QByteArray &data, int width, int height, int format)
+bool KSaneImageSaver::savePng(const QString &name, const QByteArray &data, int width, int height, int format, int dpi)
 {
     if (!d->m_runMutex.tryLock()) {
         return false;
@@ -75,15 +76,16 @@ bool KSaneImageSaver::savePng(const QString &name, const QByteArray &data, int w
     d->m_width  = width;
     d->m_height = height;
     d->m_format = format;
+    d->m_dpi    = dpi;
     d->m_type   = Private::ImageTypePNG;
 
     start();
     return true;
 }
 
-bool KSaneImageSaver::savePngSync(const QString &name, const QByteArray &data, int width, int height, int format)
+bool KSaneImageSaver::savePngSync(const QString &name, const QByteArray &data, int width, int height, int format, int dpi)
 {
-    if (!savePng(name, data, width, height, format)) {
+    if (!savePng(name, data, width, height, format, dpi)) {
         qDebug() << "fail";
         return false;
     }
@@ -191,6 +193,9 @@ bool KSaneImageSaver::Private::savePng()
     }
 
     png_set_sBIT(png_ptr, info_ptr, &sig_bit);
+
+    png_uint_32 dpm = m_dpi * (1000.0 / 25.4);
+    png_set_pHYs(png_ptr, info_ptr, dpm, dpm, 1);
 
     /* Optionally write comments into the image */
 //     text_ptr[0].key = "Title";
