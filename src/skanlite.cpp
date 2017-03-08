@@ -535,7 +535,7 @@ void Skanlite::saveImage()
 
     // Save the file base name without number
     QString baseName = QFileInfo(fileUrl.fileName()).completeBaseName();
-    while ((baseName.size() > 1) && (baseName[baseName.size() - 1].isNumber())) {
+    while ((!baseName.isEmpty()) && (baseName[baseName.size() - 1].isNumber())) {
         baseName.remove(baseName.size() - 1, 1);
     }
     m_saveLocation->u_imgPrefix->setText(baseName);
