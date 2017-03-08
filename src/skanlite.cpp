@@ -368,7 +368,7 @@ void Skanlite::saveImage()
         m_firstImage = false;
     }
 
-    QString dir = m_saveLocation->u_urlRequester->url().url();
+    QString dir = QDir::cleanPath(m_saveLocation->u_urlRequester->url().url()).append(QLatin1Char('/')); //make sure whole value is processed as path to directory
     QString prefix = m_saveLocation->u_imgPrefix->text();
     QString imgFormat = m_saveLocation->u_imgFormat->currentText().toLower();
     int fileNumber = m_saveLocation->u_numStartFrom->value();
@@ -557,8 +557,6 @@ void Skanlite::saveImage()
 
 void Skanlite::getDir(void)
 {
-    // FIXME KF5 / WAIT: this is not working yet due to a bug in frameworkintegration:
-    // see commit: 2c1ee08a21a1f16f9c2523718224598de8fc0d4f for kf5/src/frameworks/frameworkintegration/tests/qfiledialogtest.cpp
     QString dir = QFileDialog::getExistingDirectory(m_settingsDialog, QString(), m_settingsUi.saveDirLEdit->text());
     if (!dir.isEmpty()) {
         m_settingsUi.saveDirLEdit->setText(dir);
