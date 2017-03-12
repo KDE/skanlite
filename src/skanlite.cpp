@@ -57,6 +57,7 @@
 Skanlite::Skanlite(const QString &device, QWidget *parent)
     : QDialog(parent)
     , m_aboutData(nullptr)
+    , m_dbusInterface(this)
 {
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
 
@@ -219,6 +220,31 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     m_ksanew->initGetDeviceList();
 
     m_firstImage = true;
+
+    if (m_dbusInterface.setupDBusInterface()) {
+        // D-Bus related slots
+        connect(&m_dbusInterface, &DBusInterface::requestedScan, m_ksanew, &KSaneWidget::scanFinal);
+        connect(&m_dbusInterface, &DBusInterface::requestedScanCancel, m_ksanew, &KSaneWidget::scanCancel);
+        connect(&m_dbusInterface, &DBusInterface::requestedSetScannerOptions, this, &Skanlite::setScannerOptions);
+        connect(&m_dbusInterface, &DBusInterface::requestedSetSelection, this, &Skanlite::setSelection);
+
+        // D-Bus related slots below must be Qt::DirectConnection to simplify return value forwarding via DBusInterface
+        connect(&m_dbusInterface, &DBusInterface::requestedGetScannerOptions, this, &Skanlite::getScannerOptions, Qt::DirectConnection);
+        connect(&m_dbusInterface, &DBusInterface::requestedDefaultScannerOptions, this, &Skanlite::getDefaultScannerOptions, Qt::DirectConnection);
+        connect(&m_dbusInterface, &DBusInterface::requestedDeviceName, this, &Skanlite::getDeviceName, Qt::DirectConnection);
+        connect(&m_dbusInterface, &DBusInterface::requestedSaveScannerOptionsToProfile, this, &Skanlite::saveScannerOptionsToProfile, Qt::DirectConnection);
+        connect(&m_dbusInterface, &DBusInterface::requestedSwitchToProfile, this, &Skanlite::switchToProfile, Qt::DirectConnection);
+        connect(&m_dbusInterface, &DBusInterface::requestedGetSelection, this, &Skanlite::getSelection, Qt::DirectConnection);
+
+        // D-Bus related signals
+        connect(m_ksanew, &KSaneWidget::scanDone, &m_dbusInterface, &DBusInterface::scanDone);
+        connect(m_ksanew, &KSaneWidget::userMessage, &m_dbusInterface, &DBusInterface::userMessage);
+        connect(m_ksanew, &KSaneWidget::scanProgress, &m_dbusInterface, &DBusInterface::scanProgress);
+        connect(m_ksanew, &KSaneWidget::buttonPressed, &m_dbusInterface, &DBusInterface::buttonPressed);
+    }
+    else {
+        // keep working without dbus
+    }
 }
 
 void Skanlite::showHelp()
@@ -251,7 +277,8 @@ static void perrorMessageBox(const QString &text)
 {
     if (errno != 0) {
         KMessageBox::sorry(0, i18n("%1: %2", text, QString::fromLocal8Bit(strerror(errno))));
-    } else {
+    }
+    else {
         KMessageBox::sorry(0, text);
     }
 }
@@ -283,7 +310,8 @@ void Skanlite::readSettings(void)
     m_settingsUi.setPreviewDPI->setChecked(general.readEntry("SetPreviewDPI", false));
     if (m_settingsUi.setPreviewDPI->isChecked()) {
         m_ksanew->setPreviewResolution(m_settingsUi.previewDPI->currentText().toFloat());
-    } else {
+    }
+    else {
         m_ksanew->setPreviewResolution(0.0);
     }
     m_settingsUi.u_disableSelections->setChecked(general.readEntry("DisableAutoSelection", false));
@@ -316,7 +344,8 @@ void Skanlite::showSettingsDialog(void)
         // the previewDPI has to be set here
         if (m_settingsUi.setPreviewDPI->isChecked()) {
             m_ksanew->setPreviewResolution(m_settingsUi.previewDPI->currentText().toFloat());
-        } else {
+        }
+        else {
             // 0.0 means default value.
             m_ksanew->setPreviewResolution(0.0);
         }
@@ -328,7 +357,8 @@ void Skanlite::showSettingsDialog(void)
         m_saveLocation->u_imgFormat->setCurrentText(m_settingsUi.imgFormat->currentText());
 
         m_firstImage = true;
-    } else {
+    }
+    else {
         //Forget Changes
         readSettings();
     }
@@ -351,7 +381,8 @@ void Skanlite::imageReady(QByteArray &data, int w, int h, int bpl, int f)
         m_showImgDialogSaveButton->setFocus();
         m_showImgDialog->exec();
         // save has been done as a result of save or then we got cancel
-    } else {
+    }
+    else {
         m_img = QImage(); // clear the image to ensure we save the correct one.
         saveImage();
     }
@@ -450,8 +481,7 @@ void Skanlite::saveImage()
                     KStandardGuiItem::overwrite(),
                     KStandardGuiItem::cancel(),
                     QLatin1String("editorWindowSaveOverwrite")
-                ) ==  KMessageBox::Continue)
-                {
+                ) ==  KMessageBox::Continue) {
                     break;
                 }
             }
@@ -495,8 +525,7 @@ void Skanlite::saveImage()
 
     // Save
     if ((m_format == KSaneIface::KSaneWidget::FormatRGB_16_C) ||
-        (m_format == KSaneIface::KSaneWidget::FormatGrayScale16))
-    {
+        (m_format == KSaneIface::KSaneWidget::FormatGrayScale16)) {
         KSaneImageSaver saver;
         if (saver.savePngSync(localName, m_data, m_width, m_height, m_format, m_ksanew->currentDPI())) {
             m_showImgDialog->close(); // closing the window if it is closed should not be a problem.
@@ -568,6 +597,23 @@ void Skanlite::showAboutDialog(void)
     KAboutApplicationDialog(*m_aboutData).exec();
 }
 
+void writeScannerOptions(const QString &groupName, const QMap <QString, QString> &opts)
+{
+    KConfigGroup options(KSharedConfig::openConfig(), groupName);
+    QMap<QString, QString>::const_iterator it = opts.constBegin();
+    while (it != opts.constEnd()) {
+        options.writeEntry(it.key(), it.value());
+        ++it;
+    }
+    options.sync();
+}
+
+void readScannerOptions(const QString &groupName, QMap <QString, QString> &opts)
+{
+    KConfigGroup scannerOptions(KSharedConfig::openConfig(), groupName);
+    opts = scannerOptions.entryMap();
+}
+
 void Skanlite::saveScannerOptions()
 {
     KConfigGroup saving(KSharedConfig::openConfig(), "Image Saving");
@@ -580,12 +626,7 @@ void Skanlite::saveScannerOptions()
     KConfigGroup options(KSharedConfig::openConfig(), QString::fromLatin1("Options For %1").arg(m_deviceName));
     QMap <QString, QString> opts;
     m_ksanew->getOptVals(opts);
-    QMap<QString, QString>::const_iterator it = opts.constBegin();
-    while (it != opts.constEnd()) {
-        options.writeEntry(it.key(), it.value());
-        ++it;
-    }
-    options.sync();
+    writeScannerOptions(QString::fromLatin1("Options For %1").arg(m_deviceName), opts);
 }
 
 void Skanlite::defaultScannerOptions()
@@ -606,8 +647,9 @@ void Skanlite::loadScannerOptions()
         return;
     }
 
-    KConfigGroup scannerOptions(KSharedConfig::openConfig(), QString::fromLatin1("Options For %1").arg(m_deviceName));
-    m_ksanew->setOptVals(scannerOptions.entryMap());
+    QMap <QString, QString> opts;
+    readScannerOptions(QString::fromLatin1("Options For %1").arg(m_deviceName), opts);
+    m_ksanew->setOptVals(opts);
 }
 
 void Skanlite::availableDevices(const QList<KSaneWidget::DeviceInfo> &deviceList)
@@ -631,4 +673,127 @@ void Skanlite::alertUser(int type, const QString &strStatus)
 void Skanlite::buttonPressed(const QString &optionName, const QString &optionLabel, bool pressed)
 {
     qDebug() << "Button" << optionName << optionLabel << ((pressed) ? "pressed" : "released");
+}
+
+// D-Bus interface related helper functions
+
+QStringList serializeScannerOptions(const QMap<QString, QString> &opts)
+{
+    QStringList sl;
+    QMap<QString, QString>::const_iterator it = opts.constBegin();
+    while (it != opts.constEnd()) {
+        sl.append(it.key() + QLatin1String("=") + it.value());
+        ++it;
+    }
+    return sl;
+}
+
+void deserializeScannerOptions(const QStringList &settings, QMap<QString, QString> &opts)
+{
+    foreach (QString s, settings) {
+        int i = s.lastIndexOf(QLatin1Char('='));
+        opts[s.left(i)] = s.right(s.length()-i-1);
+    }
+}
+
+static const QStringList selectionSettings = { QLatin1String("tl-x"), QLatin1String("tl-y"),
+                                               QLatin1String("br-x"), QLatin1String("br-y") };
+
+void filterSelectionSettings(QMap<QString, QString> &opts)
+{
+    foreach (QString s, selectionSettings) {
+        opts.remove(s);
+    }
+}
+
+bool containsSelectionSettings(const QMap<QString, QString> &opts)
+{
+    foreach (QString s, selectionSettings) {
+        if (opts.contains(s)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+void Skanlite::processSelectionOptions(QMap<QString, QString> &opts, bool ignoreSelection)
+{
+    if (ignoreSelection) {
+        filterSelectionSettings(opts);
+    }
+    else {
+        if (containsSelectionSettings(opts)) { // make sure we really have selection to apply
+            m_ksanew->setSelection(QPointF(0,0), QPointF(1,1)); // bcs settings have no effect if nothing was selected beforehand (Bug 377009)
+        }
+    }
+}
+
+// D-Bus interface related slots
+
+void Skanlite::getScannerOptions()
+{
+    QMap <QString, QString> opts;
+    m_ksanew->getOptVals(opts);
+    m_dbusInterface.setReply(serializeScannerOptions(opts));
+}
+
+void Skanlite::setScannerOptions(const QStringList &options, bool ignoreSelection)
+{
+    QMap <QString, QString> opts;
+    deserializeScannerOptions(options, opts);
+    processSelectionOptions(opts, ignoreSelection);
+    m_ksanew->setOptVals(opts);
+}
+
+
+void Skanlite::getDefaultScannerOptions()
+{
+    m_dbusInterface.setReply(serializeScannerOptions(m_defaultScanOpts));
+}
+
+static const QLatin1String defaultProfileGroup("Options For %1 - Profile %2"); // 1 - device, 2 - arg
+
+void Skanlite::saveScannerOptionsToProfile(const QStringList &options, const QString &profile, bool ignoreSelection)
+{
+    QMap <QString, QString> opts;
+    deserializeScannerOptions(options, opts);
+    processSelectionOptions(opts, ignoreSelection);
+    writeScannerOptions(QString(defaultProfileGroup).arg(m_deviceName).arg(profile), opts);
+}
+
+void Skanlite::switchToProfile(const QString &profile, bool ignoreSelection)
+{
+    QMap <QString, QString> opts;
+    readScannerOptions(QString(defaultProfileGroup).arg(m_deviceName).arg(profile), opts);
+
+    if (opts.empty()) {
+        opts = m_defaultScanOpts;
+    }
+
+    processSelectionOptions(opts, ignoreSelection);
+    m_ksanew->setOptVals(opts);
+}
+
+void Skanlite::getDeviceName()
+{
+    m_dbusInterface.setReply(QStringList(m_deviceName));
+}
+
+void Skanlite::getSelection()
+{
+    QMap <QString, QString> opts;
+    m_ksanew->getOptVals(opts);
+
+    QStringList reply;
+    foreach ( QString key, selectionSettings ) {
+        if (opts.contains(key)) {
+            reply.append(key + QLatin1String("=") + opts[key]);
+        }
+    }
+    m_dbusInterface.setReply(reply);
+}
+
+void Skanlite::setSelection(const QStringList &options)
+{ // here options contains selection related subset of options
+    setScannerOptions(options, false);
 }

@@ -31,6 +31,7 @@
 
 #include "ui_settings.h"
 #include "ImageViewer.h"
+#include "DBusInterface.h"
 
 class SaveLocation;
 class KAboutData;
@@ -56,6 +57,8 @@ private:
     void doSaveImage(bool askFilename = true);
     void loadScannerOptions();
 
+    void processSelectionOptions(QMap<QString, QString> &opts, bool ignoreSelection);
+
 private Q_SLOTS:
     void showSettingsDialog();
     void getDir();
@@ -73,6 +76,16 @@ private Q_SLOTS:
     void buttonPressed(const QString &optionName, const QString &optionLabel, bool pressed);
 
     void showHelp();
+
+    // slots to communicate with D-Bus interface
+    void getScannerOptions();
+    void setScannerOptions(const QStringList &options, bool ignoreSelection);
+    void getDefaultScannerOptions();
+    void saveScannerOptionsToProfile(const QStringList &options, const QString &profile, bool ignoreSelection);
+    void switchToProfile(const QString &profile, bool ignoreSelection);
+    void getDeviceName();
+    void getSelection();
+    void setSelection(const QStringList &options);
 
 protected:
     void closeEvent(QCloseEvent *event);
@@ -96,6 +109,7 @@ private:
     int                      m_format;
 
     ImageViewer              m_imageViewer;
+    DBusInterface            m_dbusInterface;
     QStringList              m_filterList;
     QStringList              m_filter16BitList;
     QStringList              m_typeList;

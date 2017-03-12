@@ -1,4 +1,4 @@
-set(skanlite_SRCS main.cpp skanlite.cpp ImageViewer.cpp KSaneImageSaver.cpp SaveLocation.cpp)
+set(skanlite_SRCS main.cpp skanlite.cpp ImageViewer.cpp KSaneImageSaver.cpp SaveLocation.cpp DBusInterface.cpp)
 
 ki18n_wrap_ui(skanlite_SRCS settings.ui SaveLocation.ui)
 

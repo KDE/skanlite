@@ -125,7 +125,8 @@ void KSaneImageSaver::run()
     if (d->m_type == Private::ImageTypeTIFF) {
         d->m_savedOk = d->saveTiff();
         emit imageSaved(d->m_savedOk);
-    } else {
+    }
+    else {
         d->m_savedOk = d->savePng();
         emit imageSaved(d->m_savedOk);
     }

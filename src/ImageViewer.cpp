@@ -127,10 +127,12 @@ void ImageViewer::wheelEvent(QWheelEvent *e)
     if (e->modifiers() == Qt::ControlModifier) {
         if (e->delta() > 0) {
             zoomIn();
-        } else {
+        }
+        else {
             zoomOut();
         }
-    } else {
+    }
+    else {
         QGraphicsView::wheelEvent(e);
     }
 }
