@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
     KAboutData aboutData(QLatin1String("Skanlite"), // componentName, k4: appName
                          i18n("Skanlite"), // displayName, k4: programName
                          QLatin1String(skanlite_version), // version
-                         i18n("Scanning application for KDE based on libksane."), // shortDescription
+                         i18n("Scanning application by KDE based on libksane."), // shortDescription
                          KAboutLicense::GPL, // licenseType
                          i18n("(C) 2008-2016 Kåre Särs"), // copyrightStatement
                          QString(), // other Text
