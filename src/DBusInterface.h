@@ -138,6 +138,8 @@ public Q_SLOTS:
 
 Q_SIGNALS:
 
+    Q_SCRIPTABLE void imageSaved(const QString &strFilename);
+
     // Below are 4 signals which are just forwarded from KSaneWidget.
     // You can take a look in KSaneWidget.h for detailed arguments description
 

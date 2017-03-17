@@ -560,6 +560,12 @@ void Skanlite::saveImage()
         if (!ok) {
             KMessageBox::sorry(0, i18n("Failed to upload image"));
         }
+        else {
+            emit m_dbusInterface.imageSaved(fileUrl.toString());
+        }
+    }
+    else {
+        emit m_dbusInterface.imageSaved(localName);
     }
 
     // Save the file base name without number
