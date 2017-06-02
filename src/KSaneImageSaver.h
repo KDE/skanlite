@@ -49,7 +49,7 @@ Q_SIGNALS:
     void imageSaved(bool success);
 
 protected:
-    void run();
+    void run() Q_DECL_OVERRIDE;
 
 private:
     struct Private;

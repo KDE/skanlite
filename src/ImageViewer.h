@@ -44,8 +44,8 @@ public Q_SLOTS:
     void zoomActualSize();
 
 protected:
-    void wheelEvent(QWheelEvent *e);
-    void drawBackground(QPainter *painter, const QRectF &rect);
+    void wheelEvent(QWheelEvent *e) Q_DECL_OVERRIDE;
+    void drawBackground(QPainter *painter, const QRectF &rect) Q_DECL_OVERRIDE;
 
 private:
     struct Private;

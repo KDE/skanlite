@@ -88,7 +88,7 @@ private Q_SLOTS:
     void setSelection(const QStringList &options);
 
 protected:
-    void closeEvent(QCloseEvent *event);
+    void closeEvent(QCloseEvent *event) Q_DECL_OVERRIDE;
 
 private:
     KAboutData              *m_aboutData;
