@@ -11,6 +11,7 @@
   <name xml:lang="de">Skanlite</name>
   <name xml:lang="en-GB">Skanlite</name>
   <name xml:lang="es">Skanlite</name>
+  <name xml:lang="fr">Skanlite</name>
   <name xml:lang="it">Skanlite</name>
   <name xml:lang="nl">Skanlite</name>
   <name xml:lang="pl">Skanlite</name>
@@ -62,6 +63,7 @@
     <p xml:lang="de">Funktionen:</p>
     <p xml:lang="en-GB">Features:</p>
     <p xml:lang="es">Características:</p>
+    <p xml:lang="fr">Fonctionnalités :</p>
     <p xml:lang="it">Funzionalità:</p>
     <p xml:lang="nl">Mogelijkheden:</p>
     <p xml:lang="pl">Możliwości:</p>
