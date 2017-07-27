@@ -39,6 +39,7 @@
   <summary xml:lang="tr">Resim Tarama Uygulaması</summary>
   <summary xml:lang="uk">Програма для сканування зображень</summary>
   <summary xml:lang="x-test">xxImage Scanning Applicationxx</summary>
+  <summary xml:lang="zh-CN">图像扫描程序</summary>
   <description>
     <p>
    Skanlite is a simple image scanning application to scan and save images.
