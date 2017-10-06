@@ -9,6 +9,7 @@
   <name xml:lang="ca-valencia">Skanlite</name>
   <name xml:lang="cs">Skanlite</name>
   <name xml:lang="de">Skanlite</name>
+  <name xml:lang="el">Skanlite</name>
   <name xml:lang="en-GB">Skanlite</name>
   <name xml:lang="es">Skanlite</name>
   <name xml:lang="fr">Skanlite</name>
@@ -28,6 +29,7 @@
   <summary xml:lang="ca-valencia">Aplicació per a la digitalització d'imatges</summary>
   <summary xml:lang="cs">Aplikace pro skenování obrázků</summary>
   <summary xml:lang="de">Anwendung zum Scannen von Bildern</summary>
+  <summary xml:lang="el">Εφαρμογή σάρωσης εικόνων</summary>
   <summary xml:lang="en-GB">Image Scanning Application</summary>
   <summary xml:lang="es">Aplicación para escanear imágenes</summary>
   <summary xml:lang="it">Applicazione per la scansione delle immagini</summary>
@@ -47,6 +49,7 @@
   </p>
     <p xml:lang="ca">Skanlite és una senzilla aplicació per escanejar imatges i desar-les. Skanlite es basa en «libsane», una interfície per a la biblioteca SANE que controla els escàners d'imatges.</p>
     <p xml:lang="ca-valencia">Skanlite és una senzilla aplicació per escanejar imatges i guardar-les. Skanlite es basa en «libsane», una interfície per a la biblioteca SANE que controla els escàners d'imatges.</p>
+    <p xml:lang="el">Το Skanlite είναι μια απλή εφαρμογή σάρωσης και αποθήκευσης εικόνων. Το Skanlite βασίζεται στο libksane, μια διεπαφή της βιβλιοθήκης SANE για έλεγχο των σαρωτών εικόνων.</p>
     <p xml:lang="en-GB">Skanlite is a simple image scanning application to scan and save images. Skanlite is based on libksane, an interface for SANE library to control image scanners.</p>
     <p xml:lang="es">Skanlite es una sencilla aplicación para escanear y guardar imágenes. Skanlite se basa en libksane, una interfaz para la biblioteca SANE que permite controlar escáneres.</p>
     <p xml:lang="it">Skanlite è una semplice applicazione per la scansione e il salvataggio delle immagini. Skanlite si basa su libksane, un'interfaccia per la libreria SANE per il controllo degli scanner per immagini.</p>
@@ -62,6 +65,7 @@
     <p xml:lang="ca-valencia">Característiques:</p>
     <p xml:lang="cs">Vlastnosti:</p>
     <p xml:lang="de">Funktionen:</p>
+    <p xml:lang="el">Χαρακτηριστικά:</p>
     <p xml:lang="en-GB">Features:</p>
     <p xml:lang="es">Características:</p>
     <p xml:lang="fr">Fonctionnalités :</p>
@@ -80,6 +84,7 @@
       <li>Save dialog for every image scanned or saving the images immediately in a specified folder with auto-generated names and format</li>
       <li xml:lang="ca">Diàleg per desar cada imatge escanejada o desar les imatges immediatament en una carpeta especificada amb noms i format generats automàticament</li>
       <li xml:lang="ca-valencia">Diàleg per guardar cada imatge escanejada o guardar les imatges immediatament en una carpeta especificada amb noms i format generats automàticament</li>
+      <li xml:lang="el">Αποθήκευση διαλόγου για κάθε εικόνα μετά τη σάρωση ή αποθήκευση των εικόνων αμέσως σε έναν δοσμένο φάκελο με αυτόματη εκχώρηση ονομάτων και τύπου αποθήκευσης</li>
       <li xml:lang="en-GB">Save dialog for every image scanned or saving the images immediately in a specified folder with auto-generated names and format</li>
       <li xml:lang="es">Diálogo para guardar las imágenes escaneadas o para guardarlas inmediatamente en la carpeta indicada con nombres generados automáticamente y en el formato indicado.</li>
       <li xml:lang="it">Finestra di dialogo per ogni scansione immagine o salvataggio immediato delle immagini in una cartella specifica con nomi e formati generati in automatico</li>
@@ -94,6 +99,7 @@
       <li xml:lang="ca">Implementació per a escàners en xarxa</li>
       <li xml:lang="ca-valencia">Implementació per a escàners en xarxa</li>
       <li xml:lang="de">Unterstützung für Netzwerk-Scanner</li>
+      <li xml:lang="el">Υποστήιρξη για δικτυακούς σαρωτές</li>
       <li xml:lang="en-GB">Support for networks scanners</li>
       <li xml:lang="es">Permite el uso de escáneres en red.</li>
       <li xml:lang="it">Supporto per scanner di rete</li>
@@ -107,6 +113,7 @@
       <li>Preview with selection feature for the final scan</li>
       <li xml:lang="ca">Vista prèvia amb la característica de selecció per a l'escaneig final</li>
       <li xml:lang="ca-valencia">Vista prèvia amb la característica de selecció per a l'escaneig final</li>
+      <li xml:lang="el">Προεπισκόπηση με το επιλεγμένο χαρακτηριστικό για την τελική σάρωση</li>
       <li xml:lang="en-GB">Preview with selection feature for the final scan</li>
       <li xml:lang="es">Vista previa con función de selección para el escaneo final.</li>
       <li xml:lang="it">Anteprima con funzionalità di selezione per la scansione finale</li>
@@ -121,6 +128,7 @@
       <li xml:lang="ca">Escaneig de múltiples seleccions d'una imatge</li>
       <li xml:lang="ca-valencia">Escaneig de múltiples seleccions d'una imatge</li>
       <li xml:lang="de">Sannen mehrerer Bereiche eines Fotos</li>
+      <li xml:lang="el">Σάρωση πολλών επιλογών μιας εικόνας</li>
       <li xml:lang="en-GB">Scanning multiple selections of an image</li>
       <li xml:lang="es">Escanear múltiples selecciones de una imagen.</li>
       <li xml:lang="it">Selezioni multiple di scansione di un'immagine</li>
