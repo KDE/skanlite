@@ -18,6 +18,7 @@
   <name xml:lang="pl">Skanlite</name>
   <name xml:lang="pt">Skanlite</name>
   <name xml:lang="pt-BR">Skanlite</name>
+  <name xml:lang="ru">Skanlite</name>
   <name xml:lang="sk">Skanlite</name>
   <name xml:lang="sv">Skanlite</name>
   <name xml:lang="tr">Skanlite</name>
@@ -36,6 +37,7 @@
   <summary xml:lang="nl">Afbeeldingscanprogramma</summary>
   <summary xml:lang="pl">Program do skanowania obrazów</summary>
   <summary xml:lang="pt">Aplicação de Digitalização de Imagens</summary>
+  <summary xml:lang="ru">Сканирование изображений</summary>
   <summary xml:lang="sk">Aplikácia na skenovanie obrázkov</summary>
   <summary xml:lang="sv">Bildinläsningsprogram</summary>
   <summary xml:lang="tr">Resim Tarama Uygulaması</summary>
@@ -74,6 +76,7 @@
     <p xml:lang="pl">Możliwości:</p>
     <p xml:lang="pt">Funcionalidades:</p>
     <p xml:lang="pt-BR">Recursos:</p>
+    <p xml:lang="ru">Возможности:</p>
     <p xml:lang="sk">Funkcie:</p>
     <p xml:lang="sv">Funktioner:</p>
     <p xml:lang="tr">Özellikleri:</p>
