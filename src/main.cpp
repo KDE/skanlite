@@ -77,6 +77,10 @@ int main(int argc, char *argv[])
     aboutData.addCredit(i18n("Albert Astals Cid"),
                         i18n("Help with translations"));
 
+    // Required for showing the translation list KXmlGui is not used
+    aboutData.setTranslator(i18nc("NAME OF TRANSLATORS", "Your names"),
+                            i18nc("EMAIL OF TRANSLATORS", "Your emails"));
+
     app.setWindowIcon(QIcon::fromTheme(QLatin1String("scanner")));
 
     QCoreApplication::setApplicationVersion(aboutData.version());
