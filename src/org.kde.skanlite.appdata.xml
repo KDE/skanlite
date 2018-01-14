@@ -20,6 +20,7 @@
   <name xml:lang="pt-BR">Skanlite</name>
   <name xml:lang="ru">Skanlite</name>
   <name xml:lang="sk">Skanlite</name>
+  <name xml:lang="sl">Skanlite</name>
   <name xml:lang="sv">Skanlite</name>
   <name xml:lang="tr">Skanlite</name>
   <name xml:lang="uk">Skanlite</name>
@@ -39,6 +40,7 @@
   <summary xml:lang="pt">Aplicação de Digitalização de Imagens</summary>
   <summary xml:lang="ru">Сканирование изображений</summary>
   <summary xml:lang="sk">Aplikácia na skenovanie obrázkov</summary>
+  <summary xml:lang="sl">Program za optično branje slik</summary>
   <summary xml:lang="sv">Bildinläsningsprogram</summary>
   <summary xml:lang="tr">Resim Tarama Uygulaması</summary>
   <summary xml:lang="uk">Програма для сканування зображень</summary>
@@ -58,6 +60,7 @@
     <p xml:lang="nl">Skanlite is eenvoudige toepassing voor het scannen en opslaan van afbeeldingen. Skanlite is gebaseerd op libksane, een interface voor de SANE-bibliotheek voor de besturing van afbeeldingsscanners.</p>
     <p xml:lang="pl">Skanlite jest prostą aplikacją do skanowania i zapisywania obrazów. Skanlite jest oparty na libksane, interfejsie dla biblioteki SANE do obsługi skanerów obrazów.</p>
     <p xml:lang="pt">O Skanlite é uma aplicação simples de digitalização de imagens para digitalizar e gravar as imagens. O Skanlite baseia-se na 'libksane', uma interface para a biblioteca SANE que controla os 'scanners' de imagens.</p>
+    <p xml:lang="sl">Skanlite je preprost program za optično branje in shranjevanje slik. Temelji na libksane, ki je vmesnik za knjižnico SANE, s katero lahko nadzirate optične bralnike.</p>
     <p xml:lang="sv">Skanlite är ett enkelt bildläsningsprogram för att läsa in och spara bilder.Skanlite är baserat på libksane, ett gränssnitt till SANE-biblioteket som styr bildläsare.</p>
     <p xml:lang="tr">Skanlite, resim taramak ve kaydetmek için basit bir tarama uygulamasıdır. Skanlite, resim tarayıcılarını denetlemekte kullanılan SANE kütüphanesi olan libksane tabanlıdır.</p>
     <p xml:lang="uk">Skanlite — проста програма для сканування зображень і збереження даних зображень до файлів. Роботу Skanlite засновано на бібліотеці libksane, інтерфейсі до бібліотек SANE для керування сканерами зображень.</p>
@@ -78,6 +81,7 @@
     <p xml:lang="pt-BR">Recursos:</p>
     <p xml:lang="ru">Возможности:</p>
     <p xml:lang="sk">Funkcie:</p>
+    <p xml:lang="sl">Zmožnosti:</p>
     <p xml:lang="sv">Funktioner:</p>
     <p xml:lang="tr">Özellikleri:</p>
     <p xml:lang="uk">Можливості:</p>
@@ -94,6 +98,7 @@
       <li xml:lang="nl">De dialoog voor opslaan van elke gescande afbeelding of het onmiddellijk in een een gespecificeerde map opslaan met automatisch gegenereerde namen en formaten.</li>
       <li xml:lang="pl">Okno dialogowe zapisywania dla każdego zeskanowanego obrazu lub zapisywanie obrazów bezpośrednio w podanym katalogu z samodzielnie utworzonymi nazwami i wybranym formatem</li>
       <li xml:lang="pt">Janela de gravação para todas as imagens digitalizadas ou gravação imediata das imagens numa pasta à escolha, com nomes e formato gerados automaticamente</li>
+      <li xml:lang="sl">Pogovorno okno za shranjevanje posamičnih slik ali paketno shranjevanje slik v navedeno mapo s samodejno ustvarjenimi imeni in vrsto datotek</li>
       <li xml:lang="sv">Dialog för att spara varje bild som läses in, eller spara bilderna omedelbart i en angiven katalog med automatiskt genererade namn och format</li>
       <li xml:lang="tr">Her taranan resim için kaydetme penceresi ya da otomatik isim ve biçim oluşturma ile belirtilen klasöre anında kaydetme.</li>
       <li xml:lang="uk">Можливість показу діалогового вікна збереження для кожного з зображень та можливість автоматичного зберігання зображень із автоматично визначеною назвою до вказаної теки.</li>
@@ -109,6 +114,7 @@
       <li xml:lang="nl">Ondersteuning voor scanners in het netwerk</li>
       <li xml:lang="pl">Obsługa skanerów w sieci</li>
       <li xml:lang="pt">Suporte para 'scanners' na rede</li>
+      <li xml:lang="sl">Podpora omrežnim optičnim bralnikom</li>
       <li xml:lang="sv">Stöd för nätverksbildläsare</li>
       <li xml:lang="tr">Ağ tarayıcı desteği</li>
       <li xml:lang="uk">Підтримка роботи зі сканерами з мережі.</li>
@@ -124,6 +130,7 @@
       <li xml:lang="nl">Voorbeeldweergave met geselecteerde functie voor de uiteindelijke scan</li>
       <li xml:lang="pl">Podgląd z możliwością zaznaczenia ostatecznego skanowania</li>
       <li xml:lang="pt">Antevisão com funcionalidade de selecção para a digitalização final</li>
+      <li xml:lang="sl">Predogled z zmožnostjo izbire območja za končno optično branje</li>
       <li xml:lang="sv">Förhandsgranskning med markeringsfunktion för slutlig bild</li>
       <li xml:lang="tr">Son tarama için seçim özelliği ile önizleme</li>
       <li xml:lang="uk">Засіб попереднього перегляду із можливістю вибору остаточної області сканування.</li>
@@ -139,6 +146,7 @@
       <li xml:lang="nl">Scannen van meerdere selecties van een afbeelding</li>
       <li xml:lang="pl">Skanowanie wielu obszarów obrazu</li>
       <li xml:lang="pt">Digitalização de várias selecções numa imagem</li>
+      <li xml:lang="sl">Optično branje več izborov na sliki</li>
       <li xml:lang="sv">Läs in flera markeringar i en bild</li>
       <li xml:lang="tr">Bir resimde birden çok seçimi tarama</li>
       <li xml:lang="uk">Можливість одночасного сканування декількох позначених областей на зображенні.</li>
