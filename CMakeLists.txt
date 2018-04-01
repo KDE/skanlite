@@ -41,7 +41,7 @@ find_package(PNG REQUIRED)
 
 include_directories(${PNG_INCLUDE_DIRS})
 
-set(SKANLITE_VERSION_STRING "2.1.0")
+set(SKANLITE_VERSION_STRING "2.1.0.1")
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/version.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/src/version.h)
 
