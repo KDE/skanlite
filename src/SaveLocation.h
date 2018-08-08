@@ -34,7 +34,7 @@ class SaveLocation : public QDialog, public Ui_SaveLocation
 {
     Q_OBJECT
 public:
-    SaveLocation(QWidget *parent = 0);
+    explicit SaveLocation(QWidget *parent = 0);
     ~SaveLocation();
 
 private Q_SLOTS:

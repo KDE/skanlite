@@ -23,7 +23,7 @@
 #ifndef DBusInterface_h
 #define DBusInterface_h
 
-#include <QtDBus/QDBusConnection>
+#include <QDBusConnection>
 #include <QDebug>
 #include <KSaneWidget>
 #include <QStringList>
@@ -39,7 +39,7 @@ class DBusInterface : public QObject
 
 public:
 
-    DBusInterface(QObject* parent = NULL) : QObject(parent) {}
+    explicit DBusInterface(QObject* parent = NULL) : QObject(parent) {}
 
     bool setupDBusInterface();
 

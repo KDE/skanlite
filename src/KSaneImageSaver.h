@@ -34,7 +34,7 @@ class KSaneImageSaver : public QThread
 {
     Q_OBJECT
 public:
-    KSaneImageSaver(QObject *parent = 0);
+    explicit KSaneImageSaver(QObject *parent = 0);
     ~KSaneImageSaver();
 
     bool savePng(const QString &name, const QByteArray &data, int width, int height, int format, int dpi);

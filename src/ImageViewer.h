@@ -32,7 +32,7 @@ class ImageViewer : public QGraphicsView
 {
     Q_OBJECT
 public:
-    ImageViewer(QWidget *parent = 0);
+    explicit ImageViewer(QWidget *parent = 0);
     ~ImageViewer();
 
     void setQImage(QImage *img);
