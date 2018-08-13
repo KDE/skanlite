@@ -57,8 +57,8 @@
    Skanlite is a simple image scanning application to scan and save images.
    Skanlite is based on libksane, an interface for SANE library to control image scanners.
   </p>
-    <p xml:lang="ca">Skanlite és una senzilla aplicació per escanejar imatges i desar-les. Skanlite es basa en «libsane», una interfície per a la biblioteca SANE que controla els escàners d'imatges.</p>
-    <p xml:lang="ca-valencia">Skanlite és una senzilla aplicació per escanejar imatges i guardar-les. Skanlite es basa en «libsane», una interfície per a la biblioteca SANE que controla els escàners d'imatges.</p>
+    <p xml:lang="ca">L'Skanlite és una senzilla aplicació per escanejar imatges i desar-les. Es basa en la «libksane», és una interfície per a la biblioteca de SANE que controla els escàners d'imatges.</p>
+    <p xml:lang="ca-valencia">L'Skanlite és una senzilla aplicació per escanejar imatges i guardar-les. Es basa en la «libksane», és una interfície per a la biblioteca de SANE que controla els escàners d'imatges.</p>
     <p xml:lang="el">Το Skanlite είναι μια απλή εφαρμογή σάρωσης και αποθήκευσης εικόνων. Το Skanlite βασίζεται στο libksane, μια διεπαφή της βιβλιοθήκης SANE για έλεγχο των σαρωτών εικόνων.</p>
     <p xml:lang="en-GB">Skanlite is a simple image scanning application to scan and save images. Skanlite is based on libksane, an interface for SANE library to control image scanners.</p>
     <p xml:lang="es">Skanlite es una sencilla aplicación para escanear y guardar imágenes. Skanlite se basa en libksane, una interfaz para la biblioteca SANE que permite controlar escáneres.</p>
@@ -101,8 +101,8 @@
     <p xml:lang="zh-CN">功能：</p>
     <ul>
       <li>Save dialog for every image scanned or saving the images immediately in a specified folder with auto-generated names and format</li>
-      <li xml:lang="ca">Diàleg per desar cada imatge escanejada o desar les imatges immediatament en una carpeta especificada amb noms i format generats automàticament</li>
-      <li xml:lang="ca-valencia">Diàleg per guardar cada imatge escanejada o guardar les imatges immediatament en una carpeta especificada amb noms i format generats automàticament</li>
+      <li xml:lang="ca">Diàleg per a desar cada imatge escanejada o desar les imatges immediatament en una carpeta especificada amb noms i format generats automàticament</li>
+      <li xml:lang="ca-valencia">Diàleg per a guardar cada imatge escanejada o guardar les imatges immediatament en una carpeta especificada amb noms i format generats automàticament</li>
       <li xml:lang="el">Αποθήκευση διαλόγου για κάθε εικόνα μετά τη σάρωση ή αποθήκευση των εικόνων αμέσως σε έναν δοσμένο φάκελο με αυτόματη εκχώρηση ονομάτων και τύπου αποθήκευσης</li>
       <li xml:lang="en-GB">Save dialogue for every image scanned or saving the images immediately in a specified folder with auto-generated names and format</li>
       <li xml:lang="es">Diálogo para guardar las imágenes escaneadas o para guardarlas inmediatamente en la carpeta indicada con nombres generados automáticamente y en el formato indicado.</li>
