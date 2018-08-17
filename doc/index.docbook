@@ -75,7 +75,7 @@ bmp
 </itemizedlist>
 </para>
 
-<note><para>You can check the status of your scanner support from the SANE project website by entering the information on this search page: <ulink url="http://www.sane-project.org/cgi-bin/driver.pl">http://www.sane-project.org/cgi-bin/driver.pl</ulink>.</para></note>
+<note><para>You can check the status of your scanner support from the SANE project website through the <ulink url="http://www.sane-project.org/sane-supported-devices.html">Supported Devices page on the SANE website</ulink>.</para></note>
 
 </chapter>
 
