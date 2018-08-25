@@ -18,6 +18,7 @@
   <name xml:lang="id">Skanlite</name>
   <name xml:lang="it">Skanlite</name>
   <name xml:lang="nl">Skanlite</name>
+  <name xml:lang="nn">Skanlite</name>
   <name xml:lang="pl">Skanlite</name>
   <name xml:lang="pt">Skanlite</name>
   <name xml:lang="pt-BR">Skanlite</name>
@@ -43,6 +44,7 @@
   <summary xml:lang="id">Aplikasi Pemindaian Citra</summary>
   <summary xml:lang="it">Applicazione per la scansione delle immagini</summary>
   <summary xml:lang="nl">Afbeeldingscanprogramma</summary>
+  <summary xml:lang="nn">Biletskanningsprogram</summary>
   <summary xml:lang="pl">Program do skanowania obrazów</summary>
   <summary xml:lang="pt">Aplicação de Digitalização de Imagens</summary>
   <summary xml:lang="ru">Сканирование изображений</summary>
@@ -69,6 +71,7 @@
     <p xml:lang="id">Skanlite adalah aplikasi pemindaian citra yang sederhana untuk memindai dan menyimpan citra. Skanlite adalah berdasarkan pada libksane, sebuah antarmuka terhadap pustaka SANE untuk mengendalikan pemindai citra.</p>
     <p xml:lang="it">Skanlite è una semplice applicazione per la scansione e il salvataggio delle immagini. Skanlite si basa su libksane, un'interfaccia per la libreria SANE per il controllo degli scanner per immagini.</p>
     <p xml:lang="nl">Skanlite is eenvoudige toepassing voor het scannen en opslaan van afbeeldingen. Skanlite is gebaseerd op libksane, een interface voor de SANE-bibliotheek voor de besturing van afbeeldingsscanners.</p>
+    <p xml:lang="nn">Skanlite er eit enkelt biletskanningsprogram for å skanna og lagra bilete. Skanlite er basert på libksane, eit grensesnitt for SANE-biblioteket som kan styra biletskannarar.</p>
     <p xml:lang="pl">Skanlite jest prostą aplikacją do skanowania i zapisywania obrazów. Skanlite jest oparty na libksane, interfejsie dla biblioteki SANE do obsługi skanerów obrazów.</p>
     <p xml:lang="pt">O Skanlite é uma aplicação simples de digitalização de imagens para digitalizar e gravar as imagens. O Skanlite baseia-se na 'libksane', uma interface para a biblioteca SANE que controla os 'scanners' de imagens.</p>
     <p xml:lang="sl">Skanlite je preprost program za optično branje in shranjevanje slik. Temelji na libksane, ki je vmesnik za knjižnico SANE, s katero lahko nadzirate optične bralnike.</p>
@@ -90,6 +93,7 @@
     <p xml:lang="id">Fitur:</p>
     <p xml:lang="it">Funzionalità:</p>
     <p xml:lang="nl">Mogelijkheden:</p>
+    <p xml:lang="nn">Funksjonar:</p>
     <p xml:lang="pl">Możliwości:</p>
     <p xml:lang="pt">Funcionalidades:</p>
     <p xml:lang="pt-BR">Recursos:</p>
@@ -114,6 +118,7 @@
       <li xml:lang="id">Dialog penyimpanan untuk setiap citra yang dipindai atau penyimpanan citra langsung ke dalam sebuah folder yang ditentukan dengan nama dan format yang dihasilkan secara otomatis</li>
       <li xml:lang="it">Finestra di dialogo per ogni scansione immagine o salvataggio immediato delle immagini in una cartella specifica con nomi e formati generati in automatico</li>
       <li xml:lang="nl">De dialoog voor opslaan van elke gescande afbeelding of het onmiddellijk in een een gespecificeerde map opslaan met automatisch gegenereerde namen en formaten.</li>
+      <li xml:lang="nn">Lagringsvindauge for kvart bilete som skannast, eller automatisk lagring i tilpassa mappe med biletnamn og -format som programmet genererer.</li>
       <li xml:lang="pl">Okno dialogowe zapisywania dla każdego zeskanowanego obrazu lub zapisywanie obrazów bezpośrednio w podanym katalogu z samodzielnie utworzonymi nazwami i wybranym formatem</li>
       <li xml:lang="pt">Janela de gravação para todas as imagens digitalizadas ou gravação imediata das imagens numa pasta à escolha, com nomes e formato gerados automaticamente</li>
       <li xml:lang="sl">Pogovorno okno za shranjevanje posamičnih slik ali paketno shranjevanje slik v navedeno mapo s samodejno ustvarjenimi imeni in vrsto datotek</li>
@@ -134,6 +139,7 @@
       <li xml:lang="id">Mendukung pemindaian jaringan</li>
       <li xml:lang="it">Supporto per scanner di rete</li>
       <li xml:lang="nl">Ondersteuning voor scanners in het netwerk</li>
+      <li xml:lang="nn">Støtte for nettverksskannarar</li>
       <li xml:lang="pl">Obsługa skanerów w sieci</li>
       <li xml:lang="pt">Suporte para 'scanners' na rede</li>
       <li xml:lang="sl">Podpora omrežnim optičnim bralnikom</li>
@@ -154,6 +160,7 @@
       <li xml:lang="id">Pratinjau dengan fitur pemilihan untuk pemindaian akhir</li>
       <li xml:lang="it">Anteprima con funzionalità di selezione per la scansione finale</li>
       <li xml:lang="nl">Voorbeeldweergave met geselecteerde functie voor de uiteindelijke scan</li>
+      <li xml:lang="nn">Førehandsvising med veljing av utsnittet som skal takast med i skanninga</li>
       <li xml:lang="pl">Podgląd z możliwością zaznaczenia ostatecznego skanowania</li>
       <li xml:lang="pt">Antevisão com funcionalidade de selecção para a digitalização final</li>
       <li xml:lang="sl">Predogled z zmožnostjo izbire območja za končno optično branje</li>
@@ -174,6 +181,7 @@
       <li xml:lang="id">Pemindaian pemilihan berlipat pada sebuah citra</li>
       <li xml:lang="it">Selezioni multiple di scansione di un'immagine</li>
       <li xml:lang="nl">Scannen van meerdere selecties van een afbeelding</li>
+      <li xml:lang="nn">Skanning av fleire utsnitt frå eitt bilete</li>
       <li xml:lang="pl">Skanowanie wielu obszarów obrazu</li>
       <li xml:lang="pt">Digitalização de várias selecções numa imagem</li>
       <li xml:lang="sl">Optično branje več izborov na sliki</li>
