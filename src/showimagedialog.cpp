@@ -27,8 +27,10 @@
 #include "ImageViewer.h"
 
 #include <QVBoxLayout>
+#include <QHBoxLayout>
 #include <QDialogButtonBox>
 #include <QPushButton>
+#include <QToolButton>
 
 ShowImageDialog::ShowImageDialog(QWidget *parent)
     : QDialog(parent)
@@ -43,8 +45,17 @@ ShowImageDialog::ShowImageDialog(QWidget *parent)
     connect(buttonBox->button(QDialogButtonBox::Discard), &QPushButton::clicked, this, &QDialog::reject);
     m_saveButton = buttonBox->button(QDialogButtonBox::Save);
 
+    auto *buttonsLayout = new QHBoxLayout;
+    const auto imageViewerActions = m_imageViewer->actions();
+    for (auto *action : imageViewerActions) {
+        auto *toolButton = new QToolButton;
+        toolButton->setDefaultAction(action);
+        buttonsLayout->addWidget(toolButton);
+    }
+    buttonsLayout->addWidget(buttonBox);
+
     mainLayout->addWidget(m_imageViewer);
-    mainLayout->addWidget(buttonBox);
+    mainLayout->addLayout(buttonsLayout);
 
     resize(640, 480);
 }
