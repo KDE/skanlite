@@ -26,6 +26,7 @@
 
 #include "KSaneImageSaver.h"
 #include "SaveLocation.h"
+#include "showimagedialog.h"
 
 #include <QApplication>
 #include <QScrollArea>
@@ -40,6 +41,7 @@
 #include <QImageWriter>
 #include <QMimeType>
 #include <QMimeDatabase>
+#include <QCloseEvent>
 
 #include <KAboutApplicationDialog>
 #include <KLocalizedString>
@@ -189,27 +191,9 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     }
 
     // prepare the Show Image Dialog
-    {
-        m_showImgDialog = new QDialog(this);
-
-        QVBoxLayout *mainLayout = new QVBoxLayout(m_showImgDialog);
-
-        QDialogButtonBox *imgButtonBox = new QDialogButtonBox(m_showImgDialog);
-        // "Close" (now Discard) and "User1"=Save
-        imgButtonBox->setStandardButtons(QDialogButtonBox::Discard | QDialogButtonBox::Save);
-
-        mainLayout->addWidget(&m_imageViewer);
-        mainLayout->addWidget(imgButtonBox);
-
-        m_showImgDialogSaveButton = imgButtonBox->button(QDialogButtonBox::Save);
-        m_showImgDialogSaveButton->setDefault(true); // still needed?
-
-        m_showImgDialog->resize(640, 480);
-        connect(imgButtonBox, &QDialogButtonBox::accepted, this, &Skanlite::saveImage);
-        //connect(imgButtonBox, &QDialogButtonBox::accepted, m_showImgDialog, &QDialog::accept);
-        connect(imgButtonBox->button(QDialogButtonBox::Discard), &QPushButton::clicked, m_ksanew, &KSaneWidget::scanCancel);
-        connect(imgButtonBox->button(QDialogButtonBox::Discard), &QPushButton::clicked, m_showImgDialog, &QDialog::reject);
-    }
+    m_showImgDialog = new ShowImageDialog(this);
+    connect(m_showImgDialog, &ShowImageDialog::saveRequested, this, &Skanlite::saveImage);
+    connect(m_showImgDialog, &ShowImageDialog::rejected, m_ksanew, &KSaneWidget::scanCancel);
 
     // save the default sane options for later use
     m_ksanew->getOptVals(m_defaultScanOpts);
@@ -376,9 +360,8 @@ void Skanlite::imageReady(QByteArray &data, int w, int h, int bpl, int f)
     if (m_settingsUi.showB4Save->isChecked() == true) {
         /* copy the image data into m_img and show it*/
         m_img = m_ksanew->toQImageSilent(data, w, h, bpl, (KSaneIface::KSaneWidget::ImageFormat)f);
-        m_imageViewer.setQImage(&m_img);
-        m_imageViewer.zoom2Fit();
-        m_showImgDialogSaveButton->setFocus();
+        m_showImgDialog->setQImage(&m_img);
+        m_showImgDialog->zoom2Fit();
         m_showImgDialog->exec();
         // save has been done as a result of save or then we got cancel
     }

@@ -30,9 +30,9 @@
 #include <KSaneWidget>
 
 #include "ui_settings.h"
-#include "ImageViewer.h"
 #include "DBusInterface.h"
 
+class ShowImageDialog;
 class SaveLocation;
 class KAboutData;
 
@@ -95,9 +95,7 @@ private:
     KSaneWidget             *m_ksanew = nullptr;
     Ui::SkanliteSettings     m_settingsUi;
     QDialog                 *m_settingsDialog = nullptr;
-    QDialog                 *m_showImgDialog = nullptr;
-    // having this variable here is not so nice; ShowImgageDialog should be separate class
-    QPushButton             *m_showImgDialogSaveButton = nullptr;
+    ShowImageDialog         *m_showImgDialog = nullptr;
     SaveLocation            *m_saveLocation = nullptr;
     QString                  m_deviceName;
     QMap<QString, QString>    m_defaultScanOpts;
@@ -108,7 +106,6 @@ private:
     int                      m_bytesPerLine;
     int                      m_format;
 
-    ImageViewer              m_imageViewer;
     DBusInterface            m_dbusInterface;
     QStringList              m_filterList;
     QStringList              m_filter16BitList;
