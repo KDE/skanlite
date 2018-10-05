@@ -41,7 +41,7 @@
   <summary xml:lang="fi">Kuvanlukusovellus</summary>
   <summary xml:lang="fr">Application de numérisation d'images</summary>
   <summary xml:lang="gl">Aplicativo de dixitalización de imaxes</summary>
-  <summary xml:lang="id">Aplikasi Pemindaian Citra</summary>
+  <summary xml:lang="id">Aplikasi Pemindaian Image</summary>
   <summary xml:lang="it">Applicazione per la scansione delle immagini</summary>
   <summary xml:lang="nl">Afbeeldingscanprogramma</summary>
   <summary xml:lang="nn">Biletskanningsprogram</summary>
@@ -69,7 +69,7 @@
     <p xml:lang="fi">Skanlite on yksinkertainen kuvanlukusovellus kuvien lukemiseen ja tallentamiseen. Skanlite pohjautuu libksaneen, kuvanlukulaitteita hallitsevan SANE-kirjaston liittymään.</p>
     <p xml:lang="fr">Skanlite est une application de numérisation d'images simple qui permet de numériser et d'enregistrer des images. Skanlite utilise libskane, une interface pour la librairie SANE permettant de contrôler des scanners.</p>
     <p xml:lang="gl">Skanlite é un aplicativo simple para dixitalizar e gardar imaxes. Skanlite está baseado en libksane, unha interface para a biblioteca SANE para controlar dixitalizadores de imaxes.</p>
-    <p xml:lang="id">Skanlite adalah aplikasi pemindaian citra yang sederhana untuk memindai dan menyimpan citra. Skanlite adalah berdasarkan pada libksane, sebuah antarmuka terhadap pustaka SANE untuk mengendalikan pemindai citra.</p>
+    <p xml:lang="id">Skanlite adalah aplikasi pemindaian image yang sederhana untuk memindai dan menyimpan image. Skanlite adalah berdasarkan pada libksane, sebuah antarmuka terhadap pustaka SANE untuk mengendalikan pemindai image.</p>
     <p xml:lang="it">Skanlite è una semplice applicazione per la scansione e il salvataggio delle immagini. Skanlite si basa su libksane, un'interfaccia per la libreria SANE per il controllo degli scanner per immagini.</p>
     <p xml:lang="nl">Skanlite is eenvoudige toepassing voor het scannen en opslaan van afbeeldingen. Skanlite is gebaseerd op libksane, een interface voor de SANE-bibliotheek voor de besturing van afbeeldingsscanners.</p>
     <p xml:lang="nn">Skanlite er eit enkelt biletskanningsprogram for å skanna og lagra bilete. Skanlite er basert på libksane, eit grensesnitt for SANE-biblioteket som kan styra biletskannarar.</p>
@@ -117,7 +117,7 @@
       <li xml:lang="fi">Tallennusikkuna kullekin luetulle kuvalle tai kuvien välitön tallennus määräkansioon automaattisesti luodulla nimellä automaattisesti valittuun muotoon</li>
       <li xml:lang="fr">Boîte de dialogue d'enregistrement pour chaque image numérisée ou enregistrement automatique dans un dossier au format spécifié; sous un nom généré automatiquement</li>
       <li xml:lang="gl">Diálogo de gardar para cada imaxe que se dixitaliza, ou gardar as imaxes inmediatamente nun cartafol indicado con nome e formato xerados automaticamente.</li>
-      <li xml:lang="id">Dialog penyimpanan untuk setiap citra yang dipindai atau penyimpanan citra langsung ke dalam sebuah folder yang ditentukan dengan nama dan format yang dihasilkan secara otomatis</li>
+      <li xml:lang="id">Dialog penyimpanan untuk setiap image yang dipindai atau penyimpanan image langsung ke dalam sebuah folder yang ditentukan dengan nama dan format yang dihasilkan secara otomatis</li>
       <li xml:lang="it">Finestra di dialogo per ogni scansione immagine o salvataggio immediato delle immagini in una cartella specifica con nomi e formati generati in automatico</li>
       <li xml:lang="nl">De dialoog voor opslaan van elke gescande afbeelding of het onmiddellijk in een een gespecificeerde map opslaan met automatisch gegenereerde namen en formaten.</li>
       <li xml:lang="nn">Lagringsvindauge for kvart bilete som skannast, eller automatisk lagring i tilpassa mappe med biletnamn og -format som programmet genererer.</li>
@@ -183,7 +183,7 @@
       <li xml:lang="fi">Useampien kuvan alueiden luku</li>
       <li xml:lang="fr">Numérisation de plusieurs parties d'une image</li>
       <li xml:lang="gl">Dixitalización de varias seleccións dunha imaxe.</li>
-      <li xml:lang="id">Pemindaian pemilihan berlipat pada sebuah citra</li>
+      <li xml:lang="id">Pemindaian pemilihan berlipat pada sebuah image</li>
       <li xml:lang="it">Selezioni multiple di scansione di un'immagine</li>
       <li xml:lang="nl">Scannen van meerdere selecties van een afbeelding</li>
       <li xml:lang="nn">Skanning av fleire utsnitt frå eitt bilete</li>
