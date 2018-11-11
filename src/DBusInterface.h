@@ -53,6 +53,7 @@ private:
 Q_SIGNALS:
     // used to communicate with Skanlite class
     void requestedScan();
+    void requestedPreview();
     void requestedScanCancel();
     void requestedGetScannerOptions();
     void requestedSetScannerOptions(const QStringList &options, bool ignoreSelection);
@@ -69,6 +70,9 @@ public Q_SLOTS:
 
     // Perform scan operation if is in idle
     Q_SCRIPTABLE void scan() { emit requestedScan(); }
+
+    // Perform preview operation if is in idle
+    Q_SCRIPTABLE void preview() { emit requestedPreview(); }
 
     // Cancel any ongoing operation
     Q_SCRIPTABLE void scanCancel() { emit requestedScanCancel(); }

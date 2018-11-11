@@ -208,6 +208,7 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     if (m_dbusInterface.setupDBusInterface()) {
         // D-Bus related slots
         connect(&m_dbusInterface, &DBusInterface::requestedScan, m_ksanew, &KSaneWidget::scanFinal);
+        connect(&m_dbusInterface, &DBusInterface::requestedPreview, m_ksanew, &KSaneWidget::startPreviewScan);
         connect(&m_dbusInterface, &DBusInterface::requestedScanCancel, m_ksanew, &KSaneWidget::scanCancel);
         connect(&m_dbusInterface, &DBusInterface::requestedSetScannerOptions, this, &Skanlite::setScannerOptions);
         connect(&m_dbusInterface, &DBusInterface::requestedSetSelection, this, &Skanlite::setSelection);
