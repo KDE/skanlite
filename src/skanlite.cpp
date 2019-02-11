@@ -24,7 +24,6 @@
 
 #include "skanlite.h"
 
-#include "KSaneImageSaver.h"
 #include "SaveLocation.h"
 #include "showimagedialog.h"
 
@@ -78,6 +77,9 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     connect(m_ksanew, &KSaneWidget::availableDevices, this, &Skanlite::availableDevices);
     connect(m_ksanew, &KSaneWidget::userMessage, this, &Skanlite::alertUser);
     connect(m_ksanew, &KSaneWidget::buttonPressed, this, &Skanlite::buttonPressed);
+
+    m_imageSaver = new KSaneImageSaver(this);
+    connect(m_imageSaver, &KSaneImageSaver::imageSaved, this, &Skanlite::imageSaved);
 
     mainLayout->addWidget(m_ksanew);
     mainLayout->addWidget(dlgButtonBoxBottom);
@@ -372,25 +374,48 @@ void Skanlite::imageReady(QByteArray &data, int w, int h, int bpl, int f)
     }
 }
 
+bool pathExists(const QString& dir, QWidget* parent)
+{
+    // propose directory creation if doesn't exists
+    QUrl dirUrl(dir);
+    if (dirUrl.isLocalFile()) {
+        QDir path(dirUrl.toLocalFile());
+        if (!path.exists()) {
+            if (KMessageBox::questionYesNo(parent, i18n("Directory doesn't exist, do you wish to create it?")) == KMessageBox::ButtonCode::Yes ) {
+                if (!path.mkpath(QLatin1String("."))) {
+                    KMessageBox::error(parent, i18n("Could not create directory %1", path.path()));
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
+}
+
 void Skanlite::saveImage()
 {
     // ask the first time if we are in "ask on first" mode
-    if ((m_settingsUi.saveModeCB->currentIndex() == SaveModeAskFirst) && m_firstImage) {
+    QString dir = QDir::cleanPath(m_saveLocation->u_urlRequester->url().url()).append(QLatin1Char('/')); //make sure whole value is processed as path to directory
+
+    while ((m_firstImage && (m_settingsUi.saveModeCB->currentIndex() == SaveModeAskFirst)) ||
+           !pathExists(dir, this)) {
         if (m_saveLocation->exec() != QFileDialog::Accepted) {
             m_ksanew->scanCancel(); // In case we are cancelling a document feeder scan
             return;
         }
+        dir = QDir::cleanPath(m_saveLocation->u_urlRequester->url().url()).append(QLatin1Char('/'));
         m_firstImage = false;
     }
 
-    QString dir = QDir::cleanPath(m_saveLocation->u_urlRequester->url().url()).append(QLatin1Char('/')); //make sure whole value is processed as path to directory
     QString prefix = m_saveLocation->u_imgPrefix->text();
     QString imgFormat = m_saveLocation->u_imgFormat->currentText().toLower();
     int fileNumber = m_saveLocation->u_numStartFrom->value();
     QStringList filterList = m_filterList;
+    bool enforceSavingAsPng16bit = false;
     if ((m_format == KSaneIface::KSaneWidget::FormatRGB_16_C) ||
             (m_format == KSaneIface::KSaneWidget::FormatGrayScale16)) {
         filterList = m_filter16BitList;
+        enforceSavingAsPng16bit = true;
         if (imgFormat != QLatin1String("png")) {
             imgFormat = QLatin1String("png");
             KMessageBox::information(this, i18n("The image will be saved in the PNG format, as Skanlite only supports saving 16 bit color images in the PNG format."));
@@ -487,9 +512,9 @@ void Skanlite::saveImage()
     QString localName;
 
     QString suffix = QFileInfo(fileUrl.fileName()).suffix();
-    const char *fileFormat = nullptr;
+    QString fileFormat;
     if (suffix.isEmpty()) {
-        fileFormat = "png";
+        fileFormat = QLatin1String("png");
     }
 
     if (!fileUrl.isLocalFile()) {
@@ -507,31 +532,24 @@ void Skanlite::saveImage()
         localName = fileUrl.toLocalFile();
     }
 
+
     // Save
-    if ((m_format == KSaneIface::KSaneWidget::FormatRGB_16_C) ||
-        (m_format == KSaneIface::KSaneWidget::FormatGrayScale16)) {
-        KSaneImageSaver saver;
-        if (saver.savePngSync(localName, m_data, m_width, m_height, m_format, m_ksanew->currentDPI())) {
-            m_showImgDialog->close(); // closing the window if it is closed should not be a problem.
-        }
-        else {
-            perrorMessageBox(i18n("Failed to save image"));
-            return;
-        }
+    if (enforceSavingAsPng16bit) {
+        m_imageSaver->save16BitPng(fileUrl, localName, m_data, m_width, m_height, m_bytesPerLine, (int) m_ksanew->currentDPI(), m_format, fileFormat, quality);
+    } else {
+        m_imageSaver->saveQImage(fileUrl, localName, m_data, m_width, m_height, m_bytesPerLine, (int) m_ksanew->currentDPI(), m_format, fileFormat, quality);
     }
-    else  {
-        // create the image if needed.
-        if (m_img.width() < 1) {
-            m_img = m_ksanew->toQImage(m_data, m_width, m_height, m_bytesPerLine, (KSaneIface::KSaneWidget::ImageFormat)m_format);
-        }
-        if (m_img.save(localName, fileFormat, quality)) {
-            m_showImgDialog->close(); // calling close() on a closed window does nothing.
-        }
-        else {
-            perrorMessageBox(i18n("Failed to save image"));
-            return;
-        }
+}
+
+void Skanlite::imageSaved(const QUrl &fileUrl, const QString &localName, bool success)
+{
+    if (!success) {
+        perrorMessageBox(i18n("Failed to save image"));
+        return;
     }
+
+    m_showImgDialog->close(); // calling close() on a closed window does nothing.
+
 
     if (!fileUrl.isLocalFile()) {
         QFile tmpFile(localName);
@@ -542,7 +560,7 @@ void Skanlite::saveImage()
         tmpFile.close();
         tmpFile.remove();
         if (!ok) {
-            KMessageBox::sorry(0, i18n("Failed to upload image"));
+            KMessageBox::sorry(nullptr, i18n("Failed to upload image"));
         }
         else {
             emit m_dbusInterface.imageSaved(fileUrl.toString());
@@ -562,7 +580,7 @@ void Skanlite::saveImage()
     // Save the number
     QString fileNumStr = QFileInfo(fileUrl.fileName()).completeBaseName();
     fileNumStr.remove(baseName);
-    fileNumber = fileNumStr.toInt();
+    int fileNumber = fileNumStr.toInt();
     if (fileNumber) {
         m_saveLocation->u_numStartFrom->setValue(fileNumber + 1);
     }

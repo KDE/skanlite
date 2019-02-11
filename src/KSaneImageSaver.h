@@ -34,19 +34,13 @@ class KSaneImageSaver : public QThread
 {
     Q_OBJECT
 public:
-    explicit KSaneImageSaver(QObject *parent = 0);
+    explicit KSaneImageSaver(QObject *parent = nullptr);
     ~KSaneImageSaver();
 
-    bool savePng(const QString &name, const QByteArray &data, int width, int height, int format, int dpi);
-
-    bool savePngSync(const QString &name, const QByteArray &data, int width, int height, int format, int dpi);
-
-    bool saveTiff(const QString &name, const QByteArray &data, int width, int height, int format);
-
-    bool saveTiffSync(const QString &name, const QByteArray &data, int width, int height, int format);
-
+    bool saveQImage(const QUrl &url, const QString &name, const QByteArray &data, int width, int height, int bpl, int dpi, int format, const QString& fileFormat, int quality);
+    bool save16BitPng(const QUrl &url, const QString &name, const QByteArray &data, int width, int height, int bpl, int dpi, int format, const QString& fileFormat, int quality);
 Q_SIGNALS:
-    void imageSaved(bool success);
+    void imageSaved(const QUrl &url, const QString &name, bool success);
 
 protected:
     void run() Q_DECL_OVERRIDE;
@@ -54,7 +48,6 @@ protected:
 private:
     struct Private;
     Private *const d;
-
 };
 
 #endif

@@ -30,27 +30,28 @@
 #include <QDebug>
 
 #include <KSaneWidget>
+#include <QUrl>
 
 struct KSaneImageSaver::Private {
-    enum ImageType {
-        ImageTypePNG,
-        ImageTypeTIFF
-    };
-
     bool   m_savedOk;
     QMutex m_runMutex;
-    KSaneImageSaver *q;
 
+    QUrl       m_url;
     QString    m_name;
     QByteArray m_data;
     int        m_width;
     int        m_height;
-    int        m_format;
+    int        m_bpl;
     int        m_dpi;
-    ImageType  m_type;
+    int        m_format;
+    QString    m_fileFormat;
+    int        m_quality;
+    bool       m_savingAsPng16;
 
-    bool savePng();
-    bool saveTiff();
+    KSaneImageSaver *q;
+
+    bool saveQImage();
+    bool save16BitPng();
 };
 
 // ------------------------------------------------------------------------
@@ -65,80 +66,65 @@ KSaneImageSaver::~KSaneImageSaver()
     delete d;
 }
 
-bool KSaneImageSaver::savePng(const QString &name, const QByteArray &data, int width, int height, int format, int dpi)
+bool KSaneImageSaver::saveQImage(const QUrl &url, const QString &name, const QByteArray &data, int width, int height, int bpl, int dpi, int format, const QString& fileFormat, int quality)
 {
     if (!d->m_runMutex.tryLock()) {
         return false;
     }
 
+    d->m_url    = url;
     d->m_name   = name;
     d->m_data   = data;
     d->m_width  = width;
     d->m_height = height;
-    d->m_format = format;
+    d->m_bpl    = bpl;
     d->m_dpi    = dpi;
-    d->m_type   = Private::ImageTypePNG;
+    d->m_format = format;
+    d->m_fileFormat = fileFormat;
+    d->m_quality = quality;
+    d->m_savingAsPng16 = false;
 
     start();
     return true;
 }
 
-bool KSaneImageSaver::savePngSync(const QString &name, const QByteArray &data, int width, int height, int format, int dpi)
-{
-    if (!savePng(name, data, width, height, format, dpi)) {
-        qDebug() << "fail";
-        return false;
-    }
-    wait();
-    return d->m_savedOk;
-}
-
-bool KSaneImageSaver::saveTiff(const QString &name, const QByteArray &data, int width, int height, int format)
+bool KSaneImageSaver::save16BitPng(const QUrl &url, const QString &name, const QByteArray &data, int width, int height, int bpl, int dpi, int format, const QString& fileFormat, int quality)
 {
     if (!d->m_runMutex.tryLock()) {
         return false;
     }
 
+    d->m_url    = url;
     d->m_name   = name;
     d->m_data   = data;
     d->m_width  = width;
     d->m_height = height;
+    d->m_bpl    = bpl;
+    d->m_dpi    = dpi;
     d->m_format = format;
-    d->m_type   = Private::ImageTypeTIFF;
+    d->m_fileFormat = fileFormat;
+    d->m_quality = quality;
+    d->m_savingAsPng16 = true;
 
-    qDebug() << "saving Tiff images is not yet supported";
-    d->m_runMutex.unlock();
-    return false;
-}
-
-bool KSaneImageSaver::saveTiffSync(const QString &name, const QByteArray &data, int width, int height, int format)
-{
-    if (!saveTiff(name, data, width, height, format)) {
-        return false;
-    }
-    wait();
-    return d->m_savedOk;
+    start();
+    return true;
 }
 
 void KSaneImageSaver::run()
 {
-    if (d->m_type == Private::ImageTypeTIFF) {
-        d->m_savedOk = d->saveTiff();
-        emit imageSaved(d->m_savedOk);
-    }
-    else {
-        d->m_savedOk = d->savePng();
-        emit imageSaved(d->m_savedOk);
-    }
+    d->m_savedOk = d->m_savingAsPng16 ? d->save16BitPng() : d->saveQImage();
+    emit imageSaved(d->m_url, d->m_name, d->m_savedOk);
+
     d->m_runMutex.unlock();
 }
 
-bool KSaneImageSaver::Private::saveTiff()
+bool KSaneImageSaver::Private::saveQImage()
 {
-    return false;
+    QImage img = KSaneIface::KSaneWidget::toQImageSilent(m_data, m_width, m_height, m_bpl, m_dpi, (KSaneIface::KSaneWidget::ImageFormat) m_format);
+    return img.save(m_name, qPrintable(m_fileFormat), m_quality);
 }
 
-bool KSaneImageSaver::Private::savePng()
+bool KSaneImageSaver::Private::save16BitPng()
 {
     FILE        *file;
     png_structp  png_ptr;

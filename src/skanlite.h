@@ -31,6 +31,7 @@
 
 #include "ui_settings.h"
 #include "DBusInterface.h"
+#include "KSaneImageSaver.h"
 
 class ShowImageDialog;
 class SaveLocation;
@@ -64,6 +65,7 @@ private Q_SLOTS:
     void getDir();
     void imageReady(QByteArray &, int, int, int, int);
     void saveImage();
+    void imageSaved(const QUrl &url, const QString &name, bool success);
     void showAboutDialog();
     void saveWindowSize();
 
@@ -93,6 +95,7 @@ protected:
 private:
     KAboutData              *m_aboutData;
     KSaneWidget             *m_ksanew = nullptr;
+    KSaneImageSaver         *m_imageSaver = nullptr;
     Ui::SkanliteSettings     m_settingsUi;
     QDialog                 *m_settingsDialog = nullptr;
     ShowImageDialog         *m_showImgDialog = nullptr;
