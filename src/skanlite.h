@@ -71,6 +71,7 @@ private Q_SLOTS:
 
     void saveScannerOptions();
     void defaultScannerOptions();
+    void applyScannerOptions(const QMap<QString, QString> &opts);
 
     void availableDevices(const QList<KSaneWidget::DeviceInfo> &deviceList);
 
@@ -101,7 +102,8 @@ private:
     ShowImageDialog         *m_showImgDialog = nullptr;
     SaveLocation            *m_saveLocation = nullptr;
     QString                  m_deviceName;
-    QMap<QString, QString>    m_defaultScanOpts;
+    QMap<QString, QString>   m_defaultScanOpts;
+    QMap<QString, QString>   m_pendingApplyScanOpts;
     QImage                   m_img;
     QByteArray               m_data;
     int                      m_width;

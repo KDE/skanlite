@@ -77,6 +77,11 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     connect(m_ksanew, &KSaneWidget::availableDevices, this, &Skanlite::availableDevices);
     connect(m_ksanew, &KSaneWidget::userMessage, this, &Skanlite::alertUser);
     connect(m_ksanew, &KSaneWidget::buttonPressed, this, &Skanlite::buttonPressed);
+    connect(m_ksanew, &KSaneWidget::scanDone, [this](){
+        if (!m_pendingApplyScanOpts.isEmpty()) {
+            applyScannerOptions(m_pendingApplyScanOpts);
+        }
+    });
 
     m_imageSaver = new KSaneImageSaver(this);
     connect(m_imageSaver, &KSaneImageSaver::imageSaved, this, &Skanlite::imageSaved);
@@ -643,7 +648,16 @@ void Skanlite::defaultScannerOptions()
         return;
     }
 
-    m_ksanew->setOptVals(m_defaultScanOpts);
+    applyScannerOptions(m_defaultScanOpts);
+}
+
+void Skanlite::applyScannerOptions(const QMap <QString, QString> &opts)
+{
+    if (m_ksanew->setOptVals(opts) == -1) {
+        m_pendingApplyScanOpts = opts;
+    } else {
+        m_pendingApplyScanOpts.clear();
+    }
 }
 
 void Skanlite::loadScannerOptions()
@@ -657,7 +671,7 @@ void Skanlite::loadScannerOptions()
 
     QMap <QString, QString> opts;
     readScannerOptions(QString::fromLatin1("Options For %1").arg(m_deviceName), opts);
-    m_ksanew->setOptVals(opts);
+    applyScannerOptions(opts);
 }
 
 void Skanlite::availableDevices(const QList<KSaneWidget::DeviceInfo> &deviceList)
@@ -750,7 +764,7 @@ void Skanlite::setScannerOptions(const QStringList &options, bool ignoreSelectio
     QMap <QString, QString> opts;
     deserializeScannerOptions(options, opts);
     processSelectionOptions(opts, ignoreSelection);
-    m_ksanew->setOptVals(opts);
+    applyScannerOptions(opts);
 }
 
 
@@ -779,7 +793,7 @@ void Skanlite::switchToProfile(const QString &profile, bool ignoreSelection)
     }
 
     processSelectionOptions(opts, ignoreSelection);
-    m_ksanew->setOptVals(opts);
+    applyScannerOptions(opts);
 }
 
 void Skanlite::getDeviceName()
