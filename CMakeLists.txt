@@ -21,8 +21,8 @@ include(GenerateExportHeader)
 remove_definitions(-DQT_NO_URL_CAST_FROM_STRING)
 remove_definitions(-DQT_NO_CAST_FROM_BYTEARRAY)
 
-set(REQUIRED_QT_VERSION "5.2.0")
-set(KF5_MIN_VERSION "5.1.0")
+set(REQUIRED_QT_VERSION "5.7.0")
+set(KF5_MIN_VERSION "5.55.0")
 
 ecm_setup_version(
   ${KF5_MIN_VERSION}
@@ -31,7 +31,7 @@ ecm_setup_version(
   PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/src/version.h.cmake"
 )
 
-set(SKANLITE_VERSION_STRING "2.1.0.1")
+set(SKANLITE_VERSION_STRING "2.2.0.0")
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/version.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/src/version.h)
 
