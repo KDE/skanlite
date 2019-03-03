@@ -82,7 +82,7 @@ ImageViewer::~ImageViewer()
 // ------------------------------------------------------------------------
 void ImageViewer::setQImage(QImage *img)
 {
-    if (img == 0) {
+    if (img == nullptr) {
         return;
     }
 

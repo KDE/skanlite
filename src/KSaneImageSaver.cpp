@@ -140,7 +140,7 @@ bool KSaneImageSaver::Private::save16BitPng()
     }
 
     // create the png struct
-    png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
+    png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, nullptr, nullptr, nullptr);
     if (!png_ptr) {
         fclose(file);
         return false;
@@ -150,7 +150,7 @@ bool KSaneImageSaver::Private::save16BitPng()
     info_ptr = png_create_info_struct(png_ptr);
     if (!png_ptr) {
         fclose(file);
-        png_destroy_write_struct(&png_ptr, (png_infopp)NULL);
+        png_destroy_write_struct(&png_ptr, (png_infopp)nullptr);
         return false;
     }
 
@@ -175,7 +175,7 @@ bool KSaneImageSaver::Private::save16BitPng()
         break;
     default:
         fclose(file);
-        png_destroy_write_struct(&png_ptr, (png_infopp)NULL);
+        png_destroy_write_struct(&png_ptr, (png_infopp)nullptr);
         return false;
     }
 

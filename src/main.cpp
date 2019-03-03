@@ -96,7 +96,7 @@ int main(int argc, char *argv[])
     const QString deviceName = parser.value(deviceOption);
     qDebug() << QString::fromLatin1("deviceOption value=%1").arg(deviceName);
 
-    Skanlite skanliteDialog(deviceName, 0);
+    Skanlite skanliteDialog(deviceName, nullptr);
     skanliteDialog.setAboutData(&aboutData);
 
     skanliteDialog.show();
