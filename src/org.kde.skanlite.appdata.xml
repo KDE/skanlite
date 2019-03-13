@@ -29,6 +29,7 @@
   <name xml:lang="uk">Skanlite</name>
   <name xml:lang="x-test">xxSkanlitexx</name>
   <name xml:lang="zh-CN">Skanlite</name>
+  <name xml:lang="zh-TW">Skanlite</name>
   <summary>Image Scanning Application</summary>
   <summary xml:lang="ca">Aplicació per a la digitalització d'imatges</summary>
   <summary xml:lang="ca-valencia">Aplicació per a la digitalització d'imatges</summary>
@@ -55,6 +56,7 @@
   <summary xml:lang="uk">Програма для сканування зображень</summary>
   <summary xml:lang="x-test">xxImage Scanning Applicationxx</summary>
   <summary xml:lang="zh-CN">图像扫描程序</summary>
+  <summary xml:lang="zh-TW">影像掃描應用程式</summary>
   <description>
     <p>
    Skanlite is a simple image scanning application to scan and save images.
@@ -106,6 +108,7 @@
     <p xml:lang="uk">Можливості:</p>
     <p xml:lang="x-test">xxFeatures:xx</p>
     <p xml:lang="zh-CN">功能：</p>
+    <p xml:lang="zh-TW">功能：</p>
     <ul>
       <li>Save dialog for every image scanned or saving the images immediately in a specified folder with auto-generated names and format</li>
       <li xml:lang="ca">Diàleg per a desar cada imatge escanejada o desar les imatges immediatament en una carpeta especificada amb noms i format generats automàticament</li>
@@ -150,6 +153,7 @@
       <li xml:lang="tr">Ağ tarayıcı desteği</li>
       <li xml:lang="uk">Підтримка роботи зі сканерами з мережі.</li>
       <li xml:lang="x-test">xxSupport for networks scannersxx</li>
+      <li xml:lang="zh-TW">支援網路掃描機</li>
       <li>Preview with selection feature for the final scan</li>
       <li xml:lang="ca">Vista prèvia amb la característica de selecció per a l'escaneig final</li>
       <li xml:lang="ca-valencia">Vista prèvia amb la característica de selecció per a l'escaneig final</li>
@@ -194,6 +198,7 @@
       <li xml:lang="tr">Bir resimde birden çok seçimi tarama</li>
       <li xml:lang="uk">Можливість одночасного сканування декількох позначених областей на зображенні.</li>
       <li xml:lang="x-test">xxScanning multiple selections of an imagexx</li>
+      <li xml:lang="zh-TW">將多個部份掃描成一張影像</li>
     </ul>
   </description>
   <screenshots>
