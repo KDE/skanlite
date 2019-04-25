@@ -87,14 +87,19 @@ void ImageViewer::setQImage(QImage *img)
     }
 
     d->img = img;
-    d->scene->setSceneRect(0, 0, img->width(), img->height());
+    const auto dpr = devicePixelRatioF();
+    d->img->setDevicePixelRatio(dpr);
+    d->scene->setSceneRect(0, 0, img->width() / dpr, img->height() / dpr);
 }
 
 // ------------------------------------------------------------------------
 void ImageViewer::drawBackground(QPainter *painter, const QRectF &rect)
 {
     painter->fillRect(rect, QColor(0x70, 0x70, 0x70));
-    painter->drawImage(rect, *d->img, rect);
+    QRectF r = rect & sceneRect();
+    const auto dpr = d->img->devicePixelRatio();
+    QRectF srcRect = QRectF(r.topLeft() * dpr, r.size() * dpr);
+    painter->drawImage(r, *d->img, srcRect);
 }
 
 // ------------------------------------------------------------------------
@@ -118,7 +123,10 @@ void ImageViewer::zoomActualSize()
 // ------------------------------------------------------------------------
 void ImageViewer::zoom2Fit()
 {
-    fitInView(d->img->rect(), Qt::KeepAspectRatio);
+    QRectF r = d->img->rect();
+    const auto dpr = d->img->devicePixelRatio();
+    r = QRectF(r.topLeft() / dpr, r.size() / dpr);
+    fitInView(r, Qt::KeepAspectRatio);
 }
 
 // ------------------------------------------------------------------------

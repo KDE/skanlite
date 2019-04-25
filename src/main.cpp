@@ -34,6 +34,7 @@
 
 int main(int argc, char *argv[])
 {
+    QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
     QApplication app(argc, argv);
 
     Kdelibs4ConfigMigrator migrate(QLatin1String("Skanlite"));
