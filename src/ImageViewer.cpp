@@ -133,7 +133,7 @@ void ImageViewer::zoom2Fit()
 void ImageViewer::wheelEvent(QWheelEvent *e)
 {
     if (e->modifiers() == Qt::ControlModifier) {
-        if (e->delta() > 0) {
+        if (e->angleDelta().y() > 0) {
             zoomIn();
         }
         else {
