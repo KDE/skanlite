@@ -41,7 +41,7 @@
   <summary xml:lang="es">Aplicación para escanear imágenes</summary>
   <summary xml:lang="fi">Kuvanlukusovellus</summary>
   <summary xml:lang="fr">Application de numérisation d'images</summary>
-  <summary xml:lang="gl">Aplicativo de dixitalización de imaxes</summary>
+  <summary xml:lang="gl">Aplicación de dixitalización de imaxes</summary>
   <summary xml:lang="id">Aplikasi Pemindaian Citra</summary>
   <summary xml:lang="it">Applicazione per la scansione delle immagini</summary>
   <summary xml:lang="ko">그림 스캐닝 프로그램</summary>
@@ -72,7 +72,7 @@
     <p xml:lang="es">Skanlite es una sencilla aplicación para escanear y guardar imágenes. Skanlite se basa en libksane, una interfaz para la biblioteca SANE que permite controlar escáneres.</p>
     <p xml:lang="fi">Skanlite on yksinkertainen kuvanlukusovellus kuvien lukemiseen ja tallentamiseen. Skanlite pohjautuu libksaneen, kuvanlukulaitteita hallitsevan SANE-kirjaston liittymään.</p>
     <p xml:lang="fr">Skanlite est une application de numérisation d'images simple qui permet de numériser et d'enregistrer des images. Skanlite utilise libskane, une interface pour la librairie SANE permettant de contrôler des scanners.</p>
-    <p xml:lang="gl">Skanlite é un aplicativo simple para dixitalizar e gardar imaxes. Skanlite está baseado en libksane, unha interface para a biblioteca SANE para controlar dixitalizadores de imaxes.</p>
+    <p xml:lang="gl">Skanlite é unha aplicación simple para dixitalizar e gardar imaxes. Skanlite está baseado en libksane, unha interface para a biblioteca SANE para controlar dixitalizadores de imaxes.</p>
     <p xml:lang="id">Skanlite adalah aplikasi pemindaian citra yang sederhana untuk memindai dan menyimpan citra. Skanlite adalah berdasarkan pada libksane, sebuah antarmuka terhadap pustaka SANE untuk mengendalikan pemindai citra.</p>
     <p xml:lang="it">Skanlite è una semplice applicazione per la scansione e il salvataggio delle immagini. Skanlite si basa su libksane, un'interfaccia per la libreria SANE per il controllo degli scanner per immagini.</p>
     <p xml:lang="ko">Skanlite는 그림을 스캔하고 저장하는 간단한 도구입니다. Skanlite는 SANE 라이브러리로 스캐너를 제어하는 인터페이스인 libksane을 사용합니다.</p>
