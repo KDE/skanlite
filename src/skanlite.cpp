@@ -704,7 +704,7 @@ QStringList serializeScannerOptions(const QMap<QString, QString> &opts)
     QStringList sl;
     QMap<QString, QString>::const_iterator it = opts.constBegin();
     while (it != opts.constEnd()) {
-        sl.append(it.key() + QLatin1String("=") + it.value());
+        sl.append(it.key() + QLatin1Char('=') + it.value());
         ++it;
     }
     return sl;
@@ -809,7 +809,7 @@ void Skanlite::getSelection()
     QStringList reply;
     foreach ( QString key, selectionSettings ) {
         if (opts.contains(key)) {
-            reply.append(key + QLatin1String("=") + opts[key]);
+            reply.append(key + QLatin1Char('=') + opts[key]);
         }
     }
     m_dbusInterface.setReply(reply);
