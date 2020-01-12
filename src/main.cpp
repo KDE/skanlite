@@ -87,8 +87,6 @@ int main(int argc, char *argv[])
     QCoreApplication::setApplicationVersion(aboutData.version());
     QCommandLineParser parser;
     aboutData.setupCommandLine(&parser);
-    parser.addHelpOption();
-    parser.addVersionOption();
     QCommandLineOption deviceOption(QStringList() << QLatin1String("d") << QLatin1String("device"), i18n("Sane scanner device name. Use 'test' for test device."), i18n("device"));
     parser.addOption(deviceOption);
     parser.process(app); // the --author and --license is shown anyway but they work only with the following line
