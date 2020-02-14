@@ -117,7 +117,7 @@ void ImageViewer::zoomOut()
 // ------------------------------------------------------------------------
 void ImageViewer::zoomActualSize()
 {
-    setMatrix(QMatrix());
+    resetTransform();
 }
 
 // ------------------------------------------------------------------------
