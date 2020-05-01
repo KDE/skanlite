@@ -472,37 +472,11 @@ void Skanlite::saveImage()
         saveDialog.selectMimeTypeFilter(currentMimeFilter);
         //qDebug() << fileUrl.url() << fileUrl.toLocalFile() << currentMimeFilter;
 
-        do {
-            if (saveDialog.exec() != QFileDialog::Accepted) {
-                return;
-            }
+        if (saveDialog.exec() != QFileDialog::Accepted) {
+            return;
+        }
 
-            fileUrl = saveDialog.selectedUrls()[0];
-
-            bool exists;
-            if (fileUrl.isLocalFile()) {
-                exists = QFileInfo(fileUrl.toLocalFile()).exists();
-            }
-            else {
-                KIO::StatJob *statJob = KIO::stat(fileUrl, KIO::StatJob::DestinationSide, 0);
-                KJobWidgets::setWindow(statJob, QApplication::activeWindow());
-                exists = statJob->exec();
-            }
-            if (exists) {
-                if (KMessageBox::warningContinueCancel(this,
-                    i18n("Do you want to overwrite \"%1\"?", fileUrl.fileName()),
-                    QString(),
-                    KStandardGuiItem::overwrite(),
-                    KStandardGuiItem::cancel(),
-                    QLatin1String("editorWindowSaveOverwrite")
-                ) ==  KMessageBox::Continue) {
-                    break;
-                }
-            }
-            else {
-                break;
-            }
-        } while (true);
+        fileUrl = saveDialog.selectedUrls()[0];
     }
 
     m_firstImage = false;
