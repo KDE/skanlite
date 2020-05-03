@@ -41,6 +41,7 @@
 #include <QMimeType>
 #include <QMimeDatabase>
 #include <QCloseEvent>
+#include <QProgressBar>
 
 #include <KAboutApplicationDialog>
 #include <KLocalizedString>
@@ -86,7 +87,17 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     m_imageSaver = new KSaneImageSaver(this);
     connect(m_imageSaver, &KSaneImageSaver::imageSaved, this, &Skanlite::imageSaved);
 
+    m_saveProgressBar = new QProgressBar(this);
+    m_saveProgressBar->setVisible(false);
+    m_saveProgressBar->setFormat(i18n("Saving: %v kB"));
+    m_saveProgressBar->setTextVisible(true);
+
+    m_saveUpdateTimer.setInterval(200);
+    m_saveUpdateTimer.setSingleShot(false);
+    connect(&m_saveUpdateTimer, &QTimer::timeout, this, &Skanlite::updateSaveProgress);
+
     mainLayout->addWidget(m_ksanew);
+    mainLayout->addWidget(m_saveProgressBar);
     mainLayout->addWidget(dlgButtonBoxBottom);
 
     m_ksanew->initGetDeviceList();
@@ -514,6 +525,24 @@ void Skanlite::saveImage()
     } else {
         m_imageSaver->saveQImage(fileUrl, localName, m_data, m_width, m_height, m_bytesPerLine, (int) m_ksanew->currentDPI(), m_format, fileFormat, quality);
     }
+
+    m_showImgDialog->close(); // calling close() on a closed window does nothing.
+
+    // Disable parts of the interface and indicate that we are saving the image
+    m_currentSaveUrl = fileUrl;
+    m_ksanew->setDisabled(true);
+    m_saveProgressBar->setMaximum(0);
+    m_saveProgressBar->setValue(0);
+    m_saveProgressBar->setVisible(true);
+    m_saveUpdateTimer.start();
+}
+
+void Skanlite::updateSaveProgress()
+{
+    QFileInfo saveInfo(m_currentSaveUrl.toLocalFile());
+    quint64 size = saveInfo.size()/1024;
+    m_saveProgressBar->setMaximum(size);
+    m_saveProgressBar->setValue(size);
 }
 
 void Skanlite::imageSaved(const QUrl &fileUrl, const QString &localName, bool success)
@@ -522,9 +551,6 @@ void Skanlite::imageSaved(const QUrl &fileUrl, const QString &localName, bool su
         perrorMessageBox(i18n("Failed to save image"));
         return;
     }
-
-    m_showImgDialog->close(); // calling close() on a closed window does nothing.
-
 
     if (!fileUrl.isLocalFile()) {
         QFile tmpFile(localName);
@@ -544,6 +570,9 @@ void Skanlite::imageSaved(const QUrl &fileUrl, const QString &localName, bool su
     else {
         emit m_dbusInterface.imageSaved(localName);
     }
+    m_ksanew->setDisabled(false);
+    m_saveUpdateTimer.stop();
+    m_saveProgressBar->setVisible(false);
 
     // Save the file base name without number
     QString baseName = QFileInfo(fileUrl.fileName()).completeBaseName();

@@ -24,8 +24,9 @@
 #ifndef Skanlite_h
 #define Skanlite_h
 
-#include <QDir>
+#include <QUrl>
 #include <QDialog>
+#include <QTimer>
 
 #include <KSaneWidget>
 
@@ -36,6 +37,7 @@
 class ShowImageDialog;
 class SaveLocation;
 class KAboutData;
+class QProgressBar;
 
 using namespace KSaneIface;
 
@@ -64,6 +66,7 @@ private Q_SLOTS:
     void showSettingsDialog();
     void imageReady(QByteArray &, int, int, int, int);
     void saveImage();
+    void updateSaveProgress();
     void imageSaved(const QUrl &url, const QString &name, bool success);
     void showAboutDialog();
     void saveWindowSize();
@@ -96,6 +99,9 @@ private:
     KAboutData              *m_aboutData;
     KSaneWidget             *m_ksanew = nullptr;
     KSaneImageSaver         *m_imageSaver = nullptr;
+    QProgressBar            *m_saveProgressBar = nullptr;
+    QUrl                     m_currentSaveUrl;
+    QTimer                   m_saveUpdateTimer;
     Ui::SkanliteSettings     m_settingsUi;
     QDialog                 *m_settingsDialog = nullptr;
     ShowImageDialog         *m_showImgDialog = nullptr;
