@@ -24,6 +24,7 @@
 * ============================================================ */
 
 #include "SaveLocation.h"
+#include "ui_SaveLocation.h"
 
 #include <QDebug>
 #include <QFileDialog>
@@ -33,17 +34,18 @@
 SaveLocation::SaveLocation(QWidget *parent)
     : QDialog(parent)
 {
-    setupUi(this);
+    m_ui = new Ui_SaveLocation();
+    m_ui->setupUi(this);
 
-    u_urlRequester->setMode(KFile::Directory);
-    connect(u_urlRequester, &KUrlRequester::textChanged, this, &SaveLocation::updateGui);
-    connect(u_imgPrefix, &QLineEdit::textChanged, this, &SaveLocation::updateGui);
+    m_ui->u_urlRequester->setMode(KFile::Directory);
+    connect(m_ui->u_urlRequester, &KUrlRequester::textChanged, this, &SaveLocation::updateGui);
+    connect(m_ui->u_imgPrefix, &QLineEdit::textChanged, this, &SaveLocation::updateGui);
 #if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
     connect(u_imgFormat, static_cast<void (QComboBox::*)(const QString &)>(&QComboBox::activated), this, &SaveLocation::updateGui);
 #else
-    connect(u_imgFormat, static_cast<void (QComboBox::*)(const QString &)>(&QComboBox::textActivated), this, &SaveLocation::updateGui);
+    connect(m_ui->u_imgFormat, static_cast<void (QComboBox::*)(const QString &)>(&QComboBox::textActivated), this, &SaveLocation::updateGui);
 #endif
-    connect(u_numStartFrom, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &SaveLocation::updateGui);
+    connect(m_ui->u_numStartFrom, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &SaveLocation::updateGui);
 }
 
 SaveLocation::~SaveLocation()
@@ -52,18 +54,41 @@ SaveLocation::~SaveLocation()
 
 void SaveLocation::updateGui()
 {
-    if (sender() != u_numStartFrom) {
-        u_numStartFrom->setValue(1); // Reset the counter whenever the directory or the prefix is changed
+    if (sender() != m_ui->u_numStartFrom) {
+        m_ui->u_numStartFrom->setValue(1); // Reset the counter whenever the directory or the prefix is changed
     }
-    const QString name = QString::fromLatin1("%1%2.%3").arg(u_imgPrefix->text()).arg(u_numStartFrom->value(), 4, 10, QLatin1Char('0')).arg(u_imgFormat->currentText());
-    QString dir = QDir::cleanPath(u_urlRequester->url().toString()).append(QLatin1Char('/')); //make sure whole value is processed as path to directory
-    u_resultValue->setText(QUrl(dir).resolved(QUrl(name)).toString(QUrl::PreferLocalFile | QUrl::NormalizePathSegments));
+    const QString name = QString::fromLatin1("%1%2.%3")
+    .arg(m_ui->u_imgPrefix->text())
+    .arg(m_ui->u_numStartFrom->value(), 4, 10, QLatin1Char('0'))
+    .arg(m_ui->u_imgFormat->currentText());
+    QString dir = QDir::cleanPath(m_ui->u_urlRequester->url().toString()).append(QLatin1Char('/')); //make sure whole value is processed as path to directory
+    m_ui->u_resultValue->setText(QUrl(dir).resolved(QUrl(name)).toString(QUrl::PreferLocalFile | QUrl::NormalizePathSegments));
 }
 
 void SaveLocation::getDir(void)
 {
-    const QString newDir = QFileDialog::getExistingDirectory(this, QString(), u_urlRequester->url().toLocalFile());
+    const QString newDir = QFileDialog::getExistingDirectory(this, QString(), m_ui->u_urlRequester->url().toLocalFile());
     if (!newDir.isEmpty()) {
-        u_urlRequester->setUrl(QUrl::fromLocalFile(newDir));
+        m_ui->u_urlRequester->setUrl(QUrl::fromLocalFile(newDir));
     }
 }
+
+QUrl SaveLocation::folderUrl() const
+{
+    QUrl folderUrl = m_ui->u_urlRequester->url();
+    folderUrl.setPath(folderUrl.path() + QLatin1Char('/'));
+    return folderUrl.adjusted(QUrl::NormalizePathSegments);
+}
+
+QString SaveLocation::imagePrefix() const { return m_ui->u_imgPrefix->text(); }
+QString SaveLocation::imageFormat() const { return m_ui->u_imgFormat->currentText().toLower(); }
+int     SaveLocation::startNumber() const { return m_ui->u_numStartFrom->value(); }
+int     SaveLocation::startNumberMax() const { return m_ui->u_numStartFrom->maximum(); }
+
+
+void SaveLocation::setFolderUrl(const QUrl &url)               { m_ui->u_urlRequester->setUrl(url); }
+void SaveLocation::setImagePrefix(const QString &prefix)       { m_ui->u_imgPrefix->setText(prefix); }
+void SaveLocation::setImageFormats(const QStringList &formats) { m_ui->u_imgFormat->addItems(formats); }
+void SaveLocation::setImageFormat(const QString &format)       { m_ui->u_imgFormat->setCurrentText(format); }
+void SaveLocation::setStartNumber(int number)                  { m_ui->u_numStartFrom->setValue(number); }
+

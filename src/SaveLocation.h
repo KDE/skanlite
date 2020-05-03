@@ -26,20 +26,37 @@
 #ifndef SAVE_LOCATION_H
 #define SAVE_LOCATION_H
 
-#include "ui_SaveLocation.h"
-
 #include <QDialog>
 
-class SaveLocation : public QDialog, public Ui_SaveLocation
+class Ui_SaveLocation;
+
+class SaveLocation : public QDialog
 {
     Q_OBJECT
 public:
     explicit SaveLocation(QWidget *parent = nullptr);
     ~SaveLocation();
 
+    QUrl folderUrl() const;
+    QString imagePrefix() const;
+    QString imageFormat() const;
+    int startNumber() const;
+    int startNumberMax() const;
+
+    void setFolderUrl(const QUrl &url);
+    void setImagePrefix(const QString &prefix);
+    void setImageFormat(const QString &format);
+    void setStartNumber(int number);
+
+    void setImageFormats(const QStringList &formats);
+
 private Q_SLOTS:
     void updateGui();
     void getDir();
+
+private:
+    Ui_SaveLocation *m_ui;
+
 };
 
 #endif

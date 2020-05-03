@@ -62,7 +62,6 @@ private:
 
 private Q_SLOTS:
     void showSettingsDialog();
-    void getDir();
     void imageReady(QByteArray &, int, int, int, int);
     void saveImage();
     void imageSaved(const QUrl &url, const QString &name, bool success);

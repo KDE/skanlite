@@ -152,7 +152,7 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
         }
 
         m_settingsUi.imgFormat->addItems(m_typeList);
-        m_saveLocation->u_imgFormat->addItems(m_typeList);
+        m_saveLocation->setImageFormats(m_typeList);
 
         mainLayout->addWidget(settingsWidget);
 
@@ -165,14 +165,13 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
 
         m_settingsDialog->setWindowTitle(i18n("Skanlite Settings"));
 
-        connect(m_settingsUi.getDirButton, &QPushButton::clicked, this, &Skanlite::getDir);
         connect(m_settingsUi.revertOptions, &QPushButton::clicked, this, &Skanlite::defaultScannerOptions);
         readSettings();
 
         // default directory for the save dialog
-        m_saveLocation->u_urlRequester->setUrl(QUrl::fromUserInput(m_settingsUi.saveDirLEdit->text()));
-        m_saveLocation->u_imgPrefix->setText(m_settingsUi.imgPrefix->text());
-        m_saveLocation->u_imgFormat->setCurrentText(m_settingsUi.imgFormat->currentText());
+        m_saveLocation->setFolderUrl(m_settingsUi.saveDirRequester->url());
+        m_saveLocation->setImagePrefix(m_settingsUi.imgPrefix->text());
+        m_saveLocation->setImageFormat(m_settingsUi.imgFormat->currentText());
     }
 
     // open the scan device
@@ -287,7 +286,7 @@ void Skanlite::readSettings(void)
     if (m_settingsUi.saveModeCB->currentIndex() != SaveModeAskFirst) {
         m_firstImage = false;
     }
-    m_settingsUi.saveDirLEdit->setText(saving.readEntry("Location", QDir::homePath()));
+    m_settingsUi.saveDirRequester->setUrl(saving.readEntry("Location", QUrl(QDir::homePath())));
     m_settingsUi.imgPrefix->setText(saving.readEntry("NamePrefix", i18nc("prefix for auto naming", "Image-")));
     m_settingsUi.imgFormat->setCurrentText(saving.readEntry("ImgFormat", "png"));
     m_settingsUi.imgQuality->setValue(saving.readEntry("ImgQuality", 90));
@@ -319,7 +318,7 @@ void Skanlite::showSettingsDialog(void)
         // save the settings
         KConfigGroup saving(KSharedConfig::openConfig(), "Image Saving");
         saving.writeEntry("SaveMode", m_settingsUi.saveModeCB->currentIndex());
-        saving.writeEntry("Location", m_settingsUi.saveDirLEdit->text());
+        saving.writeEntry("Location", m_settingsUi.saveDirRequester->url());
         saving.writeEntry("NamePrefix", m_settingsUi.imgPrefix->text());
         saving.writeEntry("ImgFormat", m_settingsUi.imgFormat->currentText());
         saving.writeEntry("SetQuality", m_settingsUi.setQuality->isChecked());
@@ -344,9 +343,9 @@ void Skanlite::showSettingsDialog(void)
         m_ksanew->enableAutoSelect(!m_settingsUi.u_disableSelections->isChecked());
 
         // pressing OK in the settings dialog means use those settings.
-        m_saveLocation->u_urlRequester->setUrl(QUrl::fromUserInput(m_settingsUi.saveDirLEdit->text()));
-        m_saveLocation->u_imgPrefix->setText(m_settingsUi.imgPrefix->text());
-        m_saveLocation->u_imgFormat->setCurrentText(m_settingsUi.imgFormat->currentText());
+        m_saveLocation->setFolderUrl(m_settingsUi.saveDirRequester->url());
+        m_saveLocation->setImagePrefix(m_settingsUi.imgPrefix->text());
+        m_saveLocation->setImageFormat(m_settingsUi.imgFormat->currentText());
 
         m_firstImage = true;
     }
@@ -379,10 +378,9 @@ void Skanlite::imageReady(QByteArray &data, int w, int h, int bpl, int f)
     }
 }
 
-bool pathExists(const QString& dir, QWidget* parent)
+bool pathExists(const QUrl& dirUrl, QWidget* parent)
 {
     // propose directory creation if doesn't exists
-    QUrl dirUrl(dir);
     if (dirUrl.isLocalFile()) {
         QDir path(dirUrl.toLocalFile());
         if (!path.exists()) {
@@ -400,25 +398,27 @@ bool pathExists(const QString& dir, QWidget* parent)
 void Skanlite::saveImage()
 {
     // ask the first time if we are in "ask on first" mode
-    QString dir = QDir::cleanPath(m_saveLocation->u_urlRequester->url().url()).append(QLatin1Char('/')); //make sure whole value is processed as path to directory
+    QUrl dirUrl = m_saveLocation->folderUrl();
 
     while ((m_firstImage && (m_settingsUi.saveModeCB->currentIndex() == SaveModeAskFirst)) ||
-           !pathExists(dir, this)) {
+        !pathExists(dirUrl, this))
+    {
         if (m_saveLocation->exec() != QFileDialog::Accepted) {
             m_ksanew->scanCancel(); // In case we are cancelling a document feeder scan
             return;
         }
-        dir = QDir::cleanPath(m_saveLocation->u_urlRequester->url().url()).append(QLatin1Char('/'));
+        dirUrl = m_saveLocation->folderUrl();
         m_firstImage = false;
     }
 
-    QString prefix = m_saveLocation->u_imgPrefix->text();
-    QString imgFormat = m_saveLocation->u_imgFormat->currentText().toLower();
-    int fileNumber = m_saveLocation->u_numStartFrom->value();
+    QString prefix = m_saveLocation->imagePrefix();
+    QString imgFormat = m_saveLocation->imageFormat().toLower();
+    int fileNumber = m_saveLocation->startNumber();
     QStringList filterList = m_filterList;
     bool enforceSavingAsPng16bit = false;
     if ((m_format == KSaneIface::KSaneWidget::FormatRGB_16_C) ||
-            (m_format == KSaneIface::KSaneWidget::FormatGrayScale16)) {
+        (m_format == KSaneIface::KSaneWidget::FormatGrayScale16))
+    {
         filterList = m_filter16BitList;
         enforceSavingAsPng16bit = true;
         if (imgFormat != QLatin1String("png")) {
@@ -427,26 +427,25 @@ void Skanlite::saveImage()
         }
     }
 
-    //qDebug() << dir << prefix << imgFormat;
-
     // find next available file name for name suggestion
     QUrl fileUrl;
     QString fname;
-    for (int i = fileNumber; i <= m_saveLocation->u_numStartFrom->maximum(); ++i) {
+    for (int i = fileNumber; i <= m_saveLocation->startNumberMax(); ++i) {
         fname = QString::fromLatin1("%1%2.%3")
                 .arg(prefix)
                 .arg(i, 4, 10, QLatin1Char('0'))
                 .arg(imgFormat);
 
-        fileUrl = QUrl::fromUserInput(QStringLiteral("%1%2").arg(dir, fname));
-        //qDebug() << fileUrl;
+        fileUrl = dirUrl;
+        fileUrl.setPath(fileUrl.path() + fname);
+        fileUrl = fileUrl.adjusted(QUrl::NormalizePathSegments);
         if (fileUrl.isLocalFile()) {
             if (!QFileInfo(fileUrl.toLocalFile()).exists()) {
                 break;
             }
         }
         else {
-            KIO::StatJob *statJob = KIO::stat(fileUrl, KIO::StatJob::DestinationSide, 0);
+            KIO::StatJob *statJob = KIO::statDetails(fileUrl, KIO::StatJob::DestinationSide);
             KJobWidgets::setWindow(statJob, QApplication::activeWindow());
             if (!statJob->exec()) {
                 break;
@@ -470,7 +469,6 @@ void Skanlite::saveImage()
         QString currentMimeFilter = QLatin1String("image/") + imgFormat;
         saveDialog.setMimeTypeFilters(actualFilterList);
         saveDialog.selectMimeTypeFilter(currentMimeFilter);
-        //qDebug() << fileUrl.url() << fileUrl.toLocalFile() << currentMimeFilter;
 
         if (saveDialog.exec() != QFileDialog::Accepted) {
             return;
@@ -487,9 +485,7 @@ void Skanlite::saveImage()
         quality = m_settingsUi.imgQuality->value();
     }
 
-    //qDebug() << "suffix" << QFileInfo(fileUrl.fileName()).suffix();
     QString localName;
-
     QString suffix = QFileInfo(fileUrl.fileName()).suffix();
     QString fileFormat;
     if (suffix.isEmpty()) {
@@ -554,28 +550,20 @@ void Skanlite::imageSaved(const QUrl &fileUrl, const QString &localName, bool su
     while ((!baseName.isEmpty()) && (baseName[baseName.size() - 1].isNumber())) {
         baseName.remove(baseName.size() - 1, 1);
     }
-    m_saveLocation->u_imgPrefix->setText(baseName);
+    m_saveLocation->setImagePrefix(baseName);
 
     // Save the number
     QString fileNumStr = QFileInfo(fileUrl.fileName()).completeBaseName();
     fileNumStr.remove(baseName);
     int fileNumber = fileNumStr.toInt();
     if (fileNumber) {
-        m_saveLocation->u_numStartFrom->setValue(fileNumber + 1);
+        m_saveLocation->setStartNumber(fileNumber + 1);
     }
 
     if (m_settingsUi.saveModeCB->currentIndex() == SaveModeManual) {
         // Save last used dir, prefix and suffix.
-        m_saveLocation->u_urlRequester->setUrl(KIO::upUrl(fileUrl));
-        m_saveLocation->u_imgFormat->setCurrentText(QFileInfo(fileUrl.fileName()).suffix());
-    }
-}
-
-void Skanlite::getDir(void)
-{
-    QString dir = QFileDialog::getExistingDirectory(m_settingsDialog, QString(), m_settingsUi.saveDirLEdit->text());
-    if (!dir.isEmpty()) {
-        m_settingsUi.saveDirLEdit->setText(dir);
+        m_saveLocation->setFolderUrl(KIO::upUrl(fileUrl));
+        m_saveLocation->setImageFormat(QFileInfo(fileUrl.fileName()).suffix());
     }
 }
 
@@ -604,7 +592,7 @@ void readScannerOptions(const QString &groupName, QMap <QString, QString> &opts)
 void Skanlite::saveScannerOptions()
 {
     KConfigGroup saving(KSharedConfig::openConfig(), "Image Saving");
-    saving.writeEntry("NumberStartsFrom", m_saveLocation->u_numStartFrom->value());
+    saving.writeEntry("NumberStartsFrom", m_saveLocation->startNumber());
 
     if (!m_ksanew) {
         return;
@@ -637,7 +625,7 @@ void Skanlite::applyScannerOptions(const QMap <QString, QString> &opts)
 void Skanlite::loadScannerOptions()
 {
     KConfigGroup saving(KSharedConfig::openConfig(), "Image Saving");
-    m_saveLocation->u_numStartFrom->setValue(saving.readEntry("NumberStartsFrom", 1));
+    m_saveLocation->setStartNumber(saving.readEntry("NumberStartsFrom", 1));
 
     if (!m_ksanew) {
         return;
