@@ -29,6 +29,7 @@
 #include <QDialog>
 
 class Ui_SaveLocation;
+class QShowEvent;
 
 class SaveLocation : public QDialog
 {
@@ -50,13 +51,17 @@ public:
 
     void setImageFormats(const QStringList &formats);
 
+    void setOpenRequesterOnShow(bool open);
+
+protected:
+    void showEvent(QShowEvent *event) override;
+
 private Q_SLOTS:
     void updateGui();
-    void getDir();
 
 private:
-    Ui_SaveLocation *m_ui;
-
+    Ui_SaveLocation *m_ui = nullptr;
+    bool m_openRequesterOnShow = false;
 };
 
 #endif

@@ -30,6 +30,8 @@
 #include <QFileDialog>
 #include <QPushButton>
 #include <QComboBox>
+#include <QShowEvent>
+#include <QTimer>
 
 SaveLocation::SaveLocation(QWidget *parent)
     : QDialog(parent)
@@ -61,16 +63,10 @@ void SaveLocation::updateGui()
     .arg(m_ui->u_imgPrefix->text())
     .arg(m_ui->u_numStartFrom->value(), 4, 10, QLatin1Char('0'))
     .arg(m_ui->u_imgFormat->currentText());
-    QString dir = QDir::cleanPath(m_ui->u_urlRequester->url().toString()).append(QLatin1Char('/')); //make sure whole value is processed as path to directory
-    m_ui->u_resultValue->setText(QUrl(dir).resolved(QUrl(name)).toString(QUrl::PreferLocalFile | QUrl::NormalizePathSegments));
-}
 
-void SaveLocation::getDir(void)
-{
-    const QString newDir = QFileDialog::getExistingDirectory(this, QString(), m_ui->u_urlRequester->url().toLocalFile());
-    if (!newDir.isEmpty()) {
-        m_ui->u_urlRequester->setUrl(QUrl::fromLocalFile(newDir));
-    }
+    QUrl folderUrl = m_ui->u_urlRequester->url();
+    folderUrl.setPath(folderUrl.path() + QLatin1Char('/'));
+    m_ui->u_resultValue->setText(folderUrl.toString(QUrl::PreferLocalFile | QUrl::NormalizePathSegments));
 }
 
 QUrl SaveLocation::folderUrl() const
@@ -92,3 +88,16 @@ void SaveLocation::setImageFormats(const QStringList &formats) { m_ui->u_imgForm
 void SaveLocation::setImageFormat(const QString &format)       { m_ui->u_imgFormat->setCurrentText(format); }
 void SaveLocation::setStartNumber(int number)                  { m_ui->u_numStartFrom->setValue(number); }
 
+void SaveLocation::setOpenRequesterOnShow(bool open)
+{
+    m_openRequesterOnShow = open;
+}
+
+void SaveLocation::showEvent(QShowEvent *event)
+{
+    QDialog::showEvent(event);
+
+    if (m_openRequesterOnShow) {
+        QTimer::singleShot(0, this, [this]() { m_ui->u_urlRequester->button()->click(); });
+    }
+}

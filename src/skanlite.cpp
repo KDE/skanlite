@@ -378,18 +378,18 @@ void Skanlite::imageReady(QByteArray &data, int w, int h, int bpl, int f)
     }
 }
 
-bool pathExists(const QUrl& dirUrl, QWidget* parent)
+bool urlExists(const QUrl& url)
 {
-    // propose directory creation if doesn't exists
-    if (dirUrl.isLocalFile()) {
-        QDir path(dirUrl.toLocalFile());
-        if (!path.exists()) {
-            if (KMessageBox::questionYesNo(parent, i18n("Directory doesn't exist, do you wish to create it?")) == KMessageBox::ButtonCode::Yes ) {
-                if (!path.mkpath(QLatin1String("."))) {
-                    KMessageBox::error(parent, i18n("Could not create directory %1", path.path()));
-                    return false;
-                }
-            }
+    if (url.isLocalFile()) {
+        if (!QFileInfo(url.toLocalFile()).exists()) {
+            return false;
+        }
+    }
+    else {
+        KIO::StatJob *statJob = KIO::statDetails(url, KIO::StatJob::DestinationSide);
+        KJobWidgets::setWindow(statJob, QApplication::activeWindow());
+        if (!statJob->exec()) {
+            return false;
         }
     }
     return true;
@@ -397,19 +397,28 @@ bool pathExists(const QUrl& dirUrl, QWidget* parent)
 
 void Skanlite::saveImage()
 {
-    // ask the first time if we are in "ask on first" mode
     QUrl dirUrl = m_saveLocation->folderUrl();
+    bool dirExists = urlExists(dirUrl);
 
-    while ((m_firstImage && (m_settingsUi.saveModeCB->currentIndex() == SaveModeAskFirst)) ||
-        !pathExists(dirUrl, this))
-    {
-        if (m_saveLocation->exec() != QFileDialog::Accepted) {
-            m_ksanew->scanCancel(); // In case we are cancelling a document feeder scan
-            return;
+    // Ask the first time if we are in "ask on first" mode
+    if (m_settingsUi.saveModeCB->currentIndex() == SaveModeAskFirst) {
+        while (m_firstImage || !dirExists) {
+            m_saveLocation->setOpenRequesterOnShow(!dirExists);
+            if (m_saveLocation->exec() != QFileDialog::Accepted) {
+                m_ksanew->scanCancel(); // In case we are cancelling a document feeder scan
+                return;
+            }
+            dirUrl = m_saveLocation->folderUrl();
+            dirExists = urlExists(dirUrl); // check that we actually got an existing folder
+            m_firstImage = false;
         }
-        dirUrl = m_saveLocation->folderUrl();
-        m_firstImage = false;
     }
+    else if (!dirExists) {
+        // The save-folder from settings does not exist! Use the users home directory.
+        dirUrl = QUrl::fromUserInput(QDir::homePath() + QLatin1Char('/'));
+        m_saveLocation->setFolderUrl(dirUrl);
+    }
+
 
     QString prefix = m_saveLocation->imagePrefix();
     QString imgFormat = m_saveLocation->imageFormat().toLower();
@@ -439,17 +448,8 @@ void Skanlite::saveImage()
         fileUrl = dirUrl;
         fileUrl.setPath(fileUrl.path() + fname);
         fileUrl = fileUrl.adjusted(QUrl::NormalizePathSegments);
-        if (fileUrl.isLocalFile()) {
-            if (!QFileInfo(fileUrl.toLocalFile()).exists()) {
-                break;
-            }
-        }
-        else {
-            KIO::StatJob *statJob = KIO::statDetails(fileUrl, KIO::StatJob::DestinationSide);
-            KJobWidgets::setWindow(statJob, QApplication::activeWindow());
-            if (!statJob->exec()) {
-                break;
-            }
+        if (!urlExists(fileUrl)) {
+            break;
         }
     }
 
