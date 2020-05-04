@@ -23,6 +23,7 @@
 
 #include <QCommandLineParser>
 #include <QCommandLineOption>
+#include <QShortcut>
 #include <QDebug>
 
 #include <KAboutData>
@@ -48,7 +49,7 @@ int main(int argc, char *argv[])
                          QLatin1String(skanlite_version), // version
                          i18n("Scanning application by KDE based on libksane."), // shortDescription
                          KAboutLicense::GPL, // licenseType
-                         i18n("(C) 2008-2016 Kåre Särs"), // copyrightStatement
+                         i18n("(C) 2008-2020 Kåre Särs"), // copyrightStatement
                          QString(), // other Text
                          QString() // homePageAddress
                         );
@@ -99,6 +100,9 @@ int main(int argc, char *argv[])
     skanliteDialog.setAboutData(&aboutData);
 
     skanliteDialog.show();
+
+    QShortcut *prevShortcut = new QShortcut(QKeySequence(QStringLiteral("Ctrl+Q")), &skanliteDialog);
+    QObject::connect(prevShortcut, SIGNAL(activated()), &app, SLOT(quit()));
 
     return app.exec();
 }
