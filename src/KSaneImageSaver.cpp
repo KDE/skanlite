@@ -30,7 +30,12 @@
 #include <QDebug>
 
 #include <KSaneWidget>
+#include <KLocalizedString>
 #include <QUrl>
+
+#include <QPageSize>
+#include <QPdfWriter>
+#include <QPainter>
 
 struct KSaneImageSaver::Private {
     bool   m_savedOk;
@@ -47,11 +52,13 @@ struct KSaneImageSaver::Private {
     QString    m_fileFormat;
     int        m_quality;
     bool       m_savingAsPng16;
+    QString    m_fileType;
 
     KSaneImageSaver *q;
 
     bool saveQImage();
     bool save16BitPng();
+    bool savePdf();
 };
 
 // ------------------------------------------------------------------------
@@ -83,6 +90,7 @@ bool KSaneImageSaver::saveQImage(const QUrl &url, const QString &name, const QBy
     d->m_fileFormat = fileFormat;
     d->m_quality = quality;
     d->m_savingAsPng16 = false;
+    d->m_fileType = QLatin1String("image");
 
     start();
     return true;
@@ -105,6 +113,26 @@ bool KSaneImageSaver::save16BitPng(const QUrl &url, const QString &name, const Q
     d->m_fileFormat = fileFormat;
     d->m_quality = quality;
     d->m_savingAsPng16 = true;
+    d->m_fileType = QLatin1String("image");
+
+    start();
+    return true;
+}
+
+bool KSaneImageSaver::savePdf(const QUrl& url, const QString& name, const QByteArray& data, int width, int height, int bpl, int dpi, int format, const QString& fileFormat, int quality)
+{
+    d->m_url    = url;
+    d->m_name   = name;
+    d->m_data   = data;
+    d->m_width  = width;
+    d->m_height = height;
+    d->m_bpl    = bpl;
+    d->m_dpi    = dpi;
+    d->m_format = format;
+    d->m_fileFormat = fileFormat;
+    d->m_quality = quality;
+    d->m_savingAsPng16 = false;
+    d->m_fileType = QLatin1String("pdf");
 
     start();
     return true;
@@ -112,7 +140,12 @@ bool KSaneImageSaver::save16BitPng(const QUrl &url, const QString &name, const Q
 
 void KSaneImageSaver::run()
 {
-    d->m_savedOk = d->m_savingAsPng16 ? d->save16BitPng() : d->saveQImage();
+    if (d->m_fileType == QLatin1String("pdf")) {
+        d->m_savedOk = d->savePdf();
+    } else {
+        assert(d->m_fileType == QLatin1String("image"));
+        d->m_savedOk = d->m_savingAsPng16 ? d->save16BitPng() : d->saveQImage();
+    }
     emit imageSaved(d->m_url, d->m_name, d->m_savedOk);
 
     d->m_runMutex.unlock();
@@ -232,3 +265,25 @@ bool KSaneImageSaver::Private::save16BitPng()
     return true;
 }
 
+bool KSaneImageSaver::Private::savePdf()
+{
+    QImage img = KSaneIface::KSaneWidget::toQImageSilent(m_data, m_width, m_height, m_bpl, m_dpi, (KSaneIface::KSaneWidget::ImageFormat) m_format);
+
+    const QPoint imageCoordinates(0,0);
+
+    QPdfWriter pdfWriter(m_name);
+    pdfWriter.setPageOrientation(QPageLayout::Orientation::Portrait);
+    pdfWriter.setPageSize(QPageSize(QPageSize::A4));
+    pdfWriter.setResolution(m_dpi);
+    pdfWriter.setCreator(i18n("Skanlite"));
+    pdfWriter.setTitle(m_name);
+    QPainter painter;
+
+    if (!painter.begin(&pdfWriter)) {
+        return false;
+    }
+
+    painter.drawImage(imageCoordinates, img);
+
+    return painter.end();
+}

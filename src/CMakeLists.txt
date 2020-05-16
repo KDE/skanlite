@@ -2,13 +2,16 @@ set(skanlite_SRCS main.cpp skanlite.cpp ImageViewer.cpp showimagedialog.cpp KSan
 
 ki18n_wrap_ui(skanlite_SRCS settings.ui SaveLocation.ui)
 
-#kde4_add_app_icon(skanlite_SRCS "${KDE4_INSTALL_DIR}/share/icons/oxygen/*/devices/scanner.png")
+find_package(Qt5Gui REQUIRED)
+find_package(Qt5PrintSupport REQUIRED)
 
 add_executable(skanlite ${skanlite_SRCS})
 
 target_link_libraries(skanlite
   PUBLIC
     Qt5::Core
+    Qt5::Gui
+    Qt5::PrintSupport
   PRIVATE
     KF5::CoreAddons
     KF5::Sane

@@ -127,25 +127,30 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
         m_settingsUi.revertOptions->setIcon(QIcon::fromTheme(QLatin1String("edit-undo")));
         m_saveLocation = new SaveLocation(this);
 
+        m_filterList.clear();
+
         // add the supported image types
         const QList<QByteArray> tmpList = QImageWriter::supportedMimeTypes();
-        m_filterList.clear();
         foreach (auto ba, tmpList) {
             if (ba.isEmpty()) {
                 continue;
             }
             m_filterList.append(QString::fromLatin1(ba));
         }
+        // add the supported document types
+        m_filterList.append(QLatin1String("application/pdf"));
 
-        qDebug() << m_filterList;
+        qDebug() << "Supported Mime Types:" << m_filterList;
 
         // Put first class citizens at first place
+        m_filterList.removeAll(QLatin1String("application/pdf"));
         m_filterList.removeAll(QLatin1String("image/jpeg"));
         m_filterList.removeAll(QLatin1String("image/tiff"));
         m_filterList.removeAll(QLatin1String("image/png"));
         m_filterList.insert(0, QLatin1String("image/png"));
         m_filterList.insert(1, QLatin1String("image/jpeg"));
         m_filterList.insert(2, QLatin1String("image/tiff"));
+        m_filterList.insert(3, QLatin1String("application/pdf"));
 
         m_filter16BitList << QLatin1String("image/png");
         //m_filter16BitList << QLatin1String("image/tiff");
@@ -523,7 +528,11 @@ void Skanlite::saveImage()
     if (enforceSavingAsPng16bit) {
         m_imageSaver->save16BitPng(fileUrl, localName, m_data, m_width, m_height, m_bytesPerLine, (int) m_ksanew->currentDPI(), m_format, fileFormat, quality);
     } else {
-        m_imageSaver->saveQImage(fileUrl, localName, m_data, m_width, m_height, m_bytesPerLine, (int) m_ksanew->currentDPI(), m_format, fileFormat, quality);
+        if (suffix == QLatin1String("pdf")) {
+            m_imageSaver->savePdf(fileUrl, localName, m_data, m_width, m_height, m_bytesPerLine, (int) m_ksanew->currentDPI(), m_format, fileFormat, quality);
+        } else {
+            m_imageSaver->saveQImage(fileUrl, localName, m_data, m_width, m_height, m_bytesPerLine, (int) m_ksanew->currentDPI(), m_format, fileFormat, quality);
+        }
     }
 
     m_showImgDialog->close(); // calling close() on a closed window does nothing.
