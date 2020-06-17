@@ -31,7 +31,6 @@
   <name xml:lang="sv">Skanlite</name>
   <name xml:lang="tr">Skanlite</name>
   <name xml:lang="uk">Skanlite</name>
-  <name xml:lang="x-test">xxSkanlitexx</name>
   <name xml:lang="zh-CN">Skanlite</name>
   <name xml:lang="zh-TW">Skanlite</name>
   <summary>Image Scanning Application</summary>
@@ -62,7 +61,6 @@
   <summary xml:lang="sv">Bildinläsningsprogram</summary>
   <summary xml:lang="tr">Resim Tarama Uygulaması</summary>
   <summary xml:lang="uk">Програма для сканування зображень</summary>
-  <summary xml:lang="x-test">xxImage Scanning Applicationxx</summary>
   <summary xml:lang="zh-CN">图像扫描应用程序</summary>
   <summary xml:lang="zh-TW">影像掃描應用程式</summary>
   <description>
@@ -95,7 +93,6 @@
     <p xml:lang="sv">Skanlite är ett enkelt bildläsningsprogram för att läsa in och spara bilder.Skanlite är baserat på libksane, ett gränssnitt till SANE-biblioteket som styr bildläsare.</p>
     <p xml:lang="tr">Skanlite, resim taramak ve kaydetmek için basit bir tarama uygulamasıdır. Skanlite, resim tarayıcılarını denetlemekte kullanılan SANE kütüphanesi olan libksane tabanlıdır.</p>
     <p xml:lang="uk">Skanlite — проста програма для сканування зображень і збереження даних зображень до файлів. Роботу Skanlite засновано на бібліотеці libksane, інтерфейсі до бібліотек SANE для керування сканерами зображень.</p>
-    <p xml:lang="x-test">xxSkanlite is a simple image scanning application to scan and save images. Skanlite is based on libksane, an interface for SANE library to control image scanners.xx</p>
     <p xml:lang="zh-CN">Skanlite 是一个简易图像扫描应用程序，它可以扫描和保存图像。Skanlite 基于 libksane 开发，后者是 SANE 扫描仪控制程序库的一个界面库。</p>
     <p>Features:</p>
     <p xml:lang="ca">Característiques:</p>
@@ -125,7 +122,6 @@
     <p xml:lang="sv">Funktioner:</p>
     <p xml:lang="tr">Özellikleri:</p>
     <p xml:lang="uk">Можливості:</p>
-    <p xml:lang="x-test">xxFeatures:xx</p>
     <p xml:lang="zh-CN">功能：</p>
     <p xml:lang="zh-TW">功能：</p>
     <ul>
@@ -154,7 +150,6 @@
       <li xml:lang="sv">Dialog för att spara varje bild som läses in, eller spara bilderna omedelbart i en angiven katalog med automatiskt genererade namn och format</li>
       <li xml:lang="tr">Her taranan resim için kaydetme penceresi ya da otomatik isim ve biçim oluşturma ile belirtilen klasöre anında kaydetme.</li>
       <li xml:lang="uk">Можливість показу діалогового вікна збереження для кожного з зображень та можливість автоматичного зберігання зображень із автоматично визначеною назвою до вказаної теки.</li>
-      <li xml:lang="x-test">xxSave dialog for every image scanned or saving the images immediately in a specified folder with auto-generated names and formatxx</li>
       <li xml:lang="zh-CN">每扫描一张图像后显示保存对话框，或者按照设定的自动文件名和格式保存到指定的目录。</li>
       <li>Support for networks scanners</li>
       <li xml:lang="ca">Implementació per a escàners en xarxa</li>
@@ -182,7 +177,6 @@
       <li xml:lang="sv">Stöd för nätverksbildläsare</li>
       <li xml:lang="tr">Ağ tarayıcı desteği</li>
       <li xml:lang="uk">Підтримка роботи зі сканерами з мережі.</li>
-      <li xml:lang="x-test">xxSupport for networks scannersxx</li>
       <li xml:lang="zh-CN">网络扫描支持</li>
       <li xml:lang="zh-TW">支援網路掃描機</li>
       <li>Preview with selection feature for the final scan</li>
@@ -211,7 +205,6 @@
       <li xml:lang="sv">Förhandsgranskning med markeringsfunktion för slutlig bild</li>
       <li xml:lang="tr">Son tarama için seçim özelliği ile önizleme</li>
       <li xml:lang="uk">Засіб попереднього перегляду із можливістю вибору остаточної області сканування.</li>
-      <li xml:lang="x-test">xxPreview with selection feature for the final scanxx</li>
       <li xml:lang="zh-CN">在正式扫描前对选中区域进行预览</li>
       <li>Scanning multiple selections of an image</li>
       <li xml:lang="ca">Escaneig de múltiples seleccions d'una imatge</li>
@@ -239,7 +232,6 @@
       <li xml:lang="sv">Läs in flera markeringar i en bild</li>
       <li xml:lang="tr">Bir resimde birden çok seçimi tarama</li>
       <li xml:lang="uk">Можливість одночасного сканування декількох позначених областей на зображенні.</li>
-      <li xml:lang="x-test">xxScanning multiple selections of an imagexx</li>
       <li xml:lang="zh-CN">扫描图像的多个被选中区域</li>
       <li xml:lang="zh-TW">將多個部份掃描成一張影像</li>
     </ul>
