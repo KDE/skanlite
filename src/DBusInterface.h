@@ -39,7 +39,7 @@ class DBusInterface : public QObject
 
 public:
 
-    explicit DBusInterface(QObject* parent = NULL) : QObject(parent) {}
+    explicit DBusInterface(QObject* parent = nullptr) : QObject(parent) {}
 
     bool setupDBusInterface();
 

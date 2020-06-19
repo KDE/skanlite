@@ -205,14 +205,13 @@ bool SkanliteImageSaver::Private::save16BitPng()
     png_set_compression_level(png_ptr, 9);
 
     // This is not nice :( swap bytes in the 16 bit color....
-    char tmp;
     // Make sure we have a buffer size that is divisible by 2
     int dataSize = m_data.size();
     if ((dataSize % 2) > 0) {
         dataSize--;
     }
     for (int i = 0; i < dataSize; i += 2) {
-        tmp = m_data[i];
+        char tmp = m_data[i];
         m_data[i] = m_data[i + 1];
         m_data[i + 1] = tmp;
     }

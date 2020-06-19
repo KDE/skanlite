@@ -66,7 +66,7 @@ void SaveLocation::updateGui()
 
     QUrl folderUrl = m_ui->u_urlRequester->url();
     folderUrl.setPath(folderUrl.path() + QLatin1Char('/'));
-    m_ui->u_resultValue->setText(folderUrl.toString(QUrl::PreferLocalFile | QUrl::NormalizePathSegments));
+    m_ui->u_resultValue->setText(folderUrl.toString(QUrl::PreferLocalFile | QUrl::NormalizePathSegments)+name);
 }
 
 QUrl SaveLocation::folderUrl() const

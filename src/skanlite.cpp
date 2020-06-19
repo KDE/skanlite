@@ -79,7 +79,7 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     connect(m_ksanew, &KSaneWidget::availableDevices, this, &Skanlite::availableDevices);
     connect(m_ksanew, &KSaneWidget::userMessage, this, &Skanlite::alertUser);
     connect(m_ksanew, &KSaneWidget::buttonPressed, this, &Skanlite::buttonPressed);
-    connect(m_ksanew, &KSaneWidget::scanDone, [this](){
+    connect(m_ksanew, &KSaneWidget::scanDone, this, [this](){
         if (!m_pendingApplyScanOpts.isEmpty()) {
             applyScannerOptions(m_pendingApplyScanOpts);
         }
@@ -197,7 +197,7 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
         }
         else {
             setWindowTitle(i18nc("@title:window %1 = scanner maker, %2 = scanner model", "%1 %2 - Skanlite", m_ksanew->make(), m_ksanew->model()));
-            m_deviceName = QString::fromLatin1("%1:%2").arg(m_ksanew->make()).arg(m_ksanew->model());
+            m_deviceName = QString::fromLatin1("%1:%2").arg(m_ksanew->make(), m_ksanew->model());
         }
     }
     else {
@@ -390,7 +390,7 @@ void Skanlite::imageReady(QByteArray &data, int w, int h, int bpl, int f)
 bool urlExists(const QUrl& url)
 {
     if (url.isLocalFile()) {
-        if (!QFileInfo(url.toLocalFile()).exists()) {
+        if (!QFileInfo::exists(url.toLocalFile())) {
             return false;
         }
     }
@@ -483,7 +483,7 @@ void Skanlite::saveImage()
             return;
         }
 
-        fileUrl = saveDialog.selectedUrls()[0];
+        fileUrl = saveDialog.selectedUrls().at(0);
     }
 
     m_firstImage = false;
@@ -713,8 +713,8 @@ void deserializeScannerOptions(const QStringList &settings, QMap<QString, QStrin
     }
 }
 
-static const QStringList selectionSettings = { QLatin1String("tl-x"), QLatin1String("tl-y"),
-                                               QLatin1String("br-x"), QLatin1String("br-y") };
+static const auto selectionSettings = { QLatin1String("tl-x"), QLatin1String("tl-y"),
+                                        QLatin1String("br-x"), QLatin1String("br-y") };
 
 void filterSelectionSettings(QMap<QString, QString> &opts)
 {
@@ -775,13 +775,13 @@ void Skanlite::saveScannerOptionsToProfile(const QStringList &options, const QSt
     QMap <QString, QString> opts;
     deserializeScannerOptions(options, opts);
     processSelectionOptions(opts, ignoreSelection);
-    writeScannerOptions(QString(defaultProfileGroup).arg(m_deviceName).arg(profile), opts);
+    writeScannerOptions(QString(defaultProfileGroup).arg(m_deviceName, profile), opts);
 }
 
 void Skanlite::switchToProfile(const QString &profile, bool ignoreSelection)
 {
     QMap <QString, QString> opts;
-    readScannerOptions(QString(defaultProfileGroup).arg(m_deviceName).arg(profile), opts);
+    readScannerOptions(QString(defaultProfileGroup).arg(m_deviceName, profile), opts);
 
     if (opts.empty()) {
         opts = m_defaultScanOpts;
