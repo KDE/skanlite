@@ -32,7 +32,6 @@
 
 #include "ui_settings.h"
 #include "DBusInterface.h"
-#include "KSaneImageSaver.h"
 
 class ShowImageDialog;
 class SaveLocation;
@@ -98,7 +97,6 @@ protected:
 private:
     KAboutData              *m_aboutData;
     KSaneWidget             *m_ksanew = nullptr;
-    KSaneImageSaver         *m_imageSaver = nullptr;
     QProgressBar            *m_saveProgressBar = nullptr;
     QUrl                     m_currentSaveUrl;
     QTimer                   m_saveUpdateTimer;

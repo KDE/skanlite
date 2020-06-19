@@ -26,6 +26,7 @@
 
 #include "SaveLocation.h"
 #include "showimagedialog.h"
+#include "KSaneImageSaver.h"
 
 #include <QApplication>
 #include <QScrollArea>
@@ -83,9 +84,6 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
             applyScannerOptions(m_pendingApplyScanOpts);
         }
     });
-
-    m_imageSaver = new KSaneImageSaver(this);
-    connect(m_imageSaver, &KSaneImageSaver::imageSaved, this, &Skanlite::imageSaved);
 
     m_saveProgressBar = new QProgressBar(this);
     m_saveProgressBar->setVisible(false);
@@ -518,12 +516,14 @@ void Skanlite::saveImage()
         localName = fileUrl.toLocalFile();
     }
 
+    KSaneImageSaver *imageSaver = new KSaneImageSaver(this);
+    connect(imageSaver, &KSaneImageSaver::imageSaved, this, &Skanlite::imageSaved);
 
     // Save
     if (enforceSavingAsPng16bit) {
-        m_imageSaver->save16BitPng(fileUrl, localName, m_data, m_width, m_height, m_bytesPerLine, (int) m_ksanew->currentDPI(), m_format, fileFormat, quality);
+        imageSaver->save16BitPng(fileUrl, localName, m_data, m_width, m_height, m_bytesPerLine, (int)m_ksanew->currentDPI(), m_format, fileFormat, quality);
     } else {
-        m_imageSaver->saveQImage(fileUrl, localName, m_data, m_width, m_height, m_bytesPerLine, (int) m_ksanew->currentDPI(), m_format, fileFormat, quality);
+        imageSaver->saveQImage(fileUrl, localName, m_data, m_width, m_height, m_bytesPerLine, (int)m_ksanew->currentDPI(), m_format, fileFormat, quality);
     }
 
     m_showImgDialog->close(); // calling close() on a closed window does nothing.
@@ -535,6 +535,26 @@ void Skanlite::saveImage()
     m_saveProgressBar->setValue(0);
     m_saveProgressBar->setVisible(true);
     m_saveUpdateTimer.start();
+
+    // Save the file base name without number
+    QString baseName = QFileInfo(fileUrl.fileName()).completeBaseName();
+    while ((!baseName.isEmpty()) && (baseName[baseName.size() - 1].isNumber())) {
+        baseName.remove(baseName.size() - 1, 1);
+    }
+    m_saveLocation->setImagePrefix(baseName);
+
+    // Save the number
+    if (fileNumber) {
+        m_saveLocation->setStartNumber(fileNumber + 1);
+    }
+
+    if (m_settingsUi.saveModeCB->currentIndex() == SaveModeManual) {
+        // Save last used dir, prefix and suffix.
+        m_saveLocation->setFolderUrl(KIO::upUrl(fileUrl));
+        m_saveLocation->setImageFormat(QFileInfo(fileUrl.fileName()).suffix());
+    }
+
+
 }
 
 void Skanlite::updateSaveProgress()
@@ -574,25 +594,9 @@ void Skanlite::imageSaved(const QUrl &fileUrl, const QString &localName, bool su
     m_saveUpdateTimer.stop();
     m_saveProgressBar->setVisible(false);
 
-    // Save the file base name without number
-    QString baseName = QFileInfo(fileUrl.fileName()).completeBaseName();
-    while ((!baseName.isEmpty()) && (baseName[baseName.size() - 1].isNumber())) {
-        baseName.remove(baseName.size() - 1, 1);
-    }
-    m_saveLocation->setImagePrefix(baseName);
-
-    // Save the number
-    QString fileNumStr = QFileInfo(fileUrl.fileName()).completeBaseName();
-    fileNumStr.remove(baseName);
-    int fileNumber = fileNumStr.toInt();
-    if (fileNumber) {
-        m_saveLocation->setStartNumber(fileNumber + 1);
-    }
-
-    if (m_settingsUi.saveModeCB->currentIndex() == SaveModeManual) {
-        // Save last used dir, prefix and suffix.
-        m_saveLocation->setFolderUrl(KIO::upUrl(fileUrl));
-        m_saveLocation->setImageFormat(QFileInfo(fileUrl.fileName()).suffix());
+    KSaneImageSaver *imageSaver = qobject_cast<KSaneImageSaver *>(sender());
+    if (imageSaver) {
+        imageSaver->deleteLater();
     }
 }
 
