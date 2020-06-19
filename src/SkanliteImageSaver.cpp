@@ -22,7 +22,7 @@
 *
 * ============================================================ */
 
-#include "KSaneImageSaver.h"
+#include "SkanliteImageSaver.h"
 
 #include <png.h>
 
@@ -32,7 +32,7 @@
 #include <KSaneWidget>
 #include <QUrl>
 
-struct KSaneImageSaver::Private {
+struct SkanliteImageSaver::Private {
     bool   m_savedOk;
     QMutex m_runMutex;
 
@@ -48,25 +48,25 @@ struct KSaneImageSaver::Private {
     int        m_quality;
     bool       m_savingAsPng16;
 
-    KSaneImageSaver *q;
+    SkanliteImageSaver *q;
 
     bool saveQImage();
     bool save16BitPng();
 };
 
 // ------------------------------------------------------------------------
-KSaneImageSaver::KSaneImageSaver(QObject *parent) : QThread(parent), d(new Private)
+SkanliteImageSaver::SkanliteImageSaver(QObject *parent) : QThread(parent), d(new Private)
 {
     d->q = this;
 }
 
 // ------------------------------------------------------------------------
-KSaneImageSaver::~KSaneImageSaver()
+SkanliteImageSaver::~SkanliteImageSaver()
 {
     delete d;
 }
 
-bool KSaneImageSaver::saveQImage(const QUrl &url, const QString &name, const QByteArray &data, int width, int height, int bpl, int dpi, int format, const QString& fileFormat, int quality)
+bool SkanliteImageSaver::saveQImage(const QUrl &url, const QString &name, const QByteArray &data, int width, int height, int bpl, int dpi, int format, const QString& fileFormat, int quality)
 {
     if (!d->m_runMutex.tryLock()) {
         return false;
@@ -88,7 +88,7 @@ bool KSaneImageSaver::saveQImage(const QUrl &url, const QString &name, const QBy
     return true;
 }
 
-bool KSaneImageSaver::save16BitPng(const QUrl &url, const QString &name, const QByteArray &data, int width, int height, int bpl, int dpi, int format, const QString& fileFormat, int quality)
+bool SkanliteImageSaver::save16BitPng(const QUrl &url, const QString &name, const QByteArray &data, int width, int height, int bpl, int dpi, int format, const QString& fileFormat, int quality)
 {
     if (!d->m_runMutex.tryLock()) {
         return false;
@@ -110,7 +110,7 @@ bool KSaneImageSaver::save16BitPng(const QUrl &url, const QString &name, const Q
     return true;
 }
 
-void KSaneImageSaver::run()
+void SkanliteImageSaver::run()
 {
     d->m_savedOk = d->m_savingAsPng16 ? d->save16BitPng() : d->saveQImage();
     emit imageSaved(d->m_url, d->m_name, d->m_savedOk);
@@ -118,13 +118,13 @@ void KSaneImageSaver::run()
     d->m_runMutex.unlock();
 }
 
-bool KSaneImageSaver::Private::saveQImage()
+bool SkanliteImageSaver::Private::saveQImage()
 {
     QImage img = KSaneIface::KSaneWidget::toQImageSilent(m_data, m_width, m_height, m_bpl, m_dpi, (KSaneIface::KSaneWidget::ImageFormat) m_format);
     return img.save(m_name, qPrintable(m_fileFormat), m_quality);
 }
 
-bool KSaneImageSaver::Private::save16BitPng()
+bool SkanliteImageSaver::Private::save16BitPng()
 {
     FILE        *file;
     png_structp  png_ptr;

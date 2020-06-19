@@ -26,7 +26,7 @@
 
 #include "SaveLocation.h"
 #include "showimagedialog.h"
-#include "KSaneImageSaver.h"
+#include "SkanliteImageSaver.h"
 
 #include <QApplication>
 #include <QScrollArea>
@@ -516,8 +516,8 @@ void Skanlite::saveImage()
         localName = fileUrl.toLocalFile();
     }
 
-    KSaneImageSaver *imageSaver = new KSaneImageSaver(this);
-    connect(imageSaver, &KSaneImageSaver::imageSaved, this, &Skanlite::imageSaved);
+    SkanliteImageSaver *imageSaver = new SkanliteImageSaver(this);
+    connect(imageSaver, &SkanliteImageSaver::imageSaved, this, &Skanlite::imageSaved);
 
     // Save
     if (enforceSavingAsPng16bit) {
@@ -594,7 +594,7 @@ void Skanlite::imageSaved(const QUrl &fileUrl, const QString &localName, bool su
     m_saveUpdateTimer.stop();
     m_saveProgressBar->setVisible(false);
 
-    KSaneImageSaver *imageSaver = qobject_cast<KSaneImageSaver *>(sender());
+    SkanliteImageSaver *imageSaver = qobject_cast<SkanliteImageSaver *>(sender());
     if (imageSaver) {
         imageSaver->deleteLater();
     }

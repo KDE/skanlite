@@ -23,19 +23,19 @@
 *
 * ============================================================ */
 
-#ifndef KSaneImageSaver_h
-#define KSaneImageSaver_h
+#ifndef SkanliteImageSaver_h
+#define SkanliteImageSaver_h
 
 #include <QByteArray>
 #include <QThread>
 #include <QString>
 
-class KSaneImageSaver : public QThread
+class SkanliteImageSaver : public QThread
 {
     Q_OBJECT
 public:
-    explicit KSaneImageSaver(QObject *parent = nullptr);
-    ~KSaneImageSaver();
+    explicit SkanliteImageSaver(QObject *parent = nullptr);
+    ~SkanliteImageSaver();
 
     bool saveQImage(const QUrl &url, const QString &name, const QByteArray &data, int width, int height, int bpl, int dpi, int format, const QString& fileFormat, int quality);
     bool save16BitPng(const QUrl &url, const QString &name, const QByteArray &data, int width, int height, int bpl, int dpi, int format, const QString& fileFormat, int quality);
