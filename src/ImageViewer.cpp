@@ -28,7 +28,6 @@
 #include <QGraphicsScene>
 #include <QScrollBar>
 #include <QAction>
-#include <QDebug>
 #include <QIcon>
 
 #include <KLocalizedString>

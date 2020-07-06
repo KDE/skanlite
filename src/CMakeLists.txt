@@ -2,6 +2,12 @@ set(skanlite_SRCS main.cpp skanlite.cpp ImageViewer.cpp showimagedialog.cpp Skan
 
 ki18n_wrap_ui(skanlite_SRCS settings.ui SaveLocation.ui)
 
+ecm_qt_declare_logging_category(skanlite_SRCS
+  HEADER skanlite_debug.h
+  IDENTIFIER SKANLITE_LOG
+  CATEGORY_NAME org.kde.skanlite
+)
+
 #kde4_add_app_icon(skanlite_SRCS "${KDE4_INSTALL_DIR}/share/icons/oxygen/*/devices/scanner.png")
 
 add_executable(skanlite ${skanlite_SRCS})

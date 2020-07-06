@@ -24,7 +24,6 @@
 #define DBusInterface_h
 
 #include <QDBusConnection>
-#include <QDebug>
 #include <KSaneWidget>
 #include <QStringList>
 

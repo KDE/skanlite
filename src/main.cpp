@@ -24,7 +24,6 @@
 #include <QCommandLineParser>
 #include <QCommandLineOption>
 #include <QShortcut>
-#include <QDebug>
 
 #include <KAboutData>
 #include <KLocalizedString>
@@ -32,6 +31,8 @@
 
 #include "skanlite.h"
 #include "version.h"
+
+#include <skanlite_debug.h>
 
 int main(int argc, char *argv[])
 {
@@ -94,7 +95,7 @@ int main(int argc, char *argv[])
     aboutData.processCommandLine(&parser);
 
     const QString deviceName = parser.value(deviceOption);
-    qDebug() << QString::fromLatin1("deviceOption value=%1").arg(deviceName);
+    qCDebug(SKANLITE_LOG) << QString::fromLatin1("deviceOption value=%1").arg(deviceName);
 
     Skanlite skanliteDialog(deviceName, nullptr);
     skanliteDialog.setAboutData(&aboutData);

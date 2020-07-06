@@ -16,6 +16,7 @@ include(KDEInstallDirs) # yields ${XDG_APPS_INSTALL_DIR}
 include(KDEFrameworkCompilerSettings NO_POLICY_SCOPE)
 include(KDECMakeSettings)
 include(GenerateExportHeader)
+include(ECMQtDeclareLoggingCategory)
 
 # be not so strict with the poor developer who just wants to use strings
 remove_definitions(-DQT_NO_URL_CAST_FROM_STRING)

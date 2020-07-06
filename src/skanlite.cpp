@@ -37,7 +37,6 @@
 #include <QComboBox>
 #include <QMessageBox>
 #include <QTemporaryFile>
-#include <QDebug>
 #include <QImageWriter>
 #include <QMimeType>
 #include <QMimeDatabase>
@@ -54,6 +53,8 @@
 #include <KSharedConfig>
 #include <KConfigGroup>
 #include <KHelpClient>
+
+#include <skanlite_debug.h>
 
 #include <errno.h>
 
@@ -135,7 +136,7 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
             m_filterList.append(QString::fromLatin1(ba));
         }
 
-        qDebug() << m_filterList;
+        qCDebug(SKANLITE_LOG) << m_filterList;
 
         // Put first class citizens at first place
         m_filterList.removeAll(QLatin1String("image/jpeg"));
@@ -672,7 +673,7 @@ void Skanlite::loadScannerOptions()
 void Skanlite::availableDevices(const QList<KSaneWidget::DeviceInfo> &deviceList)
 {
     for (int i = 0; i < deviceList.size(); ++i) {
-        qDebug() << deviceList.at(i).name;
+        qCDebug(SKANLITE_LOG) << deviceList.at(i).name;
     }
 }
 
@@ -689,7 +690,7 @@ void Skanlite::alertUser(int type, const QString &strStatus)
 
 void Skanlite::buttonPressed(const QString &optionName, const QString &optionLabel, bool pressed)
 {
-    qDebug() << "Button" << optionName << optionLabel << ((pressed) ? "pressed" : "released");
+    qCDebug(SKANLITE_LOG) << "Button" << optionName << optionLabel << ((pressed) ? "pressed" : "released");
 }
 
 // D-Bus interface related helper functions

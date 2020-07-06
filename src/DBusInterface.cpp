@@ -22,22 +22,24 @@
 
 #include "DBusInterface.h"
 
+#include <skanlite_debug.h>
+
 bool DBusInterface::setupDBusInterface()
 {
     QDBusConnection session = QDBusConnection::sessionBus();
 
     if (!session.isConnected()) {
-        qDebug() << ("ERROR: Cannot connect to the D-Bus session bus. Continuing...");
+        qCDebug(SKANLITE_LOG) << ("ERROR: Cannot connect to the D-Bus session bus. Continuing...");
         return false;
     }
 
     if(!session.registerObject(QLatin1String("/"), this, QDBusConnection::ExportScriptableContents)) {
-        qDebug() << ("ERROR: Cannot register D-Bus object. Continuing...");
+        qCDebug(SKANLITE_LOG) << ("ERROR: Cannot register D-Bus object. Continuing...");
         return false;
     }
 
     if(!session.registerService(QLatin1String("org.kde.skanlite"))) {
-        qDebug() << ("ERROR: Cannot register D-Bus service. Continuing...");
+        qCDebug(SKANLITE_LOG) << ("ERROR: Cannot register D-Bus service. Continuing...");
         return false;
     }
 
