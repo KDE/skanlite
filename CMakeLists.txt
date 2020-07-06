@@ -19,7 +19,6 @@ include(GenerateExportHeader)
 include(ECMQtDeclareLoggingCategory)
 
 # be not so strict with the poor developer who just wants to use strings
-remove_definitions(-DQT_NO_URL_CAST_FROM_STRING)
 remove_definitions(-DQT_NO_CAST_FROM_BYTEARRAY)
 
 set(REQUIRED_QT_VERSION "5.7.0")
