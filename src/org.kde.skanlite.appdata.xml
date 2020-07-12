@@ -255,4 +255,7 @@
   <provides>
     <binary>skanlite</binary>
   </provides>
+  <releases>
+    <release version="2.2.0" date="2020-07-12"/>
+  </releases>
 </component>
