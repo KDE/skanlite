@@ -53,6 +53,7 @@
 #include <KSharedConfig>
 #include <KConfigGroup>
 #include <KHelpClient>
+#include <kio_version.h>
 
 #include <skanlite_debug.h>
 
@@ -396,7 +397,11 @@ bool urlExists(const QUrl& url)
         }
     }
     else {
-        KIO::StatJob *statJob = KIO::statDetails(url, KIO::StatJob::DestinationSide);
+#if KIO_VERSION < QT_VERSION_CHECK(5, 69, 0)
+        KIO::StatJob *statJob = KIO::stat(url, KIO::StatJob::DestinationSide, 0);
+#else
+        KIO::StatJob *statJob = KIO::statDetails(url, KIO::StatJob::DestinationSide, KIO::StatNoDetails);
+#endif
         KJobWidgets::setWindow(statJob, QApplication::activeWindow());
         if (!statJob->exec()) {
             return false;
