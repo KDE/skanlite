@@ -72,8 +72,8 @@
    Skanlite is a simple image scanning application to scan and save images.
    Skanlite is based on libksane, an interface for SANE library to control image scanners.
   </p>
-    <p xml:lang="ca">L'Skanlite és una senzilla aplicació per escanejar imatges i desar-les. Es basa en la «libksane», és una interfície per a la biblioteca de SANE que controla els escàners d'imatges.</p>
-    <p xml:lang="ca-valencia">L'Skanlite és una senzilla aplicació per escanejar imatges i guardar-les. Es basa en la «libksane», és una interfície per a la biblioteca de SANE que controla els escàners d'imatges.</p>
+    <p xml:lang="ca">L'Skanlite és una senzilla aplicació per a escanejar imatges i desar-les. Es basa en la «libksane», és una interfície per a la biblioteca de SANE que controla els escàners d'imatges.</p>
+    <p xml:lang="ca-valencia">L'Skanlite és una senzilla aplicació per a escanejar imatges i guardar-les. Es basa en la «libksane», és una interfície per a la biblioteca de SANE que controla els escàners d'imatges.</p>
     <p xml:lang="da">Skanlite er et simpelt scannerprogram til at scanne og gemme billeder. Skanlite er baseret på libksane, en grænseflade til SANE-biblioteket til at styre scannere.</p>
     <p xml:lang="de">Skanlite ist eine einfache Anwendung zum Scannen und Speichern von Bildern. Skanlite basiert auf libksane, einer Schnittstelle für die SANE-Bibliothek zum Arbeiten mit Scannern.</p>
     <p xml:lang="el">Το Skanlite είναι μια απλή εφαρμογή σάρωσης και αποθήκευσης εικόνων. Το Skanlite βασίζεται στο libksane, μια διεπαφή της βιβλιοθήκης SANE για έλεγχο των σαρωτών εικόνων.</p>
