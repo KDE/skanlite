@@ -130,7 +130,7 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
         // add the supported image types
         const QList<QByteArray> tmpList = QImageWriter::supportedMimeTypes();
         m_filterList.clear();
-        foreach (auto ba, tmpList) {
+        for (const auto &ba : tmpList) {
             if (ba.isEmpty()) {
                 continue;
             }
@@ -151,7 +151,7 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
         //m_filter16BitList << QLatin1String("image/tiff");
 
         // fill m_filterList (...) and m_typeList (list of file suffixes)
-        foreach (QString mimeStr, m_filterList) {
+        for (const QString &mimeStr : qAsConst(m_filterList)) {
             QMimeType mimeType = QMimeDatabase().mimeTypeForName(mimeStr);
             m_filterList.append(mimeType.name());
 
@@ -677,8 +677,8 @@ void Skanlite::loadScannerOptions()
 
 void Skanlite::availableDevices(const QList<KSaneWidget::DeviceInfo> &deviceList)
 {
-    for (int i = 0; i < deviceList.size(); ++i) {
-        qCDebug(SKANLITE_LOG) << deviceList.at(i).name;
+    for (const KSaneWidget::DeviceInfo &device : deviceList) {
+        qCDebug(SKANLITE_LOG) << device.name;
     }
 }
 
@@ -713,7 +713,7 @@ QStringList serializeScannerOptions(const QMap<QString, QString> &opts)
 
 void deserializeScannerOptions(const QStringList &settings, QMap<QString, QString> &opts)
 {
-    foreach (QString s, settings) {
+    for (const QString &s : settings) {
         int i = s.lastIndexOf(QLatin1Char('='));
         opts[s.left(i)] = s.right(s.length()-i-1);
     }
@@ -724,14 +724,14 @@ static const auto selectionSettings = { QLatin1String("tl-x"), QLatin1String("tl
 
 void filterSelectionSettings(QMap<QString, QString> &opts)
 {
-    foreach (QString s, selectionSettings) {
+    for (const auto &s : selectionSettings) {
         opts.remove(s);
     }
 }
 
 bool containsSelectionSettings(const QMap<QString, QString> &opts)
 {
-    foreach (QString s, selectionSettings) {
+    for (const auto &s : selectionSettings) {
         if (opts.contains(s)) {
             return true;
         }
@@ -808,7 +808,7 @@ void Skanlite::getSelection()
     m_ksanew->getOptVals(opts);
 
     QStringList reply;
-    foreach ( QString key, selectionSettings ) {
+    for (const auto &key : selectionSettings ) {
         if (opts.contains(key)) {
             reply.append(key + QLatin1Char('=') + opts[key]);
         }
