@@ -72,7 +72,7 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     QPushButton *btnAbout = dlgButtonBoxBottom->addButton(i18n("About"), QDialogButtonBox::ButtonRole::ActionRole);
     // was "User1":
     QPushButton *btnSettings = dlgButtonBoxBottom->addButton(i18n("Settings"), QDialogButtonBox::ButtonRole::ActionRole);
-    btnSettings->setIcon(QIcon::fromTheme(QLatin1String("configure")));
+    btnSettings->setIcon(QIcon::fromTheme(QStringLiteral("configure")));
 
     m_firstImage = true;
 
@@ -124,7 +124,7 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
 
         QWidget *settingsWidget = new QWidget(m_settingsDialog);
         m_settingsUi.setupUi(settingsWidget);
-        m_settingsUi.revertOptions->setIcon(QIcon::fromTheme(QLatin1String("edit-undo")));
+        m_settingsUi.revertOptions->setIcon(QIcon::fromTheme(QStringLiteral("edit-undo")));
         m_saveLocation = new SaveLocation(this);
 
         // add the supported image types
@@ -140,14 +140,14 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
         qCDebug(SKANLITE_LOG) << m_filterList;
 
         // Put first class citizens at first place
-        m_filterList.removeAll(QLatin1String("image/jpeg"));
-        m_filterList.removeAll(QLatin1String("image/tiff"));
-        m_filterList.removeAll(QLatin1String("image/png"));
-        m_filterList.insert(0, QLatin1String("image/png"));
-        m_filterList.insert(1, QLatin1String("image/jpeg"));
-        m_filterList.insert(2, QLatin1String("image/tiff"));
+        m_filterList.removeAll(QStringLiteral("image/jpeg"));
+        m_filterList.removeAll(QStringLiteral("image/tiff"));
+        m_filterList.removeAll(QStringLiteral("image/png"));
+        m_filterList.insert(0, QStringLiteral("image/png"));
+        m_filterList.insert(1, QStringLiteral("image/jpeg"));
+        m_filterList.insert(2, QStringLiteral("image/tiff"));
 
-        m_filter16BitList << QLatin1String("image/png");
+        m_filter16BitList << QStringLiteral("image/png");
         //m_filter16BitList << QLatin1String("image/tiff");
 
         // fill m_filterList (...) and m_typeList (list of file suffixes)
@@ -199,7 +199,7 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
         }
         else {
             setWindowTitle(i18nc("@title:window %1 = scanner maker, %2 = scanner model", "%1 %2 - Skanlite", m_ksanew->make(), m_ksanew->model()));
-            m_deviceName = QString::fromLatin1("%1:%2").arg(m_ksanew->make(), m_ksanew->model());
+            m_deviceName = QStringLiteral("%1:%2").arg(m_ksanew->make(), m_ksanew->model());
         }
     }
     else {
@@ -251,7 +251,7 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
 
 void Skanlite::showHelp()
 {
-    KHelpClient::invokeHelp(QLatin1String("index"), QLatin1String("skanlite"));
+    KHelpClient::invokeHelp(QStringLiteral("index"), QStringLiteral("skanlite"));
 }
 
 void Skanlite::setAboutData(KAboutData *aboutData)
@@ -446,7 +446,7 @@ void Skanlite::saveImage()
         filterList = m_filter16BitList;
         enforceSavingAsPng16bit = true;
         if (imgFormat != QLatin1String("png")) {
-            imgFormat = QLatin1String("png");
+            imgFormat = QStringLiteral("png");
             KMessageBox::information(this, i18n("The image will be saved in the PNG format, as Skanlite only supports saving 16 bit color images in the PNG format."));
         }
     }
@@ -455,7 +455,7 @@ void Skanlite::saveImage()
     QUrl fileUrl;
     QString fname;
     for (int i = fileNumber; i <= m_saveLocation->startNumberMax(); ++i) {
-        fname = QString::fromLatin1("%1%2.%3")
+        fname = QStringLiteral("%1%2.%3")
                 .arg(prefix)
                 .arg(i, 4, 10, QLatin1Char('0'))
                 .arg(imgFormat);
@@ -504,7 +504,7 @@ void Skanlite::saveImage()
     QString suffix = QFileInfo(fileUrl.fileName()).suffix();
     QString fileFormat;
     if (suffix.isEmpty()) {
-        fileFormat = QLatin1String("png");
+        fileFormat = QStringLiteral("png");
     }
 
     if (!fileUrl.isLocalFile()) {
@@ -637,10 +637,10 @@ void Skanlite::saveScannerOptions()
         return;
     }
 
-    KConfigGroup options(KSharedConfig::openConfig(), QString::fromLatin1("Options For %1").arg(m_deviceName));
+    KConfigGroup options(KSharedConfig::openConfig(), QStringLiteral("Options For %1").arg(m_deviceName));
     QMap <QString, QString> opts;
     m_ksanew->getOptVals(opts);
-    writeScannerOptions(QString::fromLatin1("Options For %1").arg(m_deviceName), opts);
+    writeScannerOptions(QStringLiteral("Options For %1").arg(m_deviceName), opts);
 }
 
 void Skanlite::defaultScannerOptions()
@@ -671,7 +671,7 @@ void Skanlite::loadScannerOptions()
     }
 
     QMap <QString, QString> opts;
-    readScannerOptions(QString::fromLatin1("Options For %1").arg(m_deviceName), opts);
+    readScannerOptions(QStringLiteral("Options For %1").arg(m_deviceName), opts);
     applyScannerOptions(opts);
 }
 
@@ -686,10 +686,10 @@ void Skanlite::alertUser(int type, const QString &strStatus)
 {
     switch (type) {
     case KSaneWidget::ErrorGeneral:
-        KMessageBox::sorry(nullptr, strStatus, QLatin1String("Skanlite Test"));
+        KMessageBox::sorry(nullptr, strStatus, QStringLiteral("Skanlite Test"));
         break;
     default:
-        KMessageBox::information(nullptr, strStatus, QLatin1String("Skanlite Test"));
+        KMessageBox::information(nullptr, strStatus, QStringLiteral("Skanlite Test"));
     }
 }
 

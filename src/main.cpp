@@ -39,15 +39,15 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
     QApplication app(argc, argv);
 
-    Kdelibs4ConfigMigrator migrate(QLatin1String("Skanlite"));
-    migrate.setConfigFiles(QStringList() << QLatin1String("Skanliterc"));
+    Kdelibs4ConfigMigrator migrate(QStringLiteral("Skanlite"));
+    migrate.setConfigFiles(QStringList() << QStringLiteral("Skanliterc"));
     migrate.migrate();
 
     KLocalizedString::setApplicationDomain("skanlite");
 
-    KAboutData aboutData(QLatin1String("Skanlite"), // componentName, k4: appName
+    KAboutData aboutData(QStringLiteral("Skanlite"), // componentName, k4: appName
                          i18n("Skanlite"), // displayName, k4: programName
-                         QLatin1String(SKANLITE_VERSION_STRING), // version
+                         QStringLiteral(SKANLITE_VERSION_STRING), // version
                          i18n("Scanning application by KDE based on libksane."), // shortDescription
                          KAboutLicense::GPL, // licenseType
                          i18n("(C) 2008-2020 Kåre Särs"), // copyrightStatement
@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
 
     aboutData.addAuthor(i18n("Kåre Särs"),
                         i18n("developer"),
-                        QLatin1String("kare.sars@iki.fi"));
+                        QStringLiteral("kare.sars@iki.fi"));
 
     aboutData.addAuthor(i18n("Gregor Mi"),
                         i18n("contributor"));
@@ -84,18 +84,18 @@ int main(int argc, char *argv[])
     aboutData.setTranslator(i18nc("NAME OF TRANSLATORS", "Your names"),
                             i18nc("EMAIL OF TRANSLATORS", "Your emails"));
 
-    app.setWindowIcon(QIcon::fromTheme(QLatin1String("scanner")));
+    app.setWindowIcon(QIcon::fromTheme(QStringLiteral("scanner")));
 
     QCoreApplication::setApplicationVersion(aboutData.version());
     QCommandLineParser parser;
     aboutData.setupCommandLine(&parser);
-    QCommandLineOption deviceOption(QStringList() << QLatin1String("d") << QLatin1String("device"), i18n("Sane scanner device name. Use 'test' for test device."), i18n("device"));
+    QCommandLineOption deviceOption(QStringList() << QStringLiteral("d") << QStringLiteral("device"), i18n("Sane scanner device name. Use 'test' for test device."), i18n("device"));
     parser.addOption(deviceOption);
     parser.process(app); // the --author and --license is shown anyway but they work only with the following line
     aboutData.processCommandLine(&parser);
 
     const QString deviceName = parser.value(deviceOption);
-    qCDebug(SKANLITE_LOG) << QString::fromLatin1("deviceOption value=%1").arg(deviceName);
+    qCDebug(SKANLITE_LOG) << QStringLiteral("deviceOption value=%1").arg(deviceName);
 
     Skanlite skanliteDialog(deviceName, nullptr);
     skanliteDialog.setAboutData(&aboutData);

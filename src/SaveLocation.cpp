@@ -58,7 +58,7 @@ void SaveLocation::updateGui()
     if (sender() != m_ui->u_numStartFrom) {
         m_ui->u_numStartFrom->setValue(1); // Reset the counter whenever the directory or the prefix is changed
     }
-    const QString name = QString::fromLatin1("%1%2.%3")
+    const QString name = QStringLiteral("%1%2.%3")
     .arg(m_ui->u_imgPrefix->text())
     .arg(m_ui->u_numStartFrom->value(), 4, 10, QLatin1Char('0'))
     .arg(m_ui->u_imgFormat->currentText());

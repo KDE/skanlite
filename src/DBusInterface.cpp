@@ -33,12 +33,12 @@ bool DBusInterface::setupDBusInterface()
         return false;
     }
 
-    if(!session.registerObject(QLatin1String("/"), this, QDBusConnection::ExportScriptableContents)) {
+    if(!session.registerObject(QStringLiteral("/"), this, QDBusConnection::ExportScriptableContents)) {
         qCDebug(SKANLITE_LOG) << ("ERROR: Cannot register D-Bus object. Continuing...");
         return false;
     }
 
-    if(!session.registerService(QLatin1String("org.kde.skanlite"))) {
+    if(!session.registerService(QStringLiteral("org.kde.skanlite"))) {
         qCDebug(SKANLITE_LOG) << ("ERROR: Cannot register D-Bus service. Continuing...");
         return false;
     }
@@ -56,7 +56,7 @@ const QStringList DBusInterface::ensureStringList(const QStringList &list)
     if (list.length() == 1) {
         QString s = list[0].trimmed();
         if (s.left(2) == QLatin1String("{\"") && s.right(2) == QLatin1String("\"}")) {
-            return s.remove(QLatin1String("{\"")).remove(QLatin1String("\"}")).split(QLatin1String("\", \""));
+            return s.remove(QLatin1String("{\"")).remove(QLatin1String("\"}")).split(QStringLiteral("\", \""));
         }
     }
 
