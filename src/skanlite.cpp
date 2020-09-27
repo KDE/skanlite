@@ -532,7 +532,10 @@ void Skanlite::saveImage()
         imageSaver->saveQImage(fileUrl, localName, m_data, m_width, m_height, m_bytesPerLine, (int)m_ksanew->currentDPI(), m_format, fileFormat, quality);
     }
 
+    m_showImgDialog->blockSignals(true);
     m_showImgDialog->close(); // calling close() on a closed window does nothing.
+    // NOTE we need to block the signals since close() will emit rejected()
+    m_showImgDialog->blockSignals(false);
 
     // Disable parts of the interface and indicate that we are saving the image
     m_currentSaveUrl = fileUrl;
