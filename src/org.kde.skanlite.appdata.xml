@@ -86,7 +86,7 @@
     <p xml:lang="et">Skanlite on lihtne piltide skannimise rakendus piltide skannimiseks ja salvestamiseks. Skanlite'i aluseks on libksane - SANE teegi liides pildiskannerite juhtimiseks.</p>
     <p xml:lang="eu">Skanlite irusiak eskaneatzeko eta gordetzeko aplikazio sinple bat da. Skanlite libksane oinarritzen da, Irudia eskanerrak kontrolatzeko SANE liburutegiaren interfazea.</p>
     <p xml:lang="fi">Skanlite on yksinkertainen kuvanlukusovellus kuvien lukemiseen ja tallentamiseen. Skanlite pohjautuu libksaneen, kuvanlukulaitteita hallitsevan SANE-kirjaston liittymään.</p>
-    <p xml:lang="fr">Skanlite est une application de numérisation d'images simple qui permet de numériser et d'enregistrer des images. Skanlite utilise libskane, une interface pour la librairie SANE permettant de contrôler des scanners.</p>
+    <p xml:lang="fr">Skanlite est une application de numérisation d'images simple qui permet de numériser et d'enregistrer des images. Skanlite utilise « libskane », une interface pour la librairie « SANE » permettant de contrôler des scanners.</p>
     <p xml:lang="gl">Skanlite é unha aplicación simple para dixitalizar e gardar imaxes. Skanlite está baseado en libksane, unha interface para a biblioteca SANE para controlar dixitalizadores de imaxes.</p>
     <p xml:lang="ia">Skanlite es un simple application per scander e salveguardar images. Skanlite es basate sur libskane, un interfacie per le bibliotheca SANE per controlar scanditores de image.</p>
     <p xml:lang="id">Skanlite adalah aplikasi pemindaian citra yang sederhana untuk memindai dan menyimpan citra. Skanlite adalah berdasarkan pada libksane, sebuah antarmuka terhadap pustaka SANE untuk mengendalikan pemindai citra.</p>
@@ -152,7 +152,7 @@
       <li xml:lang="et">Salvestamisdialoogi avamine kõigi skannitud piltide puhul või ka piltide kohene salvestamine määratud kataloogi automaatselt genereeritud nimede ja vorminguga</li>
       <li xml:lang="eu">Gorde elkarrizketa-koadroa eskaneatutako irudi bakoitzeko edo gorde berehala adierazitako formatu eta karpetan auto-sortutako izenekin.</li>
       <li xml:lang="fi">Tallennusikkuna kullekin luetulle kuvalle tai kuvien välitön tallennus määräkansioon automaattisesti luodulla nimellä automaattisesti valittuun muotoon</li>
-      <li xml:lang="fr">Boîte de dialogue d'enregistrement pour chaque image numérisée ou enregistrement automatique dans un dossier au format spécifié; sous un nom généré automatiquement</li>
+      <li xml:lang="fr">Boîte de dialogue d'enregistrement pour chaque image numérisée ou enregistrement automatique dans un dossier au format spécifié, sous un nom généré automatiquement</li>
       <li xml:lang="gl">Diálogo de gardar para cada imaxe que se dixitaliza, ou gardar as imaxes inmediatamente nun cartafol indicado con nome e formato xerados automaticamente.</li>
       <li xml:lang="ia">Salveguarda dialogo per cata image scandite o salveguardar le images immediatemente in un specificate dossier con nomines e formto auto-generate</li>
       <li xml:lang="id">Dialog penyimpanan untuk setiap citra yang dipindai atau penyimpanan citra langsung ke dalam sebuah folder yang ditentukan dengan nama dan format yang dihasilkan secara otomatis</li>
