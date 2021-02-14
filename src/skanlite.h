@@ -56,7 +56,6 @@ private:
     };
 
     void readSettings();
-    void doSaveImage(bool askFilename = true);
     void loadScannerOptions();
 
     void processSelectionOptions(QMap<QString, QString> &opts, bool ignoreSelection);
