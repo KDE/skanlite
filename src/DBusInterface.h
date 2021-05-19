@@ -68,38 +68,38 @@ public Q_SLOTS:
     // called via D-Bus
 
     // Perform scan operation if is in idle
-    Q_SCRIPTABLE void scan() { emit requestedScan(); }
+    Q_SCRIPTABLE void scan() { Q_EMIT requestedScan(); }
 
     // Perform preview operation if is in idle
-    Q_SCRIPTABLE void preview() { emit requestedPreview(); }
+    Q_SCRIPTABLE void preview() { Q_EMIT requestedPreview(); }
 
     // Cancel any ongoing operation
-    Q_SCRIPTABLE void scanCancel() { emit requestedScanCancel(); }
+    Q_SCRIPTABLE void scanCancel() { Q_EMIT requestedScanCancel(); }
 
     // Return device name, like "Hewlett-Packard:Scanjet 4370"
     Q_SCRIPTABLE QString getDeviceName()
     {
-        emit requestedDeviceName();
+        Q_EMIT requestedDeviceName();
         return reply().join(QLatin1String());
     }
 
     // Return current scanner options as returned by KSaneWidget::getOptVals()
     Q_SCRIPTABLE QStringList getScannerOptions()
     {
-        emit requestedGetScannerOptions();
+        Q_EMIT requestedGetScannerOptions();
         return reply();
     }
 
     // Replaces current scanner options with argument value. Ignores page selection area info if ignoreSelection is true (by default)
     Q_SCRIPTABLE void setScannerOptions(const QStringList &options, bool ignoreSelection = defaultSelectionFiltering)
-    {        
-        emit requestedSetScannerOptions(ensureStringList(options), ignoreSelection);
+    {
+        Q_EMIT requestedSetScannerOptions(ensureStringList(options), ignoreSelection);
     }
 
     // Return current scanner options
     Q_SCRIPTABLE QStringList getDefaultScannerOptions()
     {
-        emit requestedDefaultScannerOptions();
+        Q_EMIT requestedDefaultScannerOptions();
         return reply();
     }
 
@@ -107,8 +107,8 @@ public Q_SLOTS:
     // Thus it's device specific. Default profile is "1". Could be any string value.
     // Ignores page selection area info if ignoreSelection is true (by default)
     Q_SCRIPTABLE void saveScannerOptionsToProfile(const QStringList &options, const QString &profile = defaultProfile, bool ignoreSelection = defaultSelectionFiltering)
-    {        
-        emit requestedSaveScannerOptionsToProfile(ensureStringList(options), profile, ignoreSelection);
+    {
+        Q_EMIT requestedSaveScannerOptionsToProfile(ensureStringList(options), profile, ignoreSelection);
     }
 
     // Gets current options via KSaneWidget::getOptVals() and saves them into provile
@@ -116,27 +116,27 @@ public Q_SLOTS:
     // Made for easy bind both to hotkey in KHotkeys
     Q_SCRIPTABLE void saveCurrentScannerOptionsToProfile(const QString &profile = defaultProfile, bool ignoreSelection = defaultSelectionFiltering)
     {
-        emit requestedGetScannerOptions(); // put result in m_msgBuffer
-        emit requestedSaveScannerOptionsToProfile(reply(), profile, ignoreSelection);
+        Q_EMIT requestedGetScannerOptions(); // put result in m_msgBuffer
+        Q_EMIT requestedSaveScannerOptionsToProfile(reply(), profile, ignoreSelection);
     }
 
     // Loads options from specified profile and applies them. Ignores page selection area info if ignoreSelection is true (by default)
     Q_SCRIPTABLE void switchToProfile(const QString &profile = defaultProfile, bool ignoreSelection = defaultSelectionFiltering)
     {
-        emit requestedSwitchToProfile(profile, ignoreSelection);
+        Q_EMIT requestedSwitchToProfile(profile, ignoreSelection);
     }
 
     // Returns current selection area in form "{"tl-x=0", "tl-y=0", "br-x=220", "br-y=248"}"
     Q_SCRIPTABLE QStringList getSelection()
     {
-        emit requestedGetSelection();
+        Q_EMIT requestedGetSelection();
         return reply();
     }
 
     // Changes current selection area. Argument must be a list of strings in  form "{"tl-x=0", "tl-y=0", "br-x=220", "br-y=248"}"
     Q_SCRIPTABLE void setSelection(const QStringList &options)
-    {        
-        emit requestedSetSelection(ensureStringList(options));
+    {
+        Q_EMIT requestedSetSelection(ensureStringList(options));
     }
 
 Q_SIGNALS:

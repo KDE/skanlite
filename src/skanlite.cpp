@@ -198,8 +198,8 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
             exit(1);
         }
         else {
-            setWindowTitle(i18nc("@title:window %1 = scanner maker, %2 = scanner model", "%1 %2 - Skanlite", m_ksanew->make(), m_ksanew->model()));
-            m_deviceName = QStringLiteral("%1:%2").arg(m_ksanew->make(), m_ksanew->model());
+            setWindowTitle(i18nc("@title:window %1 = scanner maker, %2 = scanner model", "%1 %2 - Skanlite", m_ksanew->deviceVendor(), m_ksanew->deviceVendor()));
+            m_deviceName = QStringLiteral("%1:%2").arg(m_ksanew->deviceVendor(), m_ksanew->deviceVendor());
         }
     }
     else {
@@ -593,11 +593,11 @@ void Skanlite::imageSaved(const QUrl &fileUrl, const QString &localName, bool su
             KMessageBox::sorry(nullptr, i18n("Failed to upload image"));
         }
         else {
-            emit m_dbusInterface.imageSaved(fileUrl.toString());
+            Q_EMIT m_dbusInterface.imageSaved(fileUrl.toString());
         }
     }
     else {
-        emit m_dbusInterface.imageSaved(localName);
+        Q_EMIT m_dbusInterface.imageSaved(localName);
     }
     m_ksanew->setDisabled(false);
     m_saveUpdateTimer.stop();

@@ -1,11 +1,21 @@
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.16)
 
 project(skanlite)
 
-set(SKANLITE_VERSION_STRING "2.2.0.0")
+# KDE Application Version, managed by release script
+set (RELEASE_SERVICE_VERSION_MAJOR "21")
+set (RELEASE_SERVICE_VERSION_MINOR "07")
+set (RELEASE_SERVICE_VERSION_MICRO "70")
+
+set(RELEASE_SERVICE_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE_VERSION_MINOR}.${RELEASE_SERVICE_VERSION_MICRO}")
+
+set(SKANLITE_VERSION_STRING "${RELEASE_SERVICE_VERSION}")
+
+set(REQUIRED_QT_VERSION "5.14.0")
+set(KF5_MIN_VERSION "5.79.0")
 
 # ECM setup (Extended Cmake Modules)
-find_package(ECM 1.2.0 REQUIRED NO_MODULE)
+find_package(ECM ${KF5_MIN_VERSION} QUIET REQUIRED NO_MODULE)
 # ECM setup2 and include find same cmake module (copied from /usr/share/kde4/apps/cmake/modules/FindSane.cmake)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR} ${CMAKE_SOURCE_DIR}/cmake-modules)
 
@@ -22,9 +32,6 @@ include(ECMQtDeclareLoggingCategory)
 
 # be not so strict with the poor developer who just wants to use strings
 remove_definitions(-DQT_NO_CAST_FROM_BYTEARRAY)
-
-set(REQUIRED_QT_VERSION "5.7.0")
-set(KF5_MIN_VERSION "5.55.0")
 
 ecm_setup_version(
   ${SKANLITE_VERSION_STRING}

@@ -113,7 +113,7 @@ bool SkanliteImageSaver::save16BitPng(const QUrl &url, const QString &name, cons
 void SkanliteImageSaver::run()
 {
     d->m_savedOk = d->m_savingAsPng16 ? d->save16BitPng() : d->saveQImage();
-    emit imageSaved(d->m_url, d->m_name, d->m_savedOk);
+    Q_EMIT imageSaved(d->m_url, d->m_name, d->m_savedOk);
 
     d->m_runMutex.unlock();
 }
