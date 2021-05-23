@@ -60,7 +60,7 @@ private:
 
 private Q_SLOTS:
     void showSettingsDialog();
-    void imageReady(QByteArray &, int, int, int, int);
+    void imageReady(const QImage &image);
     void saveImage();
     void updateSaveProgress();
     void imageSaved(const QUrl &url, const QString &name, bool success);
@@ -104,11 +104,6 @@ private:
     QMap<QString, QString>   m_defaultScanOpts;
     QMap<QString, QString>   m_pendingApplyScanOpts;
     QImage                   m_img;
-    QByteArray               m_data;
-    int                      m_width;
-    int                      m_height;
-    int                      m_bytesPerLine;
-    int                      m_format;
 
     DBusInterface            m_dbusInterface;
     QStringList              m_filterList;

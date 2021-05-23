@@ -37,8 +37,7 @@ public:
     explicit SkanliteImageSaver(QObject *parent = nullptr);
     ~SkanliteImageSaver();
 
-    bool saveQImage(const QUrl &url, const QString &name, const QByteArray &data, int width, int height, int bpl, int dpi, int format, const QString& fileFormat, int quality);
-    bool save16BitPng(const QUrl &url, const QString &name, const QByteArray &data, int width, int height, int bpl, int dpi, int format, const QString& fileFormat, int quality);
+    bool saveQImage(const QUrl &url, const QString &name, const QImage &image, int dpi, const QString& fileFormat, int quality);
 Q_SIGNALS:
     void imageSaved(const QUrl &url, const QString &name, bool success);
 

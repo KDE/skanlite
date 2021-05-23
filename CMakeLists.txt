@@ -42,9 +42,6 @@ ecm_setup_version(
 # Dependencies
 find_package(Qt5 ${REQUIRED_QT_VERSION} NO_MODULE REQUIRED Core Widgets)
 
-find_package(PNG REQUIRED)
-include_directories(${PNG_INCLUDE_DIRS})
-
 find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
         CoreAddons # KAboutData
         DocTools # yields kdoctools_create_handbook
@@ -53,7 +50,7 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
         XmlGui # KAboutApplicationDialog
 )
 
-find_package(KF5Sane ${KF5_MIN_VERSION} REQUIRED)
+find_package(KF5Sane ${RELEASE_SERVICE_VERSION} REQUIRED)
 
 add_definitions(-DQT_NO_URL_CAST_FROM_STRING)
 

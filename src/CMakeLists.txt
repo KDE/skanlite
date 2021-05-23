@@ -21,7 +21,6 @@ target_link_libraries(skanlite
     KF5::I18n
     KF5::XmlGui
     KF5::KIOWidgets
-    ${PNG_LIBRARY}
 )
 
 install(TARGETS skanlite ${INSTALL_TARGETS_DEFAULT_ARGS})

@@ -77,7 +77,7 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     m_firstImage = true;
 
     m_ksanew = new KSaneIface::KSaneWidget(this);
-    connect(m_ksanew, &KSaneWidget::imageReady, this, &Skanlite::imageReady);
+    connect(m_ksanew, &KSaneWidget::scannedImageReady, this, &Skanlite::imageReady);
     connect(m_ksanew, &KSaneWidget::availableDevices, this, &Skanlite::availableDevices);
     connect(m_ksanew, &KSaneWidget::userMessage, this, &Skanlite::alertUser);
     connect(m_ksanew, &KSaneWidget::buttonPressed, this, &Skanlite::buttonPressed);
@@ -148,7 +148,7 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
         m_filterList.insert(2, QStringLiteral("image/tiff"));
 
         m_filter16BitList << QStringLiteral("image/png");
-        //m_filter16BitList << QLatin1String("image/tiff");
+        m_filter16BitList << QStringLiteral("image/tiff");
 
         // fill m_filterList (...) and m_typeList (list of file suffixes)
         {
@@ -363,18 +363,12 @@ void Skanlite::showSettingsDialog(void)
     }
 }
 
-void Skanlite::imageReady(QByteArray &data, int w, int h, int bpl, int f)
+void Skanlite::imageReady(const QImage &image)
 {
     // save the image data
-    m_data = data;
-    m_width = w;
-    m_height = h;
-    m_bytesPerLine = bpl;
-    m_format = f;
-
     if (m_settingsUi.showB4Save->isChecked() == true) {
         /* copy the image data into m_img and show it*/
-        m_img = m_ksanew->toQImageSilent(data, w, h, bpl, (KSaneIface::KSaneWidget::ImageFormat)f);
+        m_img = image;
         m_showImgDialog->setQImage(&m_img);
         m_showImgDialog->zoom2Fit();
         m_showImgDialog->exec();
@@ -436,15 +430,15 @@ void Skanlite::saveImage()
     QString imgFormat = m_saveLocation->imageFormat().toLower();
     int fileNumber = m_saveLocation->startNumber();
     QStringList filterList = m_filterList;
-    bool enforceSavingAsPng16bit = false;
-    if ((m_format == KSaneIface::KSaneWidget::FormatRGB_16_C) ||
-        (m_format == KSaneIface::KSaneWidget::FormatGrayScale16))
+
+    if ((m_img.format() == QImage::Format_Grayscale16) ||
+        (m_img.format() == QImage::Format_RGBX64))
     {
         filterList = m_filter16BitList;
-        enforceSavingAsPng16bit = true;
-        if (imgFormat != QLatin1String("png")) {
+        if (imgFormat != QLatin1String("png") && imgFormat != QLatin1String("tif")
+            && imgFormat != QLatin1String("tiff")) {
             imgFormat = QStringLiteral("png");
-            KMessageBox::information(this, i18n("The image will be saved in the PNG format, as Skanlite only supports saving 16 bit color images in the PNG format."));
+            KMessageBox::information(this, i18n("The image will be saved in the PNG format, as the selected image type does not support saving 16 bit color images."));
         }
     }
 
@@ -522,12 +516,7 @@ void Skanlite::saveImage()
     SkanliteImageSaver *imageSaver = new SkanliteImageSaver(this);
     connect(imageSaver, &SkanliteImageSaver::imageSaved, this, &Skanlite::imageSaved);
 
-    // Save
-    if (enforceSavingAsPng16bit) {
-        imageSaver->save16BitPng(fileUrl, localName, m_data, m_width, m_height, m_bytesPerLine, (int)m_ksanew->currentDPI(), m_format, fileFormat, quality);
-    } else {
-        imageSaver->saveQImage(fileUrl, localName, m_data, m_width, m_height, m_bytesPerLine, (int)m_ksanew->currentDPI(), m_format, fileFormat, quality);
-    }
+    imageSaver->saveQImage(fileUrl, localName, m_img, static_cast<int>(m_ksanew->currentDPI()), fileFormat, quality);
 
     m_showImgDialog->blockSignals(true);
     m_showImgDialog->close(); // calling close() on a closed window does nothing.
