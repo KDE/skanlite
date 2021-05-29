@@ -198,8 +198,8 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
             exit(1);
         }
         else {
-            setWindowTitle(i18nc("@title:window %1 = scanner maker, %2 = scanner model", "%1 %2 - Skanlite", m_ksanew->deviceVendor(), m_ksanew->deviceVendor()));
-            m_deviceName = QStringLiteral("%1:%2").arg(m_ksanew->deviceVendor(), m_ksanew->deviceVendor());
+            setWindowTitle(i18nc("@title:window %1 = scanner maker, %2 = scanner model", "%1 %2 - Skanlite", m_ksanew->deviceVendor(), m_ksanew->deviceModel()));
+            m_deviceName = QStringLiteral("%1:%2").arg(m_ksanew->deviceVendor(), m_ksanew->deviceModel());
         }
     }
     else {
