@@ -151,15 +151,19 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
         //m_filter16BitList << QLatin1String("image/tiff");
 
         // fill m_filterList (...) and m_typeList (list of file suffixes)
-        for (const QString &mimeStr : qAsConst(m_filterList)) {
-            QMimeType mimeType = QMimeDatabase().mimeTypeForName(mimeStr);
-            m_filterList.append(mimeType.name());
+        {
+            QStringList namedMimeTypes;
+            for (const QString &mimeStr : qAsConst(m_filterList)) {
+                QMimeType mimeType = QMimeDatabase().mimeTypeForName(mimeStr);
+                namedMimeTypes.append(mimeType.name());
 
-            QStringList fileSuffixes = mimeType.suffixes();
+                QStringList fileSuffixes = mimeType.suffixes();
 
-            if (fileSuffixes.size() > 0) {
-                m_typeList << fileSuffixes.first();
+                if (fileSuffixes.size() > 0) {
+                    m_typeList << fileSuffixes.first();
+                }
             }
+            m_filterList << std::move(namedMimeTypes);
         }
 
         m_settingsUi.imgFormat->addItems(m_typeList);
