@@ -35,7 +35,6 @@
 
 class ShowImageDialog;
 class SaveLocation;
-class KAboutData;
 class QProgressBar;
 
 using namespace KSaneIface;
@@ -46,7 +45,6 @@ class Skanlite : public QDialog
 
 public:
     explicit Skanlite(const QString &device, QWidget *parent);
-    void setAboutData(KAboutData *aboutData);
 
 private:
     // Order of items in save mode combo-box
@@ -94,7 +92,6 @@ protected:
     void closeEvent(QCloseEvent *event) Q_DECL_OVERRIDE;
 
 private:
-    KAboutData              *m_aboutData;
     KSaneWidget             *m_ksanew = nullptr;
     QProgressBar            *m_saveProgressBar = nullptr;
     QUrl                     m_currentSaveUrl;

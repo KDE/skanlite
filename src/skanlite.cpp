@@ -43,6 +43,7 @@
 #include <QCloseEvent>
 #include <QProgressBar>
 
+#include <KAboutData>
 #include <KAboutApplicationDialog>
 #include <KLocalizedString>
 #include <KMessageBox>
@@ -61,7 +62,6 @@
 
 Skanlite::Skanlite(const QString &device, QWidget *parent)
     : QDialog(parent)
-    , m_aboutData(nullptr)
     , m_dbusInterface(this)
 {
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
@@ -250,11 +250,6 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
 void Skanlite::showHelp()
 {
     KHelpClient::invokeHelp(QStringLiteral("index"), QStringLiteral("skanlite"));
-}
-
-void Skanlite::setAboutData(KAboutData *aboutData)
-{
-    m_aboutData = aboutData;
 }
 
 void Skanlite::closeEvent(QCloseEvent *event)
@@ -609,7 +604,7 @@ void Skanlite::imageSaved(const QUrl &fileUrl, const QString &localName, bool su
 
 void Skanlite::showAboutDialog(void)
 {
-    KAboutApplicationDialog(*m_aboutData).exec();
+    KAboutApplicationDialog(KAboutData::applicationData()).exec();
 }
 
 void writeScannerOptions(const QString &groupName, const QMap <QString, QString> &opts)

@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
 
     KLocalizedString::setApplicationDomain("skanlite");
 
-    KAboutData aboutData(QStringLiteral("Skanlite"), // componentName, k4: appName
+    KAboutData aboutData(QStringLiteral("skanlite"), // componentName, k4: appName
                          i18n("Skanlite"), // displayName, k4: programName
                          QStringLiteral(SKANLITE_VERSION_STRING), // version
                          i18n("Scanning application by KDE based on libksane."), // shortDescription
@@ -84,7 +84,8 @@ int main(int argc, char *argv[])
     aboutData.setTranslator(i18nc("NAME OF TRANSLATORS", "Your names"),
                             i18nc("EMAIL OF TRANSLATORS", "Your emails"));
 
-    app.setWindowIcon(QIcon::fromTheme(QStringLiteral("scanner")));
+    app.setWindowIcon(QIcon::fromTheme(QStringLiteral("skanlite")));
+    KAboutData::setApplicationData(aboutData);
 
     QCoreApplication::setApplicationVersion(aboutData.version());
     QCommandLineParser parser;
@@ -98,12 +99,11 @@ int main(int argc, char *argv[])
     qCDebug(SKANLITE_LOG) << QStringLiteral("deviceOption value=%1").arg(deviceName);
 
     Skanlite skanliteDialog(deviceName, nullptr);
-    skanliteDialog.setAboutData(&aboutData);
 
     skanliteDialog.show();
 
     QShortcut *prevShortcut = new QShortcut(QKeySequence(QStringLiteral("Ctrl+Q")), &skanliteDialog);
-    QObject::connect(prevShortcut, SIGNAL(activated()), &app, SLOT(quit()));
+    QObject::connect(prevShortcut, &QShortcut::activated, &app, &QApplication::quit);
 
     return app.exec();
 }
