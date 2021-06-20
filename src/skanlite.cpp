@@ -218,8 +218,6 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     // load saved options
     loadScannerOptions();
 
-    m_ksanew->initGetDeviceList();
-
     m_firstImage = true;
 
     if (m_dbusInterface.setupDBusInterface()) {
