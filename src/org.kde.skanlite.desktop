@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Exec=skanlite -qwindowtitle %c %i
+Exec=skanlite
 Icon=skanlite
 X-DocPath=skanlite/index.html
 Terminal=false
