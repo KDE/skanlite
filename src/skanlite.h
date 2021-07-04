@@ -71,8 +71,6 @@ private Q_SLOTS:
     void defaultScannerOptions();
     void applyScannerOptions(const QMap<QString, QString> &opts);
 
-    void availableDevices(const QList<KSaneWidget::DeviceInfo> &deviceList);
-
     void alertUser(int type, const QString &strStatus);
     void buttonPressed(const QString &optionName, const QString &optionLabel, bool pressed);
 

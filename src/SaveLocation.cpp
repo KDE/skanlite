@@ -41,11 +41,7 @@ SaveLocation::SaveLocation(QWidget *parent)
     m_ui->u_urlRequester->setMode(KFile::Directory);
     connect(m_ui->u_urlRequester, &KUrlRequester::textChanged, this, &SaveLocation::updateGui);
     connect(m_ui->u_imgPrefix, &QLineEdit::textChanged, this, &SaveLocation::updateGui);
-#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
-    connect(m_ui->u_imgFormat, static_cast<void (QComboBox::*)(const QString &)>(&QComboBox::activated), this, &SaveLocation::updateGui);
-#else
     connect(m_ui->u_imgFormat, static_cast<void (QComboBox::*)(const QString &)>(&QComboBox::textActivated), this, &SaveLocation::updateGui);
-#endif
     connect(m_ui->u_numStartFrom, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &SaveLocation::updateGui);
 }
 

@@ -27,7 +27,6 @@
 
 #include <KAboutData>
 #include <KLocalizedString>
-#include <Kdelibs4ConfigMigrator>
 
 #include "skanlite.h"
 
@@ -38,10 +37,6 @@ int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
     QApplication app(argc, argv);
-
-    Kdelibs4ConfigMigrator migrate(QStringLiteral("Skanlite"));
-    migrate.setConfigFiles(QStringList() << QStringLiteral("Skanliterc"));
-    migrate.migrate();
 
     KLocalizedString::setApplicationDomain("skanlite");
 

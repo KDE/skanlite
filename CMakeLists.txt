@@ -30,9 +30,6 @@ include(KDECMakeSettings)
 include(GenerateExportHeader)
 include(ECMQtDeclareLoggingCategory)
 
-# be not so strict with the poor developer who just wants to use strings
-remove_definitions(-DQT_NO_CAST_FROM_BYTEARRAY)
-
 ecm_setup_version(
   ${SKANLITE_VERSION_STRING}
   VARIABLE_PREFIX SKANLITE

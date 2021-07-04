@@ -78,7 +78,6 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
 
     m_ksanew = new KSaneIface::KSaneWidget(this);
     connect(m_ksanew, &KSaneWidget::scannedImageReady, this, &Skanlite::imageReady);
-    connect(m_ksanew, &KSaneWidget::availableDevices, this, &Skanlite::availableDevices);
     connect(m_ksanew, &KSaneWidget::userMessage, this, &Skanlite::alertUser);
     connect(m_ksanew, &KSaneWidget::buttonPressed, this, &Skanlite::buttonPressed);
     connect(m_ksanew, &KSaneWidget::scanDone, this, [this](){
@@ -662,13 +661,6 @@ void Skanlite::loadScannerOptions()
     QMap <QString, QString> opts;
     readScannerOptions(QStringLiteral("Options For %1").arg(m_deviceName), opts);
     applyScannerOptions(opts);
-}
-
-void Skanlite::availableDevices(const QList<KSaneWidget::DeviceInfo> &deviceList)
-{
-    for (const KSaneWidget::DeviceInfo &device : deviceList) {
-        qCDebug(SKANLITE_LOG) << device.name;
-    }
 }
 
 void Skanlite::alertUser(int type, const QString &strStatus)

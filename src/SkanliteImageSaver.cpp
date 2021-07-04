@@ -37,11 +37,7 @@ struct SkanliteImageSaver::Private {
     QUrl       m_url;
     QString    m_name;
     QImage     m_image;
-    int        m_width;
-    int        m_height;
-    int        m_bpl;
     int        m_dpi;
-    int        m_format;
     QString    m_fileFormat;
     int        m_quality;
 
