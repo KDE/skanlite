@@ -18,6 +18,7 @@
   <name xml:lang="fi">Skanlite</name>
   <name xml:lang="fr">Skanlite</name>
   <name xml:lang="gl">Skanlite</name>
+  <name xml:lang="hi">स्कैनलाइट</name>
   <name xml:lang="ia">Skanlite</name>
   <name xml:lang="id">Skanlite</name>
   <name xml:lang="it">Skanlite</name>
@@ -53,6 +54,7 @@
   <summary xml:lang="fi">Kuvanlukusovellus</summary>
   <summary xml:lang="fr">Application de numérisation d'images</summary>
   <summary xml:lang="gl">Aplicación de dixitalización de imaxes</summary>
+  <summary xml:lang="hi">छवि स्कैन करने का अनुप्रयोग</summary>
   <summary xml:lang="ia">Application pro scander imagines</summary>
   <summary xml:lang="id">Aplikasi Pemindaian Citra</summary>
   <summary xml:lang="it">Applicazione per la scansione delle immagini</summary>
@@ -91,6 +93,7 @@
     <p xml:lang="fi">Skanlite on yksinkertainen kuvanlukusovellus kuvien lukemiseen ja tallentamiseen. Skanlite pohjautuu libksaneen, kuvanlukulaitteita hallitsevan SANE-kirjaston liittymään.</p>
     <p xml:lang="fr">Skanlite est une application de numérisation d'images simple qui permet de numériser et d'enregistrer des images. Skanlite utilise « libskane », une interface pour la librairie « SANE » permettant de contrôler des scanners.</p>
     <p xml:lang="gl">Skanlite é unha aplicación simple para dixitalizar e gardar imaxes. Skanlite está baseado en libksane, unha interface para a biblioteca SANE para controlar dixitalizadores de imaxes.</p>
+    <p xml:lang="hi">स्कैनलाइट छवियों को स्कैन करने और सहेजने के लिए एक सरल छवी स्कैन करने वाला अनुप्रयोग है। स्कैनलाइट लिबकेसेन पर आधारित है जो छवि स्कैन यंत्रों को नियंत्रित करने वाले सेन संग्रह के लिए एक इंटरफेस है।</p>
     <p xml:lang="ia">Skanlite es un simple application per scander e salveguardar images. Skanlite es basate sur libskane, un interfacie per le bibliotheca SANE per controlar scanditores de image.</p>
     <p xml:lang="id">Skanlite adalah aplikasi pemindaian citra yang sederhana untuk memindai dan menyimpan citra. Skanlite adalah berdasarkan pada libksane, sebuah antarmuka terhadap pustaka SANE untuk mengendalikan pemindai citra.</p>
     <p xml:lang="it">Skanlite è una semplice applicazione per la scansione e il salvataggio delle immagini. Skanlite si basa su libksane, un'interfaccia per la libreria SANE per il controllo degli scanner per immagini.</p>
@@ -124,6 +127,7 @@
     <p xml:lang="fi">Ominaisuuksia:</p>
     <p xml:lang="fr">Fonctionnalités :</p>
     <p xml:lang="gl">Funcionalidades:</p>
+    <p xml:lang="hi">विशेषताएँ :</p>
     <p xml:lang="ia">Characteristicas:</p>
     <p xml:lang="id">Fitur:</p>
     <p xml:lang="it">Funzionalità:</p>
@@ -159,6 +163,7 @@
       <li xml:lang="fi">Tallennusikkuna kullekin luetulle kuvalle tai kuvien välitön tallennus määräkansioon automaattisesti luodulla nimellä automaattisesti valittuun muotoon</li>
       <li xml:lang="fr">Boîte de dialogue d'enregistrement pour chaque image numérisée ou enregistrement automatique dans un dossier au format spécifié, sous un nom généré automatiquement</li>
       <li xml:lang="gl">Diálogo de gardar para cada imaxe que se dixitaliza, ou gardar as imaxes inmediatamente nun cartafol indicado con nome e formato xerados automaticamente.</li>
+      <li xml:lang="hi">हर एक छवि के लिए सहेज संवाद दिखाए या छवियों को तुरंत एक उल्लेखित फोल्डर में स्वतः उत्पन्न नाम और प्रारूप में सहेजें।</li>
       <li xml:lang="ia">Salveguarda dialogo per cata image scandite o salveguardar le images immediatemente in un specificate dossier con nomines e formto auto-generate</li>
       <li xml:lang="id">Dialog penyimpanan untuk setiap citra yang dipindai atau penyimpanan citra langsung ke dalam sebuah folder yang ditentukan dengan nama dan format yang dihasilkan secara otomatis</li>
       <li xml:lang="it">Finestra di dialogo per ogni scansione immagine o salvataggio immediato delle immagini in una cartella specifica con nomi e formati generati in automatico</li>
@@ -191,6 +196,7 @@
       <li xml:lang="fi">Verkkokuvanlukutuki</li>
       <li xml:lang="fr">Prise en charge des scanners réseau</li>
       <li xml:lang="gl">Compatibilidade con escáneres remotos.</li>
+      <li xml:lang="hi">संजाल के स्कैन यंत्रों के लिए समर्थन</li>
       <li xml:lang="ia">Supporto per le scanditores de rete</li>
       <li xml:lang="id">Mendukung pemindaian jaringan</li>
       <li xml:lang="it">Supporto per scanner di rete</li>
@@ -224,6 +230,7 @@
       <li xml:lang="fi">Esikatselu lopullisen kuva-alueen valintaominaisuudella</li>
       <li xml:lang="fr">Fonctionnalité aperçu avec sélection pour la numérisation définitive</li>
       <li xml:lang="gl">Vista previa con funcionalidade de selección para a dixitalización final.</li>
+      <li xml:lang="hi">अंतिम स्कैन के लिए चयन के साथ पूर्वावलोकन की सुविधा</li>
       <li xml:lang="ia">Vista preliminari con characteristica de selection per le scansion final</li>
       <li xml:lang="id">Pratinjau dengan fitur pemilihan untuk pemindaian akhir</li>
       <li xml:lang="it">Anteprima con funzionalità di selezione per la scansione finale</li>
@@ -256,6 +263,7 @@
       <li xml:lang="fi">Useampien kuvan alueiden luku</li>
       <li xml:lang="fr">Numérisation de plusieurs parties d'une image</li>
       <li xml:lang="gl">Dixitalización de varias seleccións dunha imaxe.</li>
+      <li xml:lang="hi">एक छवि के कई चयनों को स्कैन करना</li>
       <li xml:lang="ia">Scandente multiple selectiones de un image</li>
       <li xml:lang="id">Pemindaian pemilihan multipel pada sebuah citra</li>
       <li xml:lang="it">Selezioni multiple di scansione di un'immagine</li>
