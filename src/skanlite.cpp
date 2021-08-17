@@ -351,16 +351,15 @@ void Skanlite::showSettingsDialog(void)
 void Skanlite::imageReady(const QImage &image)
 {
     // save the image data
+    m_img = image;
     if (m_settingsUi.showB4Save->isChecked() == true) {
-        /* copy the image data into m_img and show it*/
-        m_img = image;
+        // show the image in the preview
         m_showImgDialog->setQImage(&m_img);
         m_showImgDialog->zoom2Fit();
         m_showImgDialog->exec();
         // save has been done as a result of save or then we got cancel
     }
     else {
-        m_img = QImage(); // clear the image to ensure we save the correct one.
         saveImage();
     }
 }
