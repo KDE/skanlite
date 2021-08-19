@@ -44,7 +44,7 @@ SkanliteImageSaver::~SkanliteImageSaver()
     delete d;
 }
 
-bool SkanliteImageSaver::saveQImage(const QUrl &url, const QString &name, const QImage &image, int dpi, const QString& fileFormat, int quality)
+bool SkanliteImageSaver::saveQImage(const QUrl &url, const QString &name, const QImage &image, const QString& fileFormat, int quality)
 {
     if (!d->m_runMutex.tryLock()) {
         return false;
@@ -53,7 +53,6 @@ bool SkanliteImageSaver::saveQImage(const QUrl &url, const QString &name, const 
     d->m_url    = url;
     d->m_name   = name;
     d->m_image  = image;
-    d->m_dpi    = dpi;
     d->m_fileFormat = fileFormat;
     d->m_quality = quality;
 

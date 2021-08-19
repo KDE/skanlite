@@ -372,11 +372,7 @@ bool urlExists(const QUrl& url)
         }
     }
     else {
-#if KIO_VERSION < QT_VERSION_CHECK(5, 69, 0)
-        KIO::StatJob *statJob = KIO::stat(url, KIO::StatJob::DestinationSide, 0);
-#else
         KIO::StatJob *statJob = KIO::statDetails(url, KIO::StatJob::DestinationSide, KIO::StatNoDetails);
-#endif
         KJobWidgets::setWindow(statJob, QApplication::activeWindow());
         if (!statJob->exec()) {
             return false;
@@ -500,7 +496,7 @@ void Skanlite::saveImage()
     SkanliteImageSaver *imageSaver = new SkanliteImageSaver(this);
     connect(imageSaver, &SkanliteImageSaver::imageSaved, this, &Skanlite::imageSaved);
 
-    imageSaver->saveQImage(fileUrl, localName, m_img, static_cast<int>(m_ksanew->currentDPI()), fileFormat, quality);
+    imageSaver->saveQImage(fileUrl, localName, m_img, fileFormat, quality);
 
     m_showImgDialog->blockSignals(true);
     m_showImgDialog->close(); // calling close() on a closed window does nothing.

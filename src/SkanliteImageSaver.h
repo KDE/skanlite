@@ -23,7 +23,7 @@ public:
     explicit SkanliteImageSaver(QObject *parent = nullptr);
     ~SkanliteImageSaver();
 
-    bool saveQImage(const QUrl &url, const QString &name, const QImage &image, int dpi, const QString& fileFormat, int quality);
+    bool saveQImage(const QUrl &url, const QString &name, const QImage &image, const QString& fileFormat, int quality);
 Q_SIGNALS:
     void imageSaved(const QUrl &url, const QString &name, bool success);
 
