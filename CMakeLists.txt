@@ -50,7 +50,7 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
         XmlGui # KAboutApplicationDialog
 )
 
-find_package(KF5Sane ${RELEASE_SERVICE_VERSION} REQUIRED)
+find_package(KF5Sane "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE_VERSION_MINOR}" REQUIRED)
 
 add_definitions(-DQT_NO_URL_CAST_FROM_STRING)
 
