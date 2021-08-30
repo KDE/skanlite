@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
 Exec=skanlite
-Icon=skanlite
+Icon=org.kde.skanlite
 X-DocPath=skanlite/index.html
 Terminal=false
 Name=Skanlite

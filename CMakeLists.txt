@@ -29,6 +29,7 @@ include(KDEFrameworkCompilerSettings NO_POLICY_SCOPE)
 include(KDECMakeSettings)
 include(GenerateExportHeader)
 include(ECMQtDeclareLoggingCategory)
+include(ECMInstallIcons)
 
 ecm_setup_version(
   ${SKANLITE_VERSION_STRING}
@@ -56,5 +57,7 @@ add_subdirectory(src)
 add_subdirectory(doc)
 add_subdirectory(autotests)
 add_subdirectory(tests)
+
+ecm_install_icons(ICONS 48-apps-org.kde.skanlite.svg DESTINATION ${KDE_INSTALL_ICONDIR})
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
