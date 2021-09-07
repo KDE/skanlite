@@ -57,17 +57,63 @@ QUrl SaveLocation::folderUrl() const
     return folderUrl.adjusted(QUrl::NormalizePathSegments);
 }
 
-QString SaveLocation::imagePrefix() const { return m_ui->u_imgPrefix->text(); }
-QString SaveLocation::imageFormat() const { return m_ui->u_imgFormat->currentText().toLower(); }
-int     SaveLocation::startNumber() const { return m_ui->u_numStartFrom->value(); }
-int     SaveLocation::startNumberMax() const { return m_ui->u_numStartFrom->maximum(); }
+QString SaveLocation::imagePrefix() const
+{
+    return m_ui->u_imgPrefix->text();
+}
 
+QString SaveLocation::imageMimetype() const
+{
+    return m_ui->u_imgFormat->currentData().toString();
+}
 
-void SaveLocation::setFolderUrl(const QUrl &url)               { m_ui->u_urlRequester->setUrl(url); }
-void SaveLocation::setImagePrefix(const QString &prefix)       { m_ui->u_imgPrefix->setText(prefix); }
-void SaveLocation::setImageFormats(const QStringList &formats) { m_ui->u_imgFormat->addItems(formats); }
-void SaveLocation::setImageFormat(const QString &format)       { m_ui->u_imgFormat->setCurrentText(format); }
-void SaveLocation::setStartNumber(int number)                  { m_ui->u_numStartFrom->setValue(number); }
+QString SaveLocation::imageSuffix() const
+{
+    return m_ui->u_imgFormat->currentText().toLower();
+}
+
+int SaveLocation::startNumber() const
+{
+    return m_ui->u_numStartFrom->value();
+}
+
+int SaveLocation::startNumberMax() const
+{
+    return m_ui->u_numStartFrom->maximum();
+}
+
+void SaveLocation::setFolderUrl(const QUrl &url)
+{
+    m_ui->u_urlRequester->setUrl(url);
+}
+
+void SaveLocation::setImagePrefix(const QString &prefix)
+{
+    m_ui->u_imgPrefix->setText(prefix);
+}
+
+void SaveLocation::addImageFormat(const QString &suffix, const QString &mimetype)
+{
+    m_ui->u_imgFormat->addItem(suffix, mimetype);
+}
+
+void SaveLocation::setImageFormatIndex(int index)
+{
+    m_ui->u_imgFormat->setCurrentIndex(index);
+}
+
+void SaveLocation::setImageFormat(const QString &suffix)
+{
+    int index = m_ui->u_imgFormat->findText(suffix);
+    if (index >= 0) {
+        m_ui->u_imgFormat->setCurrentIndex(index);
+    }
+}
+
+void SaveLocation::setStartNumber(int number)
+{
+    m_ui->u_numStartFrom->setValue(number);
+}
 
 void SaveLocation::setOpenRequesterOnShow(bool open)
 {

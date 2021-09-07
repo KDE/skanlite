@@ -26,16 +26,17 @@ public:
 
     QUrl folderUrl() const;
     QString imagePrefix() const;
-    QString imageFormat() const;
+    QString imageMimetype() const;
+    QString imageSuffix() const;
     int startNumber() const;
     int startNumberMax() const;
 
     void setFolderUrl(const QUrl &url);
     void setImagePrefix(const QString &prefix);
-    void setImageFormat(const QString &format);
+    void setImageFormat(const QString &suffix);
+    void setImageFormatIndex(int index);
+    void addImageFormat(const QString &type, const QString &mimetype);
     void setStartNumber(int number);
-
-    void setImageFormats(const QStringList &formats);
 
     void setOpenRequesterOnShow(bool open);
 

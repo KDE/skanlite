@@ -92,7 +92,6 @@ private:
     DBusInterface            m_dbusInterface;
     QStringList              m_filterList;
     QStringList              m_filter16BitList;
-    QStringList              m_typeList;
     bool                     m_firstImage;
 };
 

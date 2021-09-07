@@ -135,24 +135,18 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
         m_filter16BitList << QStringLiteral("image/png");
         m_filter16BitList << QStringLiteral("image/tiff");
 
-        // fill m_filterList (...) and m_typeList (list of file suffixes)
+        // fill m_filterList (...)
         {
             QStringList namedMimeTypes;
             for (const QString &mimeStr : qAsConst(m_filterList)) {
                 QMimeType mimeType = QMimeDatabase().mimeTypeForName(mimeStr);
                 namedMimeTypes.append(mimeType.name());
 
-                QStringList fileSuffixes = mimeType.suffixes();
-
-                if (fileSuffixes.size() > 0) {
-                    m_typeList << fileSuffixes.first();
-                }
+                m_settingsUi.imgFormat->addItem(mimeType.preferredSuffix(), mimeType.name());
+                m_saveLocation->addImageFormat(mimeType.preferredSuffix(), mimeType.name());
             }
             m_filterList << std::move(namedMimeTypes);
         }
-
-        m_settingsUi.imgFormat->addItems(m_typeList);
-        m_saveLocation->setImageFormats(m_typeList);
 
         mainLayout->addWidget(settingsWidget);
 
@@ -171,7 +165,7 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
         // default directory for the save dialog
         m_saveLocation->setFolderUrl(m_settingsUi.saveDirRequester->url());
         m_saveLocation->setImagePrefix(m_settingsUi.imgPrefix->text());
-        m_saveLocation->setImageFormat(m_settingsUi.imgFormat->currentText());
+        m_saveLocation->setImageFormatIndex(m_settingsUi.imgFormat->currentIndex());
     }
 
     // open the scan device
@@ -281,7 +275,12 @@ void Skanlite::readSettings(void)
     }
     m_settingsUi.saveDirRequester->setUrl(saving.readEntry("Location", QUrl(QDir::homePath())));
     m_settingsUi.imgPrefix->setText(saving.readEntry("NamePrefix", i18nc("prefix for auto naming", "Image-")));
-    m_settingsUi.imgFormat->setCurrentText(saving.readEntry("ImgFormat", "png"));
+    QString format = saving.readEntry("ImgFormat", "image/png");
+    int index = m_settingsUi.imgFormat->findData(format);
+    if (index >= 0) {
+        m_settingsUi.imgFormat->setCurrentIndex(index);
+    }
+
     m_settingsUi.imgQuality->setValue(saving.readEntry("ImgQuality", 90));
     m_settingsUi.setQuality->setChecked(saving.readEntry("SetQuality", false));
     m_settingsUi.showB4Save->setChecked(saving.readEntry("ShowBeforeSave", true));
@@ -313,7 +312,7 @@ void Skanlite::showSettingsDialog(void)
         saving.writeEntry("SaveMode", m_settingsUi.saveModeCB->currentIndex());
         saving.writeEntry("Location", m_settingsUi.saveDirRequester->url());
         saving.writeEntry("NamePrefix", m_settingsUi.imgPrefix->text());
-        saving.writeEntry("ImgFormat", m_settingsUi.imgFormat->currentText());
+        saving.writeEntry("ImgFormat", m_settingsUi.imgFormat->currentData().toString());
         saving.writeEntry("SetQuality", m_settingsUi.setQuality->isChecked());
         saving.writeEntry("ImgQuality", m_settingsUi.imgQuality->value());
         saving.writeEntry("ShowBeforeSave", m_settingsUi.showB4Save->isChecked());
@@ -338,7 +337,7 @@ void Skanlite::showSettingsDialog(void)
         // pressing OK in the settings dialog means use those settings.
         m_saveLocation->setFolderUrl(m_settingsUi.saveDirRequester->url());
         m_saveLocation->setImagePrefix(m_settingsUi.imgPrefix->text());
-        m_saveLocation->setImageFormat(m_settingsUi.imgFormat->currentText());
+        m_saveLocation->setImageFormatIndex(m_settingsUi.imgFormat->currentIndex());
 
         m_firstImage = true;
     }
@@ -405,21 +404,21 @@ void Skanlite::saveImage()
         m_saveLocation->setFolderUrl(dirUrl);
     }
 
-
     QString prefix = m_saveLocation->imagePrefix();
-    QString imgFormat = m_saveLocation->imageFormat().toLower();
+    QString imageMimetype = m_saveLocation->imageMimetype();
     int fileNumber = m_saveLocation->startNumber();
-    QStringList filterList = m_filterList;
+    QStringList filterList;
 
     if ((m_img.format() == QImage::Format_Grayscale16) ||
         (m_img.format() == QImage::Format_RGBX64))
     {
         filterList = m_filter16BitList;
-        if (imgFormat != QLatin1String("png") && imgFormat != QLatin1String("tif")
-            && imgFormat != QLatin1String("tiff")) {
-            imgFormat = QStringLiteral("png");
+        if (imageMimetype != QLatin1String("image/png") && imageMimetype != QLatin1String("image/tiff")) {
+            imageMimetype = QStringLiteral("image/png");
             KMessageBox::information(this, i18n("The image will be saved in the PNG format, as the selected image type does not support saving 16 bit color images."));
         }
+    } else {
+        filterList = m_filterList;
     }
 
     // find next available file name for name suggestion
@@ -429,7 +428,7 @@ void Skanlite::saveImage()
         fname = QStringLiteral("%1%2.%3")
                 .arg(prefix)
                 .arg(i, 4, 10, QLatin1Char('0'))
-                .arg(imgFormat);
+                .arg(m_saveLocation->imageSuffix());
 
         fileUrl = dirUrl;
         fileUrl.setPath(fileUrl.path() + fname);
@@ -451,10 +450,8 @@ void Skanlite::saveImage()
         // NOTE it is probably a bug that both setDirectoryUrl and selectUrl have
         // to be set to get remote urls to work
 
-        QStringList actualFilterList = filterList;
-        QString currentMimeFilter = QLatin1String("image/") + imgFormat;
-        saveDialog.setMimeTypeFilters(actualFilterList);
-        saveDialog.selectMimeTypeFilter(currentMimeFilter);
+        saveDialog.setMimeTypeFilters(filterList);
+        saveDialog.selectMimeTypeFilter(imageMimetype);
 
         if (saveDialog.exec() != QFileDialog::Accepted) {
             return;
