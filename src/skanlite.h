@@ -52,6 +52,7 @@ private Q_SLOTS:
     void imageSaved(const QUrl &url, const QString &name, bool success);
     void showAboutDialog();
     void saveWindowSize();
+    void saveScannerDevice();
 
     void saveScannerOptions();
     void defaultScannerOptions();
@@ -71,6 +72,9 @@ private Q_SLOTS:
     void getDeviceName();
     void getSelection();
     void setSelection(const QStringList &options);
+
+    void reselectScannerDevice();
+    void updateWindowTitle(const QString &deviceName, const QString &deviceVendor = QString(), const QString &deviceModel = QString());
 
 protected:
     void closeEvent(QCloseEvent *event) Q_DECL_OVERRIDE;
