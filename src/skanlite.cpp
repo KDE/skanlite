@@ -202,6 +202,7 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     loadScannerOptions();
 
     m_firstImage = true;
+    m_ksanew->setFocus();
 
     if (m_dbusInterface.setupDBusInterface()) {
         // D-Bus related slots
@@ -563,6 +564,7 @@ void Skanlite::imageSaved(const QUrl &fileUrl, const QString &localName, bool su
         Q_EMIT m_dbusInterface.imageSaved(localName);
     }
     m_ksanew->setDisabled(false);
+    m_ksanew->setFocus();
     m_saveUpdateTimer.stop();
     m_saveProgressBar->setVisible(false);
 
