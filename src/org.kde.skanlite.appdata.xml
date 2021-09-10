@@ -84,40 +84,6 @@
     Skanlite is a simple image scanning application to scan and save images.
     It is optimized for scanning with flatbed scanners. Skanlite can capture not only photos and documents, but also transparent slides and filmstrips, with supported scanners.
     </p>
-    <p xml:lang="ar">سكانلايت هو تطبيق بسيط لمسح الصور لمسح الصور وحفظها. يعتمد سكانلايت على libksane ، وهي واجهة لمكتبة SANE للتحكم في الماسحات الضوئية للصور.</p>
-    <p xml:lang="az">Skanlite şəkilləri taramaq və saxlamaq üçün sadə təsvir tarama tətbiqidir. Skanlite libksane əsaslı SANE təsvir taramasını idarə etmə kitabxanası üçün interfeysdir.</p>
-    <p xml:lang="ca">L'Skanlite és una senzilla aplicació per a escanejar imatges i desar-les. Es basa en la «libksane», és una interfície per a la biblioteca de SANE que controla els escàners d'imatges.</p>
-    <p xml:lang="ca-valencia">L'Skanlite és una senzilla aplicació per a escanejar imatges i guardar-les. Es basa en la «libksane», és una interfície per a la biblioteca de SANE que controla els escàners d'imatges.</p>
-    <p xml:lang="da">Skanlite er et simpelt scannerprogram til at scanne og gemme billeder. Skanlite er baseret på libksane, en grænseflade til SANE-biblioteket til at styre scannere.</p>
-    <p xml:lang="de">Skanlite ist eine einfache Anwendung zum Scannen und Speichern von Bildern. Skanlite basiert auf libksane, einer Schnittstelle für die SANE-Bibliothek zum Arbeiten mit Scannern.</p>
-    <p xml:lang="el">Το Skanlite είναι μια απλή εφαρμογή σάρωσης και αποθήκευσης εικόνων. Το Skanlite βασίζεται στο libksane, μια διεπαφή της βιβλιοθήκης SANE για έλεγχο των σαρωτών εικόνων.</p>
-    <p xml:lang="en-GB">Skanlite is a simple image scanning application to scan and save images. Skanlite is based on libksane, an interface for SANE library to control image scanners.</p>
-    <p xml:lang="es">Skanlite es una sencilla aplicación para escanear y guardar imágenes. Skanlite se basa en libksane, una interfaz para la biblioteca SANE que permite controlar escáneres.</p>
-    <p xml:lang="et">Skanlite on lihtne piltide skannimise rakendus piltide skannimiseks ja salvestamiseks. Skanlite'i aluseks on libksane - SANE teegi liides pildiskannerite juhtimiseks.</p>
-    <p xml:lang="eu">Skanlite irusiak eskaneatzeko eta gordetzeko aplikazio sinple bat da. Skanlite libksane oinarritzen da, Irudia eskanerrak kontrolatzeko SANE liburutegiaren interfazea.</p>
-    <p xml:lang="fi">Skanlite on yksinkertainen kuvanlukusovellus kuvien lukemiseen ja tallentamiseen. Skanlite pohjautuu libksaneen, kuvanlukulaitteita hallitsevan SANE-kirjaston liittymään.</p>
-    <p xml:lang="fr">Skanlite est une application de numérisation d'images simple qui permet de numériser et d'enregistrer des images. Skanlite utilise « libskane », une interface pour la librairie « SANE » permettant de contrôler des scanners.</p>
-    <p xml:lang="gl">Skanlite é unha aplicación simple para dixitalizar e gardar imaxes. Skanlite está baseado en libksane, unha interface para a biblioteca SANE para controlar dixitalizadores de imaxes.</p>
-    <p xml:lang="hi">स्कैनलाइट छवियों को स्कैन करने और सहेजने के लिए एक सरल छवी स्कैन करने वाला अनुप्रयोग है। स्कैनलाइट लिबकेसेन पर आधारित है जो छवि स्कैन यंत्रों को नियंत्रित करने वाले सेन संग्रह के लिए एक इंटरफेस है।</p>
-    <p xml:lang="hu">A Skanlite egy egyszerű képolvasó alkalmazás képek beolvasásához és mentéséhez. A Skanlite a linksane-re, a képolvasók vezérlésére szolgáló SANE függvénykönyvtárhoz készült interfészre épül.</p>
-    <p xml:lang="ia">Skanlite es un simple application per scander e salveguardar images. Skanlite es basate sur libskane, un interfacie per le bibliotheca SANE per controlar scanditores de image.</p>
-    <p xml:lang="id">Skanlite adalah aplikasi pemindaian citra yang sederhana untuk memindai dan menyimpan citra. Skanlite adalah berdasarkan pada libksane, sebuah antarmuka terhadap pustaka SANE untuk mengendalikan pemindai citra.</p>
-    <p xml:lang="it">Skanlite è una semplice applicazione per la scansione e il salvataggio delle immagini. Skanlite si basa su libksane, un'interfaccia per la libreria SANE per il controllo degli scanner per immagini.</p>
-    <p xml:lang="ko">Skanlite는 그림을 스캔하고 저장하는 간단한 도구입니다. Skanlite는 SANE 라이브러리로 스캐너를 제어하는 인터페이스인 libksane을 사용합니다.</p>
-    <p xml:lang="lt">Skanlite yra paprasta paveikslų skenavimo programa, skirta skenuoti bei įrašyti paveikslus. Skanlite yra pagrįsta libksane, kuri savo ruožtu yra SANE bibliotekos sąsaja, skirta valdyti paveikslų skenerius.</p>
-    <p xml:lang="nl">Skanlite is eenvoudige toepassing voor het scannen en opslaan van afbeeldingen. Skanlite is gebaseerd op libksane, een interface voor de SANE-bibliotheek voor de besturing van afbeeldingsscanners.</p>
-    <p xml:lang="nn">Skanlite er eit enkelt biletskanningsprogram for å skanna og lagra bilete. Skanlite er basert på libksane, eit grensesnitt for SANE-biblioteket som kan styra biletskannarar.</p>
-    <p xml:lang="pl">Skanlite jest prostą aplikacją do skanowania i zapisywania obrazów. Skanlite jest oparty na libksane, interfejsie dla biblioteki SANE do obsługi skanerów obrazów.</p>
-    <p xml:lang="pt">O Skanlite é uma aplicação simples de digitalização de imagens para digitalizar e gravar as imagens. O Skanlite baseia-se na 'libksane', uma interface para a biblioteca SANE que controla os 'scanners' de imagens.</p>
-    <p xml:lang="pt-BR">Skanlite é um aplicativo simples para digitalizar e salvar imagens. O Skanlite tem como base a libksane, uma interface para a biblioteca SANE que controla os scanners.</p>
-    <p xml:lang="ru">Skanlite — простое изображение для получения и сохранения изображения со сканеров. Приложение Skanlite основано библиотеке libksane — интерфейсе для модуля SANE, предназначенного для работы со сканерами.</p>
-    <p xml:lang="sk">Skanlite je jednoduchá aplikácia na skenovanie a ukladanie obrázkov.Skanlite je založený na libksane, rozhraní pre knižnicu SANE na ovládanie obrazových skenerov.</p>
-    <p xml:lang="sl">Skanlite je preprost program za optično branje in shranjevanje slik. Temelji na libksane, ki je vmesnik za knjižnico SANE, s katero lahko nadzirate optične bralnike.</p>
-    <p xml:lang="sv">Skanlite är ett enkelt bildläsningsprogram för att läsa in och spara bilder.Skanlite är baserat på libksane, ett gränssnitt till SANE-biblioteket som styr bildläsare.</p>
-    <p xml:lang="tr">Skanlite, resim taramak ve kaydetmek için basit bir tarama uygulamasıdır. Skanlite, resim tarayıcılarını denetlemekte kullanılan SANE kütüphanesi olan libksane tabanlıdır.</p>
-    <p xml:lang="uk">Skanlite — проста програма для сканування зображень і збереження даних зображень до файлів. Роботу Skanlite засновано на бібліотеці libksane, інтерфейсі до бібліотек SANE для керування сканерами зображень.</p>
-    <p xml:lang="x-test">xxSkanlite is a simple image scanning application to scan and save images. Skanlite is based on libksane, an interface for SANE library to control image scanners.xx</p>
-    <p xml:lang="zh-CN">Skanlite 是一个简易图像扫描应用程序，它可以扫描和保存图像。Skanlite 基于 libksane 开发，后者是 SANE 扫描仪控制程序库的一个界面库。</p>
     <p>Features:</p>
     <p xml:lang="ar">الميزات:</p>
     <p xml:lang="az">İmkanlar:</p>
