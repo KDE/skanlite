@@ -144,6 +144,7 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
         m_filterList.insert(0, QStringLiteral("image/png"));
         m_filterList.insert(1, QStringLiteral("image/jpeg"));
         m_filterList.insert(2, QStringLiteral("image/tiff"));
+        m_filterList.insert(3, QStringLiteral("application/pdf"));
 
         m_filter16BitList << QStringLiteral("image/png");
         m_filter16BitList << QStringLiteral("image/tiff");
@@ -510,6 +511,9 @@ void Skanlite::saveImage()
     QString fileFormat;
     if (suffix.isEmpty()) {
         fileFormat = QStringLiteral("png");
+    }
+    if (suffix == QLatin1String("pdf")) {
+        fileFormat = QStringLiteral("pdf");
     }
 
     if (!fileUrl.isLocalFile()) {
