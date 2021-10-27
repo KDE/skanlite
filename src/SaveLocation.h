@@ -22,7 +22,7 @@ class SaveLocation : public QDialog
     Q_OBJECT
 public:
     explicit SaveLocation(QWidget *parent = nullptr);
-    ~SaveLocation();
+    ~SaveLocation() override;
 
     QUrl folderUrl() const;
     QString imagePrefix() const;

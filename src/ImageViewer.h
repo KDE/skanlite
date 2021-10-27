@@ -27,7 +27,7 @@ class ImageViewer : public QGraphicsView
     Q_OBJECT
 public:
     explicit ImageViewer(QWidget *parent = nullptr);
-    ~ImageViewer();
+    ~ImageViewer() override;
 
     void setQImage(QImage *img);
 

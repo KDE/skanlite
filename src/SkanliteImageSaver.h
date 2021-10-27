@@ -21,7 +21,7 @@ class SkanliteImageSaver : public QThread
     Q_OBJECT
 public:
     explicit SkanliteImageSaver(QObject *parent = nullptr);
-    ~SkanliteImageSaver();
+    ~SkanliteImageSaver() override;
 
     bool saveQImage(const QUrl &url, const QString &name, const QImage &image, const QString& fileFormat, int quality);
 Q_SIGNALS:
