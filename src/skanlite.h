@@ -77,7 +77,7 @@ private Q_SLOTS:
     void updateWindowTitle(const QString &deviceName, const QString &deviceVendor = QString(), const QString &deviceModel = QString());
 
 protected:
-    void closeEvent(QCloseEvent *event) Q_DECL_OVERRIDE;
+    void closeEvent(QCloseEvent *event) override;
 
 private:
     KSaneWidget             *m_ksanew = nullptr;

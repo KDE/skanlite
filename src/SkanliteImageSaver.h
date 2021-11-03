@@ -28,7 +28,7 @@ Q_SIGNALS:
     void imageSaved(const QUrl &url, const QString &name, bool success);
 
 protected:
-    void run() Q_DECL_OVERRIDE;
+    void run() override;
 
 private:
     struct Private;
