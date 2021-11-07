@@ -1,4 +1,5 @@
-set(skanlite_SRCS showimagedialog.cpp
+add_executable(skanlite ${skanlite_SRCS})
+target_sources(skanlite PRIVATE showimagedialog.cpp
     skanlite.cpp
     ImageViewer.cpp
     DBusInterface.h
@@ -12,15 +13,14 @@ set(skanlite_SRCS showimagedialog.cpp
     SaveLocation.h
     main.cpp)
 
-ki18n_wrap_ui(skanlite_SRCS settings.ui SaveLocation.ui)
+ki18n_wrap_ui(skanlite settings.ui SaveLocation.ui)
 
-ecm_qt_declare_logging_category(skanlite_SRCS
+ecm_qt_declare_logging_category(skanlite
   HEADER skanlite_debug.h
   IDENTIFIER SKANLITE_LOG
   CATEGORY_NAME org.kde.skanlite
 )
 
-add_executable(skanlite ${skanlite_SRCS})
 
 target_link_libraries(skanlite
   PUBLIC
