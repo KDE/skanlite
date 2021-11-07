@@ -1,4 +1,16 @@
-set(skanlite_SRCS main.cpp skanlite.cpp ImageViewer.cpp showimagedialog.cpp SkanliteImageSaver.cpp SaveLocation.cpp DBusInterface.cpp)
+set(skanlite_SRCS showimagedialog.cpp
+    skanlite.cpp
+    ImageViewer.cpp
+    DBusInterface.h
+    DBusInterface.cpp
+    SaveLocation.cpp
+    SkanliteImageSaver.cpp
+    ImageViewer.h
+    skanlite.h
+    SkanliteImageSaver.h
+    showimagedialog.h
+    SaveLocation.h
+    main.cpp)
 
 ki18n_wrap_ui(skanlite_SRCS settings.ui SaveLocation.ui)
 
