@@ -90,14 +90,14 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     m_ksanew->initGetDeviceList();
 
     // read the size here...
-    KConfigGroup window(KSharedConfig::openConfig(), "Window");
+    KConfigGroup window(KSharedConfig::openStateConfig(), "Window");
     QSize rect = window.readEntry("Geometry", QSize(740, 400));
     resize(rect);
 
     // open scanner device from command line, otherwise try remembered one
     QString deviceName;
     if (device.isEmpty()) {
-        KConfigGroup general(KSharedConfig::openConfig(), QStringLiteral("General"));
+        KConfigGroup general(KSharedConfig::openStateConfig(), QStringLiteral("General"));
         deviceName = general.readEntry(QStringLiteral("deviceName"));
     } else {
         deviceName = device;
@@ -260,14 +260,14 @@ void Skanlite::closeEvent(QCloseEvent *event)
 
 void Skanlite::saveWindowSize()
 {
-    KConfigGroup window(KSharedConfig::openConfig(), "Window");
+    KConfigGroup window(KSharedConfig::openStateConfig(), "Window");
     window.writeEntry("Geometry", size());
     window.sync();
 }
 
 void Skanlite::saveScannerDevice()
 {
-    KConfigGroup general(KSharedConfig::openConfig(), "General");
+    KConfigGroup general(KSharedConfig::openStateConfig(), "General");
     general.writeEntry("deviceName", m_ksanew->deviceName());
     general.sync();
 }
@@ -621,7 +621,7 @@ void Skanlite::showAboutDialog(void)
 
 void writeScannerOptions(const QString &groupName, const QMap <QString, QString> &opts)
 {
-    KConfigGroup options(KSharedConfig::openConfig(), groupName);
+    KConfigGroup options(KSharedConfig::openStateConfig(), groupName);
     QMap<QString, QString>::const_iterator it = opts.constBegin();
     while (it != opts.constEnd()) {
         options.writeEntry(it.key(), it.value());
@@ -632,7 +632,7 @@ void writeScannerOptions(const QString &groupName, const QMap <QString, QString>
 
 void readScannerOptions(const QString &groupName, QMap <QString, QString> &opts)
 {
-    KConfigGroup scannerOptions(KSharedConfig::openConfig(), groupName);
+    KConfigGroup scannerOptions(KSharedConfig::openStateConfig(), groupName);
     opts = scannerOptions.entryMap();
 }
 
@@ -646,7 +646,7 @@ void Skanlite::saveScannerOptions()
     }
 
     if (!m_deviceName.isEmpty()) {
-        KConfigGroup options(KSharedConfig::openConfig(), QStringLiteral("Options For %1").arg(m_deviceName));
+        KConfigGroup options(KSharedConfig::openStateConfig(), QStringLiteral("Options For %1").arg(m_deviceName));
         QMap <QString, QString> opts;
         m_ksanew->getOptVals(opts);
         writeScannerOptions(QStringLiteral("Options For %1").arg(m_deviceName), opts);
