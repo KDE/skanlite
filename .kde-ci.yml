@@ -10,3 +10,4 @@ Dependencies:
     'frameworks/ki18n': '@stable'
     'frameworks/kio': '@stable'
     'frameworks/kxmlgui': '@stable'
+    'graphics/libksane': '@same'
