@@ -89,6 +89,8 @@ private:
     ShowImageDialog         *m_showImgDialog = nullptr;
     SaveLocation            *m_saveLocation = nullptr;
     QString                  m_deviceName;
+    QString                  m_deviceVendor;
+    QString                  m_deviceModel;
     QMap<QString, QString>   m_defaultScanOpts;
     QMap<QString, QString>   m_pendingApplyScanOpts;
     QImage                   m_img;

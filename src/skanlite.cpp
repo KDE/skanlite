@@ -67,7 +67,6 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     connect(m_ksanew, &KSaneWidget::scannedImageReady, this, &Skanlite::imageReady);
     connect(m_ksanew, &KSaneWidget::userMessage, this, &Skanlite::alertUser);
     connect(m_ksanew, &KSaneWidget::buttonPressed, this, &Skanlite::buttonPressed);
-    connect(m_ksanew, &KSaneWidget::openedDeviceInfoUpdated, this, &Skanlite::updateWindowTitle);
     connect(m_ksanew, &KSaneWidget::scanDone, this, [this](){
         if (!m_pendingApplyScanOpts.isEmpty()) {
             applyScannerOptions(m_pendingApplyScanOpts);
@@ -87,8 +86,6 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     mainLayout->addWidget(m_saveProgressBar);
     mainLayout->addWidget(dlgButtonBoxBottom);
 
-    m_ksanew->initGetDeviceList();
-
     // read the size here...
     KConfigGroup window(KSharedConfig::openConfig(), "Window");
     QSize rect = window.readEntry("Geometry", QSize(740, 400));
@@ -96,9 +93,13 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
 
     // open scanner device from command line, otherwise try remembered one
     QString deviceName;
+    QString deviceVendor;
+    QString deviceModel;
     if (device.isEmpty()) {
         KConfigGroup general(KSharedConfig::openConfig(), QStringLiteral("General"));
         deviceName = general.readEntry(QStringLiteral("deviceName"));
+        deviceVendor = general.readEntry(QStringLiteral("deviceVendor"));
+        deviceModel = general.readEntry(QStringLiteral("deviceModel"));
     } else {
         deviceName = device;
     }
@@ -183,13 +184,13 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     }
 
     // open the scan device
-    if (m_ksanew->openDevice(deviceName) == false) {
+    if (!m_ksanew->openDevice(deviceName)) {
         QString dev = m_ksanew->selectDevice(nullptr);
         if (dev.isEmpty()) {
             // either no scanner was found or then cancel was pressed.
             exit(0);
         }
-        if (m_ksanew->openDevice(dev) == false) {
+        if (!m_ksanew->openDevice(dev)) {
             // could not open a scanner
             KMessageBox::sorry(nullptr, i18n("Opening the selected scanner failed."));
             exit(1);
@@ -200,8 +201,14 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
         }
     }
     else {
-        updateWindowTitle(deviceName);
+        if (deviceVendor.isEmpty()) {
+            updateWindowTitle(deviceName);
+        } else {
+            updateWindowTitle(deviceName, deviceVendor, deviceModel);
+        }
         m_deviceName = deviceName;
+        m_deviceModel = deviceModel;
+        m_deviceVendor = deviceVendor;
     }
 
     // prepare the Show Image Dialog
@@ -268,13 +275,18 @@ void Skanlite::saveWindowSize()
 void Skanlite::saveScannerDevice()
 {
     KConfigGroup general(KSharedConfig::openConfig(), "General");
-    general.writeEntry("deviceName", m_ksanew->deviceName());
+    general.writeEntry(QStringLiteral("deviceName"), m_deviceName);
+    general.writeEntry(QStringLiteral("deviceModel"), m_deviceModel);
+    general.writeEntry(QStringLiteral("deviceVendor"), m_deviceVendor);
     general.sync();
 }
 
 void Skanlite::reselectScannerDevice()
 {
     m_ksanew->closeDevice();
+    m_deviceName.clear();
+    m_deviceVendor.clear();
+    m_deviceModel.clear();
     // open the scan device dialog
     QString dev = m_ksanew->selectDevice(nullptr);
     if (m_ksanew->openDevice(dev) == false) {
@@ -284,6 +296,8 @@ void Skanlite::reselectScannerDevice()
     else {
         updateWindowTitle(dev, m_ksanew->deviceVendor(), m_ksanew->deviceModel());
         m_deviceName = dev;
+        m_deviceModel = m_ksanew->deviceModel();
+        m_deviceVendor = m_ksanew->deviceVendor();
     }
 }
 
