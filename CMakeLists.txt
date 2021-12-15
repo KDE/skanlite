@@ -17,7 +17,7 @@ set(KF5_MIN_VERSION "5.79.0")
 # ECM setup (Extended Cmake Modules)
 find_package(ECM ${KF5_MIN_VERSION} QUIET REQUIRED NO_MODULE)
 # ECM setup2 and include find same cmake module (copied from /usr/share/kde4/apps/cmake/modules/FindSane.cmake)
-set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR} ${CMAKE_SOURCE_DIR}/cmake-modules)
+set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake-modules)
 
 include(FeatureSummary)
 include(ECMSetupVersion) # yiels ecm_setup_version
