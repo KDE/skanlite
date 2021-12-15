@@ -11,22 +11,23 @@ set(SKANLITE_VERSION_STRING "${RELEASE_SERVICE_VERSION}")
 
 project(skanlite VERSION ${RELEASE_SERVICE_VERSION})
 
-set(REQUIRED_QT_VERSION "5.14.0")
-set(KF5_MIN_VERSION "5.79.0")
+set(REQUIRED_QT_VERSION "5.15.0")
+set(KF5_MIN_VERSION "5.85.0")
 
 # ECM setup (Extended Cmake Modules)
 find_package(ECM ${KF5_MIN_VERSION} QUIET REQUIRED NO_MODULE)
 # ECM setup2 and include find same cmake module (copied from /usr/share/kde4/apps/cmake/modules/FindSane.cmake)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake-modules)
 
+include(KDEInstallDirs) # yields ${XDG_APPS_INSTALL_DIR}
+include(KDECMakeSettings)
+include(KDECompilerSettings NO_POLICY_SCOPE)
+
 include(FeatureSummary)
 include(ECMSetupVersion) # yiels ecm_setup_version
 include(ECMGenerateHeaders)
 include(CMakePackageConfigHelpers)
 include(CheckFunctionExists)
-include(KDEInstallDirs) # yields ${XDG_APPS_INSTALL_DIR}
-include(KDEFrameworkCompilerSettings NO_POLICY_SCOPE)
-include(KDECMakeSettings)
 include(GenerateExportHeader)
 include(ECMQtDeclareLoggingCategory)
 include(ECMInstallIcons)
@@ -50,7 +51,6 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
 
 find_package(KF5Sane "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE_VERSION_MINOR}" REQUIRED)
 
-add_definitions(-DQT_NO_URL_CAST_FROM_STRING)
 add_definitions(
     -DQT_DISABLE_DEPRECATED_BEFORE=0x050F00
     -DQT_DEPRECATED_WARNINGS_SINCE=0x060000
