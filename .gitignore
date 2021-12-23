@@ -1,6 +1,6 @@
 .directory
 .kdev4/
-build/
+/build*/
 skanlite.kdev4
 src/.kdev_include_paths
 CMakeLists.txt.user
