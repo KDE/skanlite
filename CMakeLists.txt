@@ -43,10 +43,15 @@ find_package(Qt5 ${REQUIRED_QT_VERSION} NO_MODULE REQUIRED Core Widgets)
 
 find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
         CoreAddons # KAboutData
-        DocTools # yields kdoctools_create_handbook
         I18n
         KIO # contains the KIOWidgets which we use in target_link_libraries
         XmlGui # KAboutApplicationDialog
+)
+
+find_package(KF5DocTools ${KF5_MIN_VERSION})  # yields kdoctools_create_handbook
+set_package_properties(KF5DocTools PROPERTIES DESCRIPTION
+    "Tools to generate documentation"
+    TYPE OPTIONAL
 )
 
 find_package(KF5Sane "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE_VERSION_MINOR}" REQUIRED)
@@ -60,7 +65,13 @@ add_definitions(
 
 # Subdirectories
 add_subdirectory(src)
-add_subdirectory(doc)
+
+ki18n_install(po)
+if (KF5DocTools_FOUND)
+    kdoctools_install(po)
+    add_subdirectory(doc)
+endif()
+
 if(BUILD_TESTING)
    add_subdirectory(autotests)
    add_subdirectory(tests)
