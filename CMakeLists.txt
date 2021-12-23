@@ -61,9 +61,10 @@ add_definitions(
 # Subdirectories
 add_subdirectory(src)
 add_subdirectory(doc)
-add_subdirectory(autotests)
-add_subdirectory(tests)
-
+if(BUILD_TESTING)
+   add_subdirectory(autotests)
+   add_subdirectory(tests)
+endif()
 ecm_install_icons(ICONS 48-apps-org.kde.skanlite.svg DESTINATION ${KDE_INSTALL_ICONDIR})
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
