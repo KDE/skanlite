@@ -12,7 +12,7 @@ set(SKANLITE_VERSION_STRING "${RELEASE_SERVICE_VERSION}")
 project(skanlite VERSION ${RELEASE_SERVICE_VERSION})
 
 set(REQUIRED_QT_VERSION "5.15.0")
-set(KF5_MIN_VERSION "5.85.0")
+set(KF5_MIN_VERSION "5.89.0")
 
 # ECM setup (Extended Cmake Modules)
 find_package(ECM ${KF5_MIN_VERSION} QUIET REQUIRED NO_MODULE)
@@ -39,7 +39,7 @@ ecm_setup_version(
 )
 
 # Dependencies
-find_package(Qt5 ${REQUIRED_QT_VERSION} NO_MODULE REQUIRED Core Widgets)
+find_package(Qt${QT_MAJOR_VERSION} ${REQUIRED_QT_VERSION} NO_MODULE REQUIRED Core Widgets)
 
 find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
         CoreAddons # KAboutData
@@ -47,6 +47,9 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
         KIO # contains the KIOWidgets which we use in target_link_libraries
         XmlGui # KAboutApplicationDialog
 )
+if (QT_MAJOR_VERSION STREQUAL "6")
+    find_package(Qt6Core5Compat)
+endif()
 
 find_package(KF5DocTools ${KF5_MIN_VERSION})  # yields kdoctools_create_handbook
 set_package_properties(KF5DocTools PROPERTIES DESCRIPTION

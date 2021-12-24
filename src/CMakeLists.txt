@@ -24,7 +24,7 @@ ecm_qt_declare_logging_category(skanlite
 
 target_link_libraries(skanlite
   PUBLIC
-    Qt5::Core
+    Qt${QT_MAJOR_VERSION}::Core
   PRIVATE
     KF5::CoreAddons
     KF5::Sane
