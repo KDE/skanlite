@@ -40,7 +40,6 @@
 #include <KSharedConfig>
 #include <KConfigGroup>
 #include <KHelpClient>
-#include <kio_version.h>
 
 #include <skanlite_debug.h>
 
