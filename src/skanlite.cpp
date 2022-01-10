@@ -53,7 +53,7 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
 
     QDialogButtonBox *dlgButtonBoxBottom = new QDialogButtonBox(this);
     dlgButtonBoxBottom->setStandardButtons(QDialogButtonBox::Help | QDialogButtonBox::Close);
-    QPushButton *btnAbout = dlgButtonBoxBottom->addButton(i18n("About"), QDialogButtonBox::ButtonRole::HelpRole);
+    QPushButton *btnAbout = dlgButtonBoxBottom->addButton(i18n("About"), QDialogButtonBox::ButtonRole::ActionRole);
     btnAbout->setIcon(QIcon::fromTheme(QStringLiteral("skanlite")));
     QPushButton *btnReselectDevice = dlgButtonBoxBottom->addButton(i18n("Reselect scanner device"), QDialogButtonBox::ButtonRole::ActionRole);
     btnReselectDevice->setIcon(QIcon::fromTheme(QStringLiteral("view-refresh")));
