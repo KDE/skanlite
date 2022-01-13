@@ -552,6 +552,7 @@ void Skanlite::saveImage()
 
     SkanliteImageSaver *imageSaver = new SkanliteImageSaver(this);
     connect(imageSaver, &SkanliteImageSaver::imageSaved, this, &Skanlite::imageSaved);
+    connect(imageSaver, &SkanliteImageSaver::finished, &SkanliteImageSaver::deleteLater);
 
     imageSaver->saveQImage(fileUrl, localName, m_img, fileFormat, quality);
 
@@ -626,11 +627,6 @@ void Skanlite::imageSaved(const QUrl &fileUrl, const QString &localName, bool su
     m_ksanew->setFocus();
     m_saveUpdateTimer.stop();
     m_saveProgressBar->setVisible(false);
-
-    SkanliteImageSaver *imageSaver = qobject_cast<SkanliteImageSaver *>(sender());
-    if (imageSaver) {
-        imageSaver->deleteLater();
-    }
 }
 
 void writeScannerOptions(const QString &groupName, const QMap <QString, QString> &opts)
