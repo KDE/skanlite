@@ -50,7 +50,6 @@ private Q_SLOTS:
     void saveImage();
     void updateSaveProgress();
     void imageSaved(const QUrl &url, const QString &name, bool success);
-    void showAboutDialog();
     void saveWindowSize();
     void saveScannerDevice();
 

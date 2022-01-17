@@ -40,6 +40,7 @@
 #include <KSharedConfig>
 #include <KConfigGroup>
 #include <KHelpClient>
+#include <KHelpMenu>
 
 #include <skanlite_debug.h>
 
@@ -52,13 +53,19 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
 
     QDialogButtonBox *dlgButtonBoxBottom = new QDialogButtonBox(this);
-    dlgButtonBoxBottom->setStandardButtons(QDialogButtonBox::Help | QDialogButtonBox::Close);
-    QPushButton *btnAbout = dlgButtonBoxBottom->addButton(i18n("About"), QDialogButtonBox::ButtonRole::ActionRole);
-    btnAbout->setIcon(QIcon::fromTheme(QStringLiteral("skanlite")));
+    dlgButtonBoxBottom->setStandardButtons(QDialogButtonBox::Help);
+    dlgButtonBoxBottom->button(QDialogButtonBox::Help)->setAutoDefault(false);
+
+    KHelpMenu *helpMenu = new KHelpMenu(this, KAboutData::applicationData(), false);
+    dlgButtonBoxBottom->button(QDialogButtonBox::Help)->setMenu(helpMenu->menu());
+
+    QPushButton *btnConfigure = dlgButtonBoxBottom->addButton(i18n("Configure..."), QDialogButtonBox::ButtonRole::ResetRole);
+    btnConfigure->setIcon(QIcon::fromTheme(QStringLiteral("configure")));
+    btnConfigure->setAutoDefault(false);
+
     QPushButton *btnReselectDevice = dlgButtonBoxBottom->addButton(i18n("Reselect scanner device"), QDialogButtonBox::ButtonRole::ActionRole);
     btnReselectDevice->setIcon(QIcon::fromTheme(QStringLiteral("view-refresh")));
-    QPushButton *btnSettings = dlgButtonBoxBottom->addButton(i18n("Settings"), QDialogButtonBox::ButtonRole::ActionRole);
-    btnSettings->setIcon(QIcon::fromTheme(QStringLiteral("configure")));
+    btnReselectDevice->setAutoDefault(false);
 
     m_firstImage = true;
 
@@ -107,9 +114,8 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     connect(this, &QDialog::finished, this, &Skanlite::saveWindowSize);
     connect(this, &QDialog::finished, this, &Skanlite::saveScannerDevice);
     connect(this, &QDialog::finished, this, &Skanlite::saveScannerOptions);
-    connect(btnSettings, &QPushButton::clicked, this, &Skanlite::showSettingsDialog);
+    connect(btnConfigure, &QPushButton::clicked, this, &Skanlite::showSettingsDialog);
     connect(btnReselectDevice, &QPushButton::clicked, this, &Skanlite::reselectScannerDevice);
-    connect(btnAbout, &QPushButton::clicked, this, &Skanlite::showAboutDialog);
     connect(dlgButtonBoxBottom, &QDialogButtonBox::helpRequested, this, &Skanlite::showHelp);
 
     //
@@ -625,11 +631,6 @@ void Skanlite::imageSaved(const QUrl &fileUrl, const QString &localName, bool su
     if (imageSaver) {
         imageSaver->deleteLater();
     }
-}
-
-void Skanlite::showAboutDialog(void)
-{
-    KAboutApplicationDialog(KAboutData::applicationData()).exec();
 }
 
 void writeScannerOptions(const QString &groupName, const QMap <QString, QString> &opts)
