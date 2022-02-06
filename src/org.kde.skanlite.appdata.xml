@@ -211,6 +211,7 @@
       <li xml:lang="pl">Obsługa skanerów w sieci</li>
       <li xml:lang="pt">Suporte para 'scanners' na rede</li>
       <li xml:lang="pt-BR">Suporte para scanners de rede</li>
+      <li xml:lang="ro">Susținere pentru scanere de rețea</li>
       <li xml:lang="ru">Поддержка сетевых сканеров;</li>
       <li xml:lang="sk">Podpora pre sieťové skenery</li>
       <li xml:lang="sl">Podpora omrežnim optičnim bralnikom</li>
@@ -247,6 +248,7 @@
       <li xml:lang="pl">Podgląd z możliwością zaznaczenia ostatecznego skanowania</li>
       <li xml:lang="pt">Antevisão com funcionalidade de selecção para a digitalização final</li>
       <li xml:lang="pt-BR">Visualização com funcionalidade de seleção para a digitalização final</li>
+      <li xml:lang="ro">Previzualizare cu funcție de selectare pentru scanarea finală</li>
       <li xml:lang="ru">Предварительный просмотр с выбором области для сканирования;</li>
       <li xml:lang="sk">Náhľad s funkciou výberu pre finálny sken</li>
       <li xml:lang="sl">Predogled z zmožnostjo izbire območja za končno optično branje</li>
@@ -282,6 +284,7 @@
       <li xml:lang="pl">Skanowanie wielu obszarów obrazu</li>
       <li xml:lang="pt">Digitalização de várias selecções numa imagem</li>
       <li xml:lang="pt-BR">Digitalização de várias seleções de uma imagem</li>
+      <li xml:lang="ro">Scanarea selecțiilor multiple dintr-o imagine</li>
       <li xml:lang="ru">Сканирование нескольких областей одного изображения.</li>
       <li xml:lang="sk">Skenovanie viacerých výberov obrázka</li>
       <li xml:lang="sl">Optično branje več izborov na sliki</li>
