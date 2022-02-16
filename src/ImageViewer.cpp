@@ -15,6 +15,7 @@
 #include <QScrollBar>
 #include <QAction>
 #include <QIcon>
+#include <QWheelEvent>
 
 #include <KLocalizedString>
 

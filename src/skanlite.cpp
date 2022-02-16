@@ -41,11 +41,12 @@
 #include <KConfigGroup>
 #include <KHelpClient>
 #include <KHelpMenu>
+#include <KSaneWidget>
 
 #include <skanlite_debug.h>
 
 #include <errno.h>
-
+using namespace KSaneIface;
 Skanlite::Skanlite(const QString &device, QWidget *parent)
     : QDialog(parent)
     , m_dbusInterface(this)

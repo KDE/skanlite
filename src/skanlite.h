@@ -14,7 +14,6 @@
 #include <QDialog>
 #include <QTimer>
 
-#include <KSaneWidget>
 
 #include "ui_settings.h"
 #include "DBusInterface.h"
@@ -23,7 +22,9 @@ class ShowImageDialog;
 class SaveLocation;
 class QProgressBar;
 
-using namespace KSaneIface;
+namespace KSaneIface {
+class KSaneWidget;
+}
 
 class Skanlite : public QDialog
 {
@@ -79,7 +80,7 @@ protected:
     void closeEvent(QCloseEvent *event) override;
 
 private:
-    KSaneWidget             *m_ksanew = nullptr;
+    KSaneIface::KSaneWidget             *m_ksanew = nullptr;
     QProgressBar            *m_saveProgressBar = nullptr;
     QUrl                     m_currentSaveUrl;
     QTimer                   m_saveUpdateTimer;
