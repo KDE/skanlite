@@ -11,7 +11,6 @@
 #include "SkanliteImageSaver.h"
 
 #include <QMutex>
-#include <QString>
 #include <QUrl>
 #include <QImage>
 #include <QPdfWriter>

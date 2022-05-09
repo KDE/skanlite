@@ -18,7 +18,6 @@
 #include <QScrollArea>
 #include <QStringList>
 #include <QFileDialog>
-#include <QUrl>
 #include <QDialogButtonBox>
 #include <QComboBox>
 #include <QMessageBox>
