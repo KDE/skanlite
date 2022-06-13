@@ -45,7 +45,7 @@
   <summary xml:lang="ar">تطبيق لمسح الصّور ضوئيًّا</summary>
   <summary xml:lang="az">Təsviri tarama tətbiqi</summary>
   <summary xml:lang="ca">Aplicació de digitalització d'imatges</summary>
-  <summary xml:lang="ca-valencia">Aplicació de digitalisació d'imàgens</summary>
+  <summary xml:lang="ca-valencia">Aplicació de digitalització d'imatges</summary>
   <summary xml:lang="cs">Aplikace pro skenování obrázků</summary>
   <summary xml:lang="da">Scannerprogram</summary>
   <summary xml:lang="de">Anwendung zum Scannen von Bildern</summary>
@@ -87,7 +87,7 @@
     <p xml:lang="ar">سكانلايت هو تطبيق بسيط لمسح الصور وحفظها. تم تحسينه للمسح الضوئي باستخدام الماسحات الضوئية المسطحة. لا تقتصر إمكانيات سكانلايت على التقاط الصور والمستندات فحسب ، بل يمكنه أيضًا التقاط الشرائح الشفافة وأشرطة الأفلام باستخدام الماسحات الضوئية المدعومة.</p>
     <p xml:lang="az">Skanlite şəkilləri taramaq və saxlamaq üçün sadə təsvir tarama tətbiqidir. Bu planşet skanerlərlə uyğunlaşdırılmış bir tarama cihazıdır. Skanlite təkcəşəkillərin və sənədlərin görüntüsünü deyil həmçinin dəstəkləyən skaner olduqda, şəffaf slaydların və diaflimlərin surətini oxuyaraq görüntüləyə bilir.</p>
     <p xml:lang="ca">L'Skanlite és una aplicació d'escaneig d'imatges per a escanejar imatges i desar-les. Està optimitzada per a l'escaneig amb escàners de superfície plana. L'Skanlite no només pot capturar fotos i documents, també diapositives transparents i tires de pel·lícula, amb els escàners acceptats.</p>
-    <p xml:lang="ca-valencia">L'Skanlite és una aplicació d'escaneig d'imàgens per a escanejar imàgens i guardar-les. Està optimisada per a l'escaneig amb escàners de superfície plana. L'Skanlite no només pot capturar fotos i documents, també diapositives transparents i tires de película, amb els escàners acceptats.</p>
+    <p xml:lang="ca-valencia">L'Skanlite és una aplicació d'escaneig d'imatges per a escanejar imatges i guardar-les. Està optimitzada per a l'escaneig amb escàners de superfície plana. L'Skanlite no només pot capturar fotos i documents, també diapositives transparents i tires de pel·lícula, amb els escàners acceptats.</p>
     <p xml:lang="da">Skanlite er et simpelt scannerprogram til at scanne og gemme billeder. Skanlite er optimeret til at scanne med flatbed-scannere. Skanlite kan ikke kun scanne billeder og dokumenter, men også transparenter og filmruller med scannere der understøtter det.</p>
     <p xml:lang="el">Το Skanlite είναι μια απλή εφαρμογή σάρωσης και αποθήκευσης εικόνων. Η βέλτιστη απόδοση είναι για σάρωση με επίπεδους σαρωτές. Το Skanlite δεν συλλαμβάνει μόνο φωτογραφίες και έγγραφα, αλλά και διαφάνειες και λωρίδες φιλμ με τους υποστηριζόμενους σαρωτές.</p>
     <p xml:lang="en-GB">Skanlite is a simple image scanning application to scan and save images. It is optimised for scanning with flatbed scanners. Skanlite can capture not only photos and documents, but also transparent slides and filmstrips, with supported scanners.</p>
@@ -156,7 +156,7 @@
       <li xml:lang="ar">حفظ مربع الحوار لكل صورة تم مسحها ضوئيًا أو حفظ الصور على الفور في مجلد محدد بأسماء وتنسيق أنشئت تلقائيًا</li>
       <li xml:lang="az">Hər taranan təsvirin saxlanılması dialoqu və ya avtomatik ad və format təyin etməklə göstərilən qovluqda dərhal saxlanılması</li>
       <li xml:lang="ca">Diàleg per a desar cada imatge escanejada o desar les imatges immediatament en una carpeta especificada amb noms i format generats automàticament</li>
-      <li xml:lang="ca-valencia">Diàlec per a guardar cada image escanejada o guardar les imàgens immediatament en una carpeta especificada amb noms i format generats automàticament</li>
+      <li xml:lang="ca-valencia">Diàleg per a guardar cada imatge escanejada o guardar les imatges immediatament en una carpeta especificada amb noms i format generats automàticament</li>
       <li xml:lang="da">Gemmedialog for hvert billede der scannes eller gemning af billeder direkte i en angiven mappe med autogenererede navne og format</li>
       <li xml:lang="de">Dialog zum Speichern für jedes eingescannte Bild oder Speichern der Bilder sofort in einem angegebenen Ordner wit automatisch generierten Namen und Format</li>
       <li xml:lang="el">Αποθήκευση διαλόγου για κάθε εικόνα μετά τη σάρωση ή αποθήκευση των εικόνων αμέσως σε έναν δοσμένο φάκελο με αυτόματη εκχώρηση ονομάτων και τύπου αποθήκευσης</li>
@@ -264,7 +264,7 @@
       <li xml:lang="ar">مسح عدة تحديدات في الصورة</li>
       <li xml:lang="az">Təsvirin birdən çox seçimini tarama</li>
       <li xml:lang="ca">Escaneig de múltiples seleccions d'una imatge</li>
-      <li xml:lang="ca-valencia">Escaneig de múltiples seleccions d'una image</li>
+      <li xml:lang="ca-valencia">Escaneig de múltiples seleccions d'una imatge</li>
       <li xml:lang="da">Scanning af flere markeringer af et billede</li>
       <li xml:lang="de">Sannen mehrerer Bereiche eines Fotos</li>
       <li xml:lang="el">Σάρωση πολλών επιλογών μιας εικόνας</li>
