@@ -24,6 +24,7 @@
   <name xml:lang="hu">Skanlite</name>
   <name xml:lang="ia">Skanlite</name>
   <name xml:lang="id">Skanlite</name>
+  <name xml:lang="is">Skanlite</name>
   <name xml:lang="it">Skanlite</name>
   <name xml:lang="ko">Skanlite</name>
   <name xml:lang="lt">Skanlite</name>
@@ -63,6 +64,7 @@
   <summary xml:lang="hu">Képolvasó alkalmazás</summary>
   <summary xml:lang="ia">Application pro scander imagines</summary>
   <summary xml:lang="id">Aplikasi Pemindaian Citra</summary>
+  <summary xml:lang="is">Myndskönnunarforrit</summary>
   <summary xml:lang="it">Applicazione per la scansione delle immagini</summary>
   <summary xml:lang="ko">그림 스캐닝 프로그램</summary>
   <summary xml:lang="lt">Paveikslų skenavimo programa</summary>
@@ -102,6 +104,7 @@
     <p xml:lang="hu">A Skanlite egy egyszerű képolvasó alkalmazás képek beolvasásához és mentéséhez. Működését síkágyas képolvasókhoz optimalizálták. A Skanlite nem csak fényképeket és dokumentumokat, hanem átlátszó diákat és filmszalagokat is képes beolvasni, támogatott képolvasókkal.</p>
     <p xml:lang="ia">Skanlite es un simple application per scander e salveguardar images. Illo es optimisate per scander con scanners de typo flatbed. Skanlite pote capturar non solmente photos e documentos ma anque slides transparente e strias de film, con scanners supportate.</p>
     <p xml:lang="id">Skanlite adalah aplikasi pemindaian citra yang sederhana untuk memindai dan menyimpan citra. Dioptimisasikan untuk pemindaian dengan pemindai flatbed. Skanlite dapat menangkap tidak hanya citra dan dokumen, tetapi juga dengan slide dan strip film yang transparan, dengan pemindai yang didukung.</p>
+    <p xml:lang="is">Skanlite er einfalt myndskönnunarforrit til að skanna og vista myndir. Það virkar best með flatskönnum. Skanlite getur ekki aðeins skannað myndir og skjöl heldur einnig skyggnur og filmuræmur, með studdum skönnum.</p>
     <p xml:lang="it">Skanlite è una semplice applicazione per la scansione e il salvataggio delle immagini. È ottimizzata per la scansione con scanner piani. Skanlite è in grado di catturare non solo foto e documenti, ma anche diapositive trasparenti e pellicole, con gli scanner supportati.</p>
     <p xml:lang="ko">Skanlite는 그림을 스캔하고 저장하는 간단한 도구입니다. 플랫베드 스캐너에 최적화되어 있습니다. Skanlite를 사용하여 사진이나 문서뿐만 아니라 슬라이드 및 네거티브 필름도 스캔할 수 있습니다(지원하는 스캐너 필요).</p>
     <p xml:lang="lt">Skanlite yra paprasta paveikslų skenavimo programa, skirta skenuoti bei įrašyti paveikslus. Ji yra optimizuota skenavimui naudojant plokščiuosius skenerius. Skanlite gali įamžinti ne tik nuotraukas ir dokumentus, bet naudojant palaikomus skenerius, gali skenuoti ir permatomas skaidres bei diafilmus.</p>
@@ -139,6 +142,7 @@
     <p xml:lang="hu">Szolgáltatások:</p>
     <p xml:lang="ia">Characteristicas:</p>
     <p xml:lang="id">Fitur:</p>
+    <p xml:lang="is">Eiginleikar:</p>
     <p xml:lang="it">Funzionalità:</p>
     <p xml:lang="ko">기능:</p>
     <p xml:lang="lt">Ypatybės:</p>
@@ -179,6 +183,7 @@
       <li xml:lang="hu">Mentési párbeszédablak minden beolvasott képhez, vagy azonnali mentés egy megadott mappába, automatikusan generált fájlnévvel és formátumban</li>
       <li xml:lang="ia">Salveguarda dialogo per cata image scandite o salveguardar le images immediatemente in un specificate dossier con nomines e formato auto-generate</li>
       <li xml:lang="id">Dialog penyimpanan untuk setiap citra yang dipindai atau penyimpanan citra langsung ke dalam sebuah folder yang ditentukan dengan nama dan format yang dihasilkan secara otomatis</li>
+      <li xml:lang="is">Vistunargluggi fyrir hverja skannaða mynd eða sjálfvirk vistun í tiltekna möppu með sjálfvirkt útbúnum nöfnum og myndsniðum</li>
       <li xml:lang="it">Finestra di dialogo per ogni scansione immagine o salvataggio immediato delle immagini in una cartella specifica con nomi e formati generati in automatico</li>
       <li xml:lang="ko">스캔한 그림마다 이름을 지정하거나 지정한 폴더에 자동 생성한 이름으로 저장</li>
       <li xml:lang="lt">Įrašymo dialogas kiekvienam nuskenuotam paveikslui arba betarpiškas paveikslų įrašymas į nurodytą aplanką su automatiškai sugeneruotais pavadinimais bei formatu</li>
@@ -215,6 +220,7 @@
       <li xml:lang="hu">Hálózati képolvasók támogatása</li>
       <li xml:lang="ia">Supporto per le scanditores de rete</li>
       <li xml:lang="id">Mendukung pemindaian jaringan</li>
+      <li xml:lang="is">Stuðningur við nettengda skanna</li>
       <li xml:lang="it">Supporto per scanner di rete</li>
       <li xml:lang="ko">네트워크 스캐너 지원</li>
       <li xml:lang="lt">Tinklo skenerių palaikymas</li>
@@ -253,6 +259,7 @@
       <li xml:lang="hu">Előnézet kijelölési lehetőséggel a végső beolvasáshoz</li>
       <li xml:lang="ia">Vista preliminari con characteristica de selection per le scansion final</li>
       <li xml:lang="id">Pratinjau dengan fitur pemilihan untuk pemindaian akhir</li>
+      <li xml:lang="is">Forskoða með myndvalseiginleika fyrir endanlega skönnun</li>
       <li xml:lang="it">Anteprima con funzionalità di selezione per la scansione finale</li>
       <li xml:lang="ko">미리 보기 기능 및 일부만 최종 스캔</li>
       <li xml:lang="lt">Peržiūra su galutinio skenavimo pasirinkimo ypatybe</li>
@@ -290,6 +297,7 @@
       <li xml:lang="hu">Több kijelölés beolvasása egy képről</li>
       <li xml:lang="ia">Scandente multiple selectiones de un image</li>
       <li xml:lang="id">Pemindaian pemilihan multipel pada sebuah citra</li>
+      <li xml:lang="is">Skanna marga valfleti á mynd</li>
       <li xml:lang="it">Selezioni multiple di scansione di un'immagine</li>
       <li xml:lang="ko">한 그림의 여러 선택 영역 스캔</li>
       <li xml:lang="lt">Kelių paveikslo pasirinkimų skenavimas</li>
