@@ -197,7 +197,7 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
         }
         if (!m_ksanew->openDevice(dev)) {
             // could not open a scanner
-            KMessageBox::sorry(nullptr, i18n("Opening the selected scanner failed."));
+            KMessageBox::error(nullptr, i18n("Opening the selected scanner failed."));
             exit(1);
         }
         else {
@@ -296,7 +296,7 @@ void Skanlite::reselectScannerDevice()
     QString dev = m_ksanew->selectDevice(nullptr);
     if (m_ksanew->openDevice(dev) == false) {
         // could not open a scanner
-        KMessageBox::sorry(nullptr, i18n("Opening the selected scanner failed."));
+        KMessageBox::error(nullptr, i18n("Opening the selected scanner failed."));
     }
     else {
         updateWindowTitle(dev, m_ksanew->deviceVendor(), m_ksanew->deviceModel());
@@ -311,10 +311,10 @@ void Skanlite::reselectScannerDevice()
 static void perrorMessageBox(const QString &text)
 {
     if (errno != 0) {
-        KMessageBox::sorry(nullptr, i18n("%1: %2", text, QString::fromLocal8Bit(strerror(errno))));
+        KMessageBox::error(nullptr, i18n("%1: %2", text, QString::fromLocal8Bit(strerror(errno))));
     }
     else {
-        KMessageBox::sorry(nullptr, text);
+        KMessageBox::error(nullptr, text);
     }
 }
 
@@ -614,7 +614,7 @@ void Skanlite::imageSaved(const QUrl &fileUrl, const QString &localName, bool su
         tmpFile.close();
         tmpFile.remove();
         if (!ok) {
-            KMessageBox::sorry(nullptr, i18n("Failed to upload image"));
+            KMessageBox::error(nullptr, i18n("Failed to upload image"));
         }
         else {
             Q_EMIT m_dbusInterface.imageSaved(fileUrl.toString());
@@ -701,7 +701,7 @@ void Skanlite::alertUser(int type, const QString &strStatus)
 {
     switch (type) {
     case KSaneWidget::ErrorGeneral:
-        KMessageBox::sorry(nullptr, strStatus, QStringLiteral("Skanlite Test"));
+        KMessageBox::error(nullptr, strStatus, QStringLiteral("Skanlite Test"));
         break;
     default:
         KMessageBox::information(nullptr, strStatus, QStringLiteral("Skanlite Test"));
