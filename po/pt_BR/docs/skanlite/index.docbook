@@ -1,0 +1,621 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY skanlite "<application
+>Skanlite</application
+>">
+  <!ENTITY kappname "&skanlite;">
+  <!ENTITY package "extragear/graphics">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Brazilian-Portuguese "INCLUDE"
+><!-- change language only here -->
+]>
+
+<book id="skanlite" lang="&language;">
+
+<bookinfo>
+<title
+>Manual do &skanlite;</title>
+
+<authorgroup>
+<author
+><firstname
+>Kåre</firstname
+> <surname
+>Särs</surname
+> <affiliation
+> <address
+><email
+>kare dot sars at iki dot fi</email
+></address>
+</affiliation>
+</author>
+<author
+><firstname
+>Anne-Marie</firstname
+> <surname
+>Mahfouf</surname
+> <affiliation
+> <address
+>&Anne-Marie.Mahfouf.mail;</address>
+</affiliation>
+</author>
+<othercredit role="translator"
+><firstname
+>Marcus</firstname
+><surname
+>Gama</surname
+><affiliation
+><address
+><email
+>marcus.gama@gmail.com</email
+></address
+></affiliation
+><contrib
+>Tradução</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2008, 2013</year>
+<holder
+>Kåre Särs</holder>
+</copyright>
+<copyright>
+<year
+>2008</year>
+<holder
+>&Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>08/02/2013</date>
+<releaseinfo
+>1.0</releaseinfo>
+
+<abstract>
+<para
+>O &skanlite; é uma aplicação de digitalização de imagens que não faz nada mais do que digitalizar e salvar as imagens. </para>
+<para
+>O &skanlite; baseia-se na 'libksane', uma interface do &kde; para a biblioteca SANE, usada para controlar os dispositivos de digitalização.</para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kdegraphics</keyword>
+<keyword
+>scanner</keyword>
+<keyword
+>Imagens</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Introdução</title>
+<para
+>O &skanlite; é uma aplicação simples de digitalização de imagens, que não faz nada mais do que digitalizar e salvar imagens. O &skanlite; poderá abrir uma janela para salvamento para todas as imagens digitalizadas ou salvar as imagens imediatamente, numa pasta indicada, com nomes e formatos determinados automaticamente. O usuário poderá também mostrar a imagem digitalizada antes de salvar.</para>
+<para
+>O &skanlite; pode salvar imagens em todos os formatos suportados pelo KDE. Por exemplo, nos seguintes formatos: <itemizedlist>
+<listitem
+><para
+>png (8 e 16 bits por cor) </para
+></listitem>
+<listitem
+><para
+>jpeg, jpg, jpeg 2000 </para
+></listitem>
+<listitem
+><para
+>bmp </para
+></listitem>
+</itemizedlist>
+</para>
+
+<note
+><para
+>Você pode verificar o suporte do seu 'scanner' ou digitalizador na página Web do projeto SANE, indicando a informação nesta página de pesquisa: <ulink url="http://www.sane-project.org/cgi-bin/driver.pl"
+>http://www.sane-project.org/cgi-bin/driver.pl</ulink
+>.</para
+></note>
+
+</chapter>
+
+<chapter id="using-skanlite">
+<title
+>Usar o &skanlite;</title>
+
+<sect1 id="scanner-selection">
+<title
+>Seleção do 'Scanner'</title>
+<para
+>Você poderá indicar um 'scanner' padrão na linha de comando do &skanlite;, usando a sintaxe <userinput
+>skanlite -d [nome do dispositivo]</userinput
+> num terminal. Se o 'scanner' selecionado não puder ser aberto ou se não for indicado nenhum 'scanner' padrão, será aberta uma janela de seleção de 'scanners'. </para>
+
+<screenshot>
+     <screeninfo
+>Janela de seleção do 'scanner' do &skanlite;</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="choose-scanner.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Janela de seleção do 'scanner' do &skanlite;</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>O usuário poderá escolher o 'scanner' a usar e pressionar <guibutton
+>OK</guibutton
+> para o abrir. Pressionar <guibutton
+>Cancelar</guibutton
+>, irá terminar o &skanlite;. </para>
+
+<screenshot>
+     <screeninfo
+>Nenhum digitalizador encontrado</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="no-scanner-found.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Nenhum digitalizador encontrado</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Caso nenhum digitalizador tenha sido encontrado, isto pode ocorrer devido ao digitalizador não estar conectado ou estar desligado. Corrija isto e então o <guibutton
+>Recarregar lista de dispositivos</guibutton
+> pode ser usado para recarregar a lista de digitalizadores.</para
+> 
+<note
+><para
+>Nem todas as infraestruturas suportam este recurso. Caso este seja o caso, saia do &skanlite;, conecte o seu digitalizador e reinicie o aplicativo.</para>
+</note>
+
+</sect1>
+</chapter>
+
+<chapter id="main-window">
+<title
+>Janela Principal do &skanlite;</title>
+<screenshot>
+     <screeninfo
+>Janela principal do &skanlite;</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="main-window.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Janela principal do &skanlite;</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Na janela principal, o usuário tem dois conjuntos de opções de digitalização: as <guilabel
+>Opções Básicas</guilabel
+> e as <guilabel
+>Opções específicas do digitalizador</guilabel
+>. A página de <guilabel
+>Opções Básicas</guilabel
+> contém os parâmetros mais comuns que as infraestruturas de digitalização do SANE oferecem, enquanto a página de <guilabel
+>Opções específicas do digitalizador</guilabel
+> contém todas as opções da infraestrutura. As opções aqui apresentadas dependem do suporte do SANE para o seu controlador: a 'libksane' (que o &skanlite; usa) deverá poder apresentar a maioria dos tipos de parâmetros que o SANE oferece (as tabelas de 'gama' analógico não são suportadas atualmente). </para>
+
+<screenshot>
+     <screeninfo
+>Página de Opções específicas do digitalizador</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="other-options.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Página de Opções específicas do digitalizador</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>As opções específicas do digitalizador contêm opções mais detalhadas das infraestruturas. O &skanlite; (libksane) não tem nenhum tratamento especial para estas opções. </para>
+
+<para
+>Se você estiver satisfeito com suas configurações, você pode usar a pequena seta no topo do divisor de opções. Ao ser clicada, ela colapsa ou expande as opções. O colapsador pode sobrepor a área de visualização, mas ao passar o mouse por cima dele ele se esmaece, permitindo a visualização da área abaixo.</para
+>  
+
+<sect1 id="scanning">
+<title
+>Digitalizando</title>
+<para
+>Para digitalizar uma imagem, o usuário poderá começar por uma digitalização de previsão, selecionando então a parte da área de digitalização onde será feita depois a digitalização final. A digitalização de previsão é iniciada ao clicar no botão de previsão. </para>
+
+<screenshot>
+     <screeninfo
+>O Botão de Previsão</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="preview-button.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>O Botão de Previsão</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Quando a previsão é digitalizada, a área para a imagem final poderá ser selecionada. </para>
+<screenshot>
+     <screeninfo
+>Seleção e ampliação</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="zoom-in.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Seleção e ampliação</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>Para selecionar melhor a imagem, o usuário poderá ampliar ou reduzir a seleção atual ou então ampliar de modo a caber toda a previsão na janela. </para>
+<screenshot>
+     <screeninfo
+>O botão "Ampliar para caber"</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="zoom-to-fit.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>O botão "Ampliar para caber"</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Quando a imagem for selecionada, a imagem final poderá ser adquirida ao pressionar o botão de digitalização final. </para>
+
+<screenshot>
+     <screeninfo
+>O botão de digitalização final</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="final-button.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>O botão de digitalização final</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Então, você poderá ver o progresso da digitalização. </para>
+<screenshot>
+     <screeninfo
+>Digitalização em curso</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="scanning.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Digitalização em curso</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Se a opção <guilabel
+>Visualizar antes de salvar</guilabel
+> estiver selecionada na configuração, a imagem digitalizada irá aparecer numa janela de previsão, como acontece na imagem abaixo. Se pressionar o botão <guibutton
+>Salvar</guibutton
+>, a imagem será então salva e, se pressionar o botão <guibutton
+>Fechar</guibutton
+>, a previsão é eliminada e o usuário retornará para a janela principal. </para>
+<screenshot>
+     <screeninfo
+>A Janela de Previsão</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="preview.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>A Janela de Previsão</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+</sect1>
+
+<sect1 id="scanning-multiple-selections">
+<title
+>Digitalizar seleções múltiplas</title>
+<para
+>Algumas vezes você precisa somente de partes de uma imagem. Ao invés de digitalizar toda a figura e então usar um aplicativo gráfico (&eg; &kolourpaint;) para salvar as diferentes partes da imagem em arquivos separados, use a funcionalidade de seleção múltipla do &skanlite;. </para>
+<screenshot>
+     <screeninfo
+>Múltiplas seleções</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="multiple-selections.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Múltiplas seleções</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>Digitalize uma visualização e então use o &LMB; para selecionar a primeira parte da imagem na visualização. Coloque o ponteiro do mouse sobre a área selecionada e clique no ícone <guiicon
+>+</guiicon
+> em verde para selecioná-la a área. As áreas selecionadas são indicadas por uma borda vermelha. Agora selecione as demais partes da imagem da mesma maneira.</para>
+<para
+>Para remover uma seleção única, posicione o ponteiro do mouse sobre a área e clique no ícone <guiicon
+>-</guiicon
+> em vermelho. Com a opção <guilabel
+>Limpar seleções</guilabel
+> do menu de contexto exibido com o &RMB;, todas as seleções na visualização podem ser removidas. </para>
+<para
+>Se você posicionar duas imagens ou fotos separadas em seu digitalizador e iniciar uma visualização, o &skanlite; pré-selecionará automaticamente as áreas diferentes. Este comportamento pode ser desativado no diálogo de configurações. </para>
+<para
+>Se estiver satisfeito com suas escolhas, inicie a digitalização em lote de todas as seleções. As imagens serão salvas usando a funcionalidade de renomeação em lote descrita no diálogo de configurações. </para>
+</sect1>
+
+<sect1 id="settings">
+<title
+>Configurações do &skanlite;</title>
+<para
+>Ao clicar no botão de <guibutton
+>Configurações</guibutton
+>, a janela de configuração irá aparecer antes da janela principal. Aí, poderá escolher as opções mais importantes. </para>
+
+<screenshot>
+    <screeninfo
+>Aqui está uma imagem da janela de configuração na primeira execução do &skanlite;</screeninfo>
+    <mediaobject>
+        <imageobject>
+            <imagedata fileref="settings.png" format="PNG"/>
+        </imageobject>
+        <textobject>
+            <phrase
+>Janela do configuração do &skanlite;</phrase>
+        </textobject>
+    </mediaobject>
+</screenshot>
+
+<para
+><variablelist>
+<varlistentry>
+<term
+><guilabel
+>Visualizar antes de salvar:</guilabel
+></term>
+<listitem
+><para
+>O usuário pode optar por visualizar a imagem antes de salvar. Nesse caso, a opção <guilabel
+>Visualizar antes de salvar</guilabel
+> poderá ficar assinalada. Se o usuário não desejar visualizar a imagem, esta opção deverá então ser desligada. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Modo de Salvamento:</guilabel
+></term>
+<listitem>
+<para
+>Esta opção permite-lhe escolher a forma como o &skanlite; irá salvar as imagens. Se escolher a opção <guilabel
+>Abrir a janela de salvamento para cada imagem</guilabel
+>, a janela de salvamento será aberta para todas as imagens digitalizadas. Se preferir que o &skanlite; salve automaticamente (gerando automaticamente um nome e salvando a imagem numa pasta predefinida), você poderá escolher a opção <guilabel
+>Abrir a janela de salvamento apenas para a primeira imagem</guilabel
+>. Esta opção irá abrir a janela "Salvar no local" para a primeira imagem digitalizada.</para>
+<para>
+    <screenshot>
+        <screeninfo
+>Aqui está uma imagem da janela de localização do &skanlite;</screeninfo>
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="save-location.png" format="PNG"/>
+            </imageobject>
+            <textobject>
+                <phrase
+>Janela do localização do &skanlite;.</phrase>
+            </textobject>
+        </mediaobject>
+    </screenshot>
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Localização do Salvamento:</guilabel
+></term>
+<listitem
+><para
+>Esta opção define o local de salvamento padrão e a nomenclatura dos arquivos. O local de salvamento padrão é a sua pasta pessoal, mas você pode alterar este local se clicar no botão <guibutton
+>...</guibutton
+>. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Formato do nome:</guilabel
+></term>
+<listitem
+><para
+>Este parâmetro define o prefixo do arquivo para as imagens salvas automaticamente, sendo também o nome sugerido para a imagem na janela de salvamento. A imagem salva automaticamente terá um sufixo numérico (o ### será substituído por números) que vai aumentando sempre que uma imagem é salva. </para
+><para
+>Você poderá também escolher o formato de salvamento do arquivo, sendo por padrão o PNG.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Especificar a qualidade da gravação:</guilabel
+></term>
+<listitem
+><para
+>O usuário poderá optar por definir a qualidade da imagem a usar no salvamento das imagens. A configuração da qualidade da imagem afeta o nível de compressão usado na gravação. Se não tiver a opção <guilabel
+>Definir a qualidade de salvamento</guilabel
+> assinalada, a qualidade será o valor padrão estipulado pelo &Qt;. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Definir a resolução da visualização (PPP)</guilabel
+></term>
+<listitem
+><para
+>O &skanlite; está usando heurísticas para tentar obter uma resolução do sane, mas se isto falhar e a resolução for muito alta ou baixa, então a resolução da visualização pode ser manualmente definida com esta opção. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Desabilitar as seleções automáticas</guilabel
+></term>
+<listitem
+><para
+>Por padrão, seleções automáticas estão ativas, e após uma visualização, o libksane tenta selecionar automaticamente as imagens na visualização e deve digitalizar em lote as áreas selecionadas. &eg; se você posicionar duas fotos no digitalizador e realizar uma visualização, o &skanlite; automaticamente adicionará as seleções das fotos.</para>
+<para
+>Se por outro lado você normalmente digitaliza documentos, pode ser que a seleção automática selecione diferentes partes do documento e você tenha que remover manualmente as seleções. Para evitar isto, clique na caixa de opção e desabilite esta opção. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Restaurar as barras e opções com os valores padrão</guilabel
+></term>
+<listitem
+><para
+>As últimas configurações usadas são recarregadas na inicialização. Se você alterou as configurações de uma maneira indesejada (por exemplo, se você mudou as configurações de correção de cores, disponíveis em algumas infraestruturas, sem saber o que elas significam), a imagem pode começar a ficar ruim. Para este cenário, esta opção fornece uma maneira de reverter as configurações para seus valores padrão, que são uma combinação dos padrões da infraestrutura do libksane. </para
+></listitem>
+</varlistentry>
+</variablelist
+></para>
+</sect1>
+
+<sect1 id="help">
+<title
+>Ajuda, Sobre, Configuração e Fechar</title>
+<para
+>No fundo da janela principal, você poderá encontrar os botões <guibutton
+>Ajuda</guibutton
+>, <guibutton
+>Sobre</guibutton
+>, <guibutton
+>Configuração</guibutton
+> e <guibutton
+>Fechar</guibutton
+>.</para>
+
+<screenshot>
+     <screeninfo
+>Os Botões da Janela Principal</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="buttons-main.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Os Botões da Janela Principal</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>O botão de <guibutton
+>Ajuda</guibutton
+> apresenta o Centro de Ajuda do &kde; com o manual do &skanlite;. O botão <guibutton
+>Sobre</guibutton
+> apresenta a janela 'Sobre o &kde;' para o &skanlite;. O botão de <guibutton
+>Configurações</guibutton
+> apresenta a janela de configuração e o botão para <guibutton
+>Fechar</guibutton
+> é usado para sair do &skanlite;.</para>
+</sect1>
+</chapter>
+
+<chapter id="credits">
+
+<title
+>Créditos e licença</title>
+<para
+>&skanlite; </para>
+<para
+>Direitos autorais do programa 2007 Kåre Särs <email
+>kare dot sars at iki dot fi</email
+> </para>
+<para
+>Contribuições: <itemizedlist
+> <listitem
+><para
+>Autoria: Kåre Särs <email
+>kare dot sars at iki dot fi</email
+></para>
+</listitem>
+</itemizedlist>
+</para>
+
+<para
+>Tradução de Marcus Gama <email
+>marcus.gama@gmail.com</email
+></para
+> 
+&underFDL; <para
+>O &skanlite; está licenciado sob os termos da GPL e a biblioteca 'libksane, usada pelo &skanlite;, está licenciada segundo a LGPL. Nota: a 'libsane' está licenciada segundo a GPL com uma exceção. </para>
+</chapter>
+
+
+
+<appendix id="installation">
+<title
+>Instalação</title>
+
+<sect1 id="getting-skanlite">
+<title
+>Como obter o &skanlite;</title>
+&install.intro.documentation; </sect1>
+
+<sect1 id="compilation">
+<title
+>Compilação e instalação</title>
+&install.compile.documentation; </sect1>
+
+</appendix>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

@@ -1,0 +1,378 @@
+# Translation of skanlite.po to Ukrainian
+# Copyright (C) 2008-2020 This_file_is_part_of_KDE
+# This file is distributed under the license LGPL version 2.1 or
+# version 3 or later versions approved by the membership of KDE e.V.
+#
+# Yuri Chornoivan <yurchor@ukr.net>, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2019, 2020, 2021, 2022.
+# Ivan Petrouchtchak <fr.ivan@ukrainian-orthodox.org>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: skanlite\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-05-10 00:43+0000\n"
+"PO-Revision-Date: 2022-01-21 09:35+0200\n"
+"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
+"Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 20.12.0\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+
+#: ImageViewer.cpp:43
+#, kde-format
+msgid "Zoom In"
+msgstr "Збільшити"
+
+#: ImageViewer.cpp:46
+#, kde-format
+msgid "Zoom Out"
+msgstr "Зменшити"
+
+#: ImageViewer.cpp:49
+#, kde-format
+msgid "Zoom to Actual size"
+msgstr "Фактичний розмір"
+
+#: ImageViewer.cpp:52
+#, kde-format
+msgid "Zoom to Fit"
+msgstr "Підібрати за розмірами"
+
+#: main.cpp:32 skanlite.cpp:776
+#, kde-format
+msgid "Skanlite"
+msgstr "Skanlite"
+
+#: main.cpp:34
+#, kde-format
+msgid "Scanning application by KDE based on libksane."
+msgstr "Програма для сканування від KDE, на основі бібліотеки libksane."
+
+#: main.cpp:36
+#, kde-format
+msgid "(C) 2008-2020 Kåre Särs"
+msgstr "© Kåre Särs, 2008–2020"
+
+#: main.cpp:41
+#, kde-format
+msgid "Kåre Särs"
+msgstr "Kåre Särs"
+
+#: main.cpp:42
+#, kde-format
+msgid "developer"
+msgstr "розробник"
+
+#: main.cpp:45
+#, kde-format
+msgid "Gregor Mi"
+msgstr "Gregor Mi"
+
+#: main.cpp:46 main.cpp:49
+#, kde-format
+msgid "contributor"
+msgstr "учасник розробки"
+
+#: main.cpp:48
+#, kde-format
+msgid "Arseniy Lartsev"
+msgstr "Arseniy Lartsev"
+
+#: main.cpp:51
+#, kde-format
+msgid "Gilles Caulier"
+msgstr "Gilles Caulier"
+
+#: main.cpp:52 main.cpp:58
+#, kde-format
+msgid "Importing libksane to extragear"
+msgstr "Імпорт libksane у extragear"
+
+#: main.cpp:54
+#, kde-format
+msgid "Anne-Marie Mahfouf"
+msgstr "Anne-Marie Mahfouf"
+
+#: main.cpp:55
+#, kde-format
+msgid "Writing the user manual"
+msgstr "Написання довідника користувача"
+
+#: main.cpp:57
+#, kde-format
+msgid "Laurent Montel"
+msgstr "Laurent Montel"
+
+#: main.cpp:60
+#, kde-format
+msgid "Chusslove Illich"
+msgstr "Chusslove Illich"
+
+#: main.cpp:61 main.cpp:64
+#, kde-format
+msgid "Help with translations"
+msgstr "Допомога з перекладами"
+
+#: main.cpp:63
+#, kde-format
+msgid "Albert Astals Cid"
+msgstr "Albert Astals Cid"
+
+#: main.cpp:67
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "о.Іван Петрущак,Юрій Чорноіван"
+
+#: main.cpp:68
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "fr.ivan@ukrainian-orthodox.org,yurchor@ukr.net"
+
+#: main.cpp:76
+#, kde-format
+msgid "Sane scanner device name. Use 'test' for test device."
+msgstr "Назва пристрою сканера з Sane. «test» — тестовий пристрій."
+
+#: main.cpp:76
+#, kde-format
+msgid "device"
+msgstr "пристрій"
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, SaveLocation)
+#: SaveLocation.ui:20
+#, kde-format
+msgid "Save Location"
+msgstr "Адреса зберігання"
+
+#. i18n: ectx: property (text), widget (QLabel, locationLabel)
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: SaveLocation.ui:28 settings.ui:80
+#, kde-format
+msgid "Save Location:"
+msgstr "Адреса збереження:"
+
+#. i18n: ectx: property (text), widget (QLabel, namePrefixLabel)
+#: SaveLocation.ui:55
+#, kde-format
+msgid "Name & Format:"
+msgstr "Назва і формат:"
+
+#. i18n: ectx: property (text), widget (QLabel, numberLabel)
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: SaveLocation.ui:74 settings.ui:112
+#, kde-format
+msgid "####."
+msgstr "####."
+
+#. i18n: ectx: property (text), widget (QLabel, numStartFromLabel)
+#: SaveLocation.ui:86
+#, kde-format
+msgid "Start numbering from:"
+msgstr "Почати нумерацію з:"
+
+#. i18n: ectx: property (text), widget (QLabel, u_resultLabel)
+#: SaveLocation.ui:123
+#, kde-format
+msgid "Example:"
+msgstr "Приклад:"
+
+#. i18n: ectx: property (text), widget (QLabel, u_resultValue)
+#: SaveLocation.ui:130
+#, kde-format
+msgid "/home/joe/example.png"
+msgstr "/home/joe/приклад.png"
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, SkanliteSettings)
+#: settings.ui:14
+#, kde-format
+msgid "Settings"
+msgstr "Параметри"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: settings.ui:20
+#, kde-format
+msgid "Image saving"
+msgstr "Збереження зображення"
+
+#. i18n: ectx: property (text), widget (QLabel, label_7)
+#: settings.ui:26
+#, kde-format
+msgid "Preview before saving:"
+msgstr "Переглянути перед збереженням:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: settings.ui:46
+#, kde-format
+msgid "Save mode:"
+msgstr "Режим збереження:"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, saveModeCB)
+#: settings.ui:60
+#, kde-format
+msgid "Open the save dialog for every image"
+msgstr "Відкривати діалогове вікно збереження для кожного зображення"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, saveModeCB)
+#: settings.ui:65
+#, kde-format
+msgid "Open the save dialog for the first image only"
+msgstr "Відкривати діалогове вікно збереження лише для першого зображення"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: settings.ui:90
+#, kde-format
+msgid "Name && Format:"
+msgstr "Назва і формат:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, imgPrefix)
+#: settings.ui:105
+#, kde-format
+msgid "Image"
+msgstr "Зображення"
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: settings.ui:124
+#, kde-format
+msgid "Specify save quality:"
+msgstr "Якість збереженого зображення:"
+
+#. i18n: ectx: property (suffix), widget (QSpinBox, imgQuality)
+#: settings.ui:192
+#, no-c-format, kde-format
+msgid "%"
+msgstr "%"
+
+#. i18n: ectx: property (title), widget (QGroupBox, generalGB)
+#: settings.ui:233
+#, kde-format
+msgid "General"
+msgstr "Загальне"
+
+#. i18n: ectx: property (text), widget (QCheckBox, setPreviewDPI)
+#: settings.ui:239
+#, kde-format
+msgid "Set preview resolution (DPI)"
+msgstr "Встановити роздільність перегляду (у т./дюйм)"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, previewDPI)
+#: settings.ui:253
+#, kde-format
+msgid "50"
+msgstr "50"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, previewDPI)
+#: settings.ui:258
+#, kde-format
+msgid "75"
+msgstr "75"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, previewDPI)
+#: settings.ui:263
+#, kde-format
+msgid "100"
+msgstr "100"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, previewDPI)
+#: settings.ui:268
+#, kde-format
+msgid "150"
+msgstr "150"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, previewDPI)
+#: settings.ui:273
+#, kde-format
+msgid "300"
+msgstr "300"
+
+#. i18n: ectx: property (text), widget (QCheckBox, u_disableSelections)
+#: settings.ui:286
+#, kde-format
+msgid "Disable automatic selections"
+msgstr "Вимкнути автоматичний вибір ділянки"
+
+#. i18n: ectx: property (text), widget (QPushButton, revertOptions)
+#: settings.ui:319
+#, kde-format
+msgid "Revert scanner options to default values"
+msgstr "Відновити типові значення параметрів сканера"
+
+#: skanlite.cpp:62
+#, kde-format
+msgid "Configure..."
+msgstr "Налаштувати…"
+
+#: skanlite.cpp:66
+#, kde-format
+msgid "Reselect scanner device"
+msgstr "Повторний вибір пристрою для сканування"
+
+#: skanlite.cpp:84
+#, kde-format
+msgid "Saving: %v kB"
+msgstr "Зберігаємо: %v кБ"
+
+#: skanlite.cpp:180
+#, kde-format
+msgid "Skanlite Settings"
+msgstr "Параметри Skanlite"
+
+#: skanlite.cpp:200 skanlite.cpp:299
+#, kde-format
+msgid "Opening the selected scanner failed."
+msgstr "Спроба відкрити вибраний сканер зазнала невдачі."
+
+#: skanlite.cpp:314
+#, kde-format
+msgid "%1: %2"
+msgstr "%1: %2"
+
+#: skanlite.cpp:334
+#, kde-format
+msgctxt "prefix for auto naming"
+msgid "Image-"
+msgstr "Зображення-"
+
+#: skanlite.cpp:475
+#, kde-format
+msgid ""
+"The image will be saved in the PNG format, as the selected image type does "
+"not support saving 16 bit color images."
+msgstr ""
+"Дані зображення буде збережено у форматі PNG, оскільки у вибраному типі "
+"зображень не передбачено підтримки зберігання кольорових зображень з "
+"глибиною кольору 16 бітів."
+
+#: skanlite.cpp:500
+#, kde-format
+msgid "New Image File Name"
+msgstr "Назва файла нового зображення"
+
+#: skanlite.cpp:604
+#, kde-format
+msgid "Failed to save image"
+msgstr "Спроба збереження зображення була невдалою"
+
+#: skanlite.cpp:617
+#, kde-format
+msgid "Failed to upload image"
+msgstr "Спроба вивантаження зображення завершилася невдало"
+
+#: skanlite.cpp:772
+#, kde-format
+msgctxt "@title:window %1 = scanner maker, %2 = scanner model"
+msgid "%1 %2 - Skanlite"
+msgstr "%1 %2 — Skanlite"
+
+#: skanlite.cpp:774
+#, kde-format
+msgctxt "@title:window %1 = scanner device"
+msgid "%1 - Skanlite"
+msgstr "%1 — Skanlite"
+
+#~ msgid "About"
+#~ msgstr "Про програму"

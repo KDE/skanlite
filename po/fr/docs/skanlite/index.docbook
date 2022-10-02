@@ -1,0 +1,613 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % French "INCLUDE"
+><!-- change language only here -->
+]>
+
+<book id="skanlite" lang="&language;">
+
+<bookinfo>
+<title
+>Manuel de &skanlite;</title>
+
+<authorgroup>
+<author
+><firstname
+>Kåre</firstname
+> <surname
+>Särs</surname
+> <affiliation
+> <address
+><email
+>kare point sars arobase iki point fi</email
+></address>
+</affiliation>
+</author>
+<author
+><firstname
+>Anne-Marie</firstname
+> <surname
+>Mahfouf</surname
+> <affiliation
+> <address
+>&Anne-Marie.Mahfouf.mail;</address>
+</affiliation>
+</author>
+<othercredit role="translator"
+> <firstname
+>Alvise</firstname
+> <surname
+>Cavallari</surname
+> <affiliation
+><address
+><email
+>alvise.cavallari@kdemail.net</email
+></address
+></affiliation
+> <contrib
+>Traduction française&nbsp;</contrib
+></othercredit
+> <othercredit role="translator"
+><firstname
+>Ludovic</firstname
+><surname
+>Grossard</surname
+><affiliation
+><address
+><email
+>grossard@kde.org</email
+></address
+></affiliation
+><contrib
+>Relecture de la documentation française&nbsp;</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2008, 2013</year>
+<holder
+>Kåre Särs</holder>
+</copyright>
+<copyright>
+<year
+>2008</year>
+<holder
+>&Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>24-08-2016</date>
+<releaseinfo
+>&skanlite; 2.0.0</releaseinfo>
+
+<abstract>
+<para
+>&skanlite; est une application qui ne fait rien d'autre que de numériser des images et les enregistrer. </para>
+<para
+>&skanlite; utilise « libksane », une interface de &kde; pour la bibliothèque « SANE », pilotant les scanners à plat.</para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kdegraphics</keyword>
+<keyword
+>scanner</keyword>
+<keyword
+>images</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Introduction</title>
+<para
+>&skanlite; est une application de numérisation simplifiée qui ne fait rien d'autre que de numériser des images et les enregistrer. &skanlite; peut ouvrir une boîte de dialogue pour enregistrer chaque image scannée, ou enregistrer immédiatement les images dans un dossier spécifié avec des noms et extensions générés automatiquement. L'utilisateur peut aussi choisir d'afficher l'image scannée avant son enregistrement.</para>
+<para
+>&skanlite; peut enregistrer les images dans tous les formats pris en charge par &Qt;. Par exemple, les formats suivants : <itemizedlist>
+<listitem
+><para
+>png (8 et 16 bits par couleur) </para
+></listitem>
+<listitem
+><para
+>jpeg, jpg, jpeg 2000 </para
+></listitem>
+<listitem
+><para
+>bmp </para
+></listitem>
+</itemizedlist>
+</para>
+
+<note
+><para
+>Vous pouvez vérifier le niveau de prise en charge de votre scanner grâce au site Internet du projet « SANE » et la <ulink url="http://www.sane-project.org/sane-supported-devices.html"
+> page du projet « SANE » dédiée la prise en charge des périphériques</ulink
+>.</para
+></note>
+
+</chapter>
+
+<chapter id="using-skanlite">
+<title
+>Utilisation de &skanlite;</title>
+
+<sect1 id="scanner-selection">
+<title
+>Sélection du scanner</title>
+<para
+>Un scanner par défaut peut être défini dans la ligne de commande de &skanlite; en utilisant <userinput
+>skanlite -d [nom du périphérique]</userinput
+> dans un terminal. Si le scanner sélectionné est inaccessible ou si aucun scanner par défaut n'a été défini, une boîte de dialogue apparaîtra pour sélectionner un scanner. </para>
+
+<screenshot>
+     <screeninfo
+>Boîte de dialogue de &skanlite; pour sélectionner un scanner</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="choose-scanner.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Boîte de dialogue de &skanlite; pour sélectionner le scanner</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>L'utilisateur peut sélectionner le scanner et cliquer sur <guibutton
+>Ok</guibutton
+> pour l'ouvrir. Cliquer sur le bouton <guibutton
+>Annuler</guibutton
+> terminera l'application &skanlite; </para>
+
+<screenshot>
+     <screeninfo
+>Aucun scanner n'a été trouvé</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="no-scanner-found.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Aucun scanner n'a été trouvé</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Si aucun périphérique n'est trouvé, par exemple lorsque le scanner n'a pas été allumé ou connecté, vous devez d'abord corriger cela. Ensuite, le bouton <guibutton
+>Recharger la liste des périphériques</guibutton
+>permet de répertorier de nouveau les scanners.</para
+> 
+<note
+><para
+>Les pilotes et moteurs de numérisation ne prennent pas tous en charge cette fonctionnalité. Dans ce cas, quittez &skanlite;, connectez votre scanner et redémarrez l'application.</para>
+</note>
+
+</sect1>
+</chapter>
+
+<chapter id="main-window">
+<title
+>Fenêtre principale de &skanlite;</title>
+<screenshot>
+     <screeninfo
+>Fenêtre principale de &skanlite;</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="main-window.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Fenêtre principale de &skanlite;</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Dans la fenêtre principale, l'utilisateur a deux ensembles d'options de scan : <guilabel
+>Options basiques</guilabel
+> et <guilabel
+>Options spécifiques au scanner</guilabel
+>. L'onglet <guilabel
+>Options basiques</guilabel
+> contient les paramètres les plus courants fournis par le moteur de traitement des scanners SANE, alors que l'onglet <guilabel
+>Options spécifiques au scanner</guilabel
+> contient toutes les autres options. Les options listées ici dépendent du niveau de prise en charge de votre scanner par SANE : libksane (que &skanlite; utilise) devrait être capable d'afficher tous les types de paramètres fournis par SANE (les tables gamma analogiques ne sont pas gérées à ce jour). </para>
+
+<screenshot>
+     <screeninfo
+>Onglet des options spécifiques au scanner</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="other-options.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Onglet des options spécifiques au scanner</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Les options spécifiques au scanner contiennent des options plus détaillées liées au moteur de traitement. &skanlite; (libksane) n'a pas de gestion particulière pour ces options. </para>
+
+<para
+>Si vous êtes satisfaits des paramètres choisis, vous pouvez utiliser la petite flèche en haut du séparateur des options, qui permet de rétracter ou de développer la liste d'options. Cette flèche peut chevaucher la zone d'aperçu, mais elle s'efface lorsque le pointeur de la souris est déplacée hors de cette icône.</para
+>  
+
+<sect1 id="scanning">
+<title
+>Scanner</title>
+<para
+>Pour scanner une image, l'utilisateur peut commencer par un scan d'aperçu et ensuite définir une portion de cette image pour effectuer le scan final. L'aperçu est effectuée en cliquant le bouton Aperçu. </para>
+
+<screenshot>
+     <screeninfo
+>Le bouton Aperçu</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="preview-button.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Le bouton Aperçu</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Une fois l'aperçu effectué, Il est possible de sélectionner la région de l'image pour le scan final. </para>
+<screenshot>
+     <screeninfo
+>Sélection et zoom</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="zoom-in.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Sélection et zoom</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>Afin de sélectionner l'image avec plus de précision, l'utilisateur peut zoomer, dézoomer, zoomer vers la sélection ou zoomer pour que tout l'aperçu soit visible dans le cadre. </para>
+<screenshot>
+     <screeninfo
+>Le bouton « Zoomer pour rentrer dans le cadre » </screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="zoom-to-fit.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Le bouton « Zoomer pour rentrer dans le cadre » </phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Lorsque l'image est sélectionnée, sa numérisation peut être effectuée en cliquant sur Scanner. </para>
+
+<screenshot>
+     <screeninfo
+>Le bouton de numérisation finale</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="final-button.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Le bouton de numérisation finale</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Vous verrez l'état d'avancement de la numérisation. </para>
+<screenshot>
+     <screeninfo
+>État d'avancement de la numérisation</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="scanning.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>État d'avancement de la numérisation</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Si <guilabel
+>Aperçu avant enregistrement</guilabel
+> est sélectionné dans les paramètres, l'image numérisée est affichée dans une fenêtre d'aperçu, comme affiché dans la capture d'écran ci-dessous. Si l'élément <guibutton
+>Enregistrer</guibutton
+> est sélectionné, l'image est alors enregistrée et si l'élément <guibutton
+>Fermer</guibutton
+> est sélectionné, l'image en aperçu est ignorée et vous retournez dans la fenêtre principale. </para>
+<screenshot>
+     <screeninfo
+>La fenêtre d'aperçu</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="preview.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>La fenêtre d'aperçu</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+</sect1>
+
+<sect1 id="scanning-multiple-selections">
+<title
+>Numériser des sélections multiples</title>
+<para
+>Parfois, seule une partie de l'image doit être numérisée. Plutôt que de numériser l'image entière pour ensuite utiliser une application d'édition graphique (telle que &kolourpaint;) pour enregistrer des parties d'images, vous pouvez utiliser directement dans &skanlite; la fonctionnalité de sélection multiple. </para>
+<screenshot>
+     <screeninfo
+>Sélections multiples</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="multiple-selections.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Sélections multiples</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>Numérisez d'abord un aperçu. Ensuite, utilisez le &BGS; pour définir dans cet aperçu la première partie de l'image. Survolez avec le pointeur de la souris cette zone, et cliquez sur l'icône <guiicon
+>+</guiicon
+> verte pour la sélectionner. Les zones sélectionnées sont indiquées par une bordure rouge. Enfin, sélectionnez de la même façon les autres parties de l'image.</para>
+<para
+>Pour enlever une zone de la sélection, survolez cette zone avec le pointeur de la souris, et cliquez sur l'icône <guiicon
+>-</guiicon
+> rouge. Toutes les zones de la sélection peuvent être enlevées en ouvrant le menu contextuel avec le &BDS; et en cliquant ensuite sur <guilabel
+>Effacer les sélections</guilabel
+>. </para>
+<para
+>Si vous avez positionné dans votre scanner deux images ou photos distinctes, et si vous effectuez un aperçu alors &skanlite; sélectionnera automatiquement les différentes zones. Cette fonctionnalité peut être désactivée depuis la boîte de configuration. </para>
+<para
+>Une fois que vous êtes satisfaits de vos sélections, vous pouvez effectuer leur numérisation de manière groupée. Les images seront alors enregistrées en utilisant les fonctionnalités de renommage par lot définies dans la boîte de configuration. </para>
+</sect1>
+
+<sect1 id="settings">
+<title
+>Paramètres de &skanlite;</title>
+<para
+>Le bouton <guibutton
+>Paramètres</guibutton
+> permet d'afficher une boîte de dialogue. Vous pouvez définir ici les principaux paramètres. </para>
+
+<screenshot>
+    <screeninfo
+>Voici un aperçu de la boîte de dialogue des paramètres de &skanlite;</screeninfo>
+    <mediaobject>
+        <imageobject>
+            <imagedata fileref="settings.png" format="PNG"/>
+        </imageobject>
+        <textobject>
+            <phrase
+>Boîte des paramètres de &skanlite;</phrase>
+        </textobject>
+    </mediaobject>
+</screenshot>
+
+<para
+><variablelist>
+<varlistentry>
+<term
+><guilabel
+>Aperçu avant enregistrement :</guilabel
+></term>
+<listitem
+><para
+>L'utilisateur peut choisir d'avoir un aperçu de l'image avant son enregistrement. Pour cela l'option <guilabel
+>Avoir un aperçu de l'image avant de l'enregistrer</guilabel
+> doit être cochée. Si l'utilisateur ne veut pas un aperçu de l'image, cette option doit être décochée. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Mode d'enregistrement :</guilabel
+></term>
+<listitem>
+<para
+>Ce paramètre permet de définir comment &skanlite; enregistre les images. Si vous choisissez <guilabel
+>Ouvrir la boîte de dialogue d'enregistrement pour toutes les images</guilabel
+>, alors une boîte de dialogue s'ouvrira pour chaque image numérisée. Si vous préférez que &skanlite; enregistre automatiquement (en créant automatiquement un nom de fichier et en l'enregistrant dans un dossier prédéfini), alors vous pouvez choisir l'option <guilabel
+>Ouvrir la boîte de dialogue d'enregistrement pour la première image seulement</guilabel
+>. Cette option ouvrira la boîte de dialogue d'« emplacement de l'enregistrement » avec la première image scannée.</para>
+<para>
+    <screenshot>
+        <screeninfo
+>Voici un aperçu de la boîte de dialogue « emplacement de l'enregistrement » de &skanlite;</screeninfo>
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="save-location.png" format="PNG"/>
+            </imageobject>
+            <textobject>
+                <phrase
+>Boîte de dialogue « emplacement de l'enregistrement » de &skanlite;.</phrase>
+            </textobject>
+        </mediaobject>
+    </screenshot>
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Emplacement de l'enregistrement :</guilabel
+></term>
+<listitem
+><para
+>Ce paramètre permet de définir le nom de fichier et le dossier pour enregistrer les images. L'emplacement par défaut est votre dossier personnel ; vous pouvez changer de destination en cliquant sur le bouton <guibutton
+>...</guibutton
+>. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Nom format :</guilabel
+></term>
+<listitem
+><para
+>Ce paramètre définit le préfixe pour les images enregistrées automatiquement. Il définit aussi le nom proposé par défaut dans la boîte de dialogue d'enregistrement des images. Les images enregistrées automatiquement auront un suffixe numérique (les ### seront remplacés par des nombres) qui sera incrémenté pour chaque nouvel enregistrement. </para
+><para
+>Vous pouvez aussi définir le format d'enregistrement, qui par défaut est le png.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Indiquer la qualité d'enregistrement :</guilabel
+></term>
+<listitem
+><para
+>L'utilisateur peut spécifier la qualité d'image à utiliser pour l'enregistrement. Ce paramètre définit le taux de compression qui sera utilisé. Si <guilabel
+>Indiquer la qualité d'enregistrement </guilabel
+> n'est pas coché, la qualité correspondra à la valeur par défaut définie par Qt. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Fixer la résolution d'aperçu (DPI) </guilabel
+></term>
+<listitem
+><para
+>&skanlite; utilise des heuristiques pour définir une bonne résolution, mais si cela ne donne pas de résultat satisfaisant et la résolution est trop élevée ou trop faible, alors avec cette option la résolution pour les aperçus peut être définie. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Désactiver les sélections automatiques</guilabel
+></term>
+<listitem
+><para
+>Les sélections automatiques sont activées par défaut : après un aperçu, libksane essaie de sélectionner automatiquement les zones d'image dans l'aperçu et devrait effectuer une numérisation en arrière plan de ces zones. Par exemple, si vous placez deux photos dans le scanner et effectuez un aperçu, &skanlite; effectuera automatiquement la sélection de ces deux photos.</para>
+<para
+>Par contre, si vous effectuez généralement des numérisations de documents, il se peut que ceux-ci soient sélectionnés automatiquement par parties et que vous ayez ensuite à supprimer manuellement ces sélections. Pour éviter cela, vous pouvez cliquer la case à cocher et désactiver l'option de sélection automatique. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Rétablir les options de numérisation à leur valeur par défaut</guilabel
+></term>
+<listitem
+><para
+>Les paramètres utilisés lors de la dernière utilisation sont de nouveau chargés au démarrage. Si vous avez mal configuré les options (par exemple si vous avez changé les paramètres de correction des couleurs, qui sont disponibles avec certains moteurs de traitement, mais dont vous ne maîtrisez pas le sens), l'image scannée peut paraître très bizarre. Dans ce cas, cette option vous permet de remettre les différents paramètres à leur valeur par défaut, qui est une combinaison des valeurs par défaut de libksane et de celles du moteur de traitement. </para
+></listitem>
+</varlistentry>
+</variablelist
+></para>
+</sect1>
+
+<sect1 id="help">
+<title
+>Aide, À propos, Paramètres, et Fermer</title>
+<para
+>Au bas de la fenêtre vous trouverez les boutons <guibutton
+>Aide</guibutton
+>, <guibutton
+>À propos</guibutton
+>, <guibutton
+>Paramètres</guibutton
+>, et <guibutton
+>Fermer</guibutton
+>.</para>
+
+<screenshot>
+     <screeninfo
+>Les boutons de la fenêtre principale</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="buttons-main.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Les boutons de la fenêtre principale</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Le bouton <guibutton
+>Aide</guibutton
+> démarre le centre d'aide de &kde; avec le manuel de &skanlite;. Le bouton <guibutton
+>À propos</guibutton
+> ouvre la boîte de dialogue correspondante. Le bouton <guibutton
+>Paramètres</guibutton
+> affiche la boîte de configuration, et le bouton <guibutton
+>Fermer</guibutton
+> permet de terminer &skanlite;.</para>
+</sect1>
+</chapter>
+
+<chapter id="credits">
+
+<title
+>Remerciements et licence</title>
+<para
+>&skanlite; </para>
+<para
+>Copyright 2007 Kåre Särs <email
+>kare point sars chez iki point fi</email
+> </para>
+<para
+>Contributeurs : <itemizedlist
+> <listitem
+><para
+>Auteur : Kåre Särs <email
+>kare point sars chez iki point fi</email
+></para>
+</listitem>
+</itemizedlist>
+</para>
+
+<para
+>Traduction française par Alvise Cavallari <email
+>alvise.cavallari@kdemail.net</email
+>, relecture par Ludovic Grossard <email
+>grossard@kde.org</email
+>.</para
+> &underFDL; <para
+>&skanlite; est sous licence GPL, et la librairie libksane, utilisée par &skanlite;, est sous licence LGPL. Remarque : libsane est sous licence GPL avec une exception. </para>
+</chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

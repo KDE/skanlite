@@ -1,0 +1,597 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Swedish "INCLUDE"
+><!-- change language only here -->
+]>
+
+<book id="skanlite" lang="&language;">
+
+<bookinfo>
+<title
+>Handbok &skanlite;</title>
+
+<authorgroup>
+<author
+><firstname
+>Kåre</firstname
+> <surname
+>Särs</surname
+> <affiliation
+> <address
+><email
+>kare punkt sars snabela iki punkt fi</email
+></address>
+</affiliation>
+</author>
+<author
+><firstname
+>Anne-Marie</firstname
+> <surname
+>Mahfouf</surname
+> <affiliation
+> <address
+>&Anne-Marie.Mahfouf.mail;</address>
+</affiliation>
+</author>
+<othercredit role="translator"
+> <firstname
+>Stefan</firstname
+> <surname
+>Asserhäll</surname
+> <affiliation
+><address
+><email
+>stefan.asserhall@bredband.net</email
+></address
+></affiliation
+> <contrib
+>Översättare</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2008, 2013</year>
+<holder
+>Kåre Särs</holder>
+</copyright>
+<copyright>
+<year
+>2008</year>
+<holder
+>&Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2016-08-24</date>
+<releaseinfo
+>&skanlite; 2.0.0</releaseinfo>
+
+<abstract>
+<para
+>&skanlite; är bildläsningsprogram som inte gör något mer än att läsa in och spara bilder. </para>
+<para
+>&skanlite; är baserat på libksane, ett &kde;-gränssnitt till SANE-biblioteket för att styra bildläsare.</para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kdegraphics</keyword>
+<keyword
+>bildläsare</keyword>
+<keyword
+>bilder</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Inledning</title>
+<para
+>&skanlite; är ett enkelt program för bildläsning som inte gör något mer än att läsa in och spara bilder. &skanlite; kan visa en dialogruta för att spara varje bild som läses in, eller omedelbart spara bilderna i en angiven katalog med automatgenererade namn och format. Användaren kan också välja att visa den inlästa bilden innan den sparas.</para>
+<para
+>&skanlite; kan spara bilder med alla format som stöds av &Qt;, exempelvis följande format: <itemizedlist>
+<listitem
+><para
+>png (8 och 16 bitar/färg) </para
+></listitem>
+<listitem
+><para
+>jpeg, jpg, jpeg 2000 </para
+></listitem>
+<listitem
+><para
+>bmp </para
+></listitem>
+</itemizedlist>
+</para>
+
+<note
+><para
+>Du kan kontrollera status för din bildläsare på SANE-projektets webbplats via <ulink url="http://www.sane-project.org/sane-supported-devices.html"
+>sidan med enheter som stöds på SANE-webbplatsen</ulink
+>.</para
+></note>
+
+</chapter>
+
+<chapter id="using-skanlite">
+<title
+>Att använda &skanlite;</title>
+
+<sect1 id="scanner-selection">
+<title
+>Val av bildläsare</title>
+<para
+>En förvald bildläsare kan anges på &skanlite;s kommandorad genom att skriva <userinput
+>skanlite -d [enhetsnamn]</userinput
+> i en terminal. Om den valda bildläsaren inte kan öppnas, eller om ingen förvald bildläsare anges, visas en dialogruta för att välja bildläsare. </para>
+
+<screenshot>
+     <screeninfo
+>Dialogrutan Välj bildläsare i &skanlite;</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="choose-scanner.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Dialogrutan Välj bildläsare i &skanlite;</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Användaren kan välja bildläsare att använda och klicka på <guibutton
+>Ok</guibutton
+> för att ansluta till bildläsaren. Att trycka på <guibutton
+>Avbryt</guibutton
+> gör att &skanlite; avslutas. </para>
+
+<screenshot>
+     <screeninfo
+>Någon bildläsare hittades inte</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="no-scanner-found.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Någon bildläsare hittades inte</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>I händelse inga enheter hittades, kanske på grund av att bildläsaren inte är ansluten eller är avstängd, korrigera det. Därefter kan <guibutton
+>Uppdatera enhetslista</guibutton
+> användas för att uppdatera listan med bildläsare.</para
+> 
+<note
+><para
+>Alla drivrutiner eller gränssnitt stöder inte funktionen. I så fall, avsluta &skanlite;, korrigera bildläsaren och starta om programmet.</para>
+</note>
+
+</sect1>
+</chapter>
+
+<chapter id="main-window">
+<title
+>Huvudfönstret i &skanlite;</title>
+<screenshot>
+     <screeninfo
+>Huvudfönstret i &skanlite;</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="main-window.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Huvudfönstret i &skanlite;</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Användaren har två uppsättningar inläsningsalternativ i huvudfönstret: <guilabel
+>Grundalternativ</guilabel
+> och <guilabel
+>Specifika alternativ för bildläsare</guilabel
+>. Fliken <guilabel
+>Grundalternativ</guilabel
+> innehåller de vanligaste parametrarna som SANE-inläsningsgränssnittet tillhandahåller, medan <guilabel
+>Specifika alternativ för bildläsare</guilabel
+> innehåller alla bildläsarens alternativ. Alternativen som anges här beror på stödet för din drivrutin i SANE: libksane (som &skanlite; använder) ska kunna visa de flesta typer av parametrar som SANE tillhandahåller (analoga gamma-tabeller stöds för närvarande inte). </para>
+
+<screenshot>
+     <screeninfo
+>Specifika alternativ för bildläsare</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="other-options.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Specifika alternativ för bildläsare</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>De specifika alternativen för bildläsaren innehåller mer detaljerade alternativ för gränssnitten. &skanlite; (libksane) har ingen särskild hantering av dessa alternativ. </para>
+
+<para
+>Om du är nöjd med dina inställningar, kan du använda den lilla pilen längst upp på alternativdelaren. När den klickas expanderas eller dras alternativen ihop. De hopdragna alternativen kan överlappa förhandsgranskningsområdet, men tonas bort när muspekaren flyttas utanför dem.</para
+>  
+
+<sect1 id="scanning">
+<title
+>Bildinläsning</title>
+<para
+>För att läsa in en bild, kan användaren börja med inläsning av en förhandsgranskning och därefter välja en del av inläsningsområdet för den slutliga inläsningen. Inläsning av förhandsgranskningen startas genom att klicka på förhandsgranskningsknappen. </para>
+
+<screenshot>
+     <screeninfo
+>Förhandsgranskningsknappen</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="preview-button.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Förhandsgranskningsknappen</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>När förhandsgranskningen har lästs in kan området för den slutliga inläsningen väljas. </para>
+<screenshot>
+     <screeninfo
+>Markering och zoomning</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="zoom-in.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Markering och zoomning</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>För att kunna välja bättre i bilden kan användaren zooma in, zooma ut, zooma till nuvarande markering eller zooma för att visa hela förhandsgranskningen i fönstret. </para>
+<screenshot>
+     <screeninfo
+>Knappen "Fyll sidan"</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="zoom-to-fit.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Knappen "Fyll sidan"</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>När bilden har markerats kan den slutliga bilden hämtas genom att klicka på knappen för att läsa in slutlig bild. </para>
+
+<screenshot>
+     <screeninfo
+>Knappen för att läsa in slutlig bild</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="final-button.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Knappen för att läsa in slutlig bild</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Du ser bildläsningens förlopp. </para>
+<screenshot>
+     <screeninfo
+>Bildläsning pågår</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="scanning.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Bildläsning pågår</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Om <guilabel
+>Förhandsgranska innan spara</guilabel
+> är valt i inställningarna, visas den inlästa bilden i ett förhandsgranskningsfönster som du kan se nedan på skärmbilden. Om <guibutton
+>Spara</guibutton
+> klickas sparas bilden, och om <guibutton
+>Kasta</guibutton
+> klickas, kastas förhandsgranskningen och du återgår till huvudfönstret. </para>
+<screenshot>
+     <screeninfo
+>Förhandsgranskningsfönstret</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="preview.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Förhandsgranskningsfönstret</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+</sect1>
+
+<sect1 id="scanning-multiple-selections">
+<title
+>Läsa in flera markeringar</title>
+<para
+>Ibland behövs bara vissa delar av en bild. Istället för att läsa in hela bilden och därefter använda ett grafikprogram (t.ex. &kolourpaint;) för att spara de olika bilddelarna i skilda filer, kan man använda &skanlite;s funktion för flera markeringar. </para>
+<screenshot>
+     <screeninfo
+>Flera markeringar</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="multiple-selections.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Flera markeringar</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>Läs in en förhandsgranskning och använd därefter vänster musknapp för att markera den första delen av bilden i förhandsgranskningen. Håll muspekaren över det valda området och klicka på den gröna ikonen <guiicon
+>+</guiicon
+> för att markera området. Markerade områden indikeras av en röd kant. Markera nu de följande delarna av bilden på samma sätt.</para>
+<para
+>Håll muspekaren över ett område och klicka på den röda ikonen <guiicon
+>-</guiicon
+> för att ta bort en enskild markering. Alla markeringar i en förhandsgranskning kan tas bort med <guilabel
+>Rensa markeringar</guilabel
+> i den sammanhangsberoende menyn som visas med höger musknapp. </para>
+<para
+>Om du placerar två separata bilder eller foton i bildläsaren och startar en förhandsgranskning markerar &skanlite; automatiskt de olika områdena. Detta beteende kan stängas av i inställningsdialogrutan. </para>
+<para
+>Starta den slutliga inläsningen av alla markeringar i bakgrunden när du är nöjd med ditt val. Bilderna sparas med funktionen för namnändring i bakgrunden som beskrivs under inställningsdialogrutan. </para>
+</sect1>
+
+<sect1 id="settings">
+<title
+>Inställning av &skanlite;</title>
+<para
+>Genom att klicka på knappen <guibutton
+>Inställningar</guibutton
+>, visas inställningsdialogrutan över huvudfönstret. Här kan du välja de viktigaste inställningarna. </para>
+
+<screenshot>
+    <screeninfo
+>Här är en skärmbild av inställningsdialogrutan i &skanlite;</screeninfo>
+    <mediaobject>
+        <imageobject>
+            <imagedata fileref="settings.png" format="PNG"/>
+        </imageobject>
+        <textobject>
+            <phrase
+>Inställningsdialogrutan i &skanlite;</phrase>
+        </textobject>
+    </mediaobject>
+</screenshot>
+
+<para
+><variablelist>
+<varlistentry>
+<term
+><guilabel
+>Förhandsgranska innan spara:</guilabel
+></term>
+<listitem
+><para
+>Användaren kan välja att förhandsgranska bilder innan de sparas. I detta fall ska alternativet <guilabel
+>Förhandsgranska innan spara</guilabel
+> lämnas markerat. Om användaren inte vill förhandsgranska bilder, ska alternativet avmarkeras. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Metod att spara:</guilabel
+></term>
+<listitem>
+<para
+>Inställningen låter dig välja hur &skanlite; sparar bilderna. Om du väljer <guilabel
+>Öppna dialogrutan för att spara för varje bild</guilabel
+> öppnas dialogrutan för att spara bilder för varje inläst bild. Om du föredrar att &skanlite; sparar automatiskt (genom att skapa namnet automatiskt och spara bilden i en fördefinierad katalog) kan du välja <guilabel
+>Öppna dialogrutan för att spara bara för den första bilden</guilabel
+>. Alternativet öppnar följande dialogruta för "plats att spara" för den först inlästa bilden.</para>
+<para>
+    <screenshot>
+        <screeninfo
+>Här är en skärmbild av dialogrutan för plats att spara i &skanlite;</screeninfo>
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="save-location.png" format="PNG"/>
+            </imageobject>
+            <textobject>
+                <phrase
+>Dialogrutan för plats att spara i &skanlite;.</phrase>
+            </textobject>
+        </mediaobject>
+    </screenshot>
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Plats att spara på:</guilabel
+></term>
+<listitem
+><para
+>Inställningen definierar platsen att spara och filernas namngivning. Förvald plats att spara är din hemkatalog, och platsen kan ändras genom att klicka på knappen <guibutton
+>...</guibutton
+>. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Namnformat:</guilabel
+></term>
+<listitem
+><para
+>Parametern definierar bildprefix för automatsparade bilder och är också namnet som föreslås för bilder i dialogrutan för att spara bilder. De automatsparade bilderna får numeriska suffix (### ersätts av siffror) som ökas varje gång en bild sparas. </para
+><para
+>Du kan också välja formatet som filen sparas med, där förvalt värde är png.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Ange kvalitet att spara:</guilabel
+></term>
+<listitem
+><para
+>Användaren kan välja att ange bildkvalitet som ska användas för att spara bilderna. Inställningen av bildkvalitet påverkar komprimeringsgraden som används när bilderna sparas. Om <guilabel
+>Ange kvalitet att spara</guilabel
+> inte är markerat, blir kvaliteten det förvalda värde som väljes av &Qt;. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Ange förhandsgranskningarnas upplösning (punkter per tum)</guilabel
+></term>
+<listitem
+><para
+>&skanlite; använder heuristik för att försöka få en rimlig upplösning, men om det misslyckas och upplösningen är för hög eller låg, kan förhandsgranskningens upplösning ställas in manuellt med det här alternativet. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Inaktivera automatiska markeringar</guilabel
+></term>
+<listitem
+><para
+>Normalt är automatisk markering aktiverat, och efter en förhandsgranskning försöker libksane automatiskt välja bilderna i förhandsgranskningen och ska läsa in de markerade områdena i bakgrunden. Om du har aktiverat alternativet, placerat två foton på bildläsaren och utför en förhandsgranskning, lägger &skanlite; automatiskt till markeringar av fotona.</para>
+<para
+>Om du å andra sidan oftast läser in dokument, kanske den automatiska markeringen gör att många olika delar av dokumenten markeras, och du måste ta bort markeringarna för hand. Markera kryssrutan och Inaktivera automatisk markering för att undvika det. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Återställ bildläsaralternativ till standardvärden</guilabel
+></term>
+<listitem
+><para
+>De senast använda inställningarna läses in igen vid start. Om du har ställt till alternativen (till exempel om du har ändrat inställningarna av färgjustering, tillgängliga i vissa gränssnitt, utan att veta vad de innebär), kan bilder börja se mycket underliga ut. I ett sådant scenario, tillhandahåller det här alternativet ett sätt att få inställningarna att återställas till normala värden, vilket är en kombination av standardvärden för gränssnittet och libksane. </para
+></listitem>
+</varlistentry>
+</variablelist
+></para>
+</sect1>
+
+<sect1 id="help">
+<title
+>Hjälp, Om, Inställningar och Stäng</title>
+<para
+>Längst ner i huvudfönstret hittar du knapparna <guibutton
+>Hjälp</guibutton
+>, <guibutton
+>Om</guibutton
+>, <guibutton
+>Inställningar</guibutton
+> och <guibutton
+>Stäng</guibutton
+>.</para>
+
+<screenshot>
+     <screeninfo
+>Huvudfönstrets knappar</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="buttons-main.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Huvudfönstrets knappar</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Knappen <guibutton
+>Hjälp</guibutton
+> visar &kde;:s Hjälpcentral med &skanlite;s handbok. Knappen <guibutton
+>Om</guibutton
+> visar &kde;:s dialogruta om &skanlite;. Knappen <guibutton
+>Inställningar</guibutton
+> visar inställningsdialogrutan, och knappen <guibutton
+>Stäng</guibutton
+> används för att avsluta &skanlite;.</para>
+</sect1>
+</chapter>
+
+<chapter id="credits">
+
+<title
+>Tack till och licens</title>
+<para
+>&skanlite; </para>
+<para
+>Program copyright 2007 Kåre Särs <email
+>kare punkt sars snabela iki punkt fi</email
+> </para>
+<para
+>Bidragsgivare: <itemizedlist
+> <listitem
+><para
+>Upphovsman: Kåre Särs <email
+>kare punkt sars snabela iki punkt fi</email
+></para>
+</listitem>
+</itemizedlist>
+</para>
+
+<para
+>Översättning Stefan Asserhäll <email
+>stefan.asserhall@bredband.net</email
+></para
+> &underFDL; <para
+>&skanlite; distribueras under villkoren i GPL, och biblioteket libksane, som används av &skanlite;, distribueras under villkoren i LGPL. Observera: libksane distribueras under villkoren i GPL med ett undantag. </para>
+</chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

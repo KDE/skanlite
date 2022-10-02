@@ -1,0 +1,597 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Indonesian "INCLUDE"
+><!-- change language only here -->
+]>
+
+<book id="skanlite" lang="&language;">
+
+<bookinfo>
+<title
+>Buku Petunjuk &skanlite;</title>
+
+<authorgroup>
+<author
+><firstname
+>Kåre</firstname
+> <surname
+>Särs</surname
+> <affiliation
+> <address
+><email
+>kare dot sars at iki dot fi</email
+></address>
+</affiliation>
+</author>
+<author
+><firstname
+>Anne-Marie</firstname
+> <surname
+>Mahfouf</surname
+> <affiliation
+> <address
+>&Anne-Marie.Mahfouf.mail;</address>
+</affiliation>
+</author>
+<othercredit role="translator"
+><firstname
+>Wantoyo</firstname
+><surname
+></surname
+><affiliation
+><address
+><email
+>wantoyek@gmail.com</email
+></address
+></affiliation
+><contrib
+>Terjemahan</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2008, 2013</year>
+<holder
+>Kåre Särs</holder>
+</copyright>
+<copyright>
+<year
+>2008</year>
+<holder
+>&Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>24-08-2016</date>
+<releaseinfo
+>&skanlite; 2.0.0</releaseinfo>
+
+<abstract>
+<para
+>&skanlite; adalah sebuah aplikasi pemindaian citra yang tidak lebih dari sekadar memindai dan menyimpan citra. </para>
+<para
+>&skanlite; adalah berdasarkan pada libksane, sebuah antarmuka &kde; terhadap pustaka SANE untuk mengendalikan pemindai citra.</para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kdegraphics</keyword>
+<keyword
+>pemindai</keyword>
+<keyword
+>image</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Pengenalan</title>
+<para
+>&skanlite; adalah sebuah aplikasi pemindaian citra sederhana yang tidak lebih dari sekadar memindai dan menyimpan citra. &skanlite; bisa membuka sebuah dialog simpanan untuk setiap citra yang dipindai atau menyimpan citra lansung di dalam folder tertentu dengan nama dan format yang dihasilkan otomatis. Pengguna juga dapat memilih untuk menampilkan citra yang dipindai sebelum menyimpan.</para>
+<para
+>&skanlite; bisa menyimpan citra dalam semua format yang didukung oleh &Qt;. Sebagai contoh formatnya seperti berikut ini: <itemizedlist>
+<listitem
+><para
+>png (8 dan 16 bit tiap warna) </para
+></listitem>
+<listitem
+><para
+>jpeg, jpg, jpeg 2000 </para
+></listitem>
+<listitem
+><para
+>bmp </para
+></listitem>
+</itemizedlist>
+</para>
+
+<note
+><para
+>Kamu bisa memeriksa status apakah pemindaimu didukung dari situs projek SANE melalui <ulink url="http://www.sane-project.org/sane-supported-devices.html"
+>halaman Perangkat Yang Didukung pada website SANE</ulink
+>.</para
+></note>
+
+</chapter>
+
+<chapter id="using-skanlite">
+<title
+>Menggunakan &skanlite;</title>
+
+<sect1 id="scanner-selection">
+<title
+>Pemilihan Pemindai</title>
+<para
+>Sebuah pemindai baku bisa ditentukan pada baris perintah &skanlite; menggunakan <userinput
+>skanlite -d [device name]</userinput
+> dalam sebuah terminal. Jika Pemindai terpilih tak dapat dibuka atau jika pemindai baku yang disediakan tidak ada, maka dialog pemilihan pemindai terbuka. </para>
+
+<screenshot>
+     <screeninfo
+>Dialog pemilihan pemindai &skanlite;</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="choose-scanner.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Dialog pemilihan pemindai &skanlite;</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Pengguna bisa memilih pemindai yang akan digunakan dan tekan <guibutton
+>Oke</guibutton
+> untuk membuka pemindai. Menekan <guibutton
+>Batal</guibutton
+> akan menyebabkan &skanlite; keluar. </para>
+
+<screenshot>
+     <screeninfo
+>Tidak ada pemindai yang ditemukan</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="no-scanner-found.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Tidak ada pemindai yang ditemukan</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Dalam kasus tiadanya perangkat yang ditemukan, mungkin karena pemindai tidak tercolok atau tersaklar off, koreksilah. Kemudian <guibutton
+>Muat ulang daftar perangkat</guibutton
+> bisa digunakan untuk memuat ulang daftar pemindai.</para
+> 
+<note
+><para
+>Tidak semua driver/backend mendukung fitur ini. Oleh sebab itu berhentikan &skanlite;, koneksikan pemindai kamu dan mulai ulanglah aplikasinya.</para>
+</note>
+
+</sect1>
+</chapter>
+
+<chapter id="main-window">
+<title
+>Window Utama &skanlite;</title>
+<screenshot>
+     <screeninfo
+>Jendela utama &skanlite;</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="main-window.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Jendela utama &skanlite;</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Dalam window utama, pengguna memiliki dua set pilihan pindai: <guilabel
+>Opsi Dasar</guilabel
+> dan <guilabel
+>Opsi Khusus Pemindai</guilabel
+>. Tab <guilabel
+>Opsi Dasar</guilabel
+> berisi banyak parameter umumnya yang menyediakan backend pemindai SANE, sedangkan tab <guilabel
+>Opsi Khusus Pemindai</guilabel
+> berisi semua pilihan dari backend. Opsi yang terdaftar di sini tergantung pada dukungan SANE untuk driver-mu: libksane (yang mana &skanlite; gunakan) seharusnya dapat untuk menampilkan banyak tipe parameter yang disediakan SANE (tabel analog gamma belum didukung untuk saat ini). </para>
+
+<screenshot>
+     <screeninfo
+>Tab Opsi Khusus Pemindai</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="other-options.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Tab Opsi Khusus Pemindai</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Opsi khusus pemindai berisi pilihan backend yang lebih terperinci. &skanlite; (libksane) tidak memiliki penanganan khusus apa pun untuk pilihan tersebut. </para>
+
+<para
+>Jika kamu puas dengan pengaturanmu, kamu bisa menggunakan panah kecil pada bagian atasnya opsi pemisah. Ketika mengeklik opsi itu akan menciutkan atau membentangkan. Penciut bisa tumpang tindih dengan area pratinjau, namun memudar saat kursor mouse bergerak keluar dari penciut.</para
+>  
+
+<sect1 id="scanning">
+<title
+>Memindai</title>
+<para
+>Untuk memindai gambar, pengguna bisa memulai dengan pemindaian pratinjau dan kemudian memilih bagian dari area pindaian untuk melakukan pemindaian final. Pemindaian pratinjau dimulai dengan menekan tombol pratinjau. </para>
+
+<screenshot>
+     <screeninfo
+>Tombol Pratinjau</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="preview-button.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Tombol Pratinjau</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Ketika pratinjau sudah dipindai, area untuk citra final bisa dipilih. </para>
+<screenshot>
+     <screeninfo
+>Pemilihan dan zoom</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="zoom-in.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Pemilihan dan zoom</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>Untuk pemilihan citra terbaik, pengguna bisa mengezoom perbesar, perkecil, untuk pemilihan saat ini atau zoom ke pas seluruh pratinjau ke window. </para>
+<screenshot>
+     <screeninfo
+>Tombol ''zoom ke pas''</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="zoom-to-fit.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Tombol ''zoom ke pas''</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Ketika citra sudah dipilih citra final bisa diperoleh dengan menekan tombol pindai final. </para>
+
+<screenshot>
+     <screeninfo
+>Tombol pindai final</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="final-button.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Tombol pindai final</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Kamu akan melihat progres pemindaiannya. </para>
+<screenshot>
+     <screeninfo
+>Pemindaian sedang berlangsung</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="scanning.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Pemindaian sedang berlangsung</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Jika <guilabel
+>Pratinjau sebelum menyimpan</guilabel
+> telah dipilih dalam pengaturan, citra terpindai yang ditampilkan dalam window pratinjau sebagaimana yang bisa kamu lihat pada cuplikan di bawah ini. Jika <guibutton
+>Simpan</guibutton
+> ditekan, maka citra disimpan dan jika <guibutton
+>Buang</guibutton
+> ditekan, pratinjaunya dibuang dan kamu kembali ke window utama. </para>
+<screenshot>
+     <screeninfo
+>Window Pratinjau</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="preview.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Window Pratinjau</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+</sect1>
+
+<sect1 id="scanning-multiple-selections">
+<title
+>Pemindaian Multi Pemilihan</title>
+<para
+>Terkadang kamu hanya memerlukan bagian tertentu dari sebuah citra. Alih-alih memindai keseluruhan citra dan kemudian menggunakan aplikasi grafis (&eg; &kolourpaint;) untuk menyimpan bagian citra yang berbeda ke dalam beberapa file terpisah, gunakan fitur pemilihan multipel &skanlite;. </para>
+<screenshot>
+     <screeninfo
+>Pemilihan Multipel</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="multiple-selections.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Pemilihan Multipel</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>Pindai sebuah pratinjau dan kemudian gunakan &LMB; untuk memilih bagian pertama citra dalam pratinjau. Melayang memilih area dengan kursor mouse dan klik pada ikon <guiicon
+>+</guiicon
+> hijau untuk memilih area. Area yang dipilih adalah terindikasinya oleh sebuah garis bingkai merah. Sekarang pilih bagian selanjutnya pada citra dalam cara yang sama.</para>
+<para
+>Untuk menyingkirkan pilihan tunggal layangkan area dengan kursor mouse dan klik pada ikon <guiicon
+>-</guiicon
+> merah. Dengan <guilabel
+>Bersihkan Pemilihan</guilabel
+> dari menu konteks yang diluncurkan dengan semua pemilihan &RMB; dalam sebuah pratinjau bisa disingkirkan. </para>
+<para
+>Jika kamu menempatkan kedua foto atau citra terpisah pada pemindaimu dan memulaikan sebuah pratinjau, secara otomatis &skanlite; mempraplilih area yang berbeda. Perilaku ini bisa dimatikan dalam dialog pengaturan. </para>
+<para
+>Jika kamu puas dengan pilihanmu, memulai pindai setumpuk final semua pemilihan. Citra akan disimpan menggunakan fitur pengubahan nama seabrek yang diterangjelaskan dalam dialog pengaturan. </para>
+</sect1>
+
+<sect1 id="settings">
+<title
+>Pengesetan &skanlite;</title>
+<para
+>Dengan mengeklik tombol <guibutton
+>Pengaturan</guibutton
+>, dialog pengaturan muncul naik di depan window utama. Kamu bisa memilih pengaturan paling penting di sini. </para>
+
+<screenshot>
+    <screeninfo
+>Ini adalah cuplikan dialog pengaturan &skanlite;</screeninfo>
+    <mediaobject>
+        <imageobject>
+            <imagedata fileref="settings.png" format="PNG"/>
+        </imageobject>
+        <textobject>
+            <phrase
+>Dialog pengaturan &skanlite;</phrase>
+        </textobject>
+    </mediaobject>
+</screenshot>
+
+<para
+><variablelist>
+<varlistentry>
+<term
+><guilabel
+>Pratinjau sebelum menyimpan:</guilabel
+></term>
+<listitem
+><para
+>Pengguna bisa memilih untuk mempratinjau citra sebelum menyimpan. Dalam hal ini opsi <guilabel
+>Pratinjau sebelum menyimpan</guilabel
+> bisa dibiarkan tercentang. Jika pengguna tidak mau mempratinjau citra, opsi ini seharusnya tidak tercentang. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Mode Simpan:</guilabel
+></term>
+<listitem>
+<para
+>Setelan ini memperkenankanmu untuk memilih bagaimana &skanlite; akan menyimpan citra. Jika kamu memilih <guilabel
+>Buka dialog simpan setiap citra</guilabel
+>, dialog simpan akan terbuka setiap citra dipindai. Jika kamu lebih suka &skanlite; untuk menyimpan otomatis (dengan menghasilkan otomatis sebuah nama dan menyimpan citra dalam folder yang telah ditentukan) kamu bisa memilih <guilabel
+>Buka dialog simpan untuk citra pertama saja</guilabel
+>. Opsi ini akan membuka dialog "Lokasi Simpanan" berikut ini untuk pertama citra dipindai.</para>
+<para>
+    <screenshot>
+        <screeninfo
+>Ini adalah cuplikan dialog lokasi simpanan &skanlite;</screeninfo>
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="save-location.png" format="PNG"/>
+            </imageobject>
+            <textobject>
+                <phrase
+>Dialog Lokasi Simpanan &skanlite;.</phrase>
+            </textobject>
+        </mediaobject>
+    </screenshot>
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Lokasi Simpanan:</guilabel
+></term>
+<listitem
+><para
+>Setelan ini menentukan lokasi baku simpanan dan penamaan file . Lokasi baku simpanan adalah folder home kamu dan kamu bisa mengubah lokasi ini dengan mengeklik pada tombol <guibutton
+>...</guibutton
+>. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Format Nama:</guilabel
+></term>
+<listitem
+><para
+>Parameter ini menentukan prefix citra untuk simpan otomatis citra dan juga menyarankan nama untuk citra dalam dialog simpan. Citra yang tersimpan otomatis akan memiliki akhiran numerik (### akan digantikan dengan angka) yang bertambah setiap kali menyimpan citra. </para
+><para
+>Kamu juga bisa memilih format simpanan filenya, bakunya adalah png.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Tentukan kualitas penyimpanan:</guilabel
+></term>
+<listitem
+><para
+>Pengguna bisa memilih untuk menentukan kualitas citra yang akan digunakan untuk menyimpan citranya. Setelan kualitas citra mempengaruhi tingkat kompresi yang digunakan untuk penyimpanan. Jika <guilabel
+>Tentukan kualitas simpanan</guilabel
+> tidak tercentang, kualitasnya adalah nilai baku yang dipilihkan oleh &Qt;. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Set resolusi (DPI) pratinjau</guilabel
+></term>
+<listitem
+><para
+>&skanlite; menggunakan heuristik untuk mencoba mendapatkan resolusi yang masuk akal, tapi jika gagal dan resolusinya terlalu tinggi atau rendah, maka resolusi preview bisa diset secara manual dengan opsi ini. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Nonfungsikan pemilihan otomatis</guilabel
+></term>
+<listitem
+><para
+>Secara baku pilihan otomatis adalah difungsikan; dan setelah pratinjau, libksane mencoba untuk secara otomatis memilih citra dalam pratinjau dan harus memindai seabrek area yang dipilih. &eg; jika kamu menempatkan dua foto pada pemindai dan melakukan sebuah pratinjau, &skanlite; secara otomatis akan menambahkan pemilihan foto.</para>
+<para
+>Jika di sisi lain kamu biasa memindai dokumen mungkin saja itu pemilihan otomatis akan memilih banyak bagian yang berbeda dalam dokumen dan kamu harus menyingkirkan pilihan secara manual. Untuk mencegahnya tutullah kotak centang dan nonfungsikan pemilihan otomatis. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Kembalikan opsi pemindai ke nilai baku</guilabel
+></term>
+<listitem
+><para
+>Pengesetan yang digunakan terakhir dimuat ulang saat pemulaian. Jika kamu telah mengacaukan opsinya (misalnya jika kamu telah mengubah pengaturan koreksi warna, yang tersedia di beberapa backend, tanpa mengetahui apa maksudnya), citranya bisa mulai terlihat sangat janggal. Untuk skenario itu opsi ini memberikan cara untuk mengembalikan pengaturan ke nilai baku, yang merupakan kombinasi antara backend dan libksane baku. </para
+></listitem>
+</varlistentry>
+</variablelist
+></para>
+</sect1>
+
+<sect1 id="help">
+<title
+>Bantuan, Tentang, Pengaturan dan Tutup</title>
+<para
+>Di bagian bawah window utama kamu dapat menemukan tombol <guibutton
+>Bantuan</guibutton
+>, <guibutton
+>Tentang</guibutton
+>, <guibutton
+>Pengaturan</guibutton
+> dan <guibutton
+>Tutup</guibutton
+>.</para>
+
+<screenshot>
+     <screeninfo
+>Tombol Window Utama</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="buttons-main.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Tombol Window Utama</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Tombol <guibutton
+>Bantuan</guibutton
+> membawakan pusat Bantuan &kde; dengan buku manual &skanlite;. Tombol <guibutton
+>Tentang</guibutton
+> membawakan dialog Tentang &kde; untuk &skanlite;. Tombol <guibutton
+>Pengaturan</guibutton
+> menampilkan dialog pengaturan dan tombol <guibutton
+>Tutup</guibutton
+> digunakan untuk mengeluarkan &skanlite;.</para>
+</sect1>
+</chapter>
+
+<chapter id="credits">
+
+<title
+>Pujian dan Lisensi</title>
+<para
+>&skanlite; </para>
+<para
+>Hak cipta program 2007 Kåre Särs <email
+>kare dot sars at iki dot fi</email
+> </para>
+<para
+>Para Kontributor: <itemizedlist
+> <listitem
+><para
+>Penulis: Kåre Särs <email
+>kare dot sars at iki dot fi</email
+></para>
+</listitem>
+</itemizedlist>
+</para>
+
+<para
+>Wantoyo<email
+>wantoyek@gmail.com</email
+></para
+> &underFDL; <para
+>&skanlite; adalah terlisensi di bawah GPL dan pustaka libksane library, digunakan oleh &skanlite;, adalah terlisensi di bawah LGPL. Catatan: libsane adalah terlisensi di bawah GPL dengan sebuah pengecualian. </para>
+</chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

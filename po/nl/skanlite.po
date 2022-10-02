@@ -1,0 +1,1385 @@
+# translation of skanlite.po to Dutch
+# translation of kooka.po to
+# translation of kooka.po to
+# Nederlandse vertaling van kooka
+# Copyright (C) 2001, 2002 KDE e.v..
+# KDE-vertaalgroep Nederlands <www.kde.nl>
+# Proefgelezen 28-06-2002 Andy Houben <andlinux@yahoo.com>
+# Rinse de Vries <Rinse@kde.nl>, 2001, 2002.
+# Rinse de Vries <rinse@kde.nl>, 2003, 2004.
+# Wilbert Berendsen <wbsoft@xs4all.nl>, 2003, 2004.
+# Rinse de Vries <rinsedevries@kde.nl>, 2004, 2005, 2006.
+# Tom Albers <tomalbers@kde.nl>, 2004.
+# Freek de Kruijf <f.de.kruijf@hetnet.nl>, 2009.
+# Kristof Bal <kristof.bal@gmail.com>, 2009.
+# Freek de Kruijf <freekdekruijf@kde.nl>, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2019, 2020, 2021, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: skanlite\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-05-10 00:43+0000\n"
+"PO-Revision-Date: 2022-01-21 11:17+0100\n"
+"Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 21.12.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: ImageViewer.cpp:43
+#, kde-format
+msgid "Zoom In"
+msgstr "Inzoomen"
+
+#: ImageViewer.cpp:46
+#, kde-format
+msgid "Zoom Out"
+msgstr "Uitzoomen"
+
+#: ImageViewer.cpp:49
+#, kde-format
+msgid "Zoom to Actual size"
+msgstr "Zoomen naar actuele grootte"
+
+#: ImageViewer.cpp:52
+#, kde-format
+msgid "Zoom to Fit"
+msgstr "Zoomen naar passend"
+
+#: main.cpp:32 skanlite.cpp:776
+#, kde-format
+msgid "Skanlite"
+msgstr "Skanlite"
+
+#: main.cpp:34
+#, kde-format
+msgid "Scanning application by KDE based on libksane."
+msgstr "Scanprogramma door KDE gebaseerd op libksane."
+
+#: main.cpp:36
+#, kde-format
+msgid "(C) 2008-2020 Kåre Särs"
+msgstr "(C) 2008-2020 Kåre Särs"
+
+#: main.cpp:41
+#, kde-format
+msgid "Kåre Särs"
+msgstr "Kåre Särs"
+
+#: main.cpp:42
+#, kde-format
+msgid "developer"
+msgstr "ontwikkelaar"
+
+#: main.cpp:45
+#, kde-format
+msgid "Gregor Mi"
+msgstr "Gregor Mi"
+
+#: main.cpp:46 main.cpp:49
+#, kde-format
+msgid "contributor"
+msgstr "medewerker"
+
+#: main.cpp:48
+#, kde-format
+msgid "Arseniy Lartsev"
+msgstr "Arseniy Lartsev"
+
+#: main.cpp:51
+#, kde-format
+msgid "Gilles Caulier"
+msgstr "Gilles Caulier"
+
+#: main.cpp:52 main.cpp:58
+#, kde-format
+msgid "Importing libksane to extragear"
+msgstr "Het importeren van libksane naar extragear"
+
+#: main.cpp:54
+#, kde-format
+msgid "Anne-Marie Mahfouf"
+msgstr "Anne-Marie Mahfouf"
+
+#: main.cpp:55
+#, kde-format
+msgid "Writing the user manual"
+msgstr "Het schrijven van de handleiding"
+
+#: main.cpp:57
+#, kde-format
+msgid "Laurent Montel"
+msgstr "Laurent Montel"
+
+#: main.cpp:60
+#, kde-format
+msgid "Chusslove Illich"
+msgstr "Chusslove Illich"
+
+#: main.cpp:61 main.cpp:64
+#, kde-format
+msgid "Help with translations"
+msgstr "Hulp met vertalen"
+
+#: main.cpp:63
+#, kde-format
+msgid "Albert Astals Cid"
+msgstr "Albert Astals Cid"
+
+#: main.cpp:67
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Kristof Bal - 2008,Freek de Kruijf - 2012 t/m 2017"
+
+#: main.cpp:68
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "kristof.bal@gmail.com,freekdekruijf@kde.nl"
+
+#: main.cpp:76
+#, kde-format
+msgid "Sane scanner device name. Use 'test' for test device."
+msgstr "Apparaatnaam van Sane scanner. Gebruik 'test' voor het testapparaat."
+
+#: main.cpp:76
+#, kde-format
+msgid "device"
+msgstr "apparaat"
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, SaveLocation)
+#: SaveLocation.ui:20
+#, kde-format
+msgid "Save Location"
+msgstr "Opslaglocatie"
+
+#. i18n: ectx: property (text), widget (QLabel, locationLabel)
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: SaveLocation.ui:28 settings.ui:80
+#, kde-format
+msgid "Save Location:"
+msgstr "Opslaglocatie:"
+
+#. i18n: ectx: property (text), widget (QLabel, namePrefixLabel)
+#: SaveLocation.ui:55
+#, kde-format
+msgid "Name & Format:"
+msgstr "Naam en formaat:"
+
+#. i18n: ectx: property (text), widget (QLabel, numberLabel)
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: SaveLocation.ui:74 settings.ui:112
+#, kde-format
+msgid "####."
+msgstr "####."
+
+#. i18n: ectx: property (text), widget (QLabel, numStartFromLabel)
+#: SaveLocation.ui:86
+#, kde-format
+msgid "Start numbering from:"
+msgstr "Begin te nummeren vanaf:"
+
+#. i18n: ectx: property (text), widget (QLabel, u_resultLabel)
+#: SaveLocation.ui:123
+#, kde-format
+msgid "Example:"
+msgstr "Voorbeeld:"
+
+#. i18n: ectx: property (text), widget (QLabel, u_resultValue)
+#: SaveLocation.ui:130
+#, kde-format
+msgid "/home/joe/example.png"
+msgstr "/home/jan/voorbeeld.png"
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, SkanliteSettings)
+#: settings.ui:14
+#, kde-format
+msgid "Settings"
+msgstr "Instellingen"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: settings.ui:20
+#, kde-format
+msgid "Image saving"
+msgstr "Afbeelding opslaan"
+
+#. i18n: ectx: property (text), widget (QLabel, label_7)
+#: settings.ui:26
+#, kde-format
+msgid "Preview before saving:"
+msgstr "Voorbeeld voor opslaan:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: settings.ui:46
+#, kde-format
+msgid "Save mode:"
+msgstr "Opslagmodus:"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, saveModeCB)
+#: settings.ui:60
+#, kde-format
+msgid "Open the save dialog for every image"
+msgstr "De opslaan-dialoog openen voor elke afbeelding"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, saveModeCB)
+#: settings.ui:65
+#, kde-format
+msgid "Open the save dialog for the first image only"
+msgstr "De opslaan-dialoog allen voor de eerste afbeelding openen"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: settings.ui:90
+#, kde-format
+msgid "Name && Format:"
+msgstr "Naam en formaat:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, imgPrefix)
+#: settings.ui:105
+#, kde-format
+msgid "Image"
+msgstr "Afbeelding"
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: settings.ui:124
+#, kde-format
+msgid "Specify save quality:"
+msgstr "Specificeer de opslagkwaliteit:"
+
+#. i18n: ectx: property (suffix), widget (QSpinBox, imgQuality)
+#: settings.ui:192
+#, no-c-format, kde-format
+msgid "%"
+msgstr "%"
+
+#. i18n: ectx: property (title), widget (QGroupBox, generalGB)
+#: settings.ui:233
+#, kde-format
+msgid "General"
+msgstr "Algemeen"
+
+#. i18n: ectx: property (text), widget (QCheckBox, setPreviewDPI)
+#: settings.ui:239
+#, kde-format
+msgid "Set preview resolution (DPI)"
+msgstr "De resolutie (DPI) van het voorbeeld instellen"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, previewDPI)
+#: settings.ui:253
+#, kde-format
+msgid "50"
+msgstr "50"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, previewDPI)
+#: settings.ui:258
+#, kde-format
+msgid "75"
+msgstr "75"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, previewDPI)
+#: settings.ui:263
+#, kde-format
+msgid "100"
+msgstr "100"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, previewDPI)
+#: settings.ui:268
+#, kde-format
+msgid "150"
+msgstr "150"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, previewDPI)
+#: settings.ui:273
+#, kde-format
+msgid "300"
+msgstr "300"
+
+#. i18n: ectx: property (text), widget (QCheckBox, u_disableSelections)
+#: settings.ui:286
+#, kde-format
+msgid "Disable automatic selections"
+msgstr "Schakel automatische selecties uit"
+
+#. i18n: ectx: property (text), widget (QPushButton, revertOptions)
+#: settings.ui:319
+#, kde-format
+msgid "Revert scanner options to default values"
+msgstr "Zet opties voor de scanner terug naar standaardwaarden"
+
+#: skanlite.cpp:62
+#, kde-format
+msgid "Configure..."
+msgstr "Configureren..."
+
+#: skanlite.cpp:66
+#, kde-format
+msgid "Reselect scanner device"
+msgstr "Scannerapparaat opnieuw selecteren"
+
+#: skanlite.cpp:84
+#, kde-format
+msgid "Saving: %v kB"
+msgstr "Bezig met opslaan: %v kB"
+
+#: skanlite.cpp:180
+#, kde-format
+msgid "Skanlite Settings"
+msgstr "Skanlite instellen"
+
+#: skanlite.cpp:200 skanlite.cpp:299
+#, kde-format
+msgid "Opening the selected scanner failed."
+msgstr "Openen van de geselecteerde scanner mislukt."
+
+#: skanlite.cpp:314
+#, kde-format
+msgid "%1: %2"
+msgstr "%1: %2"
+
+#: skanlite.cpp:334
+#, kde-format
+msgctxt "prefix for auto naming"
+msgid "Image-"
+msgstr "Afb-"
+
+#: skanlite.cpp:475
+#, kde-format
+msgid ""
+"The image will be saved in the PNG format, as the selected image type does "
+"not support saving 16 bit color images."
+msgstr ""
+"De afbeelding zal worden opgeslagen in het PNG-formaat, omdat het "
+"geselecteerde type afbeelding opslaan in 16 bits kleur niet ondersteunt."
+
+#: skanlite.cpp:500
+#, kde-format
+msgid "New Image File Name"
+msgstr "Nieuwe bestandsnaam van afbeelding"
+
+#: skanlite.cpp:604
+#, kde-format
+msgid "Failed to save image"
+msgstr "Afbeelding opslaan is mislukt"
+
+#: skanlite.cpp:617
+#, kde-format
+msgid "Failed to upload image"
+msgstr "Afbeelding uploaden is mislukt"
+
+#: skanlite.cpp:772
+#, kde-format
+msgctxt "@title:window %1 = scanner maker, %2 = scanner model"
+msgid "%1 %2 - Skanlite"
+msgstr "%1 %2 - Skanlite"
+
+#: skanlite.cpp:774
+#, kde-format
+msgctxt "@title:window %1 = scanner device"
+msgid "%1 - Skanlite"
+msgstr "%1 - Skanlite"
+
+#~ msgid "About"
+#~ msgstr "Over"
+
+#~ msgid "..."
+#~ msgstr "..."
+
+#~ msgid "Directory doesn't exist, do you wish to create it?"
+#~ msgstr "Map bestaat niet, wilt u deze aanmaken?"
+
+#~ msgid "Could not create directory %1"
+#~ msgstr "Map %1 kon niet worden aangemaakt"
+
+#~ msgid "Do you want to overwrite \"%1\"?"
+#~ msgstr "Wilt u \"%1\" overschrijven?"
+
+#~ msgid "Overwrite"
+#~ msgstr "Overschrijven"
+
+#~ msgid "Save"
+#~ msgstr "Opslaan"
+
+#~ msgid "Save without asking for a filename"
+#~ msgstr "Opslaan zonder te vragen om een bestandsnaam"
+
+#~ msgid "Use this option to specify the resolution for the preview scans."
+#~ msgstr ""
+#~ "Deze optie gebruiken voor de resolutie van het voorbeeld van de scans."
+
+#~ msgid "Revert"
+#~ msgstr "Terugdraaien"
+
+#~ msgid "Saving Failed!"
+#~ msgstr "Opslaan mislukt!"
+
+#~ msgid "Auto Saving Failed!"
+#~ msgstr "Automatisch opslaan mislukt!"
+
+#~ msgid ""
+#~ "_: NAME OF TRANSLATORS\n"
+#~ "Your names"
+#~ msgstr "Otto Bruggeman,Rinse de Vries,Wilbert Berendsen"
+
+#~ msgid ""
+#~ "_: EMAIL OF TRANSLATORS\n"
+#~ "Your emails"
+#~ msgstr "ottobruggeman@kde.nl,rinsedevries@kde.nl,wilbertberendsen@kde.nl"
+
+#~ msgid "Kooka Save Assistant"
+#~ msgstr "Kooka Opslagassistent"
+
+#~ msgid ""
+#~ "<B>Save Assistant</B><P>Select an image format to save the scanned image."
+#~ msgstr ""
+#~ "<B>Opslagassistent</B><P>Selecteer het afbeeldingformaat waarin de "
+#~ "gescande afbeelding moet worden opgeslagen."
+
+#~ msgid "Available image formats:"
+#~ msgstr "Beschikbare afbeeldingformaten:"
+
+#~ msgid "-No format selected-"
+#~ msgstr "-Geen formaat geselecteerd-"
+
+#~ msgid "Don't ask again for the save format if it is defined."
+#~ msgstr ""
+#~ "De vraag voor het opslagformaat niet meer stellen als deze reeds is "
+#~ "gedefinieerd."
+
+#~ msgid "-no hint available-"
+#~ msgstr "-geen tip beschikbaar-"
+
+#~ msgid ""
+#~ "The folder\n"
+#~ "%1\n"
+#~ " does not exist and could not be created;\n"
+#~ "please check the permissions."
+#~ msgstr ""
+#~ "De map\n"
+#~ "%1\n"
+#~ "bestaat niet en kon niet worden aangemaakt.\n"
+#~ "Controleer a.u.b. de toegangsrechten."
+
+#~ msgid ""
+#~ "The directory\n"
+#~ "%1\n"
+#~ " is not writeable;\n"
+#~ "please check the permissions."
+#~ msgstr ""
+#~ "De map\n"
+#~ "%1\n"
+#~ "is niet schrijfbaar.\n"
+#~ "Controleer a.u.b. de toegangsrechten."
+
+#~ msgid "Filename"
+#~ msgstr "Bestandsnaam"
+
+#~ msgid "Enter filename:"
+#~ msgstr "Bestandsnaam invoeren:"
+
+#~ msgid "palleted color image (16 or 24 bit depth)"
+#~ msgstr "geïndexeerde kleurenafbeelding (16 of 24 bits diepte)"
+
+#~ msgid "palleted gray scale image (16 bit depth)"
+#~ msgstr "geïndexeerde grijswaardenafbeelding (16 bit diepte)"
+
+#~ msgid "lineart image (black and white, 1 bit depth)"
+#~ msgstr "lijnillustratie (zwart-wit, 1 bit diepte)"
+
+#~ msgid "high (or true-) color image, not palleted"
+#~ msgstr "hoge kleuren (of ware kleuren) afbeelding, niet geïndexeerd"
+
+#~ msgid "Unknown image type"
+#~ msgstr "Onbekend afbeeldingtype"
+
+#~ msgid " image save OK      "
+#~ msgstr "Afbeeldingopslag OK      "
+
+#~ msgid " permission error   "
+#~ msgstr " toegangsfout   "
+
+#~ msgid " bad filename       "
+#~ msgstr " onjuiste bestandsnaam      "
+
+#~ msgid " no space on device "
+#~ msgstr " geen ruimte beschikbaar op station "
+
+#~ msgid " can not write file using that protocol "
+#~ msgstr " het bestand kan niet worden geschreven met dat protocol. "
+
+#~ msgid " user canceled saving "
+#~ msgstr " gebruiker annuleerde het opslaan"
+
+#~ msgid " unknown error      "
+#~ msgstr " onbekende fout      "
+
+#~ msgid " parameter wrong    "
+#~ msgstr "onjuiste parameter    "
+
+#~ msgid ""
+#~ "The filename you supplied has no file extension.\n"
+#~ "Should the correct one be added automatically? "
+#~ msgstr ""
+#~ "De bestandsnaam die u hebt ingevoerd heeft geen extensie.\n"
+#~ "Wilt u dat de juiste extensie automatisch wordt toegevoegd?"
+
+#~ msgid "That would result in the new filename: %1"
+#~ msgstr "Dit resulteert in de nieuwe bestandsnaam: %1"
+
+#~ msgid "Extension Missing"
+#~ msgstr "Extensie ontbreekt"
+
+#~ msgid "Add Extension"
+#~ msgstr "Extensie toevoegen"
+
+#~ msgid "Do Not Add"
+#~ msgstr "Niet toevoegen"
+
+#~ msgid "Format changes of images are currently not supported."
+#~ msgstr ""
+#~ "Het wijzigen van het afbeeldingformaat wordt vooralsnog niet ondersteund."
+
+#~ msgid "Wrong Extension Found"
+#~ msgstr "Onjuiste extensie gevonden"
+
+#~ msgid "Image Printing"
+#~ msgstr "Afbeelding afdrukken"
+
+#~ msgid "Image Print Size"
+#~ msgstr "Grootte afbeelding"
+
+#~ msgid "Scale to same size as on screen"
+#~ msgstr "Schaal naar zelfde grootte als op scherm"
+
+#~ msgid "Screen scaling. That prints according to the screen resolution."
+#~ msgstr ""
+#~ "Schalen naar scherm. Dit drukt het plaatje af volgens de resolutie van "
+#~ "het scherm"
+
+#~ msgid "Original size (calculate from scan resolution)"
+#~ msgstr "Originele grootte (berekenen van scanresolutie)"
+
+#~ msgid ""
+#~ "Calculates the print size from the scan resolution. Enter the scan "
+#~ "resolution in the dialog field below."
+#~ msgstr ""
+#~ "Berekent de af te drukken grootte uit de scanresolutie. Voer hieronder de "
+#~ "scanresolutie in."
+
+#~ msgid "Scale image to custom dimension"
+#~ msgstr "Schaal afbeelding naar aangepaste afmetingen"
+
+#~ msgid ""
+#~ "Set the print size yourself in the dialog below. The image is centered on "
+#~ "the paper."
+#~ msgstr ""
+#~ "Stel hieronder de printgrootte in. De afbeelding wordt midden op het "
+#~ "papier afgedrukt."
+
+#~ msgid "Scale image to fit to page"
+#~ msgstr "Maak afbeelding passend op de hele pagina"
+
+#~ msgid ""
+#~ "Printout uses maximum space on the selected pager. Aspect ratio is "
+#~ "maintained."
+#~ msgstr ""
+#~ "De afbeelding wordt zo groot mogelijk afgedrukt, maar de beeldverhouding "
+#~ "blijft gehandhaafd."
+
+#~ msgid "Resolutions"
+#~ msgstr "Resoluties"
+
+#~ msgid "Generate low resolution PostScript (fast draft print)"
+#~ msgstr "Lage resolutie PostScript aanmaken (voor snelle afdruk)"
+
+#~ msgid "Scan resolution (dpi) "
+#~ msgstr "Scanresolutie (dpi) "
+
+#~ msgid " dpi"
+#~ msgstr " dpi"
+
+#~ msgid "Image width:"
+#~ msgstr "Breedte afbeelding:"
+
+#~ msgid " mm"
+#~ msgstr " mm"
+
+#~ msgid "Image height:"
+#~ msgstr "Hoogte afbeelding:"
+
+#~ msgid "Maintain aspect ratio"
+#~ msgstr "Beeldverhouding handhaven"
+
+#~ msgid "Screen resolution: %1 dpi"
+#~ msgstr "Schermresolutie: %1 dpi"
+
+#~ msgid "Please specify a scan resolution larger than 0"
+#~ msgstr "Voer a.u.b. een scanresolutie in groter dan 0"
+
+#~ msgid ""
+#~ "For custom printing, a valid size should be specified.\n"
+#~ "At least one dimension is zero."
+#~ msgstr ""
+#~ "Voor aangepast afdrukken moet een geldige grootte worden opgegeven.\n"
+#~ "Een van de afmetingen is nu nul."
+
+#~ msgid "Optical Character Recognition"
+#~ msgstr "Tekstherkenning"
+
+#~ msgid "Start OCR"
+#~ msgstr "Tekstherkenning starten"
+
+#~ msgid "Start the Optical Character Recognition process"
+#~ msgstr "Start de tekstherkenning"
+
+#~ msgid "Stop the OCR Process"
+#~ msgstr "Stop de tekstherkenning"
+
+#~ msgid "Image Information"
+#~ msgstr "Afbeeldingsinformatie"
+
+#~ msgid "OCR"
+#~ msgstr "Tekstherkenning (OCR)"
+
+#~ msgid "<b>Starting Optical Character Recognition with %1</b><p>"
+#~ msgstr "<b>De tekstherkenning wordt gestart met %1</b><p>"
+
+#~ msgid "Spell-checking"
+#~ msgstr "Spellingcontrole"
+
+#~ msgid "OCR Post Processing"
+#~ msgstr "Nabewerken tekstherkenning"
+
+#~ msgid "Enable spell-checking for validation of the OCR result"
+#~ msgstr ""
+#~ "Schakel de spellingcontrole in op het resultaat van de tekstherkenning"
+
+#~ msgid "Spell-Check Options"
+#~ msgstr "Instellingen voor spellingcontrole"
+
+#~ msgid "GOCR"
+#~ msgstr "GOCR"
+
+#~ msgid ""
+#~ "GOCR is an Open Source project for optical character recognition.<P>The "
+#~ "author of gocr is <B>Joerg Schulenburg</B><BR>For more information about "
+#~ "gocr see <A HREF=http://jocr.sourceforge.net>http://jocr.sourceforge.net</"
+#~ "A>"
+#~ msgstr ""
+#~ "GOCR is een Open Source project voor Optical Character Recognition "
+#~ "(tekstherkenning). <P>De auteur van GOCR is <B>Joerg Schulenburg</B>."
+#~ "<BR>Ga voor meer informatie over GOCR naar <A HREF=http://jocr."
+#~ "sourceforge.net>http://jocr.sourceforge.net</A>"
+
+#~ msgid ""
+#~ "The path to the gocr binary is not configured yet.\n"
+#~ "Please go to the Kooka configuration and enter the path manually."
+#~ msgstr ""
+#~ "Het pad naar het gocr-programma is nog niet ingesteld.\n"
+#~ "U kunt dit invoeren in de Kooka-instellingen."
+
+#~ msgid "OCR Software Not Found"
+#~ msgstr "Tekstherkenningssoftware (OCR) niet gevonden"
+
+#~ msgid "Not found"
+#~ msgstr "Niet gevonden"
+
+#~ msgid "Using GOCR binary: "
+#~ msgstr "Gebruikt GOCR programma: "
+
+#~ msgid "&Gray level"
+#~ msgstr "&Grijsniveau"
+
+#~ msgid ""
+#~ "The numeric value gray pixels are \n"
+#~ "considered to be black.\n"
+#~ "\n"
+#~ "Default is 160"
+#~ msgstr ""
+#~ "De numerieke waarde grijspixels worden\n"
+#~ "als zwart beschouwd.\n"
+#~ "\n"
+#~ "Standaard is 160"
+
+#~ msgid "&Dust size"
+#~ msgstr "&Stofafmeting"
+
+#~ msgid ""
+#~ "Clusters smaller than this value\n"
+#~ "will be considered to be dust and \n"
+#~ "removed from the image.\n"
+#~ "\n"
+#~ "Default is 10"
+#~ msgstr ""
+#~ "Clusters kleiner dan deze waarde\n"
+#~ "zullen als stof worden beschouwd en\n"
+#~ "daarom van de afbeelding worden verwijderd.\n"
+#~ "\n"
+#~ "Standaard is 10"
+
+#~ msgid "&Space width"
+#~ msgstr "&Witruimtebreedte"
+
+#~ msgid ""
+#~ "Spacing between characters.\n"
+#~ "\n"
+#~ "Default is 0 what means autodetection"
+#~ msgstr ""
+#~ "Spaties tussen de tekens.\n"
+#~ "\n"
+#~ "Standaard is 0, wat autodetectie betekent."
+
+#~ msgid "KADMOS OCR/ICR"
+#~ msgstr "KADMOS OCR/ICR"
+
+#~ msgid ""
+#~ "This version of Kooka was linked with the <I>KADMOS OCR/ICR engine</I>, a "
+#~ "commercial engine for optical character recognition.<P>Kadmos is a "
+#~ "product of <B>re Recognition AG</B><BR>For more information about Kadmos "
+#~ "OCR see <A HREF=http://www.rerecognition.com>http://www.rerecognition."
+#~ "com</A>"
+#~ msgstr ""
+#~ "Deze versie van Kooka is gelinkt aan de <i>KADMOS OCR/ICR engine</i>, een "
+#~ "commerciële engine voor tekstherkenning. <p>Kadmos is een product van "
+#~ "<b>re Recognition AG</b> <br>Zie voor meer informatie over Kadmos OCR <a "
+#~ "href=http://www.rerecognition.com>http://www.rerecognition.com</a>."
+
+#~ msgid "European Countries"
+#~ msgstr "Europese landen"
+
+#~ msgid "Czech Republic, Slovakia"
+#~ msgstr "Tsjechische republiek, Slowakije"
+
+#~ msgid "Great Britain, USA"
+#~ msgstr "Groot Brittannië, Verenigde Staten"
+
+#~ msgid ""
+#~ "The classifier files for KADMOS could not be found.\n"
+#~ "OCR with KADMOS will not be possible!\n"
+#~ "\n"
+#~ "Change the OCR engine in the preferences dialog."
+#~ msgstr ""
+#~ "De classificatiebestanden van KADMOS konden niet worden gevonden.\n"
+#~ "Tekstherkenning met KADMOS is niet mogelijk.\n"
+#~ "\n"
+#~ "U kunt een andere tekstherkenningsprogramma kiezen in de Kooka-"
+#~ "instellingen."
+
+#~ msgid "Installation Error"
+#~ msgstr "Installatiefout"
+
+#~ msgid "Please classify the font type and language of the text on the image:"
+#~ msgstr "Kies hier het lettertype en de taal van de tekst op de afbeelding:"
+
+#~ msgid "Font Type Selection"
+#~ msgstr "Lettertypeselectie"
+
+#~ msgid "Machine print"
+#~ msgstr "Drukwerk"
+
+#~ msgid "Hand writing"
+#~ msgstr "Handgeschreven"
+
+#~ msgid "Norm font"
+#~ msgstr "Lettertype normering"
+
+#~ msgid "Country"
+#~ msgstr "Land"
+
+#~ msgid "OCR Modifier"
+#~ msgstr "OCR-modifier"
+
+#~ msgid "Enable automatic scaling"
+#~ msgstr "Schakel automatisch herschalen in"
+
+#~ msgid "Classifier file %1 does not exist"
+#~ msgstr "Het classificatiebestand %1 bestaat niet"
+
+#~ msgid "Classifier file %1 is not readable"
+#~ msgstr "Het classificatiebestand %1 kan niet worden gelezen"
+
+#~ msgid "ocrad"
+#~ msgstr "ocrad"
+
+#~ msgid ""
+#~ "ocrad is a Free Software project for optical character recognition.<p>The "
+#~ "author of ocrad is <b>Antonio Diaz</b><br>For more information about "
+#~ "ocrad see <A HREF=\"http://www.gnu.org/software/ocrad/ocrad.html\">http://"
+#~ "www.gnu.org/software/ocrad/ocrad.html</A><p>Images should be scanned in "
+#~ "black/white mode for ocrad.<br>Best results are achieved if the "
+#~ "characters are at least 20 pixels high.<p>Problems arise, as usual, with "
+#~ "very bold or very light or broken characters, the same with merged "
+#~ "character groups."
+#~ msgstr ""
+#~ "ocrad is een Vrije Software project voor tekstherkenning (optical "
+#~ "character recognition).<p>De auteur van ocrad is <b>Antonio Diaz</"
+#~ "b><br>Voor meer informatie zie <A HREF=\"http://savannah.gnu.org/projects/"
+#~ "ocrad\">http://savannah.gnu.org/projects/ocrad</A><p>Voor ocrad moeten "
+#~ "afbeeldingen in zwart-wit worden gescand.<br>Voor de beste resultaten "
+#~ "moeten de letters minstens 20 pixels hoog zijn. <p>Er kunnen problemen "
+#~ "onstaan, zoals gewoonlijk, met heel dikke, heel dunne, beschadigde of aan "
+#~ "elkaar vastzittende lettertekens."
+
+#~ msgid ""
+#~ "The path to the ocrad binary is not configured yet.\n"
+#~ "Please go to the Kooka configuration and enter the path manually."
+#~ msgstr ""
+#~ "Het pad naar het ocrad-programma is nog niet ingesteld.\n"
+#~ "U kunt dit invoeren in de Kooka-instellingen."
+
+#~ msgid "OCRAD layout analysis mode: "
+#~ msgstr "OCRAD-opmaakanalyse: "
+
+#~ msgid "No Layout Detection"
+#~ msgstr "Geen opmaakdetectie"
+
+#~ msgid "Column Detection"
+#~ msgstr "Kolomdetectie"
+
+#~ msgid "Full Layout Detection"
+#~ msgstr "Volledige opmaakdetectie"
+
+#~ msgid "Using ocrad binary: "
+#~ msgstr "Pad naar 'ocrad'-programma: "
+
+#~ msgid "Version: "
+#~ msgstr "Versie: "
+
+#~ msgid "KDE Scanning"
+#~ msgstr "KDE Scanning"
+
+#~ msgid "&OCR Image..."
+#~ msgstr "Tekstherkenning &op afbeelding..."
+
+#~ msgid "O&CR on Selection..."
+#~ msgstr "Tekstherkenning &op selectie..."
+
+#~ msgid "Scale to W&idth"
+#~ msgstr "Schalen naar br&eedte"
+
+#~ msgid "Scale to &Height"
+#~ msgstr "Schalen naar &hoogte"
+
+#~ msgid "Original &Size"
+#~ msgstr "Originele &grootte"
+
+#~ msgid "Keep &Zoom Setting"
+#~ msgstr "&Zoom instelling handhaven"
+
+#~ msgid "Set Zoom..."
+#~ msgstr "Zoom instellen..."
+
+#~ msgid "Create From Selectio&n"
+#~ msgstr "Selectie opslaa&n"
+
+#~ msgid "Mirror Image &Vertically"
+#~ msgstr "Afbeelding &verticaal spiegelen"
+
+#~ msgid "&Mirror Image Horizontally"
+#~ msgstr "Afbeelding &horizontaal spiegelen"
+
+#~ msgid "Mirror Image &Both Directions"
+#~ msgstr "Afbeelding in &beide richtingen spiegelen"
+
+#~ msgid "Open Image in &Graphic Application..."
+#~ msgstr "Afbeelding openen in &grafisch programma..."
+
+#~ msgid "&Rotate Image Clockwise"
+#~ msgstr "Afbeelding &rechtsom draaien"
+
+#~ msgid "Rotate Image Counter-Clock&wise"
+#~ msgstr "Afbeelding &linksom draaien"
+
+#~ msgid "Rotate Image 180 &Degrees"
+#~ msgstr "Afbeel&ding omkeren"
+
+#~ msgid "&Create Folder..."
+#~ msgstr "Map aan&maken..."
+
+#~ msgid "&Save Image..."
+#~ msgstr "Afbeelding op&slaan..."
+
+#~ msgid "&Import Image..."
+#~ msgstr "Afbeelding &importeren..."
+
+#~ msgid "&Delete Image"
+#~ msgstr "Afbeelding verwij&deren"
+
+#~ msgid "&Unload Image"
+#~ msgstr "Afbeelding &uitladen"
+
+#~ msgid "&Load Scan Parameters"
+#~ msgstr "Scanparameters &laden"
+
+#~ msgid "Save &Scan Parameters"
+#~ msgstr "Scanparameters op&slaan"
+
+#~ msgid "Enable All Warnings && Messages"
+#~ msgstr "Alle waarschuwingen && meldingen activeren"
+
+#~ msgid "Save OCR Res&ult Text"
+#~ msgstr "Res&ultaat tekstherkenning opslaan"
+
+#~ msgid "All messages and warnings will now be shown."
+#~ msgstr "Alle meldingen en waarschuwingen zullen vanaf nu worden getoond"
+
+#~ msgid "Preferences"
+#~ msgstr "Voorkeuren"
+
+#~ msgid "OCR Engine to Use"
+#~ msgstr "Tekstherkenningsprogramma kiezen"
+
+#~ msgid "GOCR engine"
+#~ msgstr "GOCR-engine"
+
+#~ msgid "KADMOS engine"
+#~ msgstr "KADMOS-engine"
+
+#~ msgid "OCRAD engine"
+#~ msgstr "OCRAD-engine"
+
+#~ msgid "GOCR OCR"
+#~ msgstr "GOCR tekstherkenning"
+
+#~ msgid "OCRAD OCR"
+#~ msgstr "OCRAD tekstherkenning"
+
+#~ msgid "KADMOS OCR"
+#~ msgstr "KADMOS tekstherkenning"
+
+#~ msgid "The KADMOS OCR engine is available"
+#~ msgstr "Het KADMOS tekstherkenningsprogramma is beschikbaar"
+
+#~ msgid "The KADMOS OCR engine is not available in this version of Kooka"
+#~ msgstr "De KADMOS software is niet beschikbaar in deze versie van Kooka"
+
+#~ msgid "Select the %1 binary to use:"
+#~ msgstr "Programma voor %1 selecteren:"
+
+#~ msgid ""
+#~ "Enter the path to %1, the optical-character-recognition command line tool."
+#~ msgstr ""
+#~ "Voer hier het pad in naar %1, het commandoregelprogramma voor "
+#~ "tekstherkenning."
+
+#~ msgid ""
+#~ "The path does not lead to a valid binary.\n"
+#~ "Please check your installation and/or install the program."
+#~ msgstr ""
+#~ "Het opgegeven pad leidt niet naar een geldig programma.\n"
+#~ "Controleer uw installatie en/of installeer het programma."
+
+#~ msgid ""
+#~ "The program exists, but is not executable.\n"
+#~ "Please check your installation and/or install the binary properly."
+#~ msgstr ""
+#~ "Dit programma bestaat, maar is niet uitvoerbaar.\n"
+#~ "Controleer uw installatie en/of installeer het programma op de juiste "
+#~ "wijze."
+
+#~ msgid "OCR Software Not Executable"
+#~ msgstr "OCR-software is niet uitvoerbaar"
+
+#~ msgid "Startup"
+#~ msgstr "Starten"
+
+#~ msgid "Kooka Startup Preferences"
+#~ msgstr "Kooka Opstartvoorkeuren"
+
+#~ msgid "Note that changing these options will affect Kooka's next start!"
+#~ msgstr "Het wijzigen van deze optie heeft effect op Kooka's volgende start."
+
+#~ msgid "Query network for available scanners"
+#~ msgstr "Zoek het netwerk af voor nieuwe scanners"
+
+#~ msgid ""
+#~ "Check this if you want a network query for available scanners.\n"
+#~ "Note that this does not mean a query over the entire network but only the "
+#~ "stations configured for SANE!"
+#~ msgstr ""
+#~ "Selecteer dit als u een netwerkzoekactie naar alle beschikbare scanners "
+#~ "wilt uitvoeren.\n"
+#~ "Deze zoektocht omvat niet het hele netwerk, maar alleen de stations die "
+#~ "voor SANE zijn ingesteld."
+
+#~ msgid "Show the scanner selection box on next startup"
+#~ msgstr "Scanner keuzevakje tonen bij volgende opstart"
+
+#~ msgid ""
+#~ "Check this if you once checked 'do not show the scanner selection on "
+#~ "startup',\n"
+#~ "but you want to see it again."
+#~ msgstr ""
+#~ "Selecteer dit als u het keuzevakje 'scannerselectie niet tonen tijdens "
+#~ "start' hebt geselecteerd,\n"
+#~ "maar u deze weer wilt zien"
+
+#~ msgid "Load the last image into the viewer on startup"
+#~ msgstr "De laatste afbeelding in de viewer laden bij het opstarten"
+
+#~ msgid ""
+#~ "Check this if you want Kooka to load the last selected image into the "
+#~ "viewer on startup.\n"
+#~ "If your images are large, that might slow down Kooka's start."
+#~ msgstr ""
+#~ "Selecteer dit als u wilt dat Kooka de laatst geselecteerde afbeelding in "
+#~ "de viewer laadt tijdens het opstarten.\n"
+#~ "Als u met grote afbeeldingen werkt, dan vertraagt deze optie de start van "
+#~ "Kooka."
+
+#~ msgid "Configure Image Save Assistant"
+#~ msgstr "Afbeeldingopslag-assistent"
+
+#~ msgid "Always display image save assistant"
+#~ msgstr "Afbeeldingopslagassistent altijd weergeven"
+
+#~ msgid ""
+#~ "Check this if you want to see the image save assistant even if there is a "
+#~ "default format for the image type."
+#~ msgstr ""
+#~ "Selecteer dit als u de afbeeldingopslagassistent altijd wilt zien, ook "
+#~ "als er een standaardformaat voor het type afbeelding aanwezig is."
+
+#~ msgid "Ask for filename when saving file"
+#~ msgstr "Bestandsnaam vragen bij opslaan"
+
+#~ msgid ""
+#~ "Check this if you want to enter a filename when an image has been scanned."
+#~ msgstr ""
+#~ "Schakel dit in als u een bestandsnaam wilt invoeren als een afbeelding is "
+#~ "gescand."
+
+#~ msgid "Thumbnail View"
+#~ msgstr "Mini-afbeeldingweergave"
+
+#~ msgid "Thumbnail Gallery View"
+#~ msgstr "Galerij met mini-afbeeldingen"
+
+#~ msgid ""
+#~ "Here you can configure the appearance of the thumbnail view of your scan "
+#~ "picture gallery."
+#~ msgstr ""
+#~ "Hier kunt u het uiterlijk van de mini-afbeeldingweergave van de galerij "
+#~ "met gescande afbeeldingen instellen."
+
+#~ msgid "Thumbview Background"
+#~ msgstr "Achtergrond van mini-afbeelding"
+
+#~ msgid "Select background image:"
+#~ msgstr "Achtergrondafbeelding selecteren:"
+
+#~ msgid "Thumbnail Size"
+#~ msgstr "Grootte van mini-afbeelding"
+
+#~ msgid "Thumbnail Frame"
+#~ msgstr "Frame van mini-afbeelding"
+
+#~ msgid "Thumbnail maximum &width:"
+#~ msgstr "Ma&ximum breedte van mini-afbeelding:"
+
+#~ msgid "Thumbnail maximum &height:"
+#~ msgstr "Maximum &hoogte van mini-afbeelding:"
+
+#~ msgid "Thumbnail &frame width:"
+#~ msgstr "&Framebreedte van mini-afbeelding:"
+
+#~ msgid "Frame color &1: "
+#~ msgstr "Framekleur &1:"
+
+#~ msgid "Frame color &2: "
+#~ msgstr "Framekleur &2:"
+
+#~ msgid ""
+#~ "The OCR engine settings were changed.\n"
+#~ "Note that Kooka needs to be restarted to change the OCR engine."
+#~ msgstr ""
+#~ "U hebt een andere tekstherkennings-engine gekozen.\n"
+#~ "Kooka moet opnieuw worden gestart om de andere engine te kunnen gebruiken."
+
+#~ msgid "OCR Engine Change"
+#~ msgstr "Ander tekstherkenningsprogramma"
+
+#~ msgid "Image Viewer"
+#~ msgstr "Afbeeldingenweergaveprogramma"
+
+#~ msgid "Image View"
+#~ msgstr "Weergave"
+
+#~ msgid "Thumbnails"
+#~ msgstr "Mini-afbeeldingen"
+
+#~ msgid "Gallery"
+#~ msgstr "Galerij"
+
+#~ msgid "Gallery Folders"
+#~ msgstr "Galerijmappen"
+
+#~ msgid "Gallery:"
+#~ msgstr "Galerij:"
+
+#~ msgid "Scan Parameter"
+#~ msgstr "Scanparameter"
+
+#~ msgid "Scan Preview"
+#~ msgstr "Scanvoorbeeld"
+
+#~ msgid "OCR Result Text"
+#~ msgstr "Resultaat tekstherkenning"
+
+#~ msgid "Print %1"
+#~ msgstr "%1 afdrukken"
+
+#~ msgid "Starting OCR on selection"
+#~ msgstr "OCR wordt op selectie uitgevoerd"
+
+#~ msgid "Starting OCR on the entire image"
+#~ msgstr "OCR wordt op de hele afbeelding uitgevoerd"
+
+#~ msgid ""
+#~ "Could not start OCR-Process.\n"
+#~ "Probably there is already one running."
+#~ msgstr ""
+#~ "Het OCR-proces kon niet worden gestart\n"
+#~ "Mogelijk wordt OCR reeds gebruikt."
+
+#~ msgid "Create new image from selection"
+#~ msgstr "Nieuwe afbeelding van selectie maken"
+
+#~ msgid "Rotate image 90 degrees"
+#~ msgstr "Afbeelding rechtsom draaien"
+
+#~ msgid "Rotate image 180 degrees"
+#~ msgstr "Afbeelding omkeren"
+
+#~ msgid "Rotate image -90 degrees"
+#~ msgstr "Afbeelding linksom draaien"
+
+#~ msgid "Mirroring image vertically"
+#~ msgstr "Afbeelding wordt verticaal gespiegeld"
+
+#~ msgid "Mirroring image horizontally"
+#~ msgstr "Afbeelding wordt horizontaal gespiegeld"
+
+#~ msgid "Mirroring image in both directions"
+#~ msgstr "Afbeelding wordt in beide richtingen gespiegeld"
+
+#~ msgid "Loading %1"
+#~ msgstr "%1 wordt geladen"
+
+#~ msgid "Storing image changes"
+#~ msgstr "Afbeeldingwijzigingen worden opgeslagen"
+
+#~ msgid "Can not save image, it is write protected!"
+#~ msgstr ""
+#~ "Kan de afbeelding niet opslaan, het is beveiligd tegen overschrijven."
+
+#~ msgid "Tool Views"
+#~ msgstr "Weergave van hulpmiddelen"
+
+#~ msgid "Show Image Viewer"
+#~ msgstr "Afbeeldingenweergaveprogramma tonen"
+
+#~ msgid "Show Preview"
+#~ msgstr "Voorbeeld tonen"
+
+#~ msgid "Show Recent Gallery Folders"
+#~ msgstr "Recente galerijmappen tonen"
+
+#~ msgid "Show Gallery"
+#~ msgstr "Galerij tonen"
+
+#~ msgid "Show Thumbnail Window"
+#~ msgstr "Venster met mini-afbeelding tonen"
+
+#~ msgid "Show Scan Parameters"
+#~ msgstr "Scanparameters tonen"
+
+#~ msgid "Show OCR Results"
+#~ msgstr "Resultaten tekstherkenning tonen"
+
+#~ msgid ""
+#~ "This version of Kooka was not compiled with KADMOS support.\n"
+#~ "Please select another OCR engine in Kooka's options dialog."
+#~ msgstr ""
+#~ "Deze versie van Kooka is niet gecompileerd met KADMOS ondersteuning.\n"
+#~ "Selecteer a.u.b. een ander tekstherkenningsprogramma in de Kooka-"
+#~ "instellingen."
+
+#~ msgid "Kooka OCR Dictionary Check"
+#~ msgstr "Kooka woordenboek voor tekstherkenning"
+
+#~ msgid "The OCR-process was stopped."
+#~ msgstr "Het tekstherkenningsproces is afgebroken"
+
+#~ msgid "Parsing of the OCR Result File failed:"
+#~ msgstr "Het resultaatbestand kon niet worden gelezen:"
+
+#~ msgid "Parse Problem"
+#~ msgstr "Probleem bij het parsen"
+
+#~ msgid ""
+#~ "The classifier file necessary for OCR cannot be loaded: %1;\n"
+#~ "OCR with the KADMOS engine is not possible."
+#~ msgstr ""
+#~ "Het classificatiebestand nodig voor tekstherkenning kon niet worden "
+#~ "geladen: %1\n"
+#~ "Tekstherkenning met de KADMOS-engine is daardoor niet mogelijk."
+
+#~ msgid "KADMOS Installation Problem"
+#~ msgstr "Probleem met de KADMOS-installatie"
+
+#~ msgid "The KADMOS OCR system could not be started:\n"
+#~ msgstr "Het KADMOS-tekstherkenningsprogramma kon niet worden gestart:\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "Please check the configuration."
+#~ msgstr ""
+#~ "\n"
+#~ "Controleer a.u.b. de instellingen."
+
+#~ msgid "KADMOS Failure"
+#~ msgstr "KADMOS-fout"
+
+#~ msgid "The orf %1 does not exist."
+#~ msgstr "Het orf-bestand %1 bestaat niet."
+
+#~ msgid "Permission denied on file %1."
+#~ msgstr "Toegang geweigerd voor bestand %1."
+
+#~ msgid ""
+#~ "Spell-checking cannot be started on this system.\n"
+#~ "Please check the configuration"
+#~ msgstr ""
+#~ "De spellingcontrole kon niet worden gestart.\n"
+#~ "Controleer a.u.b. de instellingen"
+
+#~ msgid "Spell-Check"
+#~ msgstr "Spellingcontrole"
+
+#~ msgid "The SANE compatible device specification (e.g. umax:/dev/sg0)"
+#~ msgstr ""
+#~ "De door SANE ondersteunde apparaatspecificatie (bijv. umax:/dev/sg0)"
+
+#~ msgid "Gallery mode - do not connect to scanner"
+#~ msgstr "Galerijstand - maak geen verbinding met de scanner"
+
+#~ msgid "Kooka"
+#~ msgstr "Kooka"
+
+#~ msgid "http://kooka.kde.org"
+#~ msgstr "http://kooka.kde.org"
+
+#~ msgid "graphics, web"
+#~ msgstr "illustraties, web"
+
+#~ msgid "Save OCR Result Text"
+#~ msgstr "Resultaat van tekstherkenning opslaan"
+
+#~ msgid "&Image"
+#~ msgstr "Afbeeld&ing"
+
+#~ msgid "Image Viewer Toolbar"
+#~ msgstr "Werkbalk afbeeldingviewer"
+
+#~ msgid "Size"
+#~ msgstr "Grootte"
+
+#~ msgid "Kooka Gallery"
+#~ msgstr "Kooka-galerij"
+
+#~ msgid ""
+#~ "_n: one item\n"
+#~ "%n items"
+#~ msgstr ""
+#~ "een item\n"
+#~ "%n items"
+
+#~ msgid "%1 x %2"
+#~ msgstr "%1 x %2"
+
+#~ msgid ""
+#~ "You entered a file extension that differs from the existing one. That is "
+#~ "not yet possible. Converting 'on the fly' is planned for a future "
+#~ "release.\n"
+#~ "Kooka corrects the extension."
+#~ msgstr ""
+#~ "U hebt een bestandextensie ingevoerd dat verschilt dan de bestaande. "
+#~ "Helaas is dat nog niet mogelijk, in toekomstige versies kunt u "
+#~ "afbeeldingen ook converteren. Kooka herstelt de extensie."
+
+#~ msgid "On the Fly Conversion"
+#~ msgstr "Convertering tijdens looptijd"
+
+#~ msgid "Sub-image %1"
+#~ msgstr "Subafbeelding %1"
+
+#~ msgid ""
+#~ "Cannot write this image format.\n"
+#~ "Image will not be saved!"
+#~ msgstr ""
+#~ "Dit afbeeldingformaat wordt niet ondersteund.\n"
+#~ "De afbeelding wordt niet opgeslagen."
+
+#~ msgid ""
+#~ "Image file is write protected.\n"
+#~ "Image will not be saved!"
+#~ msgstr ""
+#~ "Het afbeeldingbestand is tegen schrijven beveiligd.\n"
+#~ "De afbeelding wordt niet opgeslagen."
+
+#~ msgid ""
+#~ "Cannot save the image, because the file is local.\n"
+#~ "Kooka will support other protocols later."
+#~ msgstr ""
+#~ "De afbeelding kan niet worden opgeslagen omdat het een\n"
+#~ "lokaal bestand betreft.\n"
+#~ "Kooka ondersteunt binnenkort ook andere protocollen."
+
+#~ msgid "Incoming/"
+#~ msgstr "Inkomend/"
+
+#~ msgid "%1 images"
+#~ msgstr "%1 afbeeldingen"
+
+#~ msgid "All Files"
+#~ msgstr "Alle bestanden"
+
+#~ msgid "Import Image File to Gallery"
+#~ msgstr "Afbeelding naar galerij importeren"
+
+#~ msgid "Canceled by user"
+#~ msgstr "Geannuleerd door de gebruiker"
+
+#~ msgid ""
+#~ "Do you really want to delete this image?\n"
+#~ "It cannot be restored!"
+#~ msgstr ""
+#~ "Wilt u werkelijk deze afbeelding verwijderen?\n"
+#~ "U kunt dit niet ongedaan maken."
+
+#~ msgid ""
+#~ "Do you really want to delete the folder %1\n"
+#~ "and all the images inside?"
+#~ msgstr ""
+#~ "Wilt u werkelijk de map %1 en alle\n"
+#~ "afbeeldingen die ze bevat verwijderen?"
+
+#~ msgid "Delete Collection Item"
+#~ msgstr "Collectie-item verwijderen"
+
+#~ msgid "New Folder"
+#~ msgstr "Nieuwe map"
+
+#~ msgid "Please enter a name for the new folder:"
+#~ msgstr "Voer een naam in voor de nieuwe map:"
+
+#~ msgid "image %1"
+#~ msgstr "afbeelding %1"
+
+#~ msgid "%1 MB"
+#~ msgstr "%1 MB"
+
+#~ msgid "%1 kB"
+#~ msgstr "%1 kB"

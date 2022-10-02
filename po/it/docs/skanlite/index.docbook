@@ -1,0 +1,611 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Italian "INCLUDE"
+><!-- change language only here -->
+]>
+
+<book id="skanlite" lang="&language;">
+
+<bookinfo>
+<title
+>Manuale di &skanlite;</title>
+
+<authorgroup>
+<author
+><firstname
+>Kåre</firstname
+> <surname
+>Särs</surname
+> <affiliation
+> <address
+><email
+>kare dot sars at iki dot fi</email
+></address>
+</affiliation>
+</author>
+<author
+><firstname
+>Anne-Marie</firstname
+> <surname
+>Mahfouf</surname
+> <affiliation
+> <address
+>&Anne-Marie.Mahfouf.mail;</address>
+</affiliation>
+</author>
+<othercredit role="translator"
+><firstname
+>Federico</firstname
+><surname
+>Zenith</surname
+><affiliation
+><address
+><email
+>federico.zenith@member.fsf.org</email
+></address
+></affiliation
+><contrib
+>Traduzione della documentazione</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2008, 2013</year>
+<holder
+>Kåre Särs</holder>
+</copyright>
+<copyright>
+<year
+>2008</year>
+<holder
+>&Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2016-08-24</date>
+<releaseinfo
+>&skanlite; 2.0.0</releaseinfo>
+
+<abstract>
+<para
+>&skanlite; è un'applicazione di scansione di immagini che non fa nient'altro che scansionarle e salvarle. </para>
+<para
+>&skanlite; si basa su libksane, un'interfaccia di &kde; per la libreria SANE per il controllo degli scanner per immagini.</para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kdegraphics</keyword>
+<keyword
+>scanner</keyword>
+<keyword
+>immagini</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Introduzione</title>
+<para
+>&skanlite; è una semplice applicazione per l'acquisizione di immagini che non fa niente più che scansionare e salvare immagini. &skanlite; può aprire una finestra di salvataggio per ogni immagine acquisita o salvare immediatamente le immagini in una certa cartella con nome e formato generati automaticamente. L'utente può anche scegliere di visualizzare l'immagine acquisita prima di salvarla.</para>
+<para
+>&skanlite; può salvare immagini in tutti i formati supportati da &Qt;, per esempio nei seguenti: <itemizedlist>
+<listitem
+><para
+>png (8 e 16 bit per colore) </para
+></listitem>
+<listitem
+><para
+>jpeg, jpg, jpeg 2000 </para
+></listitem>
+<listitem
+><para
+>bmp </para
+></listitem>
+</itemizedlist>
+</para>
+
+<note
+><para
+>Puoi verificare lo stato del supporto del tuo scanner dal sito web del progetto SANE alla <ulink url="http://www.sane-project.org/sane-supported-devices.html"
+>pagina dei dispositivi supportati</ulink
+>.</para
+></note>
+
+</chapter>
+
+<chapter id="using-skanlite">
+<title
+>Usare &skanlite;</title>
+
+<sect1 id="scanner-selection">
+<title
+>Selezione dello scanner</title>
+<para
+>Si può specificare uno scanner predefinito dalla riga di comando di &skanlite; usando <userinput
+><command
+>skanlite</command
+> <option
+>-d <replaceable
+>[nome del dispositivo]</replaceable
+></option
+></userinput
+> sul terminale. Se lo scanner selezionato non può essere aperto, o se non ne è stato fornito uno predefinito, viene aperta una finestra di selezione degli scanner. </para>
+
+<screenshot>
+     <screeninfo
+>Finestra di selezione degli scanner di &skanlite;</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="choose-scanner.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Finestra di selezione degli scanner di &skanlite;</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>L'utente può scegliere lo scanner da usare e premere <guibutton
+>OK</guibutton
+> per aprirlo. Premere <guibutton
+>Annulla</guibutton
+> chiuderà &skanlite;. </para>
+
+<screenshot>
+     <screeninfo
+>Nessuno scanner trovato</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="no-scanner-found.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Nessuno scanner trovato</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Se non sono stati trovati dispositivi, è forse perché lo scanner non è collegato o è spento; controlla. Potrai quindi usare il pulsante <guibutton
+>Ricarica elenco dei dispositivi</guibutton
+> per ricaricare l'elenco degli scanner.</para
+> 
+<note
+><para
+>Non tutti i driver e motori supportano questa funzionalità. In tal caso esci da &skanlite;, collega il tuo scanner e riavvia l'applicazione.</para>
+</note>
+
+</sect1>
+</chapter>
+
+<chapter id="main-window">
+<title
+>Finestra principale di &skanlite;</title>
+<screenshot>
+     <screeninfo
+>La finestra principale di &skanlite;</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="main-window.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>La finestra principale di &skanlite;</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Nella finestra principale, l'utente ha due gruppi di opzioni: <guilabel
+>Opzioni di base</guilabel
+> e <guilabel
+>Opzioni specifiche dello scanner</guilabel
+>. La scheda <guilabel
+>Opzioni di base</guilabel
+> contiene i parametri più comuni forniti dall'interfaccia di programmazione per scanner SANE, mentre la scheda <guilabel
+>Opzioni specifiche dello scanner</guilabel
+> contiene tutte le opzioni del motore. Le opzioni qui elencate dipendono dal supporto di SANE per il tuo driver: libksane (usato da &skanlite;) dovrebbe essere in grado di visualizzare la maggior parte dei parametri forniti da SANE (al momento le tabelle del gamma analogico non sono disponibili). </para>
+
+<screenshot>
+     <screeninfo
+>Scheda delle opzioni specifiche dello scanner</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="other-options.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Scheda delle opzioni specifiche dello scanner</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Le opzioni specifiche dello scanner contengono maggiori dettagli sull'interfaccia di programmazione. &skanlite; (libksane) non gestiscono queste opzioni in modo particolare. </para>
+
+<para
+>Se sei soddisfatto delle impostazioni, puoi usare la freccina in cima al divisore delle opzioni. Quando ci si fa clic, contrae o espande le opzioni. Il contrattore può sovrapporsi all'area di anteprima, ma sparisce quando il puntatore del mouse esce dall'area del contrattore.</para
+>  
+
+<sect1 id="scanning">
+<title
+>Scansione</title>
+<para
+>Per scansionare un'immagine, l'utente può cominciare con una scansione di anteprima e quindi selezionare la parte dell'area scansionata su cui fare la scansione finale. La scansione di anteprima viene avviata premendo il pulsante <guibutton
+>Anteprima</guibutton
+>. </para>
+
+<screenshot>
+     <screeninfo
+>Il pulsante di anteprima</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="preview-button.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Il pulsante di anteprima</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Quando l'anteprima è stata scansionata, si può selezionare l'area dell'immagine finale. </para>
+<screenshot>
+     <screeninfo
+>Selezione e ingrandimento</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="zoom-in.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Selezione e ingrandimento</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>Per selezionare meglio l'immagine l'utente può ingrandire o rimpicciolire la selezione attuale, o adattare l'immagine per adattare l'intera anteprima alla finestra. </para>
+<screenshot>
+     <screeninfo
+>Il pulsante di ingrandimento adattativo</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="zoom-to-fit.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Il pulsante di ingrandimento adattativo</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Quando l'immagine è selezionata, l'immagine finale può essere acquisita premendo il pulsante <guibutton
+>Scansiona l'immagine finale</guibutton
+>. </para>
+
+<screenshot>
+     <screeninfo
+>Il pulsante di scansione finale</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="final-button.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Il pulsante di scansione finale</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Vedrai l'avanzamento della scansione. </para>
+<screenshot>
+     <screeninfo
+>Scansione in corso</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="scanning.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Scansione in corso</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Se <guilabel
+>Anteprima prima di salvare</guilabel
+> è selezionato nelle impostazioni, l'immagine viene visualizzata in una finestra di anteprima come puoi vedere nella schermata sottostante. Se si preme <guibutton
+>Salva</guibutton
+>, l'immagine viene salvata; se si preme <guibutton
+>Scarta</guibutton
+> l'immagine viene scartata e si torna alla finestra principale. </para>
+<screenshot>
+     <screeninfo
+>La finestra di anteprima</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="preview.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>La finestra di anteprima</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+</sect1>
+
+<sect1 id="scanning-multiple-selections">
+<title
+>Scansionare selezioni multiple</title>
+<para
+>A volte servono solo alcune parti di un'immagine. Invece di scansionare tutta l'immagine e poi usare un'applicazione grafica (per esempio &kolourpaint;) per salvare le varie parti dell'immagine in file diversi, usa la funzionalità di selezione multipla di &skanlite;. </para>
+<screenshot>
+     <screeninfo
+>Selezioni multiple</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="multiple-selections.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Selezioni multiple</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>Scansiona un'anteprima e usa quindi il &LMB; per selezionare dentro di questa la prima parte dell'immagine. Passa il puntatore del mouse sull'area selezionata e fai clic sull'icona <guiicon
+>+</guiicon
+> per selezionarla. Le aree selezionate sono bordate in rosso. Adesso seleziona le prossime parti dell'immagine allo stesso modo.</para>
+<para
+>Per rimuovere una singola selezione, passa il puntatore del mouse sull'area e fai clic sul pulsante rosso <guiicon
+>-</guiicon
+>. Tutte le selezioni possono venire rimosse dal menu contestuale richiamato dal &RMB; selezionando <guilabel
+>Pulisci selezioni</guilabel
+>. </para>
+<para
+>Se hai messo due diverse immagini o foto sullo scanner e hai avviato un'anteprima, &skanlite; selezionerà automaticamente le due aree. Questo comportamento può essere disattivato nella finestra delle impostazioni. </para>
+<para
+>Se sei soddisfatto delle tue scelte, avvia la scansione in serie di tutte le selezioni. Le immagini vengono salvate con la funzionalità di rinomina in serie descritta nella finestra delle impostazioni. </para>
+</sect1>
+
+<sect1 id="settings">
+<title
+>Impostazioni di &skanlite;</title>
+<para
+>Facendo clic sul pulsante <guibutton
+>Impostazioni</guibutton
+>, viene presentata la finestra delle impostazioni. Puoi scegliere qui quelle più importanti. </para>
+
+<screenshot>
+    <screeninfo
+>Ecco una schermata della finestra delle impostazioni di &skanlite;</screeninfo>
+    <mediaobject>
+        <imageobject>
+            <imagedata fileref="settings.png" format="PNG"/>
+        </imageobject>
+        <textobject>
+            <phrase
+>Finestra delle impostazioni di &skanlite;</phrase>
+        </textobject>
+    </mediaobject>
+</screenshot>
+
+<para
+><variablelist>
+<varlistentry>
+<term
+><guilabel
+>Anteprima prima di salvare</guilabel
+></term>
+<listitem
+><para
+>L'utente può scegliere di fare un'anteprima dell'immagine prima di salvare. In questo caso l'opzione <guilabel
+>Anteprima prima di salvare</guilabel
+> va attivata. Se l'utente non vuole un'anteprima dell'immagine, questa opzione va disattivata. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Come salvare:</guilabel
+></term>
+<listitem>
+<para
+>Questa impostazione ti permette di scegliere come &skanlite; salverà le immagini. Se scegli <guilabel
+>Apri la finestra di salvataggio per ciascuna immagine</guilabel
+>, la finestra di salvataggio sarà aperta per ogni immagine scansionata. Se preferisci che &skanlite; salvi automaticamente (generando un nome casuale e salvando l'immagine in una cartella predefinita), puoi scegliere <guilabel
+>Apri la finestra di salvataggio solo per prima immagine</guilabel
+>. Questa opzione aprirà la finestra <guilabel
+>Dove salvare</guilabel
+> come di seguito per la prima immagine scansionata.</para>
+<para>
+    <screenshot>
+        <screeninfo
+>Ecco una schermata della finestra di salvataggio di &skanlite;</screeninfo>
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="save-location.png" format="PNG"/>
+            </imageobject>
+            <textobject>
+                <phrase
+>Finestra di salvataggio di &skanlite;.</phrase>
+            </textobject>
+        </mediaobject>
+    </screenshot>
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Dove salvare:</guilabel
+></term>
+<listitem
+><para
+>Questa impostazione definisce la posizione di salvataggio predefinita e il nome del file predefinito. La posizione di salvataggio predefinita è la cartella Home, che puoi cambiare facendo clic sul pulsante <guibutton
+>...</guibutton
+>. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Nome e formato:</guilabel
+></term>
+<listitem
+><para
+>Questo parametro definisce il prefisso dell'immagine per le immagini salvate automaticamente ed è anche il nome suggerito per le immagini nella finestra di salvataggio. Un'immagine salvata automaticamente avrà un suffisso numerico (il <userinput
+>###</userinput
+> sarà sostituito da dei numeri), che viene incrementato ad ogni salvataggio di un'immagine. </para
+><para
+>Puoi anche scegliere il formato di salvataggio del file; l'impostazione predefinita è PNG.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Specifica la qualità di salvataggio</guilabel
+></term>
+<listitem
+><para
+>L'utente può scegliere di specificare la qualità dell'immagine da usare per salvare le immagini. Le impostazioni della qualità dell'immagine influenzano il livello di compressione usato per il salvataggio. Se <guilabel
+>Specifica la qualità di salvataggio</guilabel
+> non è segnato, la qualità è il valore predefinito scelto da &Qt;. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Imposta risoluzione di anteprima (DPI)</guilabel
+></term>
+<listitem
+><para
+>&skanlite; usa un po' di buon senso per avere una risoluzione ragionevole, ma se non funziona e la risoluzione di anteprima è troppo alta o troppo bassa, la si può impostare manualmente con questa opzione. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Disattiva le selezioni automatiche</guilabel
+></term>
+<listitem
+><para
+>Normalmente le selezioni automatiche sono abilitate; dopo un'anteprima, libksane prova a selezionarne automaticamente le immagini, e dovrebbe scansionare in serie le aree selezionate. Per esempio, se metti due foto nello scanner ed effettui un'anteprima, &skanlite; aggiungerà automaticamente le selezioni alle foto.</para>
+<para
+>D'altro canto se scansioni spesso dei documenti potrebbe accadere che la selezione automatica selezioni molte delle diverse parti dei documenti, e dovresti rimuovere le selezioni manualmente. Per evitare spunta la casella e disattiva la selezione automatica. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Riporta le opzioni dello scanner ai valori predefiniti</guilabel
+></term>
+<listitem
+><para
+>All'avvio vengono caricate le ultime impostazioni usate. Se hai rovinato le opzioni (per esempio se hai cambiato le impostazioni di correzione del colore, disponibili in alcuni motori, senza sapere cosa fossero), l'immagine potrebbe cominciare a sembrare strana. In questo caso questa opzione dà un modo di rimettere le impostazioni ai valori predefiniti, che sono una combinazione di valori predefiniti del motore e di libksane. </para
+></listitem>
+</varlistentry>
+</variablelist
+></para>
+</sect1>
+
+<sect1 id="help">
+<title
+>Aiuto, Informazioni, Impostazioni e Chiudi</title>
+<para
+>Il fondo alla finestra principale trovi i pulsanti <guibutton
+>Aiuto</guibutton
+>, <guibutton
+>Informazioni</guibutton
+>, <guibutton
+>Impostazioni</guibutton
+> e <guibutton
+>Chiudi</guibutton
+>.</para>
+
+<screenshot>
+     <screeninfo
+>I pulsanti della finestra principale</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="buttons-main.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>I pulsanti della finestra principale</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Il pulsante <guibutton
+>Aiuto</guibutton
+> richiama il centro d'aiuto di &kde; con il manuale di &skanlite;. Il pulsante <guibutton
+>Informazioni</guibutton
+> richiama la finestrella delle informazioni su &skanlite;. Il pulsante <guibutton
+>Impostazioni</guibutton
+> visualizza la finestra delle impostazioni e il pulsante <guibutton
+>Chiudi</guibutton
+> esce da &skanlite;.</para>
+</sect1>
+</chapter>
+
+<chapter id="credits">
+
+<title
+>Riconoscimenti e licenza</title>
+<para
+>&skanlite; </para>
+<para
+>Copyright del programma 2007 di Kåre Särs <email
+>kare dot sars at iki dot fi</email
+> </para>
+<para
+>Hanno contribuito: <itemizedlist
+> <listitem
+><para
+>Autore: Kåre Särs <email
+>kare dot sars at iki dot fi</email
+></para>
+</listitem>
+</itemizedlist>
+</para>
+
+<para
+>Traduzione di Federico Zenith<email
+>federico.zenith@member.fsf.org</email
+></para
+> &underFDL; <para
+>&skanlite; è distribuito sotto licenza GPL e la libreria libksane, usata da &skanlite;, è distribuita sotto la licenza LGPL. Nota: libsane è distribuito sotto licenza GPL con un'eccezione. </para>
+</chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

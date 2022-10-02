@@ -1,0 +1,579 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Catalan  "INCLUDE"
+><!-- change language only here -->
+]>
+
+<book id="skanlite" lang="&language;">
+
+<bookinfo>
+<title
+>El manual de l'&skanlite;</title>
+
+<authorgroup>
+<author
+><firstname
+>Kåre</firstname
+> <surname
+>Särs</surname
+> <affiliation
+> <address
+><email
+>kare dot sars at iki dot fi</email
+></address>
+</affiliation>
+</author>
+<author
+><firstname
+>Anne-Marie</firstname
+> <surname
+>Mahfouf</surname
+> <affiliation
+> <address
+>&Anne-Marie.Mahfouf.mail;</address>
+</affiliation>
+</author>
+&traductor.Antoni.Bella; 
+</authorgroup>
+
+<copyright>
+<year
+>2008, 2013</year>
+<holder
+>Kåre Särs</holder>
+</copyright>
+<copyright>
+<year
+>2008</year>
+<holder
+>&Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>24 d'agost de 2018</date>
+<releaseinfo
+>&skanlite; 2.0.0</releaseinfo>
+
+<abstract>
+<para
+>L'&skanlite; és una aplicació de digitalització d'imatges, la qual no fa res més que escanejar i desar les imatges. </para>
+<para
+>L'&skanlite; es basa en la «libksane», és una interfície per a la biblioteca de SANE que controla els escàners d'imatges.</para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kdegraphics</keyword>
+<keyword
+>escàner</keyword>
+<keyword
+>imatges</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Introducció</title>
+<para
+>L'&skanlite; és una aplicació per a l'escaneig d'imatges senzilla que no fa res més que escanejar i desar les imatges. L'&skanlite; pot obrir un diàleg de desament per a cada imatge escanejada o desar-les immediatament en una carpeta especificada amb noms i format generats automàticament. L'usuari també pot triar mostrar la imatge escanejada abans de desar-la.</para>
+<para
+>L'&skanlite; pot desar les imatges en tots els formats admesos per les &Qt;. Per exemple, els següents formats: <itemizedlist>
+<listitem
+><para
+>png (de 8 i 16 bits per color) </para
+></listitem>
+<listitem
+><para
+>jpeg, jpg, jpeg 2000 </para
+></listitem>
+<listitem
+><para
+>bmp </para
+></listitem>
+</itemizedlist>
+</para>
+
+<note
+><para
+>Podeu comprovar l'estat del suport del vostre escàner des de la <ulink url="https://www.sane-project.org/sane-supported-devices.html"
+>pàgina «Supported Devices» del projecte SANE</ulink
+>.</para
+></note>
+
+</chapter>
+
+<chapter id="using-skanlite">
+<title
+>Usar l'&skanlite;</title>
+
+<sect1 id="scanner-selection">
+<title
+>Seleccionar l'escàner</title>
+<para
+>Es pot especificar un escàner predeterminat a la línia d'ordres de l'&skanlite; utilitzant <userinput
+>skanlite -d [nom_dispositiu]</userinput
+> en una terminal. Si l'escàner seleccionat no es pot obrir o si no es proporciona cap escàner predeterminat, s'obrirà un diàleg de selecció de l'escàner. </para>
+
+<screenshot>
+     <screeninfo
+>El diàleg de selecció de l'escàner a l'&skanlite;</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="choose-scanner.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>El diàleg de selecció de l'escàner a l'&skanlite;</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>L'usuari podrà escollir l'escàner a utilitzar i prémer <guibutton
+>D'acord</guibutton
+> per a obrir-lo. Prémer <guibutton
+>Cancel·la</guibutton
+> causarà la sortida de l'&skanlite;. </para>
+
+<screenshot>
+     <screeninfo
+>No s'ha trobat cap escàner</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="no-scanner-found.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>No s'ha trobat cap escàner</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>En cas de no trobar cap dispositiu, potser perquè l'escàner no està encès o es troba desconnectat, corregiu-ho. A continuació, <guibutton
+>Actualitza la llista de dispositius</guibutton
+> es podrà utilitzar per tornar a carregar la llista dels escàners.</para
+> 
+<note
+><para
+>No tots els controladors/dorsals suporten aquesta característica. En aquest cas, sortiu de l'&skanlite;, connecteu l'escàner i reinicieu l'aplicació.</para>
+</note>
+
+</sect1>
+</chapter>
+
+<chapter id="main-window">
+<title
+>Finestra principal de l'&skanlite;</title>
+<screenshot>
+     <screeninfo
+>Finestra principal de l'&skanlite;</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="main-window.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Finestra principal de l'&skanlite;</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>A la finestra principal, l'usuari té dos conjunts d'opcions d'escàner: <guilabel
+>Opcions bàsiques</guilabel
+> i <guilabel
+>Opcions específiques de l'escàner</guilabel
+>. La pestanya <guilabel
+>Opcions bàsiques</guilabel
+> conté els paràmetres més comuns que ofereixen els dorsals de l'escàner de SANE, mentre que a la pestanya <guilabel
+>Opcions específiques de l'escàner</guilabel
+> conté totes les opcions del dorsal. Les opcions a la llista dependran del suport de SANE per al vostre controlador: «libksane» (la qual utilitza l'&skanlite;) hauria de ser capaç de mostrar la majoria dels tipus de paràmetres que proporciona SANE (les taules de gamma analògiques no estan suportades en aquest moment). </para>
+
+<screenshot>
+     <screeninfo
+>La pestanya «Opcions específiques de l'escàner»</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="other-options.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>La pestanya «Opcions específiques de l'escàner»</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Les opcions específiques de l'escàner contenen opcions més detallades dels dorsals. L'&skanlite; (libksane) no té cap tractament especial per a aquestes opcions. </para>
+
+<para
+>Si esteu satisfet amb la vostra configuració, podeu utilitzar la petita fletxa a la part superior del separador d'opcions. Quan hi feu clic plegarà o desplegarà les opcions. El plegat pot tapar l'àrea de vista prèvia, però s'esvaeix quan el cursor del ratolí es mou fora del plegat.</para
+>  
+
+<sect1 id="scanning">
+<title
+>Escanejar</title>
+<para
+>Per escanejar una imatge, l'usuari pot començar amb una vista prèvia i després seleccionar la part de l'àrea d'escaneig per fer l'escaneig final. La vista prèvia de l'escaneig s'inicia prement el botó de vista prèvia. </para>
+
+<screenshot>
+     <screeninfo
+>El botó de vista prèvia</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="preview-button.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>El botó de vista prèvia</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Quan s'escaneja l'àrea per a la imatge final s'obté la vista prèvia i es podrà seleccionar. </para>
+<screenshot>
+     <screeninfo
+>Selecció i zoom</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="zoom-in.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Selecció i zoom</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>Per a seleccionar millor la imatge, l'usuari pot apropar, allunyar la selecció actual o ajustar la vista prèvia a la finestra. </para>
+<screenshot>
+     <screeninfo
+>El botó «Zoom per ajustar»</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="zoom-to-fit.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>El botó «Zoom per ajustar»</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Quan la imatge és seleccionada, es pot capturar la imatge final prement el botó d'escaneig final. </para>
+
+<screenshot>
+     <screeninfo
+>El botó d'escaneig final</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="final-button.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>El botó d'escaneig final</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Veureu el progrés de l'escaneig. </para>
+<screenshot>
+     <screeninfo
+>Digitalització en curs</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="scanning.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Digitalització en curs</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Si se selecciona <guilabel
+>Vista prèvia abans de desar</guilabel
+> en la configuració, la imatge escanejada serà mostrada en una finestra de vista prèvia com es pot veure a continuació a la captura de pantalla. Si es prem <guibutton
+>Desa</guibutton
+>, es desarà la imatge i, si es prem <guibutton
+>Descarta</guibutton
+>, es descartarà la vista prèvia i es tornarà a la finestra principal. </para>
+<screenshot>
+     <screeninfo
+>La finestra de vista prèvia</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="preview.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>La finestra de vista prèvia</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+</sect1>
+
+<sect1 id="scanning-multiple-selections">
+<title
+>Escanejar múltiples seleccions</title>
+<para
+>De vegades sols necessitareu algunes parts d'una imatge. En lloc d'escanejar tota la fotografia i després utilitzar una aplicació de gràfics (&pex;, el &kolourpaint;) per a desar les diferents parts en fitxers per separat, utilitzeu la característica de múltiples seleccions de l'eina. </para>
+<screenshot>
+     <screeninfo
+>Múltiples seleccions</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="multiple-selections.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Múltiples seleccions</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>Escanegeu una vista prèvia i aleshores utilitzeu el &BER; per a seleccionar la primera part de la imatge a la vista prèvia. Manteniu l'àrea seleccionada amb el cursor del ratolí i feu clic sobre la icona verda <guiicon
+>+</guiicon
+> per a seleccionar l'àrea. Les àrees seleccionades quedaran indicades mitjançant una vora vermella. Ara seleccioneu les següents parts de la imatge de la mateixa manera.</para>
+<para
+>Per eliminar una sola selecció manteniu l'àrea amb el cursor del ratolí i feu clic sobre el botó vermell amb una icona <guiicon
+>-</guiicon
+>. Amb <guilabel
+>Neteja les seleccions</guilabel
+> des del menú contextual llançat amb el &BDR; s'eliminaran totes les seleccions en una vista prèvia. </para>
+<para
+>Si poseu dues imatges o fotografies separades al vostre escàner i s'ha iniciat una vista prèvia, l'&skanlite; preseleccionarà automàticament les diferents àrees. Aquest comportament es pot desactivar al diàleg de configuració. </para>
+<para
+>Si esteu satisfet amb la vostra elecció, comenceu l'escaneig final per lots de totes les seleccions. Les imatges es desaran mitjançant la característica de canvi de nom per lots que es descriu al diàleg de configuració. </para>
+</sect1>
+
+<sect1 id="settings">
+<title
+>Configuració de l'&skanlite;</title>
+<para
+>En prémer el botó <guibutton
+>Arranjament</guibutton
+>, es mostrarà el diàleg de configuració al davant de la finestra principal. Des d'on podreu triar les opcions més importants. </para>
+
+<screenshot>
+    <screeninfo
+>Aquí hi ha una captura de pantalla del diàleg de configuració de l'&skanlite;</screeninfo>
+    <mediaobject>
+        <imageobject>
+            <imagedata fileref="settings.png" format="PNG"/>
+        </imageobject>
+        <textobject>
+            <phrase
+>Diàleg de configuració de l'&skanlite;</phrase>
+        </textobject>
+    </mediaobject>
+</screenshot>
+
+<para
+><variablelist>
+<varlistentry>
+<term
+><guilabel
+>Vista prèvia abans de desar:</guilabel
+></term>
+<listitem
+><para
+>L'usuari pot triar previsualitzar la imatge abans de desar. En aquest cas, es pot marcar l'opció <guilabel
+>Vista prèvia abans de desar</guilabel
+>. Si l'usuari no vol previsualitzar la imatge, aquesta opció haurà d'estar desmarcada. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Mode del desament:</guilabel
+></term>
+<listitem>
+<para
+>Aquesta opció permet triar com desarà les imatges l'&skanlite;. Si trieu <guilabel
+>Obre el diàleg de desament per a cada imatge</guilabel
+> s'obrirà el diàleg de desament per a cada imatge escanejada. Si preferiu que l'&skanlite; les desi automàticament (generant automàticament un nom i desant la imatge en una carpeta predefinida), podeu triar <guilabel
+>Obre el diàleg de desament només per a la primera imatge</guilabel
+>. Aquesta opció obrirà el següent diàleg «Ubicació de desament» per a la primera imatge escanejada.</para>
+<para>
+    <screenshot>
+        <screeninfo
+>Aquí hi ha una captura de pantalla del diàleg de desament de l'&skanlite;</screeninfo>
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="save-location.png" format="PNG"/>
+            </imageobject>
+            <textobject>
+                <phrase
+>Diàleg de desament de l'&skanlite;.</phrase>
+            </textobject>
+        </mediaobject>
+    </screenshot>
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Ubicació de desament:</guilabel
+></term>
+<listitem
+><para
+>Aquesta opció defineix la ubicació de desament predeterminada i el nom dels fitxers. Aquesta ubicació de desament és la vostra carpeta d'inici i podeu canviar-la fent clic al botó <guibutton
+>...</guibutton
+>. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Nom i format:</guilabel
+></term>
+<listitem
+><para
+>Aquest paràmetre defineix el prefix de la imatge per a les imatges desades automàticament i també és el nom suggerit per a la imatge del diàleg de desament. La imatge desada automàticament tindrà un sufix numèric (el ### serà substituït per números) que s'incrementarà cada vegada que es desi una imatge. </para
+><para
+>També podeu triar el format de desament del fitxer, el valor predeterminat és PNG.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Indica la qualitat per desar:</guilabel
+></term>
+<listitem
+><para
+>L'usuari pot optar per especificar la qualitat de la imatge que s'utilitzarà per a desar-les. Aquesta opció afectarà el nivell de compressió utilitzat. Si no està marcada, la qualitat serà el valor predeterminat triat per les &Qt;. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Estableix la resolució de la vista prèvia (ppp)</guilabel
+></term>
+<listitem
+><para
+>L'&skanlite; utilitza heurístiques per intentar obtenir una resolució sana, però si això falla i la resolució és massa alta o baixa, la resolució de la vista prèvia es podrà establir manualment amb aquesta opció. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Desactiva les seleccions automàtiques</guilabel
+></term>
+<listitem
+><para
+>Per omissió, les seleccions automàtiques estan habilitades; i després d'una vista prèvia, la «libksane» intentarà seleccionar automàticament les imatges de la vista prèvia i farà un escaneig per lots de les àrees seleccionades. &pex;, si col·loqueu dues fotografies a l'escàner i feu una vista prèvia, l'&skanlite; afegirà automàticament seleccions de les fotografies.</para>
+<para
+>Si, en canvi, soleu escanejar documents, és possible que la selecció automàtica seleccioni moltes parts diferents en els documents i haureu de treure manualment les seleccions. Per evitar-ho, marqueu la casella de selecció i inhabiliteu la selecció automàtica. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Restableix les opcions de l'escàner als valors predeterminats</guilabel
+></term>
+<listitem
+><para
+>L'última configuració emprada es tornarà a carregar a l'inici. Si heu enredat les opcions (per exemple, si heu canviat les opcions de configuració per a la correcció del color, disponible en alguns dels dorsals, sense saber el que volen dir), la imatge podria començar a semblar molt estranya. Per a aquest escenari, aquesta opció proporciona una manera de revertir les opcions de configuració als valors predeterminats, els quals són una combinació dels valors predeterminats del dorsal i la «libksane». </para
+></listitem>
+</varlistentry>
+</variablelist
+></para>
+</sect1>
+
+<sect1 id="help">
+<title
+>Ajuda, quant al, arranjament i tancar</title>
+<para
+>A la part inferior de la finestra principal trobareu els botons <guibutton
+>Ajuda</guibutton
+>, <guibutton
+>Quant al</guibutton
+>, <guibutton
+>Arranjament</guibutton
+> i <guibutton
+>Tanca</guibutton
+>.</para>
+
+<screenshot>
+     <screeninfo
+>Els botons de la finestra principal</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="buttons-main.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Els botons de la finestra principal</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>El botó <guibutton
+>Ajuda</guibutton
+> mostra el Centre d'ajuda del &kde; amb el manual de l'&skanlite;. El botó <guibutton
+>Quant al</guibutton
+> mostra el diàleg Quant al del &kde; per a l'&skanlite;. El botó <guibutton
+>Arranjament</guibutton
+> mostra el diàleg de configuració i el botó <guibutton
+>Tanca</guibutton
+> s'utilitzarà per a sortir de l'&skanlite;.</para>
+</sect1>
+</chapter>
+
+<chapter id="credits">
+
+<title
+>Crèdits i llicència</title>
+<para
+>&skanlite; </para>
+<para
+>Copyright del programa 2007 Kåre Särs <email
+>kare dot sars at iki dot fi</email
+> </para>
+<para
+>Col·laboradors: <itemizedlist
+> <listitem
+><para
+>Autor: Kåre Särs <email
+>kare dot sars at iki dot fi</email
+></para>
+</listitem>
+</itemizedlist>
+</para>
+
+<para
+>Traductor de la documentació: &credits.Antoni.Bella;</para
+> &underFDL; <para
+>L'&skanlite; està llicenciat sota la llicència GPL i la biblioteca «libksane», emprada per l'&skanlite;, està llicenciada sota la LGPL. Nota: la biblioteca «libsane» està sota la llicència GPL amb una excepció. </para>
+</chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

@@ -1,0 +1,579 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Dutch "INCLUDE"
+><!-- change language only here -->
+]>
+
+<book id="skanlite" lang="&language;">
+
+<bookinfo>
+<title
+>Het handboek van &skanlite;</title>
+
+<authorgroup>
+<author
+><firstname
+>Kåre</firstname
+> <surname
+>Särs</surname
+> <affiliation
+> <address
+><email
+>kare dot sars at iki dot fi</email
+></address>
+</affiliation>
+</author>
+<author
+><firstname
+>Anne-Marie</firstname
+> <surname
+>Mahfouf</surname
+> <affiliation
+> <address
+>&Anne-Marie.Mahfouf.mail;</address>
+</affiliation>
+</author>
+&Freek.de.Kruijf; 
+</authorgroup>
+
+<copyright>
+<year
+>2008, 2013</year>
+<holder
+>Kåre Särs</holder>
+</copyright>
+<copyright>
+<year
+>2008</year>
+<holder
+>&Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2016-08-24</date>
+<releaseinfo
+>&skanlite; 2.0.0</releaseinfo>
+
+<abstract>
+<para
+>&skanlite; is een toepassing voor het scannen van afbeeldingen die niets ander doet dan afbeeldingen scannen en opslaan. </para>
+<para
+>&skanlite; is gebaseerd op libksane, een &kde; interface voor de SANE-bibliotheek voor de besturing van afbeeldingsscanners.</para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kdegraphics</keyword>
+<keyword
+>scanner</keyword>
+<keyword
+>afbeeldingen</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Inleiding</title>
+<para
+>&skanlite; is een eenvoudige toepassing voor het scannen van afbeeldingen die niets meer doet dan scannen en opslaan van afbeeldingen. &skanlite; kan een opgeslagen dialoog voor elke gescande afbeelding opslaan of de afbeelding onmiddellijk in een gespecificeerde map opslaan met automatisch gegenereerde namen en formaten. De gebruiker kan ook kiezen om de gescande afbeelding te tonen voor het opslaan.</para>
+<para
+>&skanlite; kan afbeeldingen in alle formaten ondersteund door &Qt; opslaan. Bijvoorbeeld de volgende formaten: <itemizedlist>
+<listitem
+><para
+>png (8 en 16 bits per kleur) </para
+></listitem>
+<listitem
+><para
+>jpeg, jpg, jpeg 2000 </para
+></listitem>
+<listitem
+><para
+>bmp </para
+></listitem>
+</itemizedlist>
+</para>
+
+<note
+><para
+>U kunt de status van de ondersteuning van uw scanner controleren op de website van het SANE-project via de <ulink url="http://www.sane-project.org/sane-supported-devices.html"
+>Pagina over ondersteunde apparaten op de SANE website</ulink
+>.</para
+></note>
+
+</chapter>
+
+<chapter id="using-skanlite">
+<title
+>&skanlite; gebruiken</title>
+
+<sect1 id="scanner-selection">
+<title
+>Selectie van scanner</title>
+<para
+>Een standaard scanner kan gespecificeerd worden op de opdrachtregel van &skanlite; met gebruik van <userinput
+>skanlite -d [apparaatnaam]</userinput
+> in een terminal. Als de geselecteerde scanner niet geopend kan worden of als er geen standaard scanner is aangegeven, dan wordt er een selectiedialoog voor de scanner geopend. </para>
+
+<screenshot>
+     <screeninfo
+>Dialoog voor de selectie van de scanner voor &skanlite;</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="choose-scanner.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Dialoog voor de selectie van de scanner voor &skanlite;</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>De gebruiker kan de te gebruiken scanner kiezen en op <guibutton
+>OK</guibutton
+> drukken om de scanner te openen. Drukken op <guibutton
+>Annuleren</guibutton
+> zal zorgen dat &skanlite; wordt geëindigd. </para>
+
+<screenshot>
+     <screeninfo
+>Geen scanner gevonden</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="no-scanner-found.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Geen scanner gevonden</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>In het geval dat er geen apparaten zijn gevonden, misschien omdat de scanner niet is ingeplugd of uitgeschakeld, corrigeer dat dan. De knop <guibutton
+>Lijst met apparaten</guibutton
+> kan gebruikt worden om de lijst met scanners opnieuw te laden.</para
+> 
+<note
+><para
+>Niet alle apparaatstuurprogramma's/backends ondersteunen deze functie. Sluit in dat geval &skanlite;, verbindt uw scanner en start de toepassing opnieuw.</para>
+</note>
+
+</sect1>
+</chapter>
+
+<chapter id="main-window">
+<title
+>Hoofdvenster van &skanlite;</title>
+<screenshot>
+     <screeninfo
+>Hoofdvenster van &skanlite;</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="main-window.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Hoofdvenster van &skanlite;</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>In het hoofdvenster heeft de gebruiker twee sets scanopties: <guilabel
+>Basis opties</guilabel
+> en <guilabel
+>Scanner specifieke opties</guilabel
+>. Het tabblad <guilabel
+>Basis options</guilabel
+> bevat de meest algemene parameters die de backends van de SANE-scanner bieden, terwijl het tabblad <guilabel
+>Scanner specifieke opties</guilabel
+> alle opties van de backend bevat. De hier weergegeven opties hangen af van wat uw apparaatstuurprogramma voor SANE ondersteunt: libksane (die &skanlite; gebruikt) zou in staat moeten zijn om de meeste typen parameters die SANE biedt weer te geven (analoge gamma-tabellen worden op dit moment niet ondersteund). </para>
+
+<screenshot>
+     <screeninfo
+>Tabblad voor specifieke opties voor de scanner</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="other-options.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Tabblad voor specifieke opties voor de scanner</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>De scanner specifieke opties bevatten meer gedetailleerde opties van de backends. &skanlite; (libksane) heeft geen enkele speciale behandeling voor deze opties. </para>
+
+<para
+>Als u tevreden bent met uw instellingen kunt u de kleine pijl bovenaan de splitsing van de opties gebruiken. bij klikken vouwt het de opties in of uit. De vouwer kan het voorbeeldgebied overlappen, maar vervaagt wanneer de muiscursor uit de vouwer beweegt.</para
+>  
+
+<sect1 id="scanning">
+<title
+>Scannen</title>
+<para
+>Om een afbeelding te scannen kan de gebruiker starten met een voorbeeldscan en dan het deel van het scangebied selecteren om de uiteindelijke scan te doen. De voorbeeldscan wordt gestart door op de knop Voorbeeld te drukken. </para>
+
+<screenshot>
+     <screeninfo
+>De knop Voorbeeld</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="preview-button.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>De knop Voorbeeld</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Wanneer het voorbeeld is gescand kan het gebied van de uiteindelijke afbeelding worden geselecteerd. </para>
+<screenshot>
+     <screeninfo
+>Selectie en zoom</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="zoom-in.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Selectie en zoom</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>Om de afbeelding beter te kunnen selecteren kan de gebruiker in- en uitzoomen naar de huidige selectie of zoomen om het gehele voorbeeld in het venster te laten passen. </para>
+<screenshot>
+     <screeninfo
+>De knop "Passend maken"</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="zoom-to-fit.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>De knop "Passend maken"</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Wanneer de afbeelding is geselecteerd kan de uiteindelijke afbeelding worden verkregen door op de knop Uiteindelijke scan te drukken. </para>
+
+<screenshot>
+     <screeninfo
+>De knop Uiteindelijke scan</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="final-button.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>De knop Uiteindelijke scan</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>U zult de voortgang van de scan zien. </para>
+<screenshot>
+     <screeninfo
+>Voortgang van de scan</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="scanning.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Voortgang van de scan</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Als <guilabel
+>Voorbeeld voor opslaan</guilabel
+> is geselecteerd in de instellingen, zal de gescande afbeelding worden getoond in een voorbeeldvenster zoals u kunt onderstaand kunt zien in de schermafdruk. Als <guibutton
+>Opslaan</guibutton
+> wordt ingedrukt, wordt de afbeelding opgeslagen en als <guibutton
+>Weggooien</guibutton
+> wordt ingedrukt zal het voorbeeld worden weggegooid en keert u terug naar het hoofdvenster. </para>
+<screenshot>
+     <screeninfo
+>Het Voorbeeldvenster</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="preview.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Het Voorbeeldvenster</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+</sect1>
+
+<sect1 id="scanning-multiple-selections">
+<title
+>Meerdere selecties scannen</title>
+<para
+>Soms hebt u alleen bepaalde delen van een afbeelding nodig. In plaats van het gehele plaatje te scannen en daarna een grafische toepassing te gebruiken (&eg; &kolourpaint;) om de verschillende delen van de afbeelding in aparte bestanden op te slaan, kunt u de functie Meerdere selecties van &skanlite; gebruiken. </para>
+<screenshot>
+     <screeninfo
+>Meerdere selecties</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="multiple-selections.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Meerdere selecties</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>Scan een voorbeeld en gebruik dan de &LMB; om het eerste deel van de afbeelding in het voorbeeld te selecteren. Beweeg over het geselecteerde gebied met de muiscursor en klik op het groene pictogram <guiicon
+>+</guiicon
+> om het gebied te selecteren. Geselecteerde gebieden worden aangegeven door een rode rand. Selecteer daarna de volgende gedeelten van de afbeelding op dezelfde manier.</para>
+<para
+>Om een enkele selectie te verwijderen beweeg over het gebied met de muiscursor en klik op de rode pictogram <guiicon
+>-</guiicon
+>. Met <guilabel
+>Selecties wissen</guilabel
+> uit het contextmenu gestart met de &RMB; kunnen alle selecties in een voorbeeld worden verwijderd. </para>
+<para
+>Als u twee separate afbeeldingen of foto's op uw scanner hebt geplaatst en een voorbeeld hebt gestart zal &skanlite; automatisch de verschillende gebieden selecteren. Dit gedrag kan worden uitgeschakeld in de instellingendialoog. </para>
+<para
+>Als u tevreden bent met uw keuze, kan de scan van de bulk van alle selecties beginnen. De afbeeldingen worden opgeslagen met de functie van in bulk hernoemen beschreven in de instellingendialoog. </para>
+</sect1>
+
+<sect1 id="settings">
+<title
+>Instellingnen van &skanlite;</title>
+<para
+>Door te klikken op de knop <guibutton
+>Instellingen</guibutton
+> zal de instellingendialoog verschijnen voor het hoofdvenster. U kunt de meest belangrijke instellingen hier instellen. </para>
+
+<screenshot>
+    <screeninfo
+>Hier is een schermafdruk van de instellingendialoog van &skanlite;</screeninfo>
+    <mediaobject>
+        <imageobject>
+            <imagedata fileref="settings.png" format="PNG"/>
+        </imageobject>
+        <textobject>
+            <phrase
+>Instellingendialoog van &skanlite;</phrase>
+        </textobject>
+    </mediaobject>
+</screenshot>
+
+<para
+><variablelist>
+<varlistentry>
+<term
+><guilabel
+>Voorbeeld voor opslaan:</guilabel
+></term>
+<listitem
+><para
+>De gebruiker kan kiezen om de afbeelding te bekijken voor het opslaan. In dat geval kan de optie <guilabel
+>Voorbeeld voor opslaan</guilabel
+> geactiveerd blijven. Als de gebruiker geen voorbeeld van de afbeelding wil zien dan moet deze optie niet geactiveerd worden. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Opslagmodus:</guilabel
+></term>
+<listitem>
+<para
+>Deze instelling staat toe om te kiezen hoe &skanlite; de afbeeldingen zal opslaan. Als u <guilabel
+>Open de opslagdialoog voor elke afbeelding</guilabel
+> kiest zal de opslagdialoog geopend worden voor elke gescande afbeelding. Als u de voorkeur geeft aan het automatisch opslaan van &skanlite; (door automatisch een naam te genereren en de afbeelding in een voorgedefinieerde map op te slaan) dan kunt u <guilabel
+>Open de opslagdialoog alleen voor de eerste afbeelding</guilabel
+> kiezen. Deze optie de volgende dialoog "Locatie voor opslaan" voor de eerst gescande afbeelding.</para>
+<para>
+    <screenshot>
+        <screeninfo
+>Hier is een schermafdruk van de opslagdialoog van &skanlite;</screeninfo>
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="save-location.png" format="PNG"/>
+            </imageobject>
+            <textobject>
+                <phrase
+>Opslagdialoog van &skanlite;</phrase>
+            </textobject>
+        </mediaobject>
+    </screenshot>
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Opslaglocatie:</guilabel
+></term>
+<listitem
+><para
+>Deze instelling definieert de standaard opslaglocatie en de hoe naam van het bestand moet worden. De standaard opslaglocatie is uw persoonlijke map en u kunt deze locatie wijzigen door te klikken op de knop <guibutton
+>...</guibutton
+>. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Naamindeling:</guilabel
+></term>
+<listitem
+><para
+>Deze parameter definieert het voorvoegsel van de afbeelding voor automatisch opgeslagen afbeeldingen en is ook de gesuggereerde naam voor de afbeelding in de dialoog Opslaan. De automatisch opgeslagen afbeelding zal een numeriek achtervoegsel krijgen (de ### zullen vervangen worden door cijfers) die elke keer verhoogd worden wanneer er een afbeelding wordt opgeslagen. </para
+><para
+>U kunt ook het formaat van het bestand kiezen voor het opslaan, standaard is png.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Specificeer de opslagkwaliteit:</guilabel
+></term>
+<listitem
+><para
+>De gebruiker kan de te gebruiken kwaliteit voor het opslaan van de afbeeldingen kiezen. De instelling van de afbeeldingskwaliteit beïnvloedt het gebruikte compressieniveau voor opslaan. Als <guilabel
+>Specificeer de opslagkwaliteit</guilabel
+> niet is geactiveerd, zal de kwaliteit de standaardwaarde zijn gekozen door &Qt;. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>De resolutie (DPI) van het voorbeeld instellen</guilabel
+></term>
+<listitem
+><para
+>&skanlite; gebruikt heuristics om te proberen een gezonde resolutie te verkrijgen, maar als dat mislukt en de resolutie is te hoog of te laag, dan kan de resolutie van het voorbeeld handmatig worden ingesteld met deze optie. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Schakel automatische selecties uit</guilabel
+></term>
+<listitem
+><para
+>Standaard zijn automatische selecties ingeschakeld; en na een voorbeeld, zal libksane proberen om automatisch de afbeeldingen in het voorbeeld te selecteren en een bulkscan doen van de geselecteerde gebieden. &eg; als u twee foto's op de scanner plaatst en een voorbeeld doet, zal &skanlite; automatisch selecties van de foto's toevoegen.</para>
+<para
+>Aan de andere kant bent u gewoonlijk documenten aan het scannen waarbij de automatische selectie heel wat verschillende delen in de documenten zal selecteren en moet u de selecties handmatig verwijderen. Om dat te vermijden activeert u het keuzevakje en schakelt u automatische selectie uit. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Zet opties voor de scanner terug naar standaardwaarden</guilabel
+></term>
+<listitem
+><para
+>De laatst gebruikte instellingen worden bij opstarten herladen. Als u de opties verknoeit hebt (u hebt bijvoorbeeld de instellingen voor kleurcorrectie gewijzigd, die beschikbaar zijn in sommige backends, zonder te weten wat hun betekenis is), dan kan de afbeelding aan het begin er heel raar uitzien. Als dat het geval is dan biedt deze optie provides een manier om de instelling terug te zetten naar de standaard waarden, die een combinatie zijn van standaarden voor backend en libksane. </para
+></listitem>
+</varlistentry>
+</variablelist
+></para>
+</sect1>
+
+<sect1 id="help">
+<title
+>Help, Over, Instellingen en Sluiten</title>
+<para
+>Onderaan het hoofdvenster vindt u de knoppen <guibutton
+>Help</guibutton
+>, <guibutton
+>Over</guibutton
+>, <guibutton
+>Instellingen</guibutton
+> en <guibutton
+>Sluiten</guibutton
+>.</para>
+
+<screenshot>
+     <screeninfo
+>De knoppen in het hoofdvenster</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="buttons-main.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>De knoppen in het hoofdvenster</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>De knop <guibutton
+>Help</guibutton
+> laat het &kde; Documentatiecentrum verschijnen met het handboek van &skanlite;. De knop <guibutton
+>Over</guibutton
+> laat de dialoog 'Over &kde;' voor &skanlite; verschijnen. De knop <guibutton
+>instellingen</guibutton
+> toont de instellingendialoog en de knop <guibutton
+>Sluiten</guibutton
+> wordt gebruikt om &skanlite; te beëindigen.</para>
+</sect1>
+</chapter>
+
+<chapter id="credits">
+
+<title
+>Dankbetuiging en licentie</title>
+<para
+>&skanlite; </para>
+<para
+>Programma copyright 2007 Kåre Särs <email
+>kare dot sars at iki dot fi</email
+> </para>
+<para
+>Met dank aan: <itemizedlist
+> <listitem
+><para
+>Auteur: Kåre Särs <email
+>kare dot sars at iki dot fi</email
+></para>
+</listitem>
+</itemizedlist>
+</para>
+
+&meld.fouten;&vertaling.freek; &underFDL; <para
+>De licentie van &skanlite; is GPL en die van de libksane bibliotheek, die door &skanlite; wordt gebruikt, is de LGPL. Opmerking: de licentie van libsane is GPL met een uitzondering. </para>
+</chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->
