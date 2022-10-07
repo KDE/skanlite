@@ -375,6 +375,3 @@ msgstr "%1 %2 - Skanlite"
 msgctxt "@title:window %1 = scanner device"
 msgid "%1 - Skanlite"
 msgstr "%1 - Skanlite"
-
-#~ msgid "About"
-#~ msgstr "情報"
