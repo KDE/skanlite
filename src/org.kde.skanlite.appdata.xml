@@ -25,6 +25,7 @@
   <name xml:lang="ia">Skanlite</name>
   <name xml:lang="id">Skanlite</name>
   <name xml:lang="it">Skanlite</name>
+  <name xml:lang="ka">Skanlite</name>
   <name xml:lang="ko">Skanlite</name>
   <name xml:lang="lt">Skanlite</name>
   <name xml:lang="nl">Skanlite</name>
@@ -64,6 +65,7 @@
   <summary xml:lang="ia">Application pro scander imagines</summary>
   <summary xml:lang="id">Aplikasi Pemindaian Citra</summary>
   <summary xml:lang="it">Applicazione per la scansione delle immagini</summary>
+  <summary xml:lang="ka">სურათების სკანირების აპლიკაცია</summary>
   <summary xml:lang="ko">그림 스캐닝 프로그램</summary>
   <summary xml:lang="lt">Paveikslų skenavimo programa</summary>
   <summary xml:lang="nl">Afbeeldingscanprogramma</summary>
@@ -140,6 +142,7 @@
     <p xml:lang="ia">Characteristicas:</p>
     <p xml:lang="id">Fitur:</p>
     <p xml:lang="it">Funzionalità:</p>
+    <p xml:lang="ka">თვისებები:</p>
     <p xml:lang="ko">기능:</p>
     <p xml:lang="lt">Ypatybės:</p>
     <p xml:lang="nl">Mogelijkheden:</p>
@@ -216,6 +219,7 @@
       <li xml:lang="ia">Supporto per le scanditores de rete</li>
       <li xml:lang="id">Mendukung pemindaian jaringan</li>
       <li xml:lang="it">Supporto per scanner di rete</li>
+      <li xml:lang="ka">ქსელური სკანერების მხარდაჭერა</li>
       <li xml:lang="ko">네트워크 스캐너 지원</li>
       <li xml:lang="lt">Tinklo skenerių palaikymas</li>
       <li xml:lang="nl">Ondersteuning voor scanners in het netwerk</li>
