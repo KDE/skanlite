@@ -24,6 +24,7 @@
   <name xml:lang="hu">Skanlite</name>
   <name xml:lang="ia">Skanlite</name>
   <name xml:lang="id">Skanlite</name>
+  <name xml:lang="ie">Skanlite</name>
   <name xml:lang="is">Skanlite</name>
   <name xml:lang="it">Skanlite</name>
   <name xml:lang="ka">Skanlite</name>
@@ -65,6 +66,7 @@
   <summary xml:lang="hu">Képolvasó alkalmazás</summary>
   <summary xml:lang="ia">Application pro scander imagines</summary>
   <summary xml:lang="id">Aplikasi Pemindaian Citra</summary>
+  <summary xml:lang="ie">Scannation de images</summary>
   <summary xml:lang="is">Myndskönnunarforrit</summary>
   <summary xml:lang="it">Applicazione per la scansione delle immagini</summary>
   <summary xml:lang="ka">სურათების სკანირების აპლიკაცია</summary>
@@ -144,6 +146,7 @@
     <p xml:lang="hu">Szolgáltatások:</p>
     <p xml:lang="ia">Characteristicas:</p>
     <p xml:lang="id">Fitur:</p>
+    <p xml:lang="ie">Caracteristicas:</p>
     <p xml:lang="is">Eiginleikar:</p>
     <p xml:lang="it">Funzionalità:</p>
     <p xml:lang="ka">თვისებები:</p>
@@ -186,6 +189,7 @@
       <li xml:lang="hu">Mentési párbeszédablak minden beolvasott képhez, vagy azonnali mentés egy megadott mappába, automatikusan generált fájlnévvel és formátumban</li>
       <li xml:lang="ia">Salveguarda dialogo per cata image scandite o salveguardar le images immediatemente in un specificate dossier con nomines e formato auto-generate</li>
       <li xml:lang="id">Dialog penyimpanan untuk setiap citra yang dipindai atau penyimpanan citra langsung ke dalam sebuah folder yang ditentukan dengan nama dan format yang dihasilkan secara otomatis</li>
+      <li xml:lang="ie">Gardar chascun image separatmen o gardar les ínmediatmen in un fólder con autogenerat nómines e formate</li>
       <li xml:lang="is">Vistunargluggi fyrir hverja skannaða mynd eða sjálfvirk vistun í tiltekna möppu með sjálfvirkt útbúnum nöfnum og myndsniðum</li>
       <li xml:lang="it">Finestra di dialogo per ogni scansione immagine o salvataggio immediato delle immagini in una cartella specifica con nomi e formati generati in automatico</li>
       <li xml:lang="ko">스캔한 그림마다 이름을 지정하거나 지정한 폴더에 자동 생성한 이름으로 저장</li>
@@ -223,6 +227,7 @@
       <li xml:lang="hu">Hálózati képolvasók támogatása</li>
       <li xml:lang="ia">Supporto per le scanditores de rete</li>
       <li xml:lang="id">Mendukung pemindaian jaringan</li>
+      <li xml:lang="ie">Supporte de scannatores in rete</li>
       <li xml:lang="is">Stuðningur við nettengda skanna</li>
       <li xml:lang="it">Supporto per scanner di rete</li>
       <li xml:lang="ka">ქსელური სკანერების მხარდაჭერა</li>
@@ -263,6 +268,7 @@
       <li xml:lang="hu">Előnézet kijelölési lehetőséggel a végső beolvasáshoz</li>
       <li xml:lang="ia">Vista preliminari con characteristica de selection per le scansion final</li>
       <li xml:lang="id">Pratinjau dengan fitur pemilihan untuk pemindaian akhir</li>
+      <li xml:lang="ie">Prevision con selection por li final scan</li>
       <li xml:lang="is">Forskoða með myndvalseiginleika fyrir endanlega skönnun</li>
       <li xml:lang="it">Anteprima con funzionalità di selezione per la scansione finale</li>
       <li xml:lang="ko">미리 보기 기능 및 일부만 최종 스캔</li>
@@ -301,6 +307,7 @@
       <li xml:lang="hu">Több kijelölés beolvasása egy képről</li>
       <li xml:lang="ia">Scandente multiple selectiones de un image</li>
       <li xml:lang="id">Pemindaian pemilihan multipel pada sebuah citra</li>
+      <li xml:lang="ie">Scannar multiplic selectiones de un image</li>
       <li xml:lang="is">Skanna marga valfleti á mynd</li>
       <li xml:lang="it">Selezioni multiple di scansione di un'immagine</li>
       <li xml:lang="ko">한 그림의 여러 선택 영역 스캔</li>
