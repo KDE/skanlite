@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: skanlite\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-05-10 00:43+0000\n"
-"PO-Revision-Date: 2022-10-07 11:39+0200\n"
+"PO-Revision-Date: 2022-11-27 11:30+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2\n"
 
 #: ImageViewer.cpp:43
 #, kde-format
@@ -86,7 +86,7 @@ msgstr "Gilles Caulier"
 #: main.cpp:52 main.cpp:58
 #, kde-format
 msgid "Importing libksane to extragear"
-msgstr ""
+msgstr "მიმდინარეობს libksane-ის შემოტანა extragear-ში"
 
 #: main.cpp:54
 #, kde-format
@@ -134,6 +134,8 @@ msgstr "Temuri.doghonadze@gmail.com"
 #, kde-format
 msgid "Sane scanner device name. Use 'test' for test device."
 msgstr ""
+"Sane-ის სკანერის მოწყობილობის სახელი. სატესტო მოწყობილობისთვის გამოიყენეთ "
+"'test'."
 
 #: main.cpp:76
 #, kde-format
@@ -212,13 +214,13 @@ msgstr "შენახვის რეჟიმი:"
 #: settings.ui:60
 #, kde-format
 msgid "Open the save dialog for every image"
-msgstr ""
+msgstr "შენახვის ფანჯრის ყოველი სურათისთვის გახსნა"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, saveModeCB)
 #: settings.ui:65
 #, kde-format
 msgid "Open the save dialog for the first image only"
-msgstr ""
+msgstr "შენახვის ფანჯრის მხოლოდ პირველი სურათისთვის გახსნა"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: settings.ui:90
@@ -340,6 +342,8 @@ msgid ""
 "The image will be saved in the PNG format, as the selected image type does "
 "not support saving 16 bit color images."
 msgstr ""
+"სურათი შენახული იქნება PNG ფორმატში, რადგან სურათის მონიშნულ ტიპს 16-ბიტიანი "
+"სურათების მხარდაჭერა არ გააჩნია."
 
 #: skanlite.cpp:500
 #, kde-format
