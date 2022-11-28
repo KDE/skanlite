@@ -110,6 +110,7 @@
     <p xml:lang="id">Skanlite adalah aplikasi pemindaian citra yang sederhana untuk memindai dan menyimpan citra. Dioptimisasikan untuk pemindaian dengan pemindai flatbed. Skanlite dapat menangkap tidak hanya citra dan dokumen, tetapi juga dengan slide dan strip film yang transparan, dengan pemindai yang didukung.</p>
     <p xml:lang="is">Skanlite er einfalt myndskönnunarforrit til að skanna og vista myndir. Það virkar best með flatskönnum. Skanlite getur ekki aðeins skannað myndir og skjöl heldur einnig skyggnur og filmuræmur, með studdum skönnum.</p>
     <p xml:lang="it">Skanlite è una semplice applicazione per la scansione e il salvataggio delle immagini. È ottimizzata per la scansione con scanner piani. Skanlite è in grado di catturare non solo foto e documenti, ma anche diapositive trasparenti e pellicole, con gli scanner supportati.</p>
+    <p xml:lang="ka">Skanlite მარტივი სურათების სკანირების პროგრამაა. ის ოპტიმიზირებულია ბრტყელი სკანერებისთვის. Skanlite -ს შეუძლია არა მხოლოდ სურათებისა და დოკუმენტების სკანირება, არამედ გამჭვირვალე სლაიდებისა და ლენტებისაც, თუ ამის მხარდაჭერა სკანერს გააჩნია.</p>
     <p xml:lang="ko">Skanlite는 그림을 스캔하고 저장하는 간단한 도구입니다. 플랫베드 스캐너에 최적화되어 있습니다. Skanlite를 사용하여 사진이나 문서뿐만 아니라 슬라이드 및 네거티브 필름도 스캔할 수 있습니다(지원하는 스캐너 필요).</p>
     <p xml:lang="lt">Skanlite yra paprasta paveikslų skenavimo programa, skirta skenuoti bei įrašyti paveikslus. Ji yra optimizuota skenavimui naudojant plokščiuosius skenerius. Skanlite gali įamžinti ne tik nuotraukas ir dokumentus, bet naudojant palaikomus skenerius, gali skenuoti ir permatomas skaidres bei diafilmus.</p>
     <p xml:lang="nl">Skanlite is eenvoudige toepassing voor het scannen en opslaan van afbeeldingen. Het is geoptimaliseerd voor scannen met flatbedscanners. Skanlite kan niet alleen foto's en documenten opnemen, maar ook transparante dia's en filmstrips, met ondersteunde scanners.</p>
@@ -192,6 +193,7 @@
       <li xml:lang="ie">Gardar chascun image separatmen o gardar les ínmediatmen in un fólder con autogenerat nómines e formate</li>
       <li xml:lang="is">Vistunargluggi fyrir hverja skannaða mynd eða sjálfvirk vistun í tiltekna möppu með sjálfvirkt útbúnum nöfnum og myndsniðum</li>
       <li xml:lang="it">Finestra di dialogo per ogni scansione immagine o salvataggio immediato delle immagini in una cartella specifica con nomi e formati generati in automatico</li>
+      <li xml:lang="ka">შენახვის ფანჯარა ყოველი დასკანერებულია გამოსახულებისთვის ან გამოსახულებების ავტომატური შენახვა მითითებულ საქაღალდეში, ავტომატურად გენერირებული სახელითა და ფორმატით</li>
       <li xml:lang="ko">스캔한 그림마다 이름을 지정하거나 지정한 폴더에 자동 생성한 이름으로 저장</li>
       <li xml:lang="lt">Įrašymo dialogas kiekvienam nuskenuotam paveikslui arba betarpiškas paveikslų įrašymas į nurodytą aplanką su automatiškai sugeneruotais pavadinimais bei formatu</li>
       <li xml:lang="nl">De dialoog voor opslaan van elke gescande afbeelding of het onmiddellijk in een een gespecificeerde map opslaan met automatisch gegenereerde namen en formaten.</li>
@@ -271,6 +273,7 @@
       <li xml:lang="ie">Prevision con selection por li final scan</li>
       <li xml:lang="is">Forskoða með myndvalseiginleika fyrir endanlega skönnun</li>
       <li xml:lang="it">Anteprima con funzionalità di selezione per la scansione finale</li>
+      <li xml:lang="ka">მინიატურა მონიშვნის თვისებით, საბოლოო სკანირებისთვის</li>
       <li xml:lang="ko">미리 보기 기능 및 일부만 최종 스캔</li>
       <li xml:lang="lt">Peržiūra su galutinio skenavimo pasirinkimo ypatybe</li>
       <li xml:lang="nl">Voorbeeldweergave met geselecteerde functie voor de uiteindelijke scan</li>
@@ -310,6 +313,7 @@
       <li xml:lang="ie">Scannar multiplic selectiones de un image</li>
       <li xml:lang="is">Skanna marga valfleti á mynd</li>
       <li xml:lang="it">Selezioni multiple di scansione di un'immagine</li>
+      <li xml:lang="ka">გამოსახულების მრავალი მონიშნულის სკანირება</li>
       <li xml:lang="ko">한 그림의 여러 선택 영역 스캔</li>
       <li xml:lang="lt">Kelių paveikslo pasirinkimų skenavimas</li>
       <li xml:lang="nl">Scannen van meerdere selecties van een afbeelding</li>
