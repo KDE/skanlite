@@ -48,8 +48,6 @@ private:
 private Q_SLOTS:
     void showSettingsDialog();
     void imageReady(const QImage &image);
-    void disableReselectDeviceButton();
-    void enableReselectDeviceButton();
     void saveImage();
     void updateSaveProgress();
     void imageSaved(const QUrl &url, const QString &name, bool success);
