@@ -48,6 +48,8 @@ private:
 private Q_SLOTS:
     void showSettingsDialog();
     void imageReady(const QImage &image);
+    void disableReselectDeviceButton();
+    void enableReselectDeviceButton();
     void saveImage();
     void updateSaveProgress();
     void imageSaved(const QUrl &url, const QString &name, bool success);
@@ -82,6 +84,7 @@ protected:
 private:
     KSaneIface::KSaneWidget             *m_ksanew = nullptr;
     QProgressBar            *m_saveProgressBar = nullptr;
+    QPushButton             *m_btnReselectDevice = nullptr;
     QUrl                     m_currentSaveUrl;
     QTimer                   m_saveUpdateTimer;
     Ui::SkanliteSettings     m_settingsUi;

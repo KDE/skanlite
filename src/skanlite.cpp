@@ -63,9 +63,9 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     btnConfigure->setIcon(QIcon::fromTheme(QStringLiteral("configure")));
     btnConfigure->setAutoDefault(false);
 
-    QPushButton *btnReselectDevice = dlgButtonBoxBottom->addButton(i18n("Reselect scanner device"), QDialogButtonBox::ButtonRole::ActionRole);
-    btnReselectDevice->setIcon(QIcon::fromTheme(QStringLiteral("view-refresh")));
-    btnReselectDevice->setAutoDefault(false);
+    m_btnReselectDevice = dlgButtonBoxBottom->addButton(i18n("Reselect scanner device"), QDialogButtonBox::ButtonRole::ActionRole);
+    m_btnReselectDevice->setIcon(QIcon::fromTheme(QStringLiteral("view-refresh")));
+    m_btnReselectDevice->setAutoDefault(false);
 
     m_firstImage = true;
 
@@ -73,6 +73,8 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     connect(m_ksanew, &KSaneWidget::scannedImageReady, this, &Skanlite::imageReady);
     connect(m_ksanew, &KSaneWidget::userMessage, this, &Skanlite::alertUser);
     connect(m_ksanew, &KSaneWidget::buttonPressed, this, &Skanlite::buttonPressed);
+    connect(m_ksanew, &KSaneWidget::scanProgress, this, &Skanlite::disableReselectDeviceButton);
+    connect(m_ksanew, &KSaneWidget::scanDone, this, &Skanlite::enableReselectDeviceButton);
     connect(m_ksanew, &KSaneWidget::scanDone, this, [this](){
         if (!m_pendingApplyScanOpts.isEmpty()) {
             applyScannerOptions(m_pendingApplyScanOpts);
@@ -115,7 +117,7 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     connect(this, &QDialog::finished, this, &Skanlite::saveScannerDevice);
     connect(this, &QDialog::finished, this, &Skanlite::saveScannerOptions);
     connect(btnConfigure, &QPushButton::clicked, this, &Skanlite::showSettingsDialog);
-    connect(btnReselectDevice, &QPushButton::clicked, this, &Skanlite::reselectScannerDevice);
+    connect(m_btnReselectDevice, &QPushButton::clicked, this, &Skanlite::reselectScannerDevice);
     connect(dlgButtonBoxBottom, &QDialogButtonBox::helpRequested, this, &Skanlite::showHelp);
 
     //
@@ -418,6 +420,17 @@ void Skanlite::imageReady(const QImage &image)
     else {
         saveImage();
     }
+}
+
+// Prevents sane settings from being changed while a scan is in progress
+void Skanlite::disableReselectDeviceButton(void)
+{
+    m_btnReselectDevice->setEnabled(false);
+}
+
+void Skanlite::enableReselectDeviceButton(void)
+{
+    m_btnReselectDevice->setEnabled(true);
 }
 
 bool urlExists(const QUrl& url)
