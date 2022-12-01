@@ -73,12 +73,16 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     connect(m_ksanew, &KSaneWidget::scannedImageReady, this, &Skanlite::imageReady);
     connect(m_ksanew, &KSaneWidget::userMessage, this, &Skanlite::alertUser);
     connect(m_ksanew, &KSaneWidget::buttonPressed, this, &Skanlite::buttonPressed);
-    connect(m_ksanew, &KSaneWidget::scanProgress, this, &Skanlite::disableReselectDeviceButton);
-    connect(m_ksanew, &KSaneWidget::scanDone, this, &Skanlite::enableReselectDeviceButton);
+    connect(m_ksanew, &KSaneWidget::scanProgress, this, [this](int percent){
+        if (percent < 100) {
+            m_btnReselectDevice->setEnabled(false);
+        }
+    });
     connect(m_ksanew, &KSaneWidget::scanDone, this, [this](){
         if (!m_pendingApplyScanOpts.isEmpty()) {
             applyScannerOptions(m_pendingApplyScanOpts);
         }
+        m_btnReselectDevice->setEnabled(true);
     });
 
     m_saveProgressBar = new QProgressBar(this);
@@ -420,17 +424,6 @@ void Skanlite::imageReady(const QImage &image)
     else {
         saveImage();
     }
-}
-
-// Prevents sane settings from being changed while a scan is in progress
-void Skanlite::disableReselectDeviceButton(void)
-{
-    m_btnReselectDevice->setEnabled(false);
-}
-
-void Skanlite::enableReselectDeviceButton(void)
-{
-    m_btnReselectDevice->setEnabled(true);
 }
 
 bool urlExists(const QUrl& url)
