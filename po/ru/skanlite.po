@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-05-10 00:43+0000\n"
+"POT-Creation-Date: 2022-12-07 00:45+0000\n"
 "PO-Revision-Date: 2022-05-14 09:26+0300\n"
 "Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
@@ -44,7 +44,7 @@ msgstr "Фактический размер"
 msgid "Zoom to Fit"
 msgstr "Вместить в окно"
 
-#: main.cpp:32 skanlite.cpp:776
+#: main.cpp:32 skanlite.cpp:782
 #, kde-format
 msgid "Skanlite"
 msgstr "Skanlite"
@@ -316,33 +316,33 @@ msgstr "Настроить…"
 msgid "Reselect scanner device"
 msgstr "Выбрать другой сканер"
 
-#: skanlite.cpp:84
+#: skanlite.cpp:90
 #, kde-format
 msgid "Saving: %v kB"
 msgstr "Сохранение: %v КБ"
 
-#: skanlite.cpp:180
+#: skanlite.cpp:186
 #, kde-format
 msgid "Skanlite Settings"
 msgstr "Настройка Skanlite"
 
-#: skanlite.cpp:200 skanlite.cpp:299
+#: skanlite.cpp:206 skanlite.cpp:305
 #, kde-format
 msgid "Opening the selected scanner failed."
 msgstr "Не удалось открыть выбранный сканер."
 
-#: skanlite.cpp:314
+#: skanlite.cpp:320
 #, kde-format
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: skanlite.cpp:334
+#: skanlite.cpp:340
 #, kde-format
 msgctxt "prefix for auto naming"
 msgid "Image-"
 msgstr "Изображение-"
 
-#: skanlite.cpp:475
+#: skanlite.cpp:481
 #, kde-format
 msgid ""
 "The image will be saved in the PNG format, as the selected image type does "
@@ -351,28 +351,28 @@ msgstr ""
 "Изображение будет сохранено в формате PNG, поскольку выбранный тип "
 "изображения не поддерживает сохранение изображений с глубиной цвета 16 бит."
 
-#: skanlite.cpp:500
+#: skanlite.cpp:506
 #, kde-format
 msgid "New Image File Name"
 msgstr "Новое имя файла изображения"
 
-#: skanlite.cpp:604
+#: skanlite.cpp:610
 #, kde-format
 msgid "Failed to save image"
 msgstr "Не удалось сохранить изображение"
 
-#: skanlite.cpp:617
+#: skanlite.cpp:623
 #, kde-format
 msgid "Failed to upload image"
 msgstr "Не удалось отправить изображение в сеть"
 
-#: skanlite.cpp:772
+#: skanlite.cpp:778
 #, kde-format
 msgctxt "@title:window %1 = scanner maker, %2 = scanner model"
 msgid "%1 %2 - Skanlite"
 msgstr "%1 %2 — Skanlite"
 
-#: skanlite.cpp:774
+#: skanlite.cpp:780
 #, kde-format
 msgctxt "@title:window %1 = scanner device"
 msgid "%1 - Skanlite"
