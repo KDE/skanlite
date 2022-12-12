@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-05-10 00:43+0000\n"
+"POT-Creation-Date: 2022-12-12 02:58+0000\n"
 "PO-Revision-Date: 2022-02-20 21:09+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -37,7 +37,7 @@ msgstr "실제 크기"
 msgid "Zoom to Fit"
 msgstr "맞추기"
 
-#: main.cpp:32 skanlite.cpp:776
+#: main.cpp:32 skanlite.cpp:782
 #, kde-format
 msgid "Skanlite"
 msgstr "Skanlite"
@@ -308,33 +308,33 @@ msgstr "설정..."
 msgid "Reselect scanner device"
 msgstr "스캐너 장치 다시 선택"
 
-#: skanlite.cpp:84
+#: skanlite.cpp:90
 #, kde-format
 msgid "Saving: %v kB"
 msgstr "저장: %v kB"
 
-#: skanlite.cpp:180
+#: skanlite.cpp:186
 #, kde-format
 msgid "Skanlite Settings"
 msgstr "Skanlite 설정"
 
-#: skanlite.cpp:200 skanlite.cpp:299
+#: skanlite.cpp:206 skanlite.cpp:305
 #, kde-format
 msgid "Opening the selected scanner failed."
 msgstr "선택한 스캐너를 여는 데 실패했습니다."
 
-#: skanlite.cpp:314
+#: skanlite.cpp:320
 #, kde-format
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: skanlite.cpp:334
+#: skanlite.cpp:340
 #, kde-format
 msgctxt "prefix for auto naming"
 msgid "Image-"
 msgstr "그림-"
 
-#: skanlite.cpp:475
+#: skanlite.cpp:481
 #, kde-format
 msgid ""
 "The image will be saved in the PNG format, as the selected image type does "
@@ -343,28 +343,28 @@ msgstr ""
 "선택한 그림 형식은 16비트 그림을 저장할 수 없으므로, 이 그림은 PNG로 저장됩니"
 "다."
 
-#: skanlite.cpp:500
+#: skanlite.cpp:506
 #, kde-format
 msgid "New Image File Name"
 msgstr "새 그림 파일 이름"
 
-#: skanlite.cpp:604
+#: skanlite.cpp:610
 #, kde-format
 msgid "Failed to save image"
 msgstr "그림을 저장할 수 없습니다"
 
-#: skanlite.cpp:617
+#: skanlite.cpp:623
 #, kde-format
 msgid "Failed to upload image"
 msgstr "그림을 업로드할 수 없습니다"
 
-#: skanlite.cpp:772
+#: skanlite.cpp:778
 #, kde-format
 msgctxt "@title:window %1 = scanner maker, %2 = scanner model"
 msgid "%1 %2 - Skanlite"
 msgstr "%1 %2 - Skanlite"
 
-#: skanlite.cpp:774
+#: skanlite.cpp:780
 #, kde-format
 msgctxt "@title:window %1 = scanner device"
 msgid "%1 - Skanlite"
