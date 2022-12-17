@@ -1,0 +1,611 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Russian "INCLUDE"
+><!-- change language only here -->
+]>
+
+<book id="skanlite" lang="&language;">
+
+<bookinfo>
+<title
+>Руководство пользователя &skanlite;</title>
+
+<authorgroup>
+<author
+><firstname
+>Kåre</firstname
+> <surname
+>Särs</surname
+> <affiliation
+> <address
+><email
+>kare dot sars at iki dot fi</email
+></address>
+</affiliation>
+</author>
+<author
+><firstname
+>Anne-Marie</firstname
+> <surname
+>Mahfouf</surname
+> <affiliation
+> <address
+>&Anne-Marie.Mahfouf.mail;</address>
+</affiliation>
+</author>
+<othercredit role="translator"
+><firstname
+>Мария</firstname
+><surname
+>Шикунова</surname
+><affiliation
+><address
+><email
+>translation-team@basealt.ru</email
+></address
+></affiliation
+><contrib
+>Перевод на русский язык</contrib
+></othercredit
+><othercredit role="translator"
+><firstname
+>Олеся</firstname
+><surname
+>Герасименко</surname
+><affiliation
+><address
+><email
+>translation-team@basealt.ru</email
+></address
+></affiliation
+><contrib
+>Редактирование перевода</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2008, 2013</year>
+<holder
+>Kåre Särs</holder>
+</copyright>
+<copyright>
+<year
+>2008</year>
+<holder
+>&Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>24 августа 2016 г.</date>
+<releaseinfo
+>&skanlite; 2.0.0</releaseinfo>
+
+<abstract>
+<para
+>&skanlite; — это простое приложение для сканирования и сохранения изображений. </para>
+<para
+>Приложение &skanlite; основано на libksane, интерфейсе &kde; к библиотеке SANE для управления сканерами.</para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kdegraphics</keyword>
+<keyword
+>сканер</keyword>
+<keyword
+>изображения</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Введение</title>
+<para
+>&skanlite; — это простое приложение для сканирования и сохранения изображений. &skanlite; может открывать диалог сохранения для каждого отсканированного изображения или сразу же сохранять его в установленную пользователем папку. Поддерживается функция просмотра отсканированного изображения перед его сохранением.</para>
+<para
+>&skanlite; сохраняет изображения во всех форматах, поддерживаемых &Qt;. Доступны следующие форматы: <itemizedlist>
+<listitem
+><para
+>png (8 и 16 бит на цвет) </para
+></listitem>
+<listitem
+><para
+>jpeg, jpg, jpeg 2000 </para
+></listitem>
+<listitem
+><para
+>bmp </para
+></listitem>
+</itemizedlist>
+</para>
+
+<note
+><para
+>Чтобы проверить, поддерживается ли сканер проектом SANE, посетите <ulink url="http://www.sane-project.org/sane-supported-devices.html"
+>страницу поддерживаемых сканеров на веб-сайте SANE</ulink
+>.</para
+></note>
+
+</chapter>
+
+<chapter id="using-skanlite">
+<title
+>Использование &skanlite;</title>
+
+<sect1 id="scanner-selection">
+<title
+>Выбор сканера</title>
+<para
+>Чтобы установить сканер по умолчанию, введите в командной строке терминала команду <userinput
+>skanlite -d [имя устройства]</userinput
+>. Если выбранный сканер невозможно открыть или сканер по умолчанию не установлен, откроется окно выбора устройства. </para>
+
+<screenshot>
+     <screeninfo
+>Диалог выбора сканера в &skanlite;</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="choose-scanner.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Диалог выбора сканера в &skanlite;</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Выбрав сканер для использования, нажмите <guibutton
+>OK</guibutton
+>. Чтобы выйти из &skanlite;, нажмите <guibutton
+>Отмена</guibutton
+>. </para>
+
+<screenshot>
+     <screeninfo
+>Устройства не найдены</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="no-scanner-found.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Устройства не найдены</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>В случае, если не было найдено ни одного устройства, возможно, они не подключены или вообще выключены. Если это так и проблема решена, нажмите кнопку <guibutton
+>Обновить список устройств</guibutton
+>, чтобы снова произвести поиск доступных сканеров.</para
+> 
+<note
+><para
+>Не все драйверы поддерживают эту функцию. В этом случае выйдите из &skanlite;, подключите сканер и перезапустите приложение.</para>
+</note>
+
+</sect1>
+</chapter>
+
+<chapter id="main-window">
+<title
+>Главное окно &skanlite;</title>
+<screenshot>
+     <screeninfo
+>Главное окно &skanlite;</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="main-window.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Главное окно &skanlite;</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>В главном окне представлены две вкладки с опциями для сканирования: <guilabel
+>Основное</guilabel
+> и <guilabel
+>Специфические параметры сканера</guilabel
+>. Вкладка <guilabel
+>Основное</guilabel
+> содержит наиболее распространённые параметры, которые предоставляют серверные части сканера SANE, а вкладка <guilabel
+>Специфические параметры сканера</guilabel
+> содержит все их параметры. Наличие описанных ниже опций зависит от поддержки SANE драйверов: libksane (используемый &skanlite;) должен отображать большую часть параметров, предоставленных SANE (аналоговые гамма-таблицы в настоящее время не поддерживаются). </para>
+
+<screenshot>
+     <screeninfo
+>Вкладка «Специфические параметры сканера»</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="other-options.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Вкладка «Специфические параметры сканера»</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Специфические параметры сканера содержат больше опций, предоставленных сервером. &skanlite; (libksane) не выполняет никакой дополнительной обработки этих параметров. </para>
+
+<para
+>Используйте маленькую стрелку в верхней части разделителя параметров после настройки. Эта стрелка сворачивает или разворачивает панель параметров. Панель параметров может частично перекрывать область предварительного просмотра. Чтобы этого избежать, просто переместите курсор за пределы панели параметров.</para
+>  
+
+<sect1 id="scanning">
+<title
+>Сканирование</title>
+<para
+>Чтобы сканировать изображение, пользователь может сначала выполнить предварительное сканирование, а затем выбрать часть области сканирования для окончательного сканирования. Предварительное сканирование запускается нажатием соответствующейкнопки. </para>
+
+<screenshot>
+     <screeninfo
+>Кнопка «Предварительное сканирование»</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="preview-button.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Кнопка «Предварительное сканирование»</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>После предварительного сканирования возможно выбрать область для окончательного сканирования. </para>
+<screenshot>
+     <screeninfo
+>Выделение и масштабирование</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="zoom-in.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Выделение и масштабирование</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>Чтобы пользователю легче было выбрать область сканирования, изображение можноувеличить, уменьшить, масштабировать до текущей выбранной области или вместить всё предварительное изображение в окно. </para>
+<screenshot>
+     <screeninfo
+>Кнопка «Вместить в окно»</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="zoom-to-fit.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Кнопка «Вместить в окно»</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Когда область изображения выбрана, следует нажать кнопку итогового сканирования для получения финального изображения. </para>
+
+<screenshot>
+     <screeninfo
+>Кнопка итогового сканирования</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="final-button.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Кнопка итогового сканирования</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Будет показан ход процесса сканирования. </para>
+<screenshot>
+     <screeninfo
+>Ход процесса сканирования</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="scanning.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Ход процесса сканирования</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Если в параметрах выбрана функция <guilabel
+>Предварительный просмотр перед сохранением</guilabel
+>, отсканированное изображение сначала отобразится в окне предварительного просмотра (как показано на снимке далее). Чтобы сохранить изображение, нажмите кнопку <guibutton
+>Сохранить</guibutton
+>, а чтобы сбросить изображение, нажмите кнопку <guibutton
+>Отклонить</guibutton
+>, — тогда приложение переключится обратно на главное окно. </para>
+<screenshot>
+     <screeninfo
+>Окно предварительного просмотра</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="preview.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Окно предварительного просмотра</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+</sect1>
+
+<sect1 id="scanning-multiple-selections">
+<title
+>Сканирование нескольких областей</title>
+<para
+>Иногда требуется отсканировать не всё изображение, а только несколько его частей. Вместо того, чтобы сканировать целый документ и потом делить его на части с помощью какого-либо графического приложения (например, &kolourpaint;) для сохранения в соответствующие отдельные файлы, воспользуйтесь опцией сканирования нескольких областей. </para>
+<screenshot>
+     <screeninfo
+>Несколько областей</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="multiple-selections.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Несколько областей</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>Отсканируйте изображение для предварительного просмотра. Чтобы выделить первую часть изображения, воспользуйтесь левой кнопкой мыши. Наведите указатель мыши на выделенную область и нажмите зелёный значок <guiicon
+>+</guiicon
+>, чтобы выбрать область. Выбранные области обозначены красным контуром. Теперь выделите следующие нужные части изображения аналогичным образом.</para>
+<para
+>Чтобы снять отдельное выделение, наведите указатель мыши на соответствующую область и нажмите красный значок <guiicon
+>-</guiicon
+>. Чтобы снять все выделения, вызовите щелчком правой кнопки мыши контекстное меню и выберите пункт <guilabel
+>Снять выделения</guilabel
+>. </para>
+<para
+>Если разместить два отдельных изображения или фотографии на сканере и выполнить сканирование для предварительного просмотра, &skanlite; автоматически выберет области для итогового сканирования. Это поведение возможно отключить в диалоге настройки. </para>
+<para
+>Если выбор соответствует пожеланиям, запустите окончательное пакетное сканирование всех областей. Изображения сохраняются с помощью функции пакетного переименования, которая настраивается с помощью диалогового окна параметров программы. </para>
+</sect1>
+
+<sect1 id="settings">
+<title
+>Параметры &skanlite;</title>
+<para
+>Чтобы открыть диалог с параметрами конфигурации, нажмите кнопку <guibutton
+>Настройка</guibutton
+>. </para>
+
+<screenshot>
+    <screeninfo
+>Снимок экрана с диалогом настройки &skanlite;</screeninfo>
+    <mediaobject>
+        <imageobject>
+            <imagedata fileref="settings.png" format="PNG"/>
+        </imageobject>
+        <textobject>
+            <phrase
+>Диалог настройки параметров &skanlite;</phrase>
+        </textobject>
+    </mediaobject>
+</screenshot>
+
+<para
+><variablelist>
+<varlistentry>
+<term
+><guilabel
+>Просмотр перед сохранением:</guilabel
+></term>
+<listitem
+><para
+>Возможность просмотреть изображение перед сохранением. Чтобы активировать данную функцию, установите флажок <guilabel
+>Просмотр перед сохранением</guilabel
+>. Чтобы деактивировать её, снимите флажок. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Режим сохранения:</guilabel
+></term>
+<listitem>
+<para
+>Позволяет установить, каким образом &skanlite; будет сохранять изображения. Чтобы при каждом сохранении открывался соответствующий диалог, выберите вариант <guilabel
+>Открывать диалог сохранения для каждого изображения</guilabel
+>. Чтобы программа &skanlite; автоматически сохраняла изображения (автоматически генерируя имя файла и сохраняя его в предустановленной папке), выберите вариант <guilabel
+>Открывать диалог сохранения только для первого изображения</guilabel
+>. При выборе этого варианта диалог откроется только для первого отсканированного изображения.</para>
+<para>
+    <screenshot>
+        <screeninfo
+>Снимок экрана с диалогом сохранения &skanlite;</screeninfo>
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="save-location.png" format="PNG"/>
+            </imageobject>
+            <textobject>
+                <phrase
+>Диалог сохранения &skanlite;.</phrase>
+            </textobject>
+        </mediaobject>
+    </screenshot>
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Путь для сохранения:</guilabel
+></term>
+<listitem
+><para
+>Этот параметр устанавливает папку для сохранения по умолчанию и шаблон для названия файла. По умолчанию в качестве папки для сохранения установлена домашняя папка, но это возможно изменить, нажав кнопку <guibutton
+>...</guibutton
+>. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Имя и формат:</guilabel
+></term>
+<listitem
+><para
+>Этот параметр определяет префикс названий автоматически сохранённых изображений, а также название, которое будет предложено для изображения в диалоге сохранения. Автоматически сохранённому изображению присваивается числовой суффикс («###» будет заменено на цифры), значение которого будет увеличиваться при каждом последующем сохранении. </para
+><para
+>Возможно также выбрать формат для сохранения, по умолчанию — png.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Качество при сохранении:</guilabel
+></term>
+<listitem
+><para
+>Качество изображения возможно отрегулировать на своё усмотрение. Качество изображения влияет на уровень сжатия, используемый при сохранении. Если опция <guilabel
+>Качество при сохранении</guilabel
+> не активирована, будет использоваться качество по умолчанию, определённое &Qt;. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Разрешение предварительного сканирования (DPI)</guilabel
+></term>
+<listitem
+><para
+>&skanlite; использует эвристику для определения необходимого для сканирования разрешения. Если программе не удаётся правильно определить разрешение, его возможно указать вручную с помощью этой опции. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Не выделять области для сканирования автоматически</guilabel
+></term>
+<listitem
+><para
+>По умолчанию автоматическое выделение областей включено. После предварительного сканирования libksane пытается автоматически выбрать изображения и выполнить пакетное сканирование выбранных областей. Например, если поместить две фотографии на сканер и выполнить предварительное сканирование, &skanlite; автоматически добавит области с фотографиями.</para>
+<para
+>Если же обычно приходится сканировать документы, при автоматическом выделении областей может оказаться выбранным большое количество различных частей документа, из-за чего потребуется снимать ошибочное выделение областей вручную. Чтобы этого избежать, установите флажок «Не выделять области для сканирования автоматически». </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Сбросить параметры сканера в исходные значения</guilabel
+></term>
+<listitem
+><para
+>При запуске приложения загружаются и последние использованные параметры. Эксприменты с параметрами (например, когда пользователь изменяет параметры цветовой коррекции, которые доступны в некоторых модулях обработки) могут привести к тому, что изображение будет выглядеть странно. Для таких ситуаций и существует эта опция, позволяющая восстановить стандартные параметры сканирования. Стандартные параметры являются сочетанием типовых параметров модуля обработки и libksane. </para
+></listitem>
+</varlistentry>
+</variablelist
+></para>
+</sect1>
+
+<sect1 id="help">
+<title
+>Кнопки «Справка», «О программе», «Настройка» и «Закрыть»</title>
+<para
+>В нижней части главного окна расположены кнопки <guibutton
+>Справка</guibutton
+>, <guibutton
+>О программе</guibutton
+>, <guibutton
+>Настройка</guibutton
+> и <guibutton
+>Закрыть</guibutton
+>.</para>
+
+<screenshot>
+     <screeninfo
+>Кнопки главного окна</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="buttons-main.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Кнопки главного окна</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Кнопка <guibutton
+>Справка</guibutton
+> позволяет открыть центр справки &kde; на странице руководства пользователя &skanlite;. Кнопка <guibutton
+>О программе</guibutton
+> позволяет открыть диалоговое окно информации про программу &kde; для программы &skanlite;. Кнопка <guibutton
+>Настройка</guibutton
+> позволяет вызвать диалог настройки параметров, а кнопка <guibutton
+>Закрыть</guibutton
+> — завершить работу &skanlite;.</para>
+</sect1>
+</chapter>
+
+<chapter id="credits">
+
+<title
+>Авторские права и лицензия</title>
+<para
+>&skanlite; </para>
+<para
+>Авторские права на программу: Kåre Särs <email
+>kare dot sars at iki dot fi</email
+>, 2007 </para>
+<para
+>Участники: <itemizedlist
+> <listitem
+><para
+>Автор: Kåre Särs <email
+>kare dot sars at iki dot fi</email
+></para>
+</listitem>
+</itemizedlist>
+</para>
+
+<para
+>Мария Шикунова<email
+>translation-team@basealt.ru</email
+></para
+> &underFDL; <para
+>&skanlite; лицензируется по GPL, а используемая приложением библиотека libskane лицензируется по LGPL. Примечание: libsane распространяется по лицензии GPL с некоторыми исключениями. </para>
+</chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->
