@@ -91,7 +91,7 @@ msgstr "Gilles Caulier"
 #: main.cpp:52 main.cpp:58
 #, kde-format
 msgid "Importing libksane to extragear"
-msgstr "Importació de la libksane a «extragear»"
+msgstr "Importeu la libksane a «extragear»"
 
 #: main.cpp:54
 #, kde-format
@@ -323,7 +323,7 @@ msgstr "S'està guardant: %v kB"
 #: skanlite.cpp:186
 #, kde-format
 msgid "Skanlite Settings"
-msgstr "Configuració d'Skanlite"
+msgstr "Configureu Skanlite"
 
 #: skanlite.cpp:206 skanlite.cpp:305
 #, kde-format
