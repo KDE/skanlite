@@ -12,10 +12,10 @@ set(SKANLITE_VERSION_STRING "${RELEASE_SERVICE_VERSION}")
 project(skanlite VERSION ${RELEASE_SERVICE_VERSION})
 
 set(REQUIRED_QT_VERSION "5.15.0")
-set(KF5_MIN_VERSION "5.90.0")
+set(KF_MIN_VERSION "5.90.0")
 
 # ECM setup (Extended Cmake Modules)
-find_package(ECM ${KF5_MIN_VERSION} QUIET REQUIRED NO_MODULE)
+find_package(ECM ${KF_MIN_VERSION} QUIET REQUIRED NO_MODULE)
 # ECM setup2 and include find same cmake module (copied from /usr/share/kde4/apps/cmake/modules/FindSane.cmake)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake-modules)
 
@@ -32,6 +32,14 @@ include(GenerateExportHeader)
 include(ECMQtDeclareLoggingCategory)
 include(ECMInstallIcons)
 
+if (QT_MAJOR_VERSION STREQUAL "6")
+    set(QT_REQUIRED_VERSION "6.4.0")
+    set(KF_MIN_VERSION "5.240.0")
+    set(KF_MAJOR_VERSION "6")
+else()
+    set(KF_MAJOR_VERSION "5")
+endif()
+
 ecm_setup_version(
   ${SKANLITE_VERSION_STRING}
   VARIABLE_PREFIX SKANLITE
@@ -41,7 +49,7 @@ ecm_setup_version(
 # Dependencies
 find_package(Qt${QT_MAJOR_VERSION} ${REQUIRED_QT_VERSION} NO_MODULE REQUIRED Core Widgets)
 
-find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
+find_package(KF${KF_MAJOR_VERSION} ${KF_MIN_VERSION} REQUIRED COMPONENTS
         CoreAddons # KAboutData
         I18n
         KIO # contains the KIOWidgets which we use in target_link_libraries
@@ -51,8 +59,8 @@ if (QT_MAJOR_VERSION STREQUAL "6")
     find_package(Qt6Core5Compat)
 endif()
 
-find_package(KF5DocTools ${KF5_MIN_VERSION})  # yields kdoctools_create_handbook
-set_package_properties(KF5DocTools PROPERTIES DESCRIPTION
+find_package(KF${KF_MAJOR_VERSION}DocTools ${KF_MIN_VERSION})  # yields kdoctools_create_handbook
+set_package_properties(KF${KF_MAJOR_VERSION}DocTools PROPERTIES DESCRIPTION
     "Tools to generate documentation"
     TYPE OPTIONAL
 )
@@ -70,7 +78,7 @@ add_definitions(
 add_subdirectory(src)
 
 ki18n_install(po)
-if (KF5DocTools_FOUND)
+if (KF${KF_MAJOR_VERSION}DocTools_FOUND)
     kdoctools_install(po)
     add_subdirectory(doc)
 endif()

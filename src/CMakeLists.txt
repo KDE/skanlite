@@ -26,11 +26,11 @@ target_link_libraries(skanlite
   PUBLIC
     Qt${QT_MAJOR_VERSION}::Core
   PRIVATE
-    KF5::CoreAddons
+    KF${KF_MAJOR_VERSION}::CoreAddons
     KF5::Sane
-    KF5::I18n
-    KF5::XmlGui
-    KF5::KIOWidgets
+    KF${KF_MAJOR_VERSION}::I18n
+    KF${KF_MAJOR_VERSION}::XmlGui
+    KF${KF_MAJOR_VERSION}::KIOWidgets
 )
 
 install(TARGETS skanlite ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
