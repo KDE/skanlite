@@ -5,19 +5,20 @@
 # Franklin Weng <franklin@mail.everfocus.com.tw>, 2011, 2012, 2013, 2014.
 # pan93412 <pan93412@gmail.com>, 2018, 2019.
 # Frank Weng (a.k.a. Franklin) <franklin at goodhorse dot idv dot tw>, 2008, 2009, 2010.
+# Kisaragi Hiu <mail@kisaragi-hiu.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: skanlite\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-12-12 02:58+0000\n"
-"PO-Revision-Date: 2019-03-12 22:17+0800\n"
-"Last-Translator: pan93412 <pan93412@gmail.com>\n"
-"Language-Team: Chinese <zh-l10n@lists.linux.org.tw>\n"
+"PO-Revision-Date: 2023-02-19 06:16+0900\n"
+"Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
+"Language-Team: Chinese <zh-l10n@linux.org.tw>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 18.12.3\n"
+"X-Generator: Lokalize 22.12.2\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ImageViewer.cpp:43
@@ -51,10 +52,9 @@ msgid "Scanning application by KDE based on libksane."
 msgstr "出自 KDE 的基於 libksane 掃描應用程式"
 
 #: main.cpp:36
-#, fuzzy, kde-format
-#| msgid "(C) 2008-2016 Kåre Särs"
+#, kde-format
 msgid "(C) 2008-2020 Kåre Särs"
-msgstr "(C) 2008-2016 Kåre Särs"
+msgstr "(C) 2008-2020 Kåre Särs"
 
 #: main.cpp:41
 #, kde-format
@@ -136,7 +136,7 @@ msgstr "franklin@goodhorse.idv.tw"
 #: main.cpp:76
 #, kde-format
 msgid "Sane scanner device name. Use 'test' for test device."
-msgstr "Sane 掃描器的裝置名稱。使用「test」來測試裝置。"
+msgstr "Sane 掃描器的裝置名稱。使用「test」代表測試裝置。"
 
 #: main.cpp:76
 #, kde-format
@@ -304,18 +304,17 @@ msgstr "將掃描器選項回復到預設值"
 #: skanlite.cpp:62
 #, kde-format
 msgid "Configure..."
-msgstr ""
+msgstr "設定…"
 
 #: skanlite.cpp:66
-#, fuzzy, kde-format
-#| msgid "Opening the selected scanner failed."
+#, kde-format
 msgid "Reselect scanner device"
-msgstr "開啟選取的掃描器失敗。"
+msgstr "重新選取掃描器裝置"
 
 #: skanlite.cpp:90
 #, kde-format
 msgid "Saving: %v kB"
-msgstr ""
+msgstr "儲存中：%v kB"
 
 #: skanlite.cpp:186
 #, kde-format
@@ -339,15 +338,11 @@ msgid "Image-"
 msgstr "Image-"
 
 #: skanlite.cpp:481
-#, fuzzy, kde-format
-#| msgid ""
-#| "The image will be saved in the PNG format, as Skanlite only supports "
-#| "saving 16 bit color images in the PNG format."
+#, kde-format
 msgid ""
 "The image will be saved in the PNG format, as the selected image type does "
 "not support saving 16 bit color images."
-msgstr ""
-"影像將以 PNG 格式儲存，因為 Skanlite 只支援以 PNG 格式儲存 16 位元色彩影像。"
+msgstr "影像將以 PNG 格式儲存，因為已選的影像格式不支援儲存 16 位元色彩影像。"
 
 #: skanlite.cpp:506
 #, kde-format
