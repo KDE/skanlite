@@ -1,10 +1,5 @@
 <?xml version="1.0" ?>
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
-  <!ENTITY skanlite "<application
->Skanlite</application
->">
-  <!ENTITY kappname "&skanlite;">
-  <!ENTITY package "extragear/graphics">
   <!ENTITY % addindex "IGNORE">
   <!ENTITY % Brazilian-Portuguese "INCLUDE"
 ><!-- change language only here -->
@@ -73,15 +68,15 @@
 >&FDLNotice;</legalnotice>
 
 <date
->08/02/2013</date>
+>24/08/2016</date>
 <releaseinfo
->1.0</releaseinfo>
+>&skanlite; 2.0.0</releaseinfo>
 
 <abstract>
 <para
 >O &skanlite; é uma aplicação de digitalização de imagens que não faz nada mais do que digitalizar e salvar as imagens. </para>
 <para
->O &skanlite; baseia-se na 'libksane', uma interface do &kde; para a biblioteca SANE, usada para controlar os dispositivos de digitalização.</para>
+>O &skanlite; baseia-se na 'libksane', uma interface do &kde; para a biblioteca SANE, usada para controlar os dispositivos de digitalização de imagem.</para>
 </abstract>
 
 <keywordset>
@@ -103,7 +98,7 @@
 <para
 >O &skanlite; é uma aplicação simples de digitalização de imagens, que não faz nada mais do que digitalizar e salvar imagens. O &skanlite; poderá abrir uma janela para salvamento para todas as imagens digitalizadas ou salvar as imagens imediatamente, numa pasta indicada, com nomes e formatos determinados automaticamente. O usuário poderá também mostrar a imagem digitalizada antes de salvar.</para>
 <para
->O &skanlite; pode salvar imagens em todos os formatos suportados pelo KDE. Por exemplo, nos seguintes formatos: <itemizedlist>
+>O &skanlite; pode salvar imagens em todos os formatos suportados pela &Qt;.Por exemplo, nos seguintes formatos: <itemizedlist>
 <listitem
 ><para
 >png (8 e 16 bits por cor) </para
@@ -121,8 +116,8 @@
 
 <note
 ><para
->Você pode verificar o suporte do seu 'scanner' ou digitalizador na página Web do projeto SANE, indicando a informação nesta página de pesquisa: <ulink url="http://www.sane-project.org/cgi-bin/driver.pl"
->http://www.sane-project.org/cgi-bin/driver.pl</ulink
+>Você pode verificar o suporte do seu 'scanner' ou digitalizador no site do projeto SANE através da <ulink url="http://www.sane-project.org/sane-supported-devices.html"
+>página de dispositivos suportados no site do SANE</ulink
 >.</para
 ></note>
 
@@ -327,7 +322,7 @@
 > estiver selecionada na configuração, a imagem digitalizada irá aparecer numa janela de previsão, como acontece na imagem abaixo. Se pressionar o botão <guibutton
 >Salvar</guibutton
 >, a imagem será então salva e, se pressionar o botão <guibutton
->Fechar</guibutton
+>Descartar</guibutton
 >, a previsão é eliminada e o usuário retornará para a janela principal. </para>
 <screenshot>
      <screeninfo
@@ -585,28 +580,9 @@
 >Tradução de Marcus Gama <email
 >marcus.gama@gmail.com</email
 ></para
-> 
-&underFDL; <para
+> &underFDL; <para
 >O &skanlite; está licenciado sob os termos da GPL e a biblioteca 'libksane, usada pelo &skanlite;, está licenciada segundo a LGPL. Nota: a 'libsane' está licenciada segundo a GPL com uma exceção. </para>
 </chapter>
-
-
-
-<appendix id="installation">
-<title
->Instalação</title>
-
-<sect1 id="getting-skanlite">
-<title
->Como obter o &skanlite;</title>
-&install.intro.documentation; </sect1>
-
-<sect1 id="compilation">
-<title
->Compilação e instalação</title>
-&install.compile.documentation; </sect1>
-
-</appendix>
 
 &documentation.index;
 </book>
