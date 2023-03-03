@@ -1,15 +1,12 @@
-# Copyright (C) YEAR This_file_is_part_of_KDE
-# This file is distributed under the same license as the PACKAGE package.
-#
 # Darafei Praliaskouski <komzpa@gmail.com>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: ksanetest\n"
+"Project-Id-Version: 86ff119b1606fcaa910d6b44fc14b611\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-12-07 00:45+0000\n"
-"PO-Revision-Date: 2008-01-14 21:26+0200\n"
+"PO-Revision-Date: 2023-03-02 15:01\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@gmail.com>\n"
-"Language-Team: Belarusian <i18n@mova.org>\n"
+"Language-Team: Belarusian\n"
 "Language: be\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,324 +15,327 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || n%10>=5 && n%10<=9 || n"
 "%100>=11 && n%100<=14 ? 2 : 3);\n"
+"X-Crowdin-Project: 86ff119b1606fcaa910d6b44fc14b611\n"
+"X-Crowdin-Project-ID: 127\n"
+"X-Crowdin-Language: be\n"
+"X-Crowdin-File: /main/be/skanlite/skanlite.po\n"
+"X-Crowdin-File-ID: 8589\n"
 
 #: ImageViewer.cpp:43
 #, kde-format
 msgid "Zoom In"
-msgstr ""
+msgstr "Павялічыць"
 
 #: ImageViewer.cpp:46
 #, kde-format
 msgid "Zoom Out"
-msgstr ""
+msgstr "Паменшыць"
 
 #: ImageViewer.cpp:49
 #, kde-format
 msgid "Zoom to Actual size"
-msgstr ""
+msgstr "Маштабаваць да сапраўднага памеру"
 
 #: ImageViewer.cpp:52
 #, kde-format
 msgid "Zoom to Fit"
-msgstr ""
+msgstr "Маштабаваць па памеры"
 
 #: main.cpp:32 skanlite.cpp:782
 #, kde-format
 msgid "Skanlite"
-msgstr ""
+msgstr "Skanlite"
 
 #: main.cpp:34
 #, kde-format
 msgid "Scanning application by KDE based on libksane."
-msgstr ""
+msgstr "Праграма KDE для сканавання на аснове libksane."
 
 #: main.cpp:36
 #, kde-format
 msgid "(C) 2008-2020 Kåre Särs"
-msgstr ""
+msgstr "(C) 2008-2020 Kåre Särs"
 
 #: main.cpp:41
 #, kde-format
 msgid "Kåre Särs"
-msgstr ""
+msgstr "Kåre Särs"
 
 #: main.cpp:42
 #, kde-format
 msgid "developer"
-msgstr "распрацоўшчык"
+msgstr "распрацоўнік"
 
 #: main.cpp:45
 #, kde-format
 msgid "Gregor Mi"
-msgstr ""
+msgstr "Gregor Mi"
 
 #: main.cpp:46 main.cpp:49
 #, kde-format
 msgid "contributor"
-msgstr ""
+msgstr "удзельнік"
 
 #: main.cpp:48
 #, kde-format
 msgid "Arseniy Lartsev"
-msgstr ""
+msgstr "Arseniy Lartsev"
 
 #: main.cpp:51
 #, kde-format
 msgid "Gilles Caulier"
-msgstr ""
+msgstr "Gilles Caulier"
 
 #: main.cpp:52 main.cpp:58
 #, kde-format
 msgid "Importing libksane to extragear"
-msgstr ""
+msgstr "Імпартаванне libksane у extragear"
 
 #: main.cpp:54
 #, kde-format
 msgid "Anne-Marie Mahfouf"
-msgstr ""
+msgstr "Anne-Marie Mahfouf"
 
 #: main.cpp:55
 #, kde-format
 msgid "Writing the user manual"
-msgstr ""
+msgstr "Напісанне дапаможніка карыстальніка"
 
 #: main.cpp:57
 #, kde-format
 msgid "Laurent Montel"
-msgstr ""
+msgstr "Laurent Montel"
 
 #: main.cpp:60
 #, kde-format
 msgid "Chusslove Illich"
-msgstr ""
+msgstr "Chusslove Illich"
 
 #: main.cpp:61 main.cpp:64
 #, kde-format
 msgid "Help with translations"
-msgstr ""
+msgstr "Дапамога з перакладам"
 
 #: main.cpp:63
 #, kde-format
 msgid "Albert Astals Cid"
-msgstr ""
+msgstr "Albert Astals Cid"
 
 #: main.cpp:67
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr ""
+msgstr "Дарафей Праляскоўскі, Antikruk"
 
 #: main.cpp:68
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr ""
+msgstr "komzpa@licei2.com, nashtlumach@gmail.com"
 
 #: main.cpp:76
 #, kde-format
 msgid "Sane scanner device name. Use 'test' for test device."
-msgstr ""
+msgstr "Назва сканера Sane. Выкарыстоўвайце \"test\" для тэставання прылады."
 
 #: main.cpp:76
 #, kde-format
 msgid "device"
-msgstr ""
+msgstr "прылада"
 
 #. i18n: ectx: property (windowTitle), widget (QDialog, SaveLocation)
 #: SaveLocation.ui:20
 #, kde-format
 msgid "Save Location"
-msgstr ""
+msgstr "Захаваць размяшчэнне"
 
 #. i18n: ectx: property (text), widget (QLabel, locationLabel)
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: SaveLocation.ui:28 settings.ui:80
 #, kde-format
 msgid "Save Location:"
-msgstr ""
+msgstr "Захаваць размяшчэнне:"
 
 #. i18n: ectx: property (text), widget (QLabel, namePrefixLabel)
 #: SaveLocation.ui:55
 #, kde-format
 msgid "Name & Format:"
-msgstr ""
+msgstr "Назва і фармат:"
 
 #. i18n: ectx: property (text), widget (QLabel, numberLabel)
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: SaveLocation.ui:74 settings.ui:112
 #, kde-format
 msgid "####."
-msgstr ""
+msgstr "####."
 
 #. i18n: ectx: property (text), widget (QLabel, numStartFromLabel)
 #: SaveLocation.ui:86
 #, kde-format
 msgid "Start numbering from:"
-msgstr ""
+msgstr "Пачаць нумарацыю з:"
 
 #. i18n: ectx: property (text), widget (QLabel, u_resultLabel)
 #: SaveLocation.ui:123
 #, kde-format
 msgid "Example:"
-msgstr ""
+msgstr "Прыклад:"
 
 #. i18n: ectx: property (text), widget (QLabel, u_resultValue)
 #: SaveLocation.ui:130
 #, kde-format
 msgid "/home/joe/example.png"
-msgstr ""
+msgstr "/home/joe/example.png"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, SkanliteSettings)
 #: settings.ui:14
 #, kde-format
 msgid "Settings"
-msgstr "Настаўленні"
+msgstr "Налады"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: settings.ui:20
 #, kde-format
 msgid "Image saving"
-msgstr ""
+msgstr "Захаванне выявы"
 
 #. i18n: ectx: property (text), widget (QLabel, label_7)
 #: settings.ui:26
 #, kde-format
 msgid "Preview before saving:"
-msgstr ""
+msgstr "Папярэдні прагляд перад захаваннем:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: settings.ui:46
 #, kde-format
 msgid "Save mode:"
-msgstr ""
+msgstr "Рэжым захавання:"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, saveModeCB)
 #: settings.ui:60
 #, kde-format
 msgid "Open the save dialog for every image"
-msgstr ""
+msgstr "Адкрываць дыялогавае акно захавання для кожнай выявы"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, saveModeCB)
 #: settings.ui:65
 #, kde-format
 msgid "Open the save dialog for the first image only"
-msgstr ""
+msgstr "Адкрываць дыялогавае акно захавання толькі для першай выявы"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: settings.ui:90
 #, kde-format
 msgid "Name && Format:"
-msgstr ""
+msgstr "Назва &і фармат:"
 
 #. i18n: ectx: property (text), widget (QLineEdit, imgPrefix)
 #: settings.ui:105
 #, kde-format
 msgid "Image"
-msgstr "Відарыс"
+msgstr "Выява"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: settings.ui:124
 #, kde-format
 msgid "Specify save quality:"
-msgstr ""
+msgstr "Якасць захавання:"
 
 #. i18n: ectx: property (suffix), widget (QSpinBox, imgQuality)
 #: settings.ui:192
 #, no-c-format, kde-format
 msgid "%"
-msgstr ""
+msgstr "%"
 
 #. i18n: ectx: property (title), widget (QGroupBox, generalGB)
 #: settings.ui:233
 #, kde-format
 msgid "General"
-msgstr ""
+msgstr "Асноўныя налады"
 
 #. i18n: ectx: property (text), widget (QCheckBox, setPreviewDPI)
 #: settings.ui:239
 #, kde-format
 msgid "Set preview resolution (DPI)"
-msgstr ""
+msgstr "Вызначыць раздзяляльную здольнасць папярэдняга прагляду (DPI)"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, previewDPI)
 #: settings.ui:253
 #, kde-format
 msgid "50"
-msgstr ""
+msgstr "50"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, previewDPI)
 #: settings.ui:258
 #, kde-format
 msgid "75"
-msgstr ""
+msgstr "75"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, previewDPI)
 #: settings.ui:263
 #, kde-format
 msgid "100"
-msgstr ""
+msgstr "100"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, previewDPI)
 #: settings.ui:268
 #, kde-format
 msgid "150"
-msgstr ""
+msgstr "150"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, previewDPI)
 #: settings.ui:273
 #, kde-format
 msgid "300"
-msgstr ""
+msgstr "300"
 
 #. i18n: ectx: property (text), widget (QCheckBox, u_disableSelections)
 #: settings.ui:286
 #, kde-format
 msgid "Disable automatic selections"
-msgstr ""
+msgstr "Адключыць аўтаматычны выбар"
 
 #. i18n: ectx: property (text), widget (QPushButton, revertOptions)
 #: settings.ui:319
 #, kde-format
 msgid "Revert scanner options to default values"
-msgstr ""
+msgstr "Вярнуць параметры сканера да прадвызначаных значэнняў"
 
 #: skanlite.cpp:62
 #, kde-format
 msgid "Configure..."
-msgstr ""
+msgstr "Наладжванне..."
 
 #: skanlite.cpp:66
 #, kde-format
 msgid "Reselect scanner device"
-msgstr ""
+msgstr "Паўторна абраць сканер"
 
 #: skanlite.cpp:90
 #, kde-format
 msgid "Saving: %v kB"
-msgstr ""
+msgstr "Захаванне: %v Кб"
 
 #: skanlite.cpp:186
-#, fuzzy, kde-format
-#| msgid "Settings"
+#, kde-format
 msgid "Skanlite Settings"
-msgstr "Настаўленні"
+msgstr "Налады Skanlite"
 
 #: skanlite.cpp:206 skanlite.cpp:305
 #, kde-format
 msgid "Opening the selected scanner failed."
-msgstr ""
+msgstr "Не ўдалося адкрыць абраны сканер."
 
 #: skanlite.cpp:320
 #, kde-format
 msgid "%1: %2"
-msgstr ""
+msgstr "%1: %2"
 
 #: skanlite.cpp:340
-#, fuzzy, kde-format
-#| msgid "Image"
+#, kde-format
 msgctxt "prefix for auto naming"
 msgid "Image-"
-msgstr "Відарыс"
+msgstr "Выява-"
 
 #: skanlite.cpp:481
 #, kde-format
@@ -343,33 +343,35 @@ msgid ""
 "The image will be saved in the PNG format, as the selected image type does "
 "not support saving 16 bit color images."
 msgstr ""
+"Выява будзе захаваная ў фармаце PNG, бо абраны тып выявы не падтрымлівае "
+"захаванне 16-бітавых выяў."
 
 #: skanlite.cpp:506
 #, kde-format
 msgid "New Image File Name"
-msgstr ""
+msgstr "Назва файла новай выявы"
 
 #: skanlite.cpp:610
 #, kde-format
 msgid "Failed to save image"
-msgstr ""
+msgstr "Не ўдалося захаваць выяву"
 
 #: skanlite.cpp:623
 #, kde-format
 msgid "Failed to upload image"
-msgstr ""
+msgstr "Не ўдалося запампаваць выяву"
 
 #: skanlite.cpp:778
 #, kde-format
 msgctxt "@title:window %1 = scanner maker, %2 = scanner model"
 msgid "%1 %2 - Skanlite"
-msgstr ""
+msgstr "%1 %2 - Skanlite"
 
 #: skanlite.cpp:780
 #, kde-format
 msgctxt "@title:window %1 = scanner device"
 msgid "%1 - Skanlite"
-msgstr ""
+msgstr "%1 - Skanlite"
 
 #~ msgid "..."
 #~ msgstr "..."
