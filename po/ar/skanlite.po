@@ -47,7 +47,7 @@ msgstr "سكانلايت"
 #: main.cpp:34
 #, kde-format
 msgid "Scanning application by KDE based on libksane."
-msgstr "تطبيق مسح ضوئيّ بواسة كدي مبنيّ على libksane."
+msgstr "تطبيق مسح ضوئيّ بواسة كِيدِي مبنيّ على libksane."
 
 #: main.cpp:36
 #, kde-format
