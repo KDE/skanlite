@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: 86ff119b1606fcaa910d6b44fc14b611\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-12-07 00:45+0000\n"
-"PO-Revision-Date: 2023-03-02 15:01\n"
+"PO-Revision-Date: 2023-03-03 17:31\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@gmail.com>\n"
 "Language-Team: Belarusian\n"
 "Language: be\n"
@@ -147,14 +147,14 @@ msgstr "прылада"
 #: SaveLocation.ui:20
 #, kde-format
 msgid "Save Location"
-msgstr "Захаваць размяшчэнне"
+msgstr "Месца захавання"
 
 #. i18n: ectx: property (text), widget (QLabel, locationLabel)
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: SaveLocation.ui:28 settings.ui:80
 #, kde-format
 msgid "Save Location:"
-msgstr "Захаваць размяшчэнне:"
+msgstr "Месца захавання:"
 
 #. i18n: ectx: property (text), widget (QLabel, namePrefixLabel)
 #: SaveLocation.ui:55
