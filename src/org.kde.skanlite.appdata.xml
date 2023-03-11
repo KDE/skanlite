@@ -6,7 +6,6 @@
   <name>Skanlite</name>
   <name xml:lang="ar">سكانلايت</name>
   <name xml:lang="az">Skanlite</name>
-  <name xml:lang="be">Skanlite</name>
   <name xml:lang="bg">Skanlite</name>
   <name xml:lang="ca">Skanlite</name>
   <name xml:lang="ca-valencia">Skanlite</name>
@@ -49,7 +48,6 @@
   <summary>Image Scanning Application</summary>
   <summary xml:lang="ar">تطبيق لمسح الصّور ضوئيًّا</summary>
   <summary xml:lang="az">Təsviri tarama tətbiqi</summary>
-  <summary xml:lang="be">Праграма для сканавання выяў</summary>
   <summary xml:lang="bg">Приложение за сканиране на изображения</summary>
   <summary xml:lang="ca">Aplicació de digitalització d'imatges</summary>
   <summary xml:lang="ca-valencia">Aplicació de digitalització d'imatges</summary>
@@ -96,7 +94,6 @@
     </p>
     <p xml:lang="ar">سكانلايت هو تطبيق بسيط لمسح الصور وحفظها. تم تحسينه للمسح الضوئي باستخدام الماسحات الضوئية المسطحة. لا تقتصر إمكانيات سكانلايت على التقاط الصور والمستندات فحسب ، بل يمكنه أيضًا التقاط الشرائح الشفافة وأشرطة الأفلام باستخدام الماسحات الضوئية المدعومة.</p>
     <p xml:lang="az">Skanlite şəkilləri taramaq və saxlamaq üçün sadə təsvir tarama tətbiqidir. Bu planşet skanerlərlə uyğunlaşdırılmış bir tarama cihazıdır. Skanlite təkcəşəkillərin və sənədlərin görüntüsünü deyil həmçinin dəstəkləyən skaner olduqda, şəffaf slaydların və diaflimlərin surətini oxuyaraq görüntüləyə bilir.</p>
-    <p xml:lang="be">Skanlite - гэта простая праграма для сканавання і захавання выяў. Яна аптымізаваная для сканавання з дапамогай планшэтных сканераў. Skanlite можа захопліваць не толькі фатаграфіі і дакументы, але таксама празрыстыя слайды і дыяфільмы, калі сканер гэта падтрымлівае.</p>
     <p xml:lang="bg">Skanlite е просто приложение за сканиране и запазване на изображения. То е оптимизирано за сканиране с плоски скенери. Skanlite може да заснема не само снимки и документи, но и прозрачни слайдове и филмови ленти, с поддържани скенери.</p>
     <p xml:lang="ca">L'Skanlite és una aplicació d'escaneig d'imatges per a escanejar imatges i desar-les. Està optimitzada per a l'escaneig amb escàners de superfície plana. L'Skanlite no només pot capturar fotos i documents, també diapositives transparents i tires de pel·lícula, amb els escàners acceptats.</p>
     <p xml:lang="ca-valencia">Skanlite és una aplicació d'escaneig d'imatges per a escanejar imatges i guardar-les. Està optimitzada per a l'escaneig amb escàners de superfície plana. Skanlite no només pot capturar fotos i documents, també diapositives transparents i tires de pel·lícula, amb els escàners acceptats.</p>
@@ -133,7 +130,6 @@
     <p>Features:</p>
     <p xml:lang="ar">الميزات:</p>
     <p xml:lang="az">İmkanlar:</p>
-    <p xml:lang="be">Магчымасці:</p>
     <p xml:lang="bg">Функции:</p>
     <p xml:lang="ca">Característiques:</p>
     <p xml:lang="ca-valencia">Característiques:</p>
@@ -177,7 +173,6 @@
       <li>Save dialog for every image scanned or saving the images immediately in a specified folder with auto-generated names and format</li>
       <li xml:lang="ar">حفظ مربع الحوار لكل صورة تم مسحها ضوئيًا أو حفظ الصور على الفور في مجلد محدد بأسماء وتنسيق أنشئت تلقائيًا</li>
       <li xml:lang="az">Hər taranan təsvirin saxlanılması dialoqu və ya avtomatik ad və format təyin etməklə göstərilən qovluqda dərhal saxlanılması</li>
-      <li xml:lang="be">Дыялог захавання для кожнай адсканаванай выявы або неадкладнае захаванне выявы ў вызначаным каталозе з аўтаматычна створанай назвай і фарматам</li>
       <li xml:lang="bg">Диалогов прозорец за запазване за всяко сканирано изображение или записване на изображенията незабавно в 
 определена папка с автоматично генерирани имена и формат</li>
       <li xml:lang="ca">Diàleg per a desar cada imatge escanejada o desar les imatges immediatament en una carpeta especificada amb noms i format generats automàticament</li>
@@ -218,7 +213,6 @@
       <li>Support for networks scanners</li>
       <li xml:lang="ar">دعم الماسحات الضوئية الشبكية</li>
       <li xml:lang="az">Şəbəkə üzərindəki skanerləri dəstəkləyir</li>
-      <li xml:lang="be">Падтрымка сеткавых сканераў</li>
       <li xml:lang="bg">Поддръжка за мрежови скенери</li>
       <li xml:lang="ca">Implementació per a escàners en xarxa</li>
       <li xml:lang="ca-valencia">Implementació per a escàners en xarxa</li>
@@ -260,7 +254,6 @@
       <li>Preview with selection feature for the final scan</li>
       <li xml:lang="ar">معاينة مع ميزة التحديد قبل المسح النهائي</li>
       <li xml:lang="az">Son tarama üçün seçilən öncədən baxış</li>
-      <li xml:lang="be">Папярэдні прагляд з функцыяй выбару для канчатковага сканавання</li>
       <li xml:lang="bg">Предварителен преглед с възможност за допълнителна селекция за сканиране</li>
       <li xml:lang="ca">Vista prèvia amb la característica de selecció per a l'escaneig final</li>
       <li xml:lang="ca-valencia">Vista prèvia amb la característica de selecció per a l'escaneig final</li>
@@ -301,7 +294,6 @@
       <li>Scanning multiple selections of an image</li>
       <li xml:lang="ar">مسح عدة تحديدات في الصورة</li>
       <li xml:lang="az">Təsvirin birdən çox seçimini tarama</li>
-      <li xml:lang="be">Сканаванне некалькіх абраных абласцей выявы</li>
       <li xml:lang="bg">Сканиране на множество селекции на изображение</li>
       <li xml:lang="ca">Escaneig de múltiples seleccions d'una imatge</li>
       <li xml:lang="ca-valencia">Escaneig de múltiples seleccions d'una imatge</li>
