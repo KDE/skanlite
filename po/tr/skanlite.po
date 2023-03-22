@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: extragear-graphics-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-12-07 00:45+0000\n"
-"PO-Revision-Date: 2023-01-18 22:29+0300\n"
+"PO-Revision-Date: 2023-03-21 21:16+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 22.12.1\n"
+"X-Generator: Lokalize 22.12.3\n"
 
 #: ImageViewer.cpp:43
 #, kde-format
@@ -216,7 +216,7 @@ msgstr "Kaydetme kipi:"
 #: settings.ui:60
 #, kde-format
 msgid "Open the save dialog for every image"
-msgstr "Her resim için kaydetme penceresini aç"
+msgstr "Her görsel için kaydetme penceresini aç"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, saveModeCB)
 #: settings.ui:65
