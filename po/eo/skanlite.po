@@ -1,4 +1,5 @@
 # Translation of skanlite into esperanto.
+# Copyright (C) 2009 Free Software Foundation, Inc.
 # Axel Rousseau <axel@esperanto-jeunes.org>, 2009.
 #
 msgid ""
@@ -6,8 +7,8 @@ msgstr ""
 "Project-Id-Version: skanlite\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-12-07 00:45+0000\n"
-"PO-Revision-Date: 2009-11-15 12:06+0100\n"
-"Last-Translator: Axel Rousseau <axel@esperanto-jeunes.org>\n"
+"PO-Revision-Date: 2023-03-23 21:50+0100\n"
+"Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
@@ -32,10 +33,9 @@ msgid "Zoom to Actual size"
 msgstr ""
 
 #: ImageViewer.cpp:52
-#, fuzzy, kde-format
-#| msgid "Zoom To Fit"
+#, kde-format
 msgid "Zoom to Fit"
-msgstr "Zomi por adapti"
+msgstr ""
 
 #: main.cpp:32 skanlite.cpp:782
 #, kde-format
@@ -48,10 +48,9 @@ msgid "Scanning application by KDE based on libksane."
 msgstr ""
 
 #: main.cpp:36
-#, fuzzy, kde-format
-#| msgid "(C) 2008-2014 Kåre Särs"
+#, kde-format
 msgid "(C) 2008-2020 Kåre Särs"
-msgstr "(C) 2008-2014 Kåre Särs"
+msgstr ""
 
 #: main.cpp:41
 #, kde-format
@@ -162,10 +161,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, numberLabel)
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: SaveLocation.ui:74 settings.ui:112
-#, fuzzy, kde-format
-#| msgid "###."
+#, kde-format
 msgid "####."
-msgstr "###."
+msgstr "####."
 
 #. i18n: ectx: property (text), widget (QLabel, numStartFromLabel)
 #: SaveLocation.ui:86
@@ -305,10 +303,9 @@ msgid "Configure..."
 msgstr ""
 
 #: skanlite.cpp:66
-#, fuzzy, kde-format
-#| msgid "Opening the selected scanner failed."
+#, kde-format
 msgid "Reselect scanner device"
-msgstr "Malfermo de la elektita Skanilo fiaskis."
+msgstr ""
 
 #: skanlite.cpp:90
 #, kde-format
@@ -359,27 +356,13 @@ msgid "Failed to upload image"
 msgstr ""
 
 #: skanlite.cpp:778
-#, fuzzy, kde-format
-#| msgid "Skanlite"
+#, kde-format
 msgctxt "@title:window %1 = scanner maker, %2 = scanner model"
 msgid "%1 %2 - Skanlite"
-msgstr "Skanlite"
+msgstr ""
 
 #: skanlite.cpp:780
-#, fuzzy, kde-format
-#| msgid "Skanlite"
+#, kde-format
 msgctxt "@title:window %1 = scanner device"
 msgid "%1 - Skanlite"
-msgstr "Skanlite"
-
-#~ msgid "About"
-#~ msgstr "Pri"
-
-#~ msgid "..."
-#~ msgstr "..."
-
-#~ msgid "Overwrite"
-#~ msgstr "Anstataŭigu"
-
-#~ msgid "Save"
-#~ msgstr "Konservi"
+msgstr ""
