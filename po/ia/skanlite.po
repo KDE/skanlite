@@ -201,7 +201,7 @@ msgstr "Salveguardante imagine"
 #: settings.ui:26
 #, kde-format
 msgid "Preview before saving:"
-msgstr "Vista preliminari ante salveguardar:"
+msgstr "Vista preliminar ante salveguardar:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: settings.ui:46
@@ -255,7 +255,7 @@ msgstr "General"
 #: settings.ui:239
 #, kde-format
 msgid "Set preview resolution (DPI)"
-msgstr "Fixa le resolution de vista preliminari (DPI)"
+msgstr "Fixa le resolution de vista preliminar (DPI)"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, previewDPI)
 #: settings.ui:253
