@@ -1,19 +1,19 @@
 # translation of skanlite.po to galician
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
-#
 # mvillarino <mvillarino@users.sourceforge.net>, 2008, 2009.
 # marce villarino <mvillarino@users.sourceforge.net>, 2009.
 # Xosé <xosecalvo@edu.xunta.es>, 2009, 2012.
 # Marce Villarino <mvillarino@kde-espana.es>, 2012, 2013.
 # Adrian Chaves Fernandez <adriyetichaves@gmail.com>, 2012, 2015, 2016, 2017.
-# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2018, 2019.
+# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2018, 2019, 2023.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: skanlite\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-12-07 00:45+0000\n"
-"PO-Revision-Date: 2019-10-27 07:47+0100\n"
+"PO-Revision-Date: 2023-04-28 18:11+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 19.11.70\n"
+"X-Generator: Lokalize 23.04.0\n"
 
 #: ImageViewer.cpp:43
 #, kde-format
@@ -54,10 +54,9 @@ msgid "Scanning application by KDE based on libksane."
 msgstr "Aplicación de dixitalización de KDE baseada en libksane."
 
 #: main.cpp:36
-#, fuzzy, kde-format
-#| msgid "(C) 2008-2016 Kåre Särs"
+#, kde-format
 msgid "(C) 2008-2020 Kåre Särs"
-msgstr "© 2008-2016 Kåre Särs"
+msgstr "© 2008-2020 Kåre Särs"
 
 #: main.cpp:41
 #, kde-format
@@ -184,6 +183,7 @@ msgstr "Iniciar a numeración no:"
 msgid "Example:"
 msgstr "Exemplo:"
 
+# well-spelled: xiana
 #. i18n: ectx: property (text), widget (QLabel, u_resultValue)
 #: SaveLocation.ui:130
 #, kde-format
@@ -307,18 +307,17 @@ msgstr "Restaurar as opcións do escáner aos valores predeterminados"
 #: skanlite.cpp:62
 #, kde-format
 msgid "Configure..."
-msgstr ""
+msgstr "Configurar…"
 
 #: skanlite.cpp:66
-#, fuzzy, kde-format
-#| msgid "Opening the selected scanner failed."
+#, kde-format
 msgid "Reselect scanner device"
-msgstr "Fallou a abertura do escáner escollido."
+msgstr "Seleccionar de novo un dispositivo de escáner"
 
 #: skanlite.cpp:90
 #, kde-format
 msgid "Saving: %v kB"
-msgstr ""
+msgstr "Gardando: %v kB"
 
 #: skanlite.cpp:186
 #, kde-format
@@ -342,16 +341,13 @@ msgid "Image-"
 msgstr "Imaxe-"
 
 #: skanlite.cpp:481
-#, fuzzy, kde-format
-#| msgid ""
-#| "The image will be saved in the PNG format, as Skanlite only supports "
-#| "saving 16 bit color images in the PNG format."
+#, kde-format
 msgid ""
 "The image will be saved in the PNG format, as the selected image type does "
 "not support saving 16 bit color images."
 msgstr ""
-"A imaxe vaise gardar no formato PNG porque Skanlite só permite gardar as "
-"imaxes de cores de 16 bits en formato PNG."
+"A imaxe vaise gardar no formato PNG porque o tipo de imaxe seleccionado non "
+"permite gardar imaxes con 16 bits de cores."
 
 #: skanlite.cpp:506
 #, kde-format
