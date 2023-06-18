@@ -15,6 +15,7 @@
   <name xml:lang="de">Skanlite</name>
   <name xml:lang="el">Skanlite</name>
   <name xml:lang="en-GB">Skanlite</name>
+  <name xml:lang="eo">Skanlite</name>
   <name xml:lang="es">Skanlite</name>
   <name xml:lang="et">Skanlite</name>
   <name xml:lang="eu">Skanlite</name>
@@ -58,6 +59,7 @@
   <summary xml:lang="de">Anwendung zum Scannen von Bildern</summary>
   <summary xml:lang="el">Εφαρμογή σάρωσης εικόνων</summary>
   <summary xml:lang="en-GB">Image Scanning Application</summary>
+  <summary xml:lang="eo">Bildskana Aplikaĵo</summary>
   <summary xml:lang="es">Aplicación para escanear imágenes</summary>
   <summary xml:lang="et">Piltide skannimise rakendus</summary>
   <summary xml:lang="eu">Irudiak eskaneatzeko aplikazioa</summary>
@@ -143,6 +145,7 @@
     <p xml:lang="de">Funktionen:</p>
     <p xml:lang="el">Χαρακτηριστικά:</p>
     <p xml:lang="en-GB">Features:</p>
+    <p xml:lang="eo">Trajtoj:</p>
     <p xml:lang="es">Características:</p>
     <p xml:lang="et">Omadused:</p>
     <p xml:lang="eu">Eginbideak:</p>
@@ -227,6 +230,7 @@
       <li xml:lang="de">Unterstützung für Netzwerk-Scanner</li>
       <li xml:lang="el">Υποστήιρξη για δικτυακούς σαρωτές</li>
       <li xml:lang="en-GB">Support for networks scanners</li>
+      <li xml:lang="eo">Subteno por enretaj skaniloj</li>
       <li xml:lang="es">Permite el uso de escáneres en red.</li>
       <li xml:lang="et">Võrguskannerite toetus</li>
       <li xml:lang="eu">Sareko Eskanerren euskarria</li>
@@ -269,6 +273,7 @@
       <li xml:lang="de">Vorschau mit der Auswahlfunktion für den endgültigen Scan</li>
       <li xml:lang="el">Προεπισκόπηση με το επιλεγμένο χαρακτηριστικό για την τελική σάρωση</li>
       <li xml:lang="en-GB">Preview with selection feature for the final scan</li>
+      <li xml:lang="eo">Antaŭrigardo kun elekteblo por la fina skano</li>
       <li xml:lang="es">Vista previa con función de selección para el escaneo final.</li>
       <li xml:lang="et">Valikuvõimalusega eelvaatlus enne lõplikku skannimist</li>
       <li xml:lang="eu">Aurrebista hautatzeko gaitasunaz azken eskaneatzerako</li>
@@ -310,6 +315,7 @@
       <li xml:lang="de">Sannen mehrerer Bereiche eines Fotos</li>
       <li xml:lang="el">Σάρωση πολλών επιλογών μιας εικόνας</li>
       <li xml:lang="en-GB">Scanning multiple selections of an image</li>
+      <li xml:lang="eo">Skanante plurajn elektojn de bildo</li>
       <li xml:lang="es">Escanear múltiples selecciones de una imagen.</li>
       <li xml:lang="et">Mitme pildivaliku skannimine</li>
       <li xml:lang="eu">Irudi baten hautatze anitzen eskaneatzea</li>
