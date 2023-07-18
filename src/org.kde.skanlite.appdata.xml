@@ -15,6 +15,7 @@
   <name xml:lang="de">Skanlite</name>
   <name xml:lang="el">Skanlite</name>
   <name xml:lang="en-GB">Skanlite</name>
+  <name xml:lang="eo">Skanlite</name>
   <name xml:lang="es">Skanlite</name>
   <name xml:lang="et">Skanlite</name>
   <name xml:lang="eu">Skanlite</name>
@@ -58,6 +59,7 @@
   <summary xml:lang="de">Anwendung zum Scannen von Bildern</summary>
   <summary xml:lang="el">Εφαρμογή σάρωσης εικόνων</summary>
   <summary xml:lang="en-GB">Image Scanning Application</summary>
+  <summary xml:lang="eo">Bildskana Aplikaĵo</summary>
   <summary xml:lang="es">Aplicación para escanear imágenes</summary>
   <summary xml:lang="et">Piltide skannimise rakendus</summary>
   <summary xml:lang="eu">Irudiak eskaneatzeko aplikazioa</summary>
@@ -103,6 +105,7 @@
     <p xml:lang="da">Skanlite er et simpelt scannerprogram til at scanne og gemme billeder. Skanlite er optimeret til at scanne med flatbed-scannere. Skanlite kan ikke kun scanne billeder og dokumenter, men også transparenter og filmruller med scannere der understøtter det.</p>
     <p xml:lang="el">Το Skanlite είναι μια απλή εφαρμογή σάρωσης και αποθήκευσης εικόνων. Η βέλτιστη απόδοση είναι για σάρωση με επίπεδους σαρωτές. Το Skanlite δεν συλλαμβάνει μόνο φωτογραφίες και έγγραφα, αλλά και διαφάνειες και λωρίδες φιλμ με τους υποστηριζόμενους σαρωτές.</p>
     <p xml:lang="en-GB">Skanlite is a simple image scanning application to scan and save images. It is optimised for scanning with flatbed scanners. Skanlite can capture not only photos and documents, but also transparent slides and filmstrips, with supported scanners.</p>
+    <p xml:lang="eo">Skanlite estas simpla aplikaĵo por skani kaj konservi bildojn. Ĝi estas optimumigita por skanado per platbendaj skaniloj. Skanlite povas kapti ne nur fotojn kaj dokumentojn, sed ankaŭ travideblajn diapozitivojn kaj filmstriojn, per subtenataj skaniloj.</p>
     <p xml:lang="es">Skanlite es una sencilla aplicación para escanear y guardar imágenes. Está optimizada para escáneres de cama plana. Además de fotos y documentos, Skanlite puede escanear diapositivas y filminas con los escáneres admitidos.</p>
     <p xml:lang="eu">Skanlite irudiak eskaneatzeko eta gordetzeko aplikazio xume bat da. Gainazal lauko eskanerrekin eskaneatzeko optimizatua dago. Skanlitek argazkiak eta dokumentuak ez ezik, diapositiba gardenak eta film-zerrendak ere eskaneatu ditzake halakorik egitea onartzen duten eskanerrekin.</p>
     <p xml:lang="fi">Skanlite on yksinkertainen kuvanlukusovellus kuvien lukemiseen ja tallentamiseen. Se on optimoitu kuvanlukuun tasoskannereilla. Skanlite ei lue vain valokuvia ja tekstiä vaan toimii tuetuissa laitteissa myös dia- ja filmiskannerina.</p>
@@ -143,6 +146,7 @@
     <p xml:lang="de">Funktionen:</p>
     <p xml:lang="el">Χαρακτηριστικά:</p>
     <p xml:lang="en-GB">Features:</p>
+    <p xml:lang="eo">Trajtoj:</p>
     <p xml:lang="es">Características:</p>
     <p xml:lang="et">Omadused:</p>
     <p xml:lang="eu">Eginbideak:</p>
@@ -187,6 +191,7 @@
       <li xml:lang="de">Dialog zum Speichern für jedes eingescannte Bild oder Speichern der Bilder sofort in einem angegebenen Ordner wit automatisch generierten Namen und Format</li>
       <li xml:lang="el">Αποθήκευση διαλόγου για κάθε εικόνα μετά τη σάρωση ή αποθήκευση των εικόνων αμέσως σε έναν δοσμένο φάκελο με αυτόματη εκχώρηση ονομάτων και τύπου αποθήκευσης</li>
       <li xml:lang="en-GB">Save dialogue for every image scanned or saving the images immediately in a specified folder with auto-generated names and format</li>
+      <li xml:lang="eo">Konservi dialogon por ĉiu bildo skanita aŭ konservante la bildojn tuj en specifita dosierujo kun aŭtomate generitaj nomoj kaj formato</li>
       <li xml:lang="es">Diálogo para guardar las imágenes escaneadas o para guardarlas inmediatamente en la carpeta indicada con nombres generados automáticamente y en el formato indicado.</li>
       <li xml:lang="et">Salvestamisdialoogi avamine kõigi skannitud piltide puhul või ka piltide kohene salvestamine määratud kataloogi automaatselt genereeritud nimede ja vorminguga</li>
       <li xml:lang="eu">Gorde elkarrizketa-koadroa eskaneatutako irudi bakoitzeko edo gorde berehala adierazitako formatu eta karpetan auto-sortutako izenekin.</li>
@@ -227,6 +232,7 @@
       <li xml:lang="de">Unterstützung für Netzwerk-Scanner</li>
       <li xml:lang="el">Υποστήιρξη για δικτυακούς σαρωτές</li>
       <li xml:lang="en-GB">Support for networks scanners</li>
+      <li xml:lang="eo">Subteno por enretaj skaniloj</li>
       <li xml:lang="es">Permite el uso de escáneres en red.</li>
       <li xml:lang="et">Võrguskannerite toetus</li>
       <li xml:lang="eu">Sareko Eskanerren euskarria</li>
@@ -269,6 +275,7 @@
       <li xml:lang="de">Vorschau mit der Auswahlfunktion für den endgültigen Scan</li>
       <li xml:lang="el">Προεπισκόπηση με το επιλεγμένο χαρακτηριστικό για την τελική σάρωση</li>
       <li xml:lang="en-GB">Preview with selection feature for the final scan</li>
+      <li xml:lang="eo">Antaŭrigardo kun elekteblo por la fina skano</li>
       <li xml:lang="es">Vista previa con función de selección para el escaneo final.</li>
       <li xml:lang="et">Valikuvõimalusega eelvaatlus enne lõplikku skannimist</li>
       <li xml:lang="eu">Aurrebista hautatzeko gaitasunaz azken eskaneatzerako</li>
@@ -310,6 +317,7 @@
       <li xml:lang="de">Sannen mehrerer Bereiche eines Fotos</li>
       <li xml:lang="el">Σάρωση πολλών επιλογών μιας εικόνας</li>
       <li xml:lang="en-GB">Scanning multiple selections of an image</li>
+      <li xml:lang="eo">Skanante plurajn elektojn de bildo</li>
       <li xml:lang="es">Escanear múltiples selecciones de una imagen.</li>
       <li xml:lang="et">Mitme pildivaliku skannimine</li>
       <li xml:lang="eu">Irudi baten hautatze anitzen eskaneatzea</li>
