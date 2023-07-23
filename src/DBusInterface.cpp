@@ -48,3 +48,5 @@ const QStringList DBusInterface::ensureStringList(const QStringList &list)
 
     return list;
 }
+
+#include "moc_DBusInterface.cpp"

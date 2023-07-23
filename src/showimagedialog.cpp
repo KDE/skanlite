@@ -61,3 +61,5 @@ void ShowImageDialog::showEvent(QShowEvent *e)
     m_saveButton->setFocus();
     QDialog::showEvent(e);
 }
+
+#include "moc_showimagedialog.cpp"

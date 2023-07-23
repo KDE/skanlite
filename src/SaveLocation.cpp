@@ -128,3 +128,5 @@ void SaveLocation::showEvent(QShowEvent *event)
         QTimer::singleShot(0, this, [this]() { m_ui->u_urlRequester->button()->click(); });
     }
 }
+
+#include "moc_SaveLocation.cpp"

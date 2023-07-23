@@ -101,3 +101,5 @@ bool SkanliteImageSaver::Private::savePDF()
 
     return painter.end();
 }
+
+#include "moc_SkanliteImageSaver.cpp"

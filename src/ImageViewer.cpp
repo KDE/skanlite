@@ -131,3 +131,5 @@ void ImageViewer::wheelEvent(QWheelEvent *e)
     }
 }
 
+
+#include "moc_ImageViewer.cpp"

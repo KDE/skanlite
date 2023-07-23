@@ -864,3 +864,5 @@ void Skanlite::setSelection(const QStringList &options)
 { // here options contains selection related subset of options
     setScannerOptions(options, false);
 }
+
+#include "moc_skanlite.cpp"
