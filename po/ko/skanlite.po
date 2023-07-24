@@ -45,7 +45,7 @@ msgstr "Skanlite"
 #: main.cpp:34
 #, kde-format
 msgid "Scanning application by KDE based on libksane."
-msgstr "libksane을 사용하는 KDE 스캔 프로그램입니다."
+msgstr "libksane을 사용하는 KDE 스캔 앱입니다."
 
 #: main.cpp:36
 #, kde-format
