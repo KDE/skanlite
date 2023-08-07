@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: skanlite\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-12-07 00:45+0000\n"
-"PO-Revision-Date: 2023-04-28 18:11+0200\n"
+"PO-Revision-Date: 2023-08-06 05:21+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 23.04.0\n"
+"X-Generator: Lokalize 23.04.3\n"
 
 #: ImageViewer.cpp:43
 #, kde-format
@@ -260,7 +260,7 @@ msgstr "Xeral"
 #: settings.ui:239
 #, kde-format
 msgid "Set preview resolution (DPI)"
-msgstr "Indique a resolución da vista previa (DPI)"
+msgstr "Indique a resolución da vista previa (DPI)."
 
 #. i18n: ectx: property (text), item, widget (QComboBox, previewDPI)
 #: settings.ui:253
@@ -296,7 +296,7 @@ msgstr "300"
 #: settings.ui:286
 #, kde-format
 msgid "Disable automatic selections"
-msgstr "Desactivar as seleccións automáticas"
+msgstr "Desactivar as seleccións automáticas."
 
 #. i18n: ectx: property (text), widget (QPushButton, revertOptions)
 #: settings.ui:319
