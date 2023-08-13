@@ -28,6 +28,7 @@
 #include <QCloseEvent>
 #include <QProgressBar>
 
+#include <kio_version.h>
 #include <KAboutData>
 #include <KAboutApplicationDialog>
 #include <KLocalizedString>
@@ -434,7 +435,11 @@ bool urlExists(const QUrl& url)
         }
     }
     else {
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 240, 0)
+        KIO::StatJob *statJob = KIO::stat(url, KIO::StatJob::DestinationSide, KIO::StatNoDetails);
+#else
         KIO::StatJob *statJob = KIO::statDetails(url, KIO::StatJob::DestinationSide, KIO::StatNoDetails);
+#endif
         KJobWidgets::setWindow(statJob, QApplication::activeWindow());
         if (!statJob->exec()) {
             return false;
