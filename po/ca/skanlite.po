@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skanlite\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-07 00:45+0000\n"
+"POT-Creation-Date: 2023-08-14 00:45+0000\n"
 "PO-Revision-Date: 2022-01-21 10:00+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -42,7 +42,7 @@ msgstr "Zoom a la mida real"
 msgid "Zoom to Fit"
 msgstr "Zoom fins que ajusti"
 
-#: main.cpp:32 skanlite.cpp:782
+#: main.cpp:32 skanlite.cpp:787
 #, kde-format
 msgid "Skanlite"
 msgstr "Skanlite"
@@ -305,43 +305,43 @@ msgstr "Desactiva les seleccions automàtiques"
 msgid "Revert scanner options to default values"
 msgstr "Restableix les opcions de l'escàner als valors predeterminats"
 
-#: skanlite.cpp:62
+#: skanlite.cpp:63
 #, kde-format
 msgid "Configure..."
 msgstr "Configura..."
 
-#: skanlite.cpp:66
+#: skanlite.cpp:67
 #, kde-format
 msgid "Reselect scanner device"
 msgstr "Torna a seleccionar el dispositiu d'escaneig"
 
-#: skanlite.cpp:90
+#: skanlite.cpp:91
 #, kde-format
 msgid "Saving: %v kB"
 msgstr "S'està desant: %v kB"
 
-#: skanlite.cpp:186
+#: skanlite.cpp:187
 #, kde-format
 msgid "Skanlite Settings"
 msgstr "Configuració de l'Skanlite"
 
-#: skanlite.cpp:206 skanlite.cpp:305
+#: skanlite.cpp:207 skanlite.cpp:306
 #, kde-format
 msgid "Opening the selected scanner failed."
 msgstr "Ha fallat en obrir l'escàner seleccionat."
 
-#: skanlite.cpp:320
+#: skanlite.cpp:321
 #, kde-format
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: skanlite.cpp:340
+#: skanlite.cpp:341
 #, kde-format
 msgctxt "prefix for auto naming"
 msgid "Image-"
 msgstr "Imatge-"
 
-#: skanlite.cpp:481
+#: skanlite.cpp:486
 #, kde-format
 msgid ""
 "The image will be saved in the PNG format, as the selected image type does "
@@ -350,28 +350,28 @@ msgstr ""
 "La imatge es desarà en el format PNG, atès que el tipus d'imatge seleccionat "
 "no permet desar imatges amb color de 16 bits."
 
-#: skanlite.cpp:506
+#: skanlite.cpp:511
 #, kde-format
 msgid "New Image File Name"
 msgstr "Nom nou del fitxer d'imatge"
 
-#: skanlite.cpp:610
+#: skanlite.cpp:615
 #, kde-format
 msgid "Failed to save image"
 msgstr "Ha fallat en desar la imatge"
 
-#: skanlite.cpp:623
+#: skanlite.cpp:628
 #, kde-format
 msgid "Failed to upload image"
 msgstr "Ha fallat en pujar la imatge"
 
-#: skanlite.cpp:778
+#: skanlite.cpp:783
 #, kde-format
 msgctxt "@title:window %1 = scanner maker, %2 = scanner model"
 msgid "%1 %2 - Skanlite"
 msgstr "%1 %2 - Skanlite"
 
-#: skanlite.cpp:780
+#: skanlite.cpp:785
 #, kde-format
 msgctxt "@title:window %1 = scanner device"
 msgid "%1 - Skanlite"

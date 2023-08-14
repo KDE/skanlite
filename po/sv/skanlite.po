@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skanlite\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-07 00:45+0000\n"
+"POT-Creation-Date: 2023-08-14 00:45+0000\n"
 "PO-Revision-Date: 2022-01-22 11:53+0100\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@bredband.net>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
@@ -38,7 +38,7 @@ msgstr "Zooma till faktisk storlek"
 msgid "Zoom to Fit"
 msgstr "Fyll sidan"
 
-#: main.cpp:32 skanlite.cpp:782
+#: main.cpp:32 skanlite.cpp:787
 #, kde-format
 msgid "Skanlite"
 msgstr "Skanlite"
@@ -298,43 +298,43 @@ msgstr "Inaktivera automatiska markeringar"
 msgid "Revert scanner options to default values"
 msgstr "Återställ bildläsaralternativ till standardvärden"
 
-#: skanlite.cpp:62
+#: skanlite.cpp:63
 #, kde-format
 msgid "Configure..."
 msgstr "Anpassa..."
 
-#: skanlite.cpp:66
+#: skanlite.cpp:67
 #, kde-format
 msgid "Reselect scanner device"
 msgstr "Välj bildläsarenhet igen"
 
-#: skanlite.cpp:90
+#: skanlite.cpp:91
 #, kde-format
 msgid "Saving: %v kB"
 msgstr "Sparar: %v KiB"
 
-#: skanlite.cpp:186
+#: skanlite.cpp:187
 #, kde-format
 msgid "Skanlite Settings"
 msgstr "Inställningar av Skanlite"
 
-#: skanlite.cpp:206 skanlite.cpp:305
+#: skanlite.cpp:207 skanlite.cpp:306
 #, kde-format
 msgid "Opening the selected scanner failed."
 msgstr "Misslyckades öppna vald bildläsare."
 
-#: skanlite.cpp:320
+#: skanlite.cpp:321
 #, kde-format
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: skanlite.cpp:340
+#: skanlite.cpp:341
 #, kde-format
 msgctxt "prefix for auto naming"
 msgid "Image-"
 msgstr "Bild-"
 
-#: skanlite.cpp:481
+#: skanlite.cpp:486
 #, kde-format
 msgid ""
 "The image will be saved in the PNG format, as the selected image type does "
@@ -343,28 +343,28 @@ msgstr ""
 "Bilden sparas med PNG-format, eftersom den valda bildtypen inte stöder att "
 "spara 16-bitars färgbilder."
 
-#: skanlite.cpp:506
+#: skanlite.cpp:511
 #, kde-format
 msgid "New Image File Name"
 msgstr "Nytt bildfilnamn"
 
-#: skanlite.cpp:610
+#: skanlite.cpp:615
 #, kde-format
 msgid "Failed to save image"
 msgstr "Misslyckades spara bild"
 
-#: skanlite.cpp:623
+#: skanlite.cpp:628
 #, kde-format
 msgid "Failed to upload image"
 msgstr "Misslyckades ladda upp bild"
 
-#: skanlite.cpp:778
+#: skanlite.cpp:783
 #, kde-format
 msgctxt "@title:window %1 = scanner maker, %2 = scanner model"
 msgid "%1 %2 - Skanlite"
 msgstr "%1 %2 - Skanlite"
 
-#: skanlite.cpp:780
+#: skanlite.cpp:785
 #, kde-format
 msgctxt "@title:window %1 = scanner device"
 msgid "%1 - Skanlite"
