@@ -226,10 +226,10 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     // prepare the Show Image Dialog
     m_showImgDialog = new ShowImageDialog(this);
     connect(m_showImgDialog, &ShowImageDialog::saveRequested, this, &Skanlite::saveImage);
-    connect(m_showImgDialog, &ShowImageDialog::rejected, m_ksanew, &KSaneWidget::scanCancel);
+    connect(m_showImgDialog, &ShowImageDialog::rejected, m_ksanew, &KSaneWidget::cancelScan);
 
     // save the default sane options for later use
-    m_ksanew->getOptVals(m_defaultScanOpts);
+    m_ksanew->getOptionValues(m_defaultScanOpts);
 
     // load saved options
     loadScannerOptions();
@@ -239,9 +239,9 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
 
     if (m_dbusInterface.setupDBusInterface()) {
         // D-Bus related slots
-        connect(&m_dbusInterface, &DBusInterface::requestedScan, m_ksanew, &KSaneWidget::scanFinal);
+        connect(&m_dbusInterface, &DBusInterface::requestedScan, m_ksanew, &KSaneWidget::startScan);
         connect(&m_dbusInterface, &DBusInterface::requestedPreview, m_ksanew, &KSaneWidget::startPreviewScan);
-        connect(&m_dbusInterface, &DBusInterface::requestedScanCancel, m_ksanew, &KSaneWidget::scanCancel);
+        connect(&m_dbusInterface, &DBusInterface::requestedScanCancel, m_ksanew, &KSaneWidget::cancelScan);
         connect(&m_dbusInterface, &DBusInterface::requestedSetScannerOptions, this, &Skanlite::setScannerOptions);
         connect(&m_dbusInterface, &DBusInterface::requestedSetSelection, this, &Skanlite::setSelection);
 
@@ -458,7 +458,7 @@ void Skanlite::saveImage()
         while (m_firstImage || !dirExists) {
             m_saveLocation->setOpenRequesterOnShow(!dirExists);
             if (m_saveLocation->exec() != QFileDialog::Accepted) {
-                m_ksanew->scanCancel(); // In case we are cancelling a document feeder scan
+                m_ksanew->cancelScan(); // In case we are cancelling a document feeder scan
                 return;
             }
             dirUrl = m_saveLocation->folderUrl();
@@ -669,7 +669,7 @@ void Skanlite::saveScannerOptions()
     if (!m_deviceName.isEmpty()) {
         KConfigGroup options(KSharedConfig::openStateConfig(), QStringLiteral("Options For %1").arg(m_deviceName));
         QMap <QString, QString> opts;
-        m_ksanew->getOptVals(opts);
+        m_ksanew->getOptionValues(opts);
         writeScannerOptions(QStringLiteral("Options For %1").arg(m_deviceName), opts);
     }
 }
@@ -685,7 +685,7 @@ void Skanlite::defaultScannerOptions()
 
 void Skanlite::applyScannerOptions(const QMap <QString, QString> &opts)
 {
-    if (m_ksanew->setOptVals(opts) == -1) {
+    if (m_ksanew->setOptionValues(opts) == -1) {
         m_pendingApplyScanOpts = opts;
     } else {
         m_pendingApplyScanOpts.clear();
@@ -794,7 +794,7 @@ void Skanlite::getScannerOptions()
 {
     if (!m_deviceName.isEmpty()) {
         QMap <QString, QString> opts;
-        m_ksanew->getOptVals(opts);
+        m_ksanew->getOptionValues(opts);
         m_dbusInterface.setReply(serializeScannerOptions(opts));
     }
 }
@@ -853,7 +853,7 @@ void Skanlite::getSelection()
 {
     if (!m_deviceName.isEmpty()) {
         QMap <QString, QString> opts;
-        m_ksanew->getOptVals(opts);
+        m_ksanew->getOptionValues(opts);
 
         QStringList reply;
         for (const auto &key : selectionSettings ) {
