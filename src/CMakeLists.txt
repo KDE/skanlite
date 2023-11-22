@@ -27,11 +27,15 @@ target_link_libraries(skanlite
     Qt${QT_MAJOR_VERSION}::Core
   PRIVATE
     KF${KF_MAJOR_VERSION}::CoreAddons
-    KF5::Sane
     KF${KF_MAJOR_VERSION}::I18n
     KF${KF_MAJOR_VERSION}::XmlGui
     KF${KF_MAJOR_VERSION}::KIOWidgets
 )
+if (QT_MAJOR_VERSION STREQUAL "6")
+    target_link_libraries(skanlite PRIVATE KSaneWidgets6)
+else()
+    target_link_libraries(skanlite PRIVATE KF5::Sane)
+endif()
 
 install(TARGETS skanlite ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 install(PROGRAMS org.kde.skanlite.desktop DESTINATION ${KDE_INSTALL_APPDIR})
