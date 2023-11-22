@@ -100,7 +100,7 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     mainLayout->addWidget(dlgButtonBoxBottom);
 
     // read the size here...
-    KConfigGroup window(KSharedConfig::openStateConfig(), "Window");
+    KConfigGroup window(KSharedConfig::openStateConfig(), QStringLiteral("Window"));
     QSize rect = window.readEntry("Geometry", QSize(740, 400));
     resize(rect);
 
@@ -279,14 +279,14 @@ void Skanlite::closeEvent(QCloseEvent *event)
 
 void Skanlite::saveWindowSize()
 {
-    KConfigGroup window(KSharedConfig::openStateConfig(), "Window");
+    KConfigGroup window(KSharedConfig::openStateConfig(), QStringLiteral("Window"));
     window.writeEntry("Geometry", size());
     window.sync();
 }
 
 void Skanlite::saveScannerDevice()
 {
-    KConfigGroup general(KSharedConfig::openStateConfig(), "General");
+    KConfigGroup general(KSharedConfig::openStateConfig(), QStringLiteral("General"));
     general.writeEntry(QStringLiteral("deviceName"), m_deviceName);
     general.writeEntry(QStringLiteral("deviceModel"), m_deviceModel);
     general.writeEntry(QStringLiteral("deviceVendor"), m_deviceVendor);
@@ -332,7 +332,7 @@ void Skanlite::readSettings(void)
     m_settingsUi.setPreviewDPI->setChecked(true);
 
     // read the saved parameters
-    KConfigGroup saving(KSharedConfig::openConfig(), "Image Saving");
+    KConfigGroup saving(KSharedConfig::openConfig(), QStringLiteral("Image Saving"));
     m_settingsUi.saveModeCB->setCurrentIndex(saving.readEntry("SaveMode", (int)SaveModeManual));
     if (m_settingsUi.saveModeCB->currentIndex() != SaveModeAskFirst) {
         m_firstImage = false;
@@ -349,7 +349,7 @@ void Skanlite::readSettings(void)
     m_settingsUi.setQuality->setChecked(saving.readEntry("SetQuality", false));
     m_settingsUi.showB4Save->setChecked(saving.readEntry("ShowBeforeSave", true));
 
-    KConfigGroup general(KSharedConfig::openConfig(), "General");
+    KConfigGroup general(KSharedConfig::openConfig(), QStringLiteral("General"));
 
     //m_settingsUi.previewDPI->setCurrentItem(general.readEntry("PreviewDPI", "100"), true); // FIXME KF5 is the 'true' parameter still needed?
     m_settingsUi.previewDPI->setCurrentText(general.readEntry("PreviewDPI", "100"));
@@ -372,7 +372,7 @@ void Skanlite::showSettingsDialog(void)
     // show the dialog
     if (m_settingsDialog->exec()) {
         // save the settings
-        KConfigGroup saving(KSharedConfig::openConfig(), "Image Saving");
+        KConfigGroup saving(KSharedConfig::openConfig(), QStringLiteral("Image Saving"));
         saving.writeEntry("SaveMode", m_settingsUi.saveModeCB->currentIndex());
         saving.writeEntry("Location", m_settingsUi.saveDirRequester->url());
         saving.writeEntry("NamePrefix", m_settingsUi.imgPrefix->text());
@@ -382,7 +382,7 @@ void Skanlite::showSettingsDialog(void)
         saving.writeEntry("ShowBeforeSave", m_settingsUi.showB4Save->isChecked());
         saving.sync();
 
-        KConfigGroup general(KSharedConfig::openConfig(), "General");
+        KConfigGroup general(KSharedConfig::openConfig(), QStringLiteral("General"));
         general.writeEntry("PreviewDPI", m_settingsUi.previewDPI->currentText());
         general.writeEntry("SetPreviewDPI", m_settingsUi.setPreviewDPI->isChecked());
         general.writeEntry("DisableAutoSelection", m_settingsUi.u_disableSelections->isChecked());
@@ -659,7 +659,7 @@ void readScannerOptions(const QString &groupName, QMap <QString, QString> &opts)
 
 void Skanlite::saveScannerOptions()
 {
-    KConfigGroup saving(KSharedConfig::openConfig(), "Image Saving");
+    KConfigGroup saving(KSharedConfig::openConfig(), QStringLiteral("Image Saving"));
     saving.writeEntry("NumberStartsFrom", m_saveLocation->startNumber());
 
     if (!m_ksanew) {
@@ -695,7 +695,7 @@ void Skanlite::applyScannerOptions(const QMap <QString, QString> &opts)
 void Skanlite::loadScannerOptions()
 {
     if (!m_deviceName.isEmpty()) {
-        KConfigGroup saving(KSharedConfig::openConfig(), "Image Saving");
+        KConfigGroup saving(KSharedConfig::openConfig(), QStringLiteral("Image Saving"));
         m_saveLocation->setStartNumber(saving.readEntry("NumberStartsFrom", 1));
 
         if (!m_ksanew) {
