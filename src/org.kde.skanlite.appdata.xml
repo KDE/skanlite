@@ -356,8 +356,10 @@
       <image>https://cdn.kde.org/screenshots/skanlite/skanlite.png</image>
     </screenshot>
   </screenshots>
-  <url type="homepage">https://www.kde.org/applications/graphics/skanlite/</url>
+  <url type="homepage">https://apps.kde.org/skanlite</url>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=skanlite</url>
+  <url type="help">https://docs.kde.org/?application=skanlite</url>
+  <url type="donation">https://www.kde.org/community/donations/?app=skanlite&amp;source=appdata</url>
   <project_group>KDE</project_group>
   <provides>
     <binary>skanlite</binary>
