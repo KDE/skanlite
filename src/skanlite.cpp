@@ -35,6 +35,7 @@
 #include <KMessageBox>
 #include <KIO/StatJob>
 #include <KIO/Job>
+#include <KIO/StoredTransferJob>
 #include <KJobWidgets>
 #include <kio/global.h>
 #include <KSharedConfig>
