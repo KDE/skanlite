@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extragear-graphics-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-05 12:27+0000\n"
+"POT-Creation-Date: 2024-01-04 00:40+0000\n"
 "PO-Revision-Date: 2023-03-21 21:16+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -42,7 +42,7 @@ msgstr "Özgün Boyut"
 msgid "Zoom to Fit"
 msgstr "Ekrana Sığdır"
 
-#: main.cpp:32 skanlite.cpp:787
+#: main.cpp:32 skanlite.cpp:788
 #, kde-format
 msgid "Skanlite"
 msgstr "Skanlite"
@@ -302,43 +302,43 @@ msgstr "Otomatik seçimleri devre dışı bırak"
 msgid "Revert scanner options to default values"
 msgstr "Tarayıcı seçeneklerini öntanımlı değerlerine geri döndür"
 
-#: skanlite.cpp:63
+#: skanlite.cpp:64
 #, kde-format
 msgid "Configure..."
 msgstr "Yapılandır..."
 
-#: skanlite.cpp:67
+#: skanlite.cpp:68
 #, kde-format
 msgid "Reselect scanner device"
 msgstr "Tarayıcıyı yeniden seç"
 
-#: skanlite.cpp:91
+#: skanlite.cpp:92
 #, kde-format
 msgid "Saving: %v kB"
 msgstr "Kaydediliyor: %v kB"
 
-#: skanlite.cpp:187
+#: skanlite.cpp:188
 #, kde-format
 msgid "Skanlite Settings"
 msgstr "Skanlite Ayarları"
 
-#: skanlite.cpp:207 skanlite.cpp:306
+#: skanlite.cpp:208 skanlite.cpp:307
 #, kde-format
 msgid "Opening the selected scanner failed."
 msgstr "Seçilen tarayıcı açılamadı."
 
-#: skanlite.cpp:321
+#: skanlite.cpp:322
 #, kde-format
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: skanlite.cpp:341
+#: skanlite.cpp:342
 #, kde-format
 msgctxt "prefix for auto naming"
 msgid "Image-"
 msgstr "Görsel-"
 
-#: skanlite.cpp:486
+#: skanlite.cpp:487
 #, kde-format
 msgid ""
 "The image will be saved in the PNG format, as the selected image type does "
@@ -347,28 +347,28 @@ msgstr ""
 "Seçili görsel türü 16 bit renkli görselleri kaydetmeyi desteklemediğinden, "
 "görsel PNG biçiminde kaydedilecektir."
 
-#: skanlite.cpp:511
+#: skanlite.cpp:512
 #, kde-format
 msgid "New Image File Name"
 msgstr "Yeni Görsel Dosya Adı"
 
-#: skanlite.cpp:615
+#: skanlite.cpp:616
 #, kde-format
 msgid "Failed to save image"
 msgstr "Görsel kaydedilemedi"
 
-#: skanlite.cpp:628
+#: skanlite.cpp:629
 #, kde-format
 msgid "Failed to upload image"
 msgstr "Görseli karşıya yükleme başarısız"
 
-#: skanlite.cpp:783
+#: skanlite.cpp:784
 #, kde-format
 msgctxt "@title:window %1 = scanner maker, %2 = scanner model"
 msgid "%1 %2 - Skanlite"
 msgstr "%1 %2 - Skanlite"
 
-#: skanlite.cpp:785
+#: skanlite.cpp:786
 #, kde-format
 msgctxt "@title:window %1 = scanner device"
 msgid "%1 - Skanlite"

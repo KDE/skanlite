@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skanlite\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-05 12:27+0000\n"
+"POT-Creation-Date: 2024-01-04 00:40+0000\n"
 "PO-Revision-Date: 2012-07-09 14:16+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer\n"
@@ -39,7 +39,7 @@ msgstr "ពង្រីក​ឲ្យ​ដល់​ទំហំ​ជាក់
 msgid "Zoom to Fit"
 msgstr "ពង្រីក​ឲ្យ​សម"
 
-#: main.cpp:32 skanlite.cpp:787
+#: main.cpp:32 skanlite.cpp:788
 #, kde-format
 msgid "Skanlite"
 msgstr "Skanlite"
@@ -305,44 +305,44 @@ msgstr "បិទ​ការ​ជ្រើស​ដោយ​ស្វ័យប
 msgid "Revert scanner options to default values"
 msgstr "ត្រឡប់​ជម្រើស​ម៉ាស៊ីន​ស្កេន​ទៅ​​​តម្លៃ​លំនាំដើម​វិញ"
 
-#: skanlite.cpp:63
+#: skanlite.cpp:64
 #, kde-format
 msgid "Configure..."
 msgstr ""
 
-#: skanlite.cpp:67
+#: skanlite.cpp:68
 #, fuzzy, kde-format
 #| msgid "Opening the selected scanner failed."
 msgid "Reselect scanner device"
 msgstr "បាន​បរាជ័យ​ក្នុង​កា​របើក​ម៉ាស៊ីន​ស្កេន​ដែល​បាន​ជ្រើស ។"
 
-#: skanlite.cpp:91
+#: skanlite.cpp:92
 #, kde-format
 msgid "Saving: %v kB"
 msgstr ""
 
-#: skanlite.cpp:187
+#: skanlite.cpp:188
 #, kde-format
 msgid "Skanlite Settings"
 msgstr "ការ​កំណត់ Skanlite"
 
-#: skanlite.cpp:207 skanlite.cpp:306
+#: skanlite.cpp:208 skanlite.cpp:307
 #, kde-format
 msgid "Opening the selected scanner failed."
 msgstr "បាន​បរាជ័យ​ក្នុង​កា​របើក​ម៉ាស៊ីន​ស្កេន​ដែល​បាន​ជ្រើស ។"
 
-#: skanlite.cpp:321
+#: skanlite.cpp:322
 #, kde-format
 msgid "%1: %2"
 msgstr ""
 
-#: skanlite.cpp:341
+#: skanlite.cpp:342
 #, kde-format
 msgctxt "prefix for auto naming"
 msgid "Image-"
 msgstr "រូបភាព"
 
-#: skanlite.cpp:486
+#: skanlite.cpp:487
 #, fuzzy, kde-format
 #| msgid ""
 #| "The image will be saved in the PNG format, as Skanlite only supports "
@@ -354,30 +354,30 @@ msgstr ""
 "រូបភាព​នឹង​ត្រូវ​បាន​រក្សា​ទុក​នៅ​ក្នុង​ទ្រង់​ទ្រាយ​ PNG  ដោយ​សារ​តែ​ Skanlite គាំទ្រ​តែ​ការ​រក្សា​ទុក​​រូបភាព​"
 "ពណ៌​ ១​៦ ប៊ីត​នៅ​ក្នុង​ទ្រង់​ទ្រាយ​ PNG ប៉ុណ្ណោះ ។"
 
-#: skanlite.cpp:511
+#: skanlite.cpp:512
 #, kde-format
 msgid "New Image File Name"
 msgstr "ឈ្មោះ​ឯកសារ​រូបភាព​ថ្មី"
 
-#: skanlite.cpp:615
+#: skanlite.cpp:616
 #, kde-format
 msgid "Failed to save image"
 msgstr "បាន​បរាជ័យ​ក្នុង​ការ​រក្សា​ទុក​រូបភាព"
 
-#: skanlite.cpp:628
+#: skanlite.cpp:629
 #, fuzzy, kde-format
 #| msgid "Failed to save image"
 msgid "Failed to upload image"
 msgstr "បាន​បរាជ័យ​ក្នុង​ការ​រក្សា​ទុក​រូបភាព"
 
-#: skanlite.cpp:783
+#: skanlite.cpp:784
 #, fuzzy, kde-format
 #| msgid "Skanlite"
 msgctxt "@title:window %1 = scanner maker, %2 = scanner model"
 msgid "%1 %2 - Skanlite"
 msgstr "Skanlite"
 
-#: skanlite.cpp:785
+#: skanlite.cpp:786
 #, fuzzy, kde-format
 #| msgid "Skanlite"
 msgctxt "@title:window %1 = scanner device"
