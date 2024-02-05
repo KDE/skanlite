@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: skanlite\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-04 00:40+0000\n"
-"PO-Revision-Date: 2024-01-03 14:17+0100\n"
+"PO-Revision-Date: 2024-02-04 17:21+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -255,7 +255,7 @@ msgstr "Ĝenerala"
 #: settings.ui:239
 #, kde-format
 msgid "Set preview resolution (DPI)"
-msgstr "Agordu antaŭrigardan rezolucion (DPI)"
+msgstr "Agordu antaŭrigardan distingivon (DPI)"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, previewDPI)
 #: settings.ui:253
