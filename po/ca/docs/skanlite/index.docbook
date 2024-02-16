@@ -84,7 +84,7 @@
 <para
 >L'&skanlite; és una aplicació per a l'escaneig d'imatges senzilla que no fa res més que escanejar i desar les imatges. L'&skanlite; pot obrir un diàleg de desament per a cada imatge escanejada o desar-les immediatament en una carpeta especificada amb noms i format generats automàticament. L'usuari també pot triar mostrar la imatge escanejada abans de desar-la.</para>
 <para
->L'&skanlite; pot desar les imatges en tots els formats admesos per les &Qt;. Per exemple, els següents formats: <itemizedlist>
+>L'&skanlite; pot desar les imatges en tots els formats admesos per les &Qt;. Per exemple, els formats següents: <itemizedlist>
 <listitem
 ><para
 >png (de 8 i 16 bits per color) </para
@@ -159,7 +159,7 @@
 <para
 >En cas de no trobar cap dispositiu, potser perquè l'escàner no està encès o es troba desconnectat, corregiu-ho. A continuació, <guibutton
 >Actualitza la llista de dispositius</guibutton
-> es podrà utilitzar per tornar a carregar la llista dels escàners.</para
+> es podrà utilitzar per a tornar a carregar la llista dels escàners.</para
 > 
 <note
 ><para
@@ -222,7 +222,7 @@
 <title
 >Escanejar</title>
 <para
->Per escanejar una imatge, l'usuari pot començar amb una vista prèvia i després seleccionar la part de l'àrea d'escaneig per fer l'escaneig final. La vista prèvia de l'escaneig s'inicia prement el botó de vista prèvia. </para>
+>Per a escanejar una imatge, l'usuari pot començar amb una vista prèvia i després seleccionar la part de l'àrea d'escaneig per a fer l'escaneig final. La vista prèvia de l'escaneig s'inicia prement el botó de vista prèvia. </para>
 
 <screenshot>
      <screeninfo
@@ -257,14 +257,14 @@
 >Per a seleccionar millor la imatge, l'usuari pot apropar, allunyar la selecció actual o ajustar la vista prèvia a la finestra. </para>
 <screenshot>
      <screeninfo
->El botó «Zoom per ajustar»</screeninfo>
+>El botó «Zoom per a ajustar»</screeninfo>
 	<mediaobject>
 	  <imageobject>
 	    <imagedata fileref="zoom-to-fit.png" format="PNG"/>
 	  </imageobject>
 	    <textobject>
 	    <phrase
->El botó «Zoom per ajustar»</phrase>
+>El botó «Zoom per a ajustar»</phrase>
 	  </textobject>
 	</mediaobject>
 </screenshot>
@@ -346,9 +346,9 @@
 <para
 >Escanegeu una vista prèvia i aleshores utilitzeu el &BER; per a seleccionar la primera part de la imatge a la vista prèvia. Manteniu l'àrea seleccionada amb el cursor del ratolí i feu clic sobre la icona verda <guiicon
 >+</guiicon
-> per a seleccionar l'àrea. Les àrees seleccionades quedaran indicades mitjançant una vora vermella. Ara seleccioneu les següents parts de la imatge de la mateixa manera.</para>
+> per a seleccionar l'àrea. Les àrees seleccionades quedaran indicades mitjançant una vora vermella. Ara seleccioneu les parts següents de la imatge de la mateixa manera.</para>
 <para
->Per eliminar una sola selecció manteniu l'àrea amb el cursor del ratolí i feu clic sobre el botó vermell amb una icona <guiicon
+>Per a eliminar una selecció individual manteniu l'àrea amb el cursor del ratolí i feu clic sobre el botó vermell amb una icona <guiicon
 >-</guiicon
 >. Amb <guilabel
 >Neteja les seleccions</guilabel
@@ -406,7 +406,7 @@
 >Obre el diàleg de desament per a cada imatge</guilabel
 > s'obrirà el diàleg de desament per a cada imatge escanejada. Si preferiu que l'&skanlite; les desi automàticament (generant automàticament un nom i desant la imatge en una carpeta predefinida), podeu triar <guilabel
 >Obre el diàleg de desament només per a la primera imatge</guilabel
->. Aquesta opció obrirà el següent diàleg «Ubicació de desament» per a la primera imatge escanejada.</para>
+>. Aquesta opció obrirà el diàleg següent «Ubicació de desament» per a la primera imatge escanejada.</para>
 <para>
     <screenshot>
         <screeninfo
@@ -454,7 +454,7 @@
 <varlistentry>
 <term
 ><guilabel
->Indica la qualitat per desar:</guilabel
+>Indica la qualitat en desar:</guilabel
 ></term>
 <listitem
 ><para
@@ -469,7 +469,7 @@
 ></term>
 <listitem
 ><para
->L'&skanlite; utilitza heurístiques per intentar obtenir una resolució sana, però si això falla i la resolució és massa alta o baixa, la resolució de la vista prèvia es podrà establir manualment amb aquesta opció. </para
+>L'&skanlite; utilitza heurístiques per a intentar obtenir una resolució del «sane», però si això falla i la resolució és massa alta o baixa, la resolució de la vista prèvia es podrà establir manualment amb aquesta opció. </para
 ></listitem>
 </varlistentry>
 <varlistentry>
@@ -481,7 +481,7 @@
 ><para
 >Per omissió, les seleccions automàtiques estan habilitades; i després d'una vista prèvia, la «libksane» intentarà seleccionar automàticament les imatges de la vista prèvia i farà un escaneig per lots de les àrees seleccionades. &pex;, si col·loqueu dues fotografies a l'escàner i feu una vista prèvia, l'&skanlite; afegirà automàticament seleccions de les fotografies.</para>
 <para
->Si, en canvi, soleu escanejar documents, és possible que la selecció automàtica seleccioni moltes parts diferents en els documents i haureu de treure manualment les seleccions. Per evitar-ho, marqueu la casella de selecció i inhabiliteu la selecció automàtica. </para>
+>Si, en canvi, soleu escanejar documents, és possible que la selecció automàtica seleccioni moltes parts diferents en els documents i haureu de treure manualment les seleccions. Per a evitar-ho, marqueu la casella de selecció i inhabiliteu la selecció automàtica. </para>
 </listitem>
 </varlistentry>
 <varlistentry>
