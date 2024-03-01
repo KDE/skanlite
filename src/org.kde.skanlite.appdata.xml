@@ -366,6 +366,7 @@
       <caption xml:lang="tr">Taranan bir görseli gösteren Skanlite temel seçenekleri</caption>
       <caption xml:lang="uk">Вікно базових параметрів Skanlite із показаним сканованим зображенням</caption>
       <caption xml:lang="x-test">xxSkanlite's basic options screen with a scanned image visiblexx</caption>
+      <caption xml:lang="zh-CN">Skanlite 的基本选项屏幕，主窗口正在显示一张已扫描的图像</caption>
       <image>https://cdn.kde.org/screenshots/skanlite/skanlite.png</image>
     </screenshot>
   </screenshots>
