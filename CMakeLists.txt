@@ -55,9 +55,6 @@ find_package(KF${KF_MAJOR_VERSION} ${KF_MIN_VERSION} REQUIRED COMPONENTS
         KIO # contains the KIOWidgets which we use in target_link_libraries
         XmlGui # KAboutApplicationDialog
 )
-if (QT_MAJOR_VERSION STREQUAL "6")
-    find_package(Qt6Core5Compat)
-endif()
 
 find_package(KF${KF_MAJOR_VERSION}DocTools ${KF_MIN_VERSION})  # yields kdoctools_create_handbook
 set_package_properties(KF${KF_MAJOR_VERSION}DocTools PROPERTIES DESCRIPTION
