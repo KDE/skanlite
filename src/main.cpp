@@ -70,7 +70,6 @@ int main(int argc, char *argv[])
     app.setWindowIcon(QIcon::fromTheme(QStringLiteral("skanlite")));
     KAboutData::setApplicationData(aboutData);
 
-    QCoreApplication::setApplicationVersion(aboutData.version());
     QCommandLineParser parser;
     aboutData.setupCommandLine(&parser);
     QCommandLineOption deviceOption(QStringList() << QStringLiteral("d") << QStringLiteral("device"), i18n("Sane scanner device name. Use 'test' for test device."), i18n("device"));
