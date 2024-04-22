@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-04 00:40+0000\n"
+"POT-Creation-Date: 2024-03-20 01:39+0000\n"
 "PO-Revision-Date: 2022-06-19 13:47+0200\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
@@ -132,12 +132,12 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "karl@huftis.org"
 
-#: main.cpp:76
+#: main.cpp:75
 #, kde-format
 msgid "Sane scanner device name. Use 'test' for test device."
 msgstr "Einingsnamn for Sane-skannar. Bruk «test» for ei testeining."
 
-#: main.cpp:76
+#: main.cpp:75
 #, kde-format
 msgid "device"
 msgstr "eining"

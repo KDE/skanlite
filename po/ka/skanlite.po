@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skanlite\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-04 00:40+0000\n"
+"POT-Creation-Date: 2024-03-20 01:39+0000\n"
 "PO-Revision-Date: 2023-02-03 17:06+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -130,14 +130,14 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "Temuri.doghonadze@gmail.com"
 
-#: main.cpp:76
+#: main.cpp:75
 #, kde-format
 msgid "Sane scanner device name. Use 'test' for test device."
 msgstr ""
 "Sane-ის სკანერის მოწყობილობის სახელი. სატესტო მოწყობილობისთვის გამოიყენეთ "
 "'test'."
 
-#: main.cpp:76
+#: main.cpp:75
 #, kde-format
 msgid "device"
 msgstr "მოწყობილობა"
