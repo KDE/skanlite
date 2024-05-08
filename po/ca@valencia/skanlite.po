@@ -308,7 +308,7 @@ msgstr "Restablix les opcions de l'escàner als valors predeterminats"
 #: skanlite.cpp:64
 #, kde-format
 msgid "Configure..."
-msgstr "Configura..."
+msgstr "Configura…"
 
 #: skanlite.cpp:68
 #, kde-format
