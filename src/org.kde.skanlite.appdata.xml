@@ -362,6 +362,7 @@
   <screenshots>
     <screenshot type="default">
       <caption>Skanlite's basic options screen with a scanned image visible</caption>
+      <caption xml:lang="ar">شاشة الخيارات الأساسية لسكانلايت مع ظهور صورة ممسوحة ضوئيًا</caption>
       <caption xml:lang="bg">Основният екран с опции на Skanlite с показано сканирано изображение</caption>
       <caption xml:lang="ca">Pantalla d'opcions bàsiques de l'Skanlite amb una imatge escanejada visible</caption>
       <caption xml:lang="ca-valencia">Pantalla d'opcions bàsiques de Skanlite amb una imatge escanejada visible</caption>
