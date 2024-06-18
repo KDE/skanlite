@@ -88,6 +88,6 @@ if(BUILD_TESTING)
    add_subdirectory(autotests)
    add_subdirectory(tests)
 endif()
-ecm_install_icons(ICONS 48-apps-org.kde.skanlite.svg DESTINATION ${KDE_INSTALL_ICONDIR})
+ecm_install_icons(ICONS sc-apps-org.kde.skanlite.svg DESTINATION ${KDE_INSTALL_ICONDIR})
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
