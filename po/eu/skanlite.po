@@ -1,12 +1,12 @@
 # Translation for skanlite.po to Euskara/Basque (eu).
-# Copyright (C) 2010-2021, This file is copyright:
+# Copyright (C) 2010-2024 This file is copyright:
 # This file is distributed under the same license as the skanlite package.
 # KDE euskaratzeko proiektuko arduraduna <xalba@ni.eus>.
 #
 # Translators:
 # Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2010.
 # Ander Elortondo <ander.elor@gmail.com>, 2020.
-# Iñigo Salvador Azurmendi <xalba@ni.eus>, 2020, 2021, 2022.
+# Iñigo Salvador Azurmendi <xalba@ni.eus>, 2020, 2021, 2022, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: skanlite\n"
