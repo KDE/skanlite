@@ -46,10 +46,10 @@ ImageViewer::ImageViewer(QWidget *parent) : QGraphicsView(parent), d(new Private
     d->zoomOutAction = new QAction(QIcon::fromTheme(QStringLiteral("zoom-out")), i18n("Zoom Out"), this);
     connect(d->zoomOutAction, &QAction::triggered, this, &ImageViewer::zoomOut);
 
-    d->zoom100Action = new QAction(QIcon::fromTheme(QStringLiteral("zoom-fit-best")), i18n("Zoom to Actual size"), this);
+    d->zoom100Action = new QAction(QIcon::fromTheme(QStringLiteral("zoom-original")), i18n("Zoom to Actual size"), this);
     connect(d->zoom100Action, &QAction::triggered, this, &ImageViewer::zoomActualSize);
 
-    d->zoom2FitAction = new QAction(QIcon::fromTheme(QStringLiteral("document-preview")), i18n("Zoom to Fit"), this);
+    d->zoom2FitAction = new QAction(QIcon::fromTheme(QStringLiteral("zoom-fit-best")), i18n("Zoom to Fit"), this);
     connect(d->zoom2FitAction, &QAction::triggered, this, &ImageViewer::zoom2Fit);
 
     addAction(d->zoomInAction);
