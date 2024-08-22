@@ -145,7 +145,7 @@
 <title
 >Sélection du scanner</title>
 <para
->Un scanner par défaut peut être défini dans la ligne de commande de &skanlite; en utilisant <userinput
+>Un périphérique de numérisation par défaut peut être défini dans la ligne de commande de &skanlite; en utilisant <userinput
 >skanlite -d [nom du périphérique]</userinput
 > dans un terminal. Si le scanner sélectionné est inaccessible ou si aucun scanner par défaut n'a été défini, une boîte de dialogue apparaîtra pour sélectionner un scanner. </para>
 
