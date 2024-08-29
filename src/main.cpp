@@ -13,6 +13,7 @@
 
 #include <KAboutData>
 #include <KLocalizedString>
+#include <KCrash>
 
 #include "skanlite.h"
 
@@ -69,6 +70,8 @@ int main(int argc, char *argv[])
 
     app.setWindowIcon(QIcon::fromTheme(QStringLiteral("skanlite")));
     KAboutData::setApplicationData(aboutData);
+
+    KCrash::initialize();
 
     QCommandLineParser parser;
     aboutData.setupCommandLine(&parser);

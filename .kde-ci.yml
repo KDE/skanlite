@@ -10,6 +10,7 @@ Dependencies:
     'frameworks/ki18n': '@stable'
     'frameworks/kio': '@stable'
     'frameworks/kxmlgui': '@stable'
+    'frameworks/kcrash': '@stable'
     'graphics/libksane': '@same'
 
 - 'on': ['Linux/Qt6', 'FreeBSD/Qt6']
@@ -20,6 +21,7 @@ Dependencies:
     'frameworks/ki18n': '@latest-kf6'
     'frameworks/kio': '@latest-kf6'
     'frameworks/kxmlgui': '@latest-kf6'
+    'frameworks/kcrash': '@latest-kf6'
     'graphics/libksane': '@same'
 
 Options:

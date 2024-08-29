@@ -30,6 +30,7 @@ target_link_libraries(skanlite
     KF${KF_MAJOR_VERSION}::I18n
     KF${KF_MAJOR_VERSION}::XmlGui
     KF${KF_MAJOR_VERSION}::KIOWidgets
+    KF${KF_MAJOR_VERSION}::Crash
 )
 if (QT_MAJOR_VERSION STREQUAL "6")
     target_link_libraries(skanlite PRIVATE KSaneWidgets6)

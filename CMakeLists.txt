@@ -54,6 +54,7 @@ find_package(KF${KF_MAJOR_VERSION} ${KF_MIN_VERSION} REQUIRED COMPONENTS
         I18n
         KIO # contains the KIOWidgets which we use in target_link_libraries
         XmlGui # KAboutApplicationDialog
+        Crash
 )
 
 find_package(KF${KF_MAJOR_VERSION}DocTools ${KF_MIN_VERSION})  # yields kdoctools_create_handbook
