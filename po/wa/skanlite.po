@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skanlite\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-20 01:39+0000\n"
+"POT-Creation-Date: 2024-08-31 01:46+0000\n"
 "PO-Revision-Date: 2009-12-01 18:58+0100\n"
 "Last-Translator: Jean Cayron <jean.cayron@gmail.com>\n"
 "Language-Team: Walloon <linux-wa@walon.org>\n"
@@ -37,107 +37,107 @@ msgstr "Zoumer al vraiye &grandeu"
 msgid "Zoom to Fit"
 msgstr "Zoumer po forrimpli"
 
-#: main.cpp:32 skanlite.cpp:788
+#: main.cpp:33 skanlite.cpp:788
 #, kde-format
 msgid "Skanlite"
 msgstr "Skanlite"
 
-#: main.cpp:34
+#: main.cpp:35
 #, fuzzy, kde-format
 #| msgid "This is a scanning application for KDE based on libksane."
 msgid "Scanning application by KDE based on libksane."
 msgstr "Çouchal est on programe di scanaedje po KDE båzé so libksane."
 
-#: main.cpp:36
+#: main.cpp:37
 #, fuzzy, kde-format
 #| msgid "(C) 2008 Kåre Särs"
 msgid "(C) 2008-2020 Kåre Särs"
 msgstr "© 2008 Kåre Särs"
 
-#: main.cpp:41
+#: main.cpp:42
 #, kde-format
 msgid "Kåre Särs"
 msgstr "Kåre Särs"
 
-#: main.cpp:42
+#: main.cpp:43
 #, kde-format
 msgid "developer"
 msgstr "programeu"
 
-#: main.cpp:45
+#: main.cpp:46
 #, kde-format
 msgid "Gregor Mi"
 msgstr ""
 
-#: main.cpp:46 main.cpp:49
+#: main.cpp:47 main.cpp:50
 #, kde-format
 msgid "contributor"
 msgstr "contribouweu"
 
-#: main.cpp:48
+#: main.cpp:49
 #, kde-format
 msgid "Arseniy Lartsev"
 msgstr "Arseniy Lartsev"
 
-#: main.cpp:51
+#: main.cpp:52
 #, kde-format
 msgid "Gilles Caulier"
 msgstr "Gilles Caulier"
 
-#: main.cpp:52 main.cpp:58
+#: main.cpp:53 main.cpp:59
 #, kde-format
 msgid "Importing libksane to extragear"
 msgstr "Abagaedje di libksane viè extragear"
 
-#: main.cpp:54
+#: main.cpp:55
 #, kde-format
 msgid "Anne-Marie Mahfouf"
 msgstr "Anne-Marie Mahfouf"
 
-#: main.cpp:55
+#: main.cpp:56
 #, kde-format
 msgid "Writing the user manual"
 msgstr "Sicrijhaedje des esplikêyes"
 
-#: main.cpp:57
+#: main.cpp:58
 #, kde-format
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
 
-#: main.cpp:60
+#: main.cpp:61
 #, kde-format
 msgid "Chusslove Illich"
 msgstr "Chusslove Illich"
 
-#: main.cpp:61 main.cpp:64
+#: main.cpp:62 main.cpp:65
 #, kde-format
 msgid "Help with translations"
 msgstr "Aidance po les ratournaedjes"
 
-#: main.cpp:63
+#: main.cpp:64
 #, kde-format
 msgid "Albert Astals Cid"
 msgstr "Albert Astals Cid"
 
-#: main.cpp:67
+#: main.cpp:68
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "Djan Cayron"
 
-#: main.cpp:68
+#: main.cpp:69
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "jean.cayron@gmail.com"
 
-#: main.cpp:75
+#: main.cpp:78
 #, fuzzy, kde-format
 #| msgid "Sane scanner device name."
 msgid "Sane scanner device name. Use 'test' for test device."
 msgstr "No d' l' éndjin d' sicanaedje sane."
 
-#: main.cpp:75
+#: main.cpp:78
 #, kde-format
 msgid "device"
 msgstr ""
