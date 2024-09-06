@@ -107,6 +107,7 @@
     <p xml:lang="ca">L'Skanlite és una aplicació d'escaneig d'imatges per a escanejar imatges i desar-les. Està optimitzada per a l'escaneig amb escàners de superfície plana. L'Skanlite no només pot capturar fotos i documents, també diapositives transparents i tires de pel·lícula, amb els escàners acceptats.</p>
     <p xml:lang="ca-valencia">Skanlite és una aplicació d'escaneig d'imatges per a escanejar imatges i guardar-les. Està optimitzada per a l'escaneig amb escàners de superfície plana. Skanlite no només pot capturar fotos i documents, també diapositives transparents i tires de pel·lícula, amb els escàners acceptats.</p>
     <p xml:lang="da">Skanlite er et simpelt scannerprogram til at scanne og gemme billeder. Skanlite er optimeret til at scanne med flatbed-scannere. Skanlite kan ikke kun scanne billeder og dokumenter, men også transparenter og filmruller med scannere der understøtter det.</p>
+    <p xml:lang="de">Skanlite ist eine einfache Anwendung zum Scannen und Speichern von Bildern. Skanlite ist für das Scannen mit Flachbettscannern optimiert. Skanlite kann nicht nur Fotos und Dokumente erfassen, sondern auch transparente Diapositive und Filmstreifen bei unterstützenden Scannern.</p>
     <p xml:lang="el">Το Skanlite είναι μια απλή εφαρμογή σάρωσης και αποθήκευσης εικόνων. Η βέλτιστη απόδοση είναι για σάρωση με επίπεδους σαρωτές. Το Skanlite δεν συλλαμβάνει μόνο φωτογραφίες και έγγραφα, αλλά και διαφάνειες και λωρίδες φιλμ με τους υποστηριζόμενους σαρωτές.</p>
     <p xml:lang="en-GB">Skanlite is a simple image scanning application to scan and save images. It is optimised for scanning with flatbed scanners. Skanlite can capture not only photos and documents, but also transparent slides and filmstrips, with supported scanners.</p>
     <p xml:lang="eo">Skanlite estas simpla aplikaĵo por skani kaj konservi bildojn. Ĝi estas optimumigita por skanado per platbendaj skaniloj. Skanlite povas kapti ne nur fotojn kaj dokumentojn, sed ankaŭ travideblajn diapozitivojn kaj filmstriojn, per subtenataj skaniloj.</p>
@@ -366,6 +367,7 @@
       <caption xml:lang="bg">Основният екран с опции на Skanlite с показано сканирано изображение</caption>
       <caption xml:lang="ca">Pantalla d'opcions bàsiques de l'Skanlite amb una imatge escanejada visible</caption>
       <caption xml:lang="ca-valencia">Pantalla d'opcions bàsiques de Skanlite amb una imatge escanejada visible</caption>
+      <caption xml:lang="de">Skanlites Grundfunktionsbildschirm mit einem sichtbaren gescannten Bild</caption>
       <caption xml:lang="en-GB">Skanlite's basic options screen with a scanned image visible</caption>
       <caption xml:lang="eo">Ekrano de bazaj elektebloj de Skanlite kun skanita bildo videbla</caption>
       <caption xml:lang="es">Pantalla de opciones básicas de Skanlite con una imagen escaneada</caption>
