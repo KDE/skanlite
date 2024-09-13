@@ -26,6 +26,7 @@
   <name xml:lang="fi">Skanlite</name>
   <name xml:lang="fr">Skanlite</name>
   <name xml:lang="gl">Skanlite</name>
+  <name xml:lang="he">Skanlite</name>
   <name xml:lang="hi">स्कैनलाइट</name>
   <name xml:lang="hu">Skanlite</name>
   <name xml:lang="ia">Skanlite</name>
@@ -70,6 +71,7 @@
   <summary xml:lang="fi">Kuvanlukusovellus</summary>
   <summary xml:lang="fr">Application de numérisation d'images</summary>
   <summary xml:lang="gl">Aplicación de dixitalización de imaxes.</summary>
+  <summary xml:lang="he">יישום לסריקת תמונות</summary>
   <summary xml:lang="hi">छवि स्कैन करने का अनुप्रयोग</summary>
   <summary xml:lang="hu">Képolvasó alkalmazás</summary>
   <summary xml:lang="ia">Application pro scander imagines</summary>
@@ -116,6 +118,7 @@
     <p xml:lang="fi">Skanlite on yksinkertainen kuvanlukusovellus kuvien lukemiseen ja tallentamiseen. Se on optimoitu kuvanlukuun tasoskannereilla. Skanlite ei lue vain valokuvia ja tekstiä vaan toimii tuetuissa laitteissa myös dia- ja filmiskannerina.</p>
     <p xml:lang="fr">Skanlite est une application de numérisation d'images simple, permettant de numériser et d'enregistrer des images. Il est optimisé pour la numérisation sur des périphériques de numérisation à plat. Skanlite peut capturer non seulement des photos et des documents mais aussi des diapositives transparentes et des négatifs de films pour les périphériques de numérisation pris en charge.</p>
     <p xml:lang="gl">Skanlite é unha aplicación simple para dixitalizar e gardar imaxes. Está optimizado para dixitalizar con escáneres planos. Skanlite pode capturar non só fotos e documentos, senón tamén diapositivas transparentes e tiras de filme, cos escáneres compatíbeis.</p>
+    <p xml:lang="he">Skanlite הוא יישום סריקת תמונות פשוט לסריקת ולשמירת תמונות. הוא ממוטב לסריקה עם סורקי משטח זכוכית. Skanlite יכול ללכוד לא רק תמונות ומסמכים אלא גם שקפים שקופים למחצה ופילם בסורקים עם התמיכה המתאימה.</p>
     <p xml:lang="hi">स्कैनलाइट छवियों को स्कैन और सहेजने के लिए एक सरल छवि स्कैन करने वाला एप्लिकेशन है। यह फ्लैटबेड स्कैनर के साथ स्कैनिंग के लिए अनुकूलित है। स्कैनलाइट समर्थित स्कैनर के साथ न केवल तस्वीरें और दस्तावेज, बल्कि पारदर्शी स्लाइड और फिल्मस्ट्रिप्स भी कैप्चर कर सकता है।</p>
     <p xml:lang="hu">A Skanlite egy egyszerű képolvasó alkalmazás képek beolvasásához és mentéséhez. Működését síkágyas képolvasókhoz optimalizálták. A Skanlite nem csak fényképeket és dokumentumokat, hanem átlátszó diákat és filmszalagokat is képes beolvasni, támogatott képolvasókkal.</p>
     <p xml:lang="ia">Skanlite es un simple application per scander e salveguardar images. Illo es optimisate per scander con scanners de typo flatbed. Skanlite pote capturar non solmente photos e documentos ma anque slides transparente e strias de film, con scanners supportate.</p>
@@ -159,6 +162,7 @@
     <p xml:lang="fi">Ominaisuuksia:</p>
     <p xml:lang="fr">Fonctionnalités :</p>
     <p xml:lang="gl">Funcionalidades:</p>
+    <p xml:lang="he">יכולות:</p>
     <p xml:lang="hi">विशेषताएँ :</p>
     <p xml:lang="hu">Szolgáltatások:</p>
     <p xml:lang="ia">Characteristicas:</p>
@@ -204,6 +208,7 @@
       <li xml:lang="fi">Tallennusikkuna kullekin luetulle kuvalle tai kuvien välitön tallennus määräkansioon automaattisesti luodulla nimellä automaattisesti valittuun muotoon</li>
       <li xml:lang="fr">Boîte de dialogue d'enregistrement pour chaque image numérisée ou enregistrement automatique dans un dossier au format spécifié, sous un nom généré automatiquement</li>
       <li xml:lang="gl">Diálogo de gardar para cada imaxe que se dixitaliza, ou gardar as imaxes inmediatamente nun cartafol indicado con nome e formato xerados automaticamente.</li>
+      <li xml:lang="he">חלונית שמירה לכל תמונה שנסרקת או שמירת התמונות מיידית בתיקייה נבחרת עם שמות שנוצרים אוטומטית ותצורה</li>
       <li xml:lang="hi">हर एक छवि के लिए सहेज संवाद दिखाए या छवियों को तुरंत एक उल्लेखित फोल्डर में स्वतः उत्पन्न नाम और प्रारूप में सहेजें।</li>
       <li xml:lang="hu">Mentési párbeszédablak minden beolvasott képhez, vagy azonnali mentés egy megadott mappába, automatikusan generált fájlnévvel és formátumban</li>
       <li xml:lang="ia">Salveguarda dialogo per cata image scandite o salveguardar le images immediatemente in un specificate dossier con nomines e formato auto-generate</li>
@@ -247,6 +252,7 @@
       <li xml:lang="fi">Verkkokuvanlukutuki</li>
       <li xml:lang="fr">Prise en charge des scanners réseau</li>
       <li xml:lang="gl">Compatibilidade con escáneres remotos.</li>
+      <li xml:lang="he">תמיכה בסורקים שמחוברים דרך הרשת</li>
       <li xml:lang="hi">संजाल के स्कैन यंत्रों के लिए समर्थन</li>
       <li xml:lang="hu">Hálózati képolvasók támogatása</li>
       <li xml:lang="ia">Supporto per le scanditores de rete</li>
@@ -290,6 +296,7 @@
       <li xml:lang="fi">Esikatselu lopullisen kuva-alueen valintaominaisuudella</li>
       <li xml:lang="fr">Fonctionnalité aperçu avec sélection pour la numérisation définitive</li>
       <li xml:lang="gl">Vista previa con funcionalidade de selección para a dixitalización final.</li>
+      <li xml:lang="he">תצוגה מקדימה עם יכולת בחירה לקיבוע הסריקה הסופית</li>
       <li xml:lang="hi">अंतिम स्कैन के लिए चयन के साथ पूर्वावलोकन की सुविधा</li>
       <li xml:lang="hu">Előnézet kijelölési lehetőséggel a végső beolvasáshoz</li>
       <li xml:lang="ia">Vista preliminar con characteristica de selection per le scansion final</li>
@@ -333,6 +340,7 @@
       <li xml:lang="fi">Useampien kuvan alueiden luku</li>
       <li xml:lang="fr">Numérisation de plusieurs parties d'une image</li>
       <li xml:lang="gl">Dixitalización de varias seleccións dunha imaxe.</li>
+      <li xml:lang="he">סריקת מגוון אזורים נבחרים בתמונה</li>
       <li xml:lang="hi">एक छवि के कई चयनों को स्कैन करना</li>
       <li xml:lang="hu">Több kijelölés beolvasása egy képről</li>
       <li xml:lang="ia">Scandente multiple selectiones de un image</li>
@@ -375,6 +383,7 @@
       <caption xml:lang="fi">Skanlite perusvalintanäyttö, missä näkyvissä luettu kuva</caption>
       <caption xml:lang="fr">L'écran des options standards de SKanlite avec l'affichage d'une image numérisée</caption>
       <caption xml:lang="gl">Pantalla de opcións básicas de Skanlite cunha imaxe escaneada visíbel.</caption>
+      <caption xml:lang="he">מסך האפשרויות הבסיסיות של Skanlite עם התמונה הסרוקה גלויה</caption>
       <caption xml:lang="ia">Schermo de optiones basic de Skanlite con un imagine scandite visibile </caption>
       <caption xml:lang="is">Skjár með grunnstillingum Skanlite og skannaðri mynd sýnilegri</caption>
       <caption xml:lang="it">Schermata delle opzioni di base di Skanlite con un'immagine scansionata visibile</caption>
