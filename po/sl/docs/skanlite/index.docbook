@@ -1,0 +1,597 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Slovenian "INCLUDE"
+><!-- change language only here -->
+]>
+
+<book id="skanlite" lang="&language;">
+
+<bookinfo>
+<title
+>&skanlite; Priročnik</title>
+
+<authorgroup>
+<author
+><firstname
+>Kåre</firstname
+> <surname
+>Särs</surname
+> <affiliation
+> <address
+><email
+>kare dot sars in iki dot fi</email
+></address>
+</affiliation>
+</author>
+<author
+><firstname
+>Anne-Marie</firstname
+> <surname
+>Mahfouf</surname
+> <affiliation
+> <address
+>&Anne-Marie.Mahfouf.mail;</address>
+</affiliation>
+</author>
+<othercredit role="translator"
+><firstname
+>Matjaž</firstname
+><surname
+>Jeran</surname
+><affiliation
+><address
+><email
+>matjaz.jeran@amis.net</email
+></address
+></affiliation
+><contrib
+>Prevod</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2008, 2013</year>
+<holder
+>Kåre Särs</holder>
+</copyright>
+<copyright>
+<year
+>2008</year>
+<holder
+>&Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>24.08.2016</date>
+<releaseinfo
+>&skanlite; 2.0.0</releaseinfo>
+
+<abstract>
+<para
+>&skanlite; je aplikacija za skeniranje slik, ki ne naredi nič drugega kot skenira in shranjuje slik. </para>
+<para
+>&skanlite; temelji na libksane, &kde; vmesnik za knjižnico SANE za nadzor slikovnih skenerjev.</para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kdegraphics</keyword>
+<keyword
+>skener</keyword>
+<keyword
+>slike</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Uvod</title>
+<para
+>&skanlite; je preprosta aplikacija za skeniranje slik, ki ne naredi nič drugega kot skenira in shranjuje slike. &skanlite; lahko odpre pogovorno okno za shranjevanje za vsako skenirano sliko ali takoj shrani slike v določeno mapo s samodejno ustvarjenimi imeni in obliko. Uporabnik se lahko odloči tudi za prikaz optično prebrane slike pred shranjevanjem.</para>
+<para
+>&skanlite; lahko shrani slike v vseh formatih, ki jih podpira &Qt;. Na primer naslednje oblike: <itemizedlist>
+<listitem
+><para
+>png (8 in 16 bitov na barvo) </para
+></listitem>
+<listitem
+><para
+>jpeg, jpg, jpeg 2000 </para
+></listitem>
+<listitem
+><para
+>bmp </para
+></listitem>
+</itemizedlist>
+</para>
+
+<note
+><para
+>Stanje podpore za optični bralnik lahko preverite na spletnem mestu projekta SANE prek <ulink url="http://www.sane-project.org/sane-supported-devices.html"
+>strani Podprte naprave na spletnem mestu SANE</ulink
+>.</para
+></note>
+
+</chapter>
+
+<chapter id="using-skanlite">
+<title
+>Uporaba &skanlite;</title>
+
+<sect1 id="scanner-selection">
+<title
+>Izbira optičnega bralnika</title>
+<para
+>Privzeti skener lahko določite v ukazni vrstici &skanlite; z uporabo <userinput
+>skanlite -d [ime naprave]</userinput
+> v terminalu. Če izbranega optičnega bralnika ni mogoče odpreti ali če ni privzetega optičnega bralnika, se odpre pogovorno okno za izbiro optičnega bralnika. </para>
+
+<screenshot>
+     <screeninfo
+>&skanlite; pogovorno okno za izbiro optičnega bralnika</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="choose-scanner.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>&skanlite; pogovorno okno za izbiro optičnega bralnika</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Uporabnik lahko izbere skener, ki ga bo uporabil, in pritisne <guibutton
+>V redu</guibutton
+>, da odpre skener. Če pritisnete <guibutton
+>Prekliči</guibutton
+>, bo &skanlite; končal. </para>
+
+<screenshot>
+     <screeninfo
+>Skenerja ni bilo mogoče najti</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="no-scanner-found.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Skenerja ni bilo mogoče najti</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Če ni bila najdena nobena naprava, morda zato, ker optični bralnik ni priključen ali izklopljen, to popravite. Nato lahko uporabite <guibutton
+>Znova naloži seznam naprav</guibutton
+> za ponovno nalaganje seznama skenerjev.</para
+> 
+<note
+><para
+>Vsi gonilniki/zadnji deli ne podpirajo te funkcije. V tem primeru zaprite &skanlite;, povežite optični bralnik in znova zaženite aplikacijo.</para>
+</note>
+
+</sect1>
+</chapter>
+
+<chapter id="main-window">
+<title
+>&skanlite; Glavno okno</title>
+<screenshot>
+     <screeninfo
+>&skanlite; glavno okno</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="main-window.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>&skanlite; glavno okno</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>V glavnem oknu ima uporabnik dva niza možnosti skeniranja: <guilabel
+>Osnovne možnosti</guilabel
+> in <guilabel
+>Posebne možnosti optičnega bralnika</guilabel
+>. Zavihek <guilabel
+>Osnovne možnosti</guilabel
+> vsebuje najpogostejše parametre, ki jih nudijo ozadja optičnega bralnika SANE, medtem ko zavihek <guilabel
+>Posebne možnosti optičnega bralnika</guilabel
+> vsebuje vse možnosti ozadja. Tu navedene možnosti so odvisne od podpore SANE za vaš gonilnik: libksane (ki ga uporablja &skanlite;) bi moral biti sposoben prikazati večino vrst parametrov, ki jih nudi SANE (analogne tabele gama trenutno niso podprte). </para>
+
+<screenshot>
+     <screeninfo
+>Zavihek, specifične za optični bralnik</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="other-options.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Zavihek, specifične za optični bralnik</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Posebne možnosti optičnega bralnika vsebujejo podrobnejše možnosti ozadja. &skanlite; (libksane) nima posebne obravnave za te možnosti. </para>
+
+<para
+>Če ste zadovoljni s svojimi nastavitvami, lahko uporabite majhno puščico na vrhu razdelilnika možnosti. Ko kliknete, se možnosti strnejo ali razširijo. Strnjevalnik lahko prekriva območje predogleda, vendar zbledi, ko se kazalec miške premakne ven iz strnjevalnika.</para
+>  
+
+<sect1 id="scanning">
+<title
+>Skeniranje</title>
+<para
+>Za skeniranje slike lahko uporabnik začne s predogledom skeniranja in nato izbere del območja skeniranja, na katerem bo opravil končno skeniranje. Skeniranje predogleda se začne s pritiskom na gumb za predogled. </para>
+
+<screenshot>
+     <screeninfo
+>Gumb za predogled</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="preview-button.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Gumb za predogled</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Ko je predogled skeniran, lahko izberete območje za končno sliko. </para>
+<screenshot>
+     <screeninfo
+>Izbira in povečava</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="zoom-in.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Izbira in povečava</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>Za boljši izbor slike lahko uporabnik poveča ali pomanjša trenutni izbor ali poveča, da celoten predogled prilagodi oknu. </para>
+<screenshot>
+     <screeninfo
+>Gumb "pomanjšaj, da se prilega"</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="zoom-to-fit.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Gumb "pomanjšaj, da se prilega"</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Ko je slika izbrana, lahko končno sliko pridobite s pritiskom na gumb za končno skeniranje. </para>
+
+<screenshot>
+     <screeninfo
+>Gumb za končno skeniranje</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="final-button.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Gumb za končno skeniranje</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Videli boste napredek skeniranja. </para>
+<screenshot>
+     <screeninfo
+>Skeniranje v teku</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="scanning.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Skeniranje v teku</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Če je v nastavitvah izbran <guilabel
+>Predogled pred shranjevanjem</guilabel
+>, se optično prebrana slika prikaže v oknu za predogled, kot lahko vidite spodaj na posnetku zaslona. Če pritisnete <guibutton
+>Shrani</guibutton
+>, se slika shrani in če pritisnete <guibutton
+>Zavrzi</guibutton
+>, se predogled zavrže in vrnete se v glavno okno. </para>
+<screenshot>
+     <screeninfo
+>Okno za predogled</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="preview.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Okno za predogled</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+</sect1>
+
+<sect1 id="scanning-multiple-selections">
+<title
+>Skeniranje več izbir</title>
+<para
+>Včasih potrebujete le določene dele slike. Namesto skeniranja celotne slike in nato uporabe grafične aplikacije (&eg; &kolourpaint;) za shranjevanje različnih delov slike v ločene datoteke, uporabite &skanlite; funkcijo večkratne izbire. </para>
+<screenshot>
+     <screeninfo
+>Več izbir</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="multiple-selections.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Več izbir</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>Skenirajte predogled in nato uporabite &LMB; da izberete prvi del slike v predogledu. Z miškinim kazalcem premaknite izbrano območje in kliknite zeleno ikono <guiicon
+>+</guiicon
+>, da izberete območje. Izbrana območja so označena z rdečo obrobo. Zdaj na enak način izberite naslednje dele slike.</para>
+<para
+>Če želite odstraniti posamezen izbor, se pomaknite na območje z miško in kliknite rdečo ikono <guiicon
+>-</guiicon
+>. Z <guilabel
+>Počisti izbire</guilabel
+> iz priročnega menija, ki ga zaženete z &RMB; vse izbire v predogledu je mogoče odstraniti. </para>
+<para
+>Če ste na optični bralnik postavili dve ločeni sliki ali fotografiji in zagnali predogled &skanlite; samodejno vnaprej izberite različna področja. To vedenje lahko izklopite v pogovornem oknu z nastavitvami. </para>
+<para
+>Če ste zadovoljni s svojo izbiro, začnite končno serijsko skeniranje vseh izbir. Slike se shranijo s funkcijo paketnega preimenovanja, opisano v pogovornem oknu z nastavitvami. </para>
+</sect1>
+
+<sect1 id="settings">
+<title
+>&skanlite; nastavitve</title>
+<para
+>Če kliknete gumb <guibutton
+>Nastavitve</guibutton
+>, se pogovorno okno z nastavitvami prikaže pred glavnim oknom. Tu lahko izberete najpomembnejše nastavitve. </para>
+
+<screenshot>
+    <screeninfo
+>Tukaj je posnetek zaslona &skanlite; pogovorno okno z nastavitvami</screeninfo>
+    <mediaobject>
+        <imageobject>
+            <imagedata fileref="settings.png" format="PNG"/>
+        </imageobject>
+        <textobject>
+            <phrase
+>&skanlite; pogovorno okno z nastavitvami</phrase>
+        </textobject>
+    </mediaobject>
+</screenshot>
+
+<para
+><variablelist>
+<varlistentry>
+<term
+><guilabel
+>Predogled pred shranjevanjem:</guilabel
+></term>
+<listitem
+><para
+>Uporabnik lahko pred shranjevanjem izbere predogled slike. V tem primeru lahko možnost <guilabel
+>Predogled pred shranjevanjem</guilabel
+> pustite označeno. Če si uporabnik ne želi predogleda slike, je treba to možnost počistiti. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Način shranjevanja:</guilabel
+></term>
+<listitem>
+<para
+>Ta nastavitev vam omogoča, da izberete, kako &skanlite; bo shranil slike. Če izberete <guilabel
+>Odpri pogovorno okno za shranjevanje za vsako sliko</guilabel
+>, se bo pogovorno okno za shranjevanje odprlo za vsako skenirano sliko. Če imate raje &skanlite; za samodejno shranjevanje (s samodejnim ustvarjanjem imena in shranjevanjem slike v vnaprej določeno mapo) lahko izberete <guilabel
+>Odpri pogovorno okno za shranjevanje samo za prvo sliko</guilabel
+>. Ta možnost bo odprla naslednje pogovorno okno »Shrani lokacijo« za prvo skenirano sliko.</para>
+<para>
+    <screenshot>
+        <screeninfo
+>Tukaj je posnetek zaslona &skanlite; pogovorno okno za shranjevanje lokacije</screeninfo>
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="save-location.png" format="PNG"/>
+            </imageobject>
+            <textobject>
+                <phrase
+>&skanlite; Pogovorno okno za shranjevanje lokacije.</phrase>
+            </textobject>
+        </mediaobject>
+    </screenshot>
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Shrani lokacijo:</guilabel
+></term>
+<listitem
+><para
+>Ta nastavitev določa privzeto mesto shranjevanja in poimenovanje datoteke. Privzeta lokacija za shranjevanje je vaša domača mapa in to lokacijo lahko spremenite s klikom na gumb <guibutton
+>...</guibutton
+>. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Oblika imena:</guilabel
+></term>
+<listitem
+><para
+>Ta parameter določa slikovno predpono za samodejno shranjene slike in je tudi predlagano ime za sliko v pogovornem oknu za shranjevanje. Samodejno shranjena slika bo imela številčno pripono (### bo nadomeščena s številkami), ki se poveča vsakič, ko je slika shranjena. </para
+><para
+>Izberete lahko tudi obliko shranjevanja datoteke, privzeto je png.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Določite kakovost shranjevanja:</guilabel
+></term>
+<listitem
+><para
+>Uporabnik lahko določi kakovost slike, ki bo uporabljena za shranjevanje slik. Nastavitev kakovosti slike vpliva na stopnjo stiskanja, ki se uporablja za shranjevanje. Če <guilabel
+>Določi kakovost shranjevanja</guilabel
+> ni označen, je kakovost privzeta vrednost, ki jo izbere &Qt;. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Nastavi ločljivost predogleda (DPI)</guilabel
+></term>
+<listitem
+><para
+>&skanlite; uporablja hevristiko, da poskuša doseči razumno ločljivost, če pa to ne uspe in je ločljivost previsoka ali nizka, lahko ločljivost predogleda ročno nastavite s to možnostjo. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Onemogoči samodejne izbire</guilabel
+></term>
+<listitem
+><para
+>Privzeto so omogočene samodejne izbire; in po predogledu poskuša libksane samodejno izbrati slike v predogledu in mora paketno skenirati izbrana področja. &eg; če postavite dve fotografiji na skener in naredite predogled, &skanlite; bo samodejno dodal izbor fotografij.</para>
+<para
+>Če po drugi strani običajno skenirate dokumente, se lahko zgodi, da bo samodejna izbira izbrala veliko različnih delov v dokumentih in boste morali izbire ročno odstraniti. Da bi se temu izognili, označite potrditveno polje in onemogočite samodejno izbiro. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Povrni možnosti optičnega bralnika na privzete vrednosti</guilabel
+></term>
+<listitem
+><para
+>Zadnje uporabljene nastavitve se znova naložijo ob zagonu. Če ste pokvarili možnosti (na primer, če ste spremenili nastavitve barvne korekcije, ki so na voljo v nekaterih ozadjih, ne da bi vedeli, kaj pomenijo), je lahko slika videti zelo čudna. Za ta scenarij ta možnost ponuja način za povrnitev nastavitve na privzete vrednosti, ki so kombinacija privzetih vrednosti zaledja in libksane. </para
+></listitem>
+</varlistentry>
+</variablelist
+></para>
+</sect1>
+
+<sect1 id="help">
+<title
+>Pomoč, Vizitka, Nastavitve in Zapri</title>
+<para
+>Na dnu glavnega okna najdete gumbe <guibutton
+>Pomoč</guibutton
+>, <guibutton
+>Vizitka</guibutton
+>, <guibutton
+>Nastavitve</guibutton
+> in <guibutton
+>Zapri</guibutton
+>.</para>
+
+<screenshot>
+     <screeninfo
+>Gumbi glavnega okna</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="buttons-main.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Gumbi glavnega okna</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Gumb <guibutton
+>Pomoč</guibutton
+> prikliče &kde; Center za pomoč pri &skanlite; priročnik. Gumb <guibutton
+>Vizitka</guibutton
+> prikliče &kde; O pogovornem oknu za &skanlite;. Gumb <guibutton
+>Nastavitve</guibutton
+> prikaže pogovorno okno z nastavitvami, gumb <guibutton
+>Zapri</guibutton
+> pa se uporablja za izhod iz &skanlite;.</para>
+</sect1>
+</chapter>
+
+<chapter id="credits">
+
+<title
+>Zasluge in licenca</title>
+<para
+>&skanlite; </para>
+<para
+>Avtorske pravice za program 2007 Kåre Särs <email
+>kare dot sars in iki dot fi</email
+> </para>
+<para
+>Sodelavci: <itemizedlist
+> <listitem
+><para
+>Avtor: Kåre Särs <email
+>kare dot sars at iki dot fi</email
+></para>
+</listitem>
+</itemizedlist>
+</para>
+
+<para
+>Prevod: Matjaž Jeran <email
+>matjaz.jeran@amis.net</email
+></para
+> &underFDL; <para
+>&skanlite; je licenciran pod GPL in knjižnica libksane, ki jo uporablja &skanlite;, je licencirana pod LGPL. Opomba: libsane je z izjemo licenciran pod GPL. </para>
+</chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->
