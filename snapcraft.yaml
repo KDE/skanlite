@@ -1,0 +1,217 @@
+# SPDX-FileCopyrightText: 2024 Scarlett Moore <sgmoore@kde.org>
+#
+# SPDX-License-Identifier: CC0-1.0
+---
+name: skanlite
+confinement: strict
+grade: stable
+base: core22
+adopt-info: skanlite
+apps:
+  skanlite:
+    extensions:
+      - kde-neon-6
+    common-id: org.kde.skanlite.desktop
+    desktop: usr/share/applications/org.kde.skanlite.desktop
+    command: usr/bin/skanlite
+    plugs:
+      - audio-record
+      - home
+      - avahi-observe
+      - hardware-observe
+      - raw-usb
+      - cups
+plugs:
+    foo-install-cups:
+        interface: content
+        content: foo
+        default-provider: cups
+        target: $SNAP_DATA/foo
+environment:
+    PYTHONPYCACHEPREFIX: "$SNAP_USER_COMMON/.pycache"
+    PYTHONUSERBASE: $SNAP_USER_COMMON/.local
+    PYTHONPATH: "$PYTHONUSERBASE/lib/python3.10/site-packages:$SNAP/lib/python3.10/site-packages:$SNAP/usr/lib/python3/dist-packages"
+layout:
+    /etc:
+      bind: $SNAP/etc
+    /usr/lib/sane:
+      bind: $SNAP/usr/lib/sane
+slots:
+  session-dbus-interface:
+    interface: dbus
+    name: org.kde.skanlite
+    bus: session
+package-repositories:
+  - type: apt
+    components:
+      - main
+    suites:
+      - jammy
+    key-id: 444DABCF3667D0283F894EDDE6D4736255751E5D
+    url: http://origin.archive.neon.kde.org/user
+    key-server: keyserver.ubuntu.com
+parts:
+  libsane:
+    source: https://gitlab.com/sane-project/backends.git
+    source-type: git
+    source-tag: '1.2.1'
+    source-depth: 1
+    plugin: autotools
+    autotools-configure-parameters:
+      - --prefix=/usr
+      - --sysconfdir=/etc
+      - --with-api-spec=no
+      - --with-avahi
+    build-packages:
+      # Everything of the build dependencies of the sane-backends
+      # Debian package ...
+      - libavahi-client-dev
+      - libcups2-dev
+      - libcurl4-gnutls-dev
+      - libgphoto2-dev
+      - libieee1284-3-dev
+      - libjpeg-dev
+      - libltdl3-dev
+      - libpoppler-glib-dev
+      - libsnmp-dev
+      - libtiff-dev
+      - libusb-1.0-0-dev
+      - libxml2-dev
+      - python3-minimal
+      - autoconf-archive
+    stage-packages:
+      - libexif12
+      - libgphoto2-6
+      - libgphoto2-port12
+      - libsnmp40
+    organize:
+      snap/skanpage/current/usr: usr
+  libsane-airscan:
+    after: [libsane]
+    source: https://github.com/alexpevzner/sane-airscan
+    source-type: git
+    source-tag: 0.99.27
+    source-depth: 1
+    plugin: make
+    make-parameters:
+      - prefix=/usr
+      - sysconfdir=/etc
+      - libdir=/usr/lib
+    build-packages:
+      # Everything of the build dependencies of the sane-airscan
+      # Debian package ...
+      - libavahi-client-dev
+      - libavahi-common-dev
+      - libjpeg-turbo8-dev
+      - libpng-dev
+      - libxml2-dev
+      - libgnutls28-dev
+  ksanecore:
+    after:
+      - libsane
+      - libsane-airscan
+    plugin: cmake
+    source: https://invent.kde.org/libraries/ksanecore.git
+    source-branch: release/24.08
+    cmake-parameters:
+      - -DCMAKE_INSTALL_PREFIX=/usr
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DQT_MAJOR_VERSION=6
+      - -DBUILD_WITH_QT6=ON
+      - -DBUILD_TESTING=OFF
+      - -DCMAKE_INSTALL_SYSCONFDIR=/etc
+      - -DCMAKE_INSTALL_LOCALSTATEDIR=/var
+      - -DCMAKE_EXPORT_NO_PACKAGE_REGISTRY=ON
+      - -DCMAKE_FIND_USE_PACKAGE_REGISTRY=OFF
+      - -DCMAKE_FIND_PACKAGE_NO_PACKAGE_REGISTRY=ON
+      - -DCMAKE_INSTALL_RUNSTATEDIR=/run
+      - -DCMAKE_SKIP_INSTALL_ALL_DEPENDENCY=ON
+      - -DCMAKE_VERBOSE_MAKEFILE=ON
+      - -DCMAKE_INSTALL_LIBDIR=lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR
+      - --log-level=STATUS
+      - -DCMAKE_LIBRARY_PATH=lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR
+    build-environment:
+      - LDFLAGS: "-L$CRAFT_STAGE/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR"
+      - CFLAGS: "-I$CRAFT_STAGE/usr/include/KF6"
+      - LD_LIBRARY_PATH: "$CRAFT_STAGE/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR"
+  libksane:
+    after:
+      - ksanecore
+    plugin: cmake
+    source: https://invent.kde.org/graphics/libksane.git
+    source-branch: release/24.08
+    cmake-parameters:
+      - -DCMAKE_INSTALL_PREFIX=/usr
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DQT_MAJOR_VERSION=6
+      - -DBUILD_WITH_QT6=ON
+      - -DBUILD_TESTING=OFF
+      - -DCMAKE_INSTALL_SYSCONFDIR=/etc
+      - -DCMAKE_INSTALL_LOCALSTATEDIR=/var
+      - -DCMAKE_EXPORT_NO_PACKAGE_REGISTRY=ON
+      - -DCMAKE_FIND_USE_PACKAGE_REGISTRY=OFF
+      - -DCMAKE_FIND_PACKAGE_NO_PACKAGE_REGISTRY=ON
+      - -DCMAKE_INSTALL_RUNSTATEDIR=/run
+      - -DCMAKE_SKIP_INSTALL_ALL_DEPENDENCY=ON
+      - -DCMAKE_VERBOSE_MAKEFILE=ON
+      - -DCMAKE_INSTALL_LIBDIR=lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR
+      - --log-level=STATUS
+      - -DCMAKE_LIBRARY_PATH=lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR
+        build-environment:
+    build-environment:
+      - LDFLAGS: "-L$CRAFT_STAGE/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR"
+      - CFLAGS: "-I$CRAFT_STAGE/usr/include/KF6"
+      - LD_LIBRARY_PATH: "$CRAFT_STAGE/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR"
+
+  skanlite:
+    after:
+     - libksane
+    parse-info:
+      - usr/share/metainfo/org.kde.skanlite.appdata.xml
+    plugin: cmake
+    source: .
+    source-type: local
+    build-packages:
+      - libpng-dev
+    stage-packages:
+      - avahi-daemon
+    cmake-parameters:
+      - -DCMAKE_INSTALL_PREFIX=/usr
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DQT_MAJOR_VERSION=6
+      - -DBUILD_WITH_QT6=ON
+      - -DBUILD_TESTING=OFF
+      - -DCMAKE_INSTALL_SYSCONFDIR=/etc
+      - -DCMAKE_INSTALL_LOCALSTATEDIR=/var
+      - -DCMAKE_EXPORT_NO_PACKAGE_REGISTRY=ON
+      - -DCMAKE_FIND_USE_PACKAGE_REGISTRY=OFF
+      - -DCMAKE_FIND_PACKAGE_NO_PACKAGE_REGISTRY=ON
+      - -DCMAKE_INSTALL_RUNSTATEDIR=/run
+      - -DCMAKE_SKIP_INSTALL_ALL_DEPENDENCY=ON
+      - -DCMAKE_VERBOSE_MAKEFILE=ON
+      - -DCMAKE_INSTALL_LIBDIR=lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR
+      - --log-level=STATUS
+      - -DCMAKE_LIBRARY_PATH=lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR
+    prime:
+      - -usr/lib/*/cmake/*
+      - -usr/include/*
+      - -usr/share/ECM/*
+      - -usr/share/man/*
+      - -usr/bin/X11
+      - -usr/lib/gcc/$CRAFT_ARCH_TRIPLET_BUILD_FOR/6.0.0
+      - -usr/lib/aspell/*
+      - -usr/share/lintian
+  cleanup:
+    after:
+      - skanlite
+    plugin: nil
+    build-snaps:
+      - core22
+      - kf6-core22
+      - qt-common-themes
+    override-prime: |
+      set -eux
+      for snap in "core22" "kf6-core22" "qt-common-themes"; do
+          cd "/snap/$snap/current" && find . -type f,l -exec rm -rf "${CRAFT_PRIME}/{}" \;
+      done
+
