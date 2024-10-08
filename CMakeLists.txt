@@ -11,8 +11,8 @@ set(SKANLITE_VERSION_STRING "${RELEASE_SERVICE_VERSION}")
 
 project(skanlite VERSION ${RELEASE_SERVICE_VERSION})
 
-set(REQUIRED_QT_VERSION "5.15.0")
-set(KF_MIN_VERSION "5.90.0")
+set(REQUIRED_QT_VERSION "6.4.0")
+set(KF_MIN_VERSION "6.0.0")
 
 # ECM setup (Extended Cmake Modules)
 find_package(ECM ${KF_MIN_VERSION} QUIET REQUIRED NO_MODULE)
@@ -32,14 +32,6 @@ include(GenerateExportHeader)
 include(ECMQtDeclareLoggingCategory)
 include(ECMInstallIcons)
 
-if (QT_MAJOR_VERSION STREQUAL "6")
-    set(QT_REQUIRED_VERSION "6.4.0")
-    set(KF_MIN_VERSION "5.240.0")
-    set(KF_MAJOR_VERSION "6")
-else()
-    set(KF_MAJOR_VERSION "5")
-endif()
-
 ecm_setup_version(
   ${SKANLITE_VERSION_STRING}
   VARIABLE_PREFIX SKANLITE
@@ -47,9 +39,9 @@ ecm_setup_version(
 )
 
 # Dependencies
-find_package(Qt${QT_MAJOR_VERSION} ${REQUIRED_QT_VERSION} NO_MODULE REQUIRED Core Widgets)
+find_package(Qt6 ${REQUIRED_QT_VERSION} NO_MODULE REQUIRED Core Widgets)
 
-find_package(KF${KF_MAJOR_VERSION} ${KF_MIN_VERSION} REQUIRED COMPONENTS
+find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS
         CoreAddons # KAboutData
         I18n
         KIO # contains the KIOWidgets which we use in target_link_libraries
@@ -57,17 +49,13 @@ find_package(KF${KF_MAJOR_VERSION} ${KF_MIN_VERSION} REQUIRED COMPONENTS
         Crash
 )
 
-find_package(KF${KF_MAJOR_VERSION}DocTools ${KF_MIN_VERSION})  # yields kdoctools_create_handbook
-set_package_properties(KF${KF_MAJOR_VERSION}DocTools PROPERTIES DESCRIPTION
+find_package(KF6DocTools ${KF_MIN_VERSION})  # yields kdoctools_create_handbook
+set_package_properties(KF6DocTools PROPERTIES DESCRIPTION
     "Tools to generate documentation"
     TYPE OPTIONAL
 )
 
-if (QT_MAJOR_VERSION STREQUAL "6")
-    find_package(KSaneWidgets6 "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE_VERSION_MINOR}" REQUIRED)
-else()
-    find_package(KF5Sane "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE_VERSION_MINOR}" REQUIRED)
-endif()
+find_package(KSaneWidgets6 "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE_VERSION_MINOR}" REQUIRED)
 
 add_definitions(
     -DQT_DISABLE_DEPRECATED_BEFORE=0x050F00
@@ -80,7 +68,7 @@ add_definitions(
 add_subdirectory(src)
 
 ki18n_install(po)
-if (KF${KF_MAJOR_VERSION}DocTools_FOUND)
+if (KF6DocTools_FOUND)
     kdoctools_install(po)
     add_subdirectory(doc)
 endif()

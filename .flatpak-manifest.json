@@ -122,9 +122,6 @@
         },
         {
             "name": "skanlite",
-            "config-opts": [
-                "-DQT_MAJOR_VERSION=6"
-            ],
             "buildsystem": "cmake-ninja",
             "builddir": true,
             "sources": [ { "type": "dir", "path": "." } ]
