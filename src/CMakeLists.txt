@@ -24,19 +24,15 @@ ecm_qt_declare_logging_category(skanlite
 
 target_link_libraries(skanlite
   PUBLIC
-    Qt${QT_MAJOR_VERSION}::Core
+    Qt6::Core
   PRIVATE
-    KF${KF_MAJOR_VERSION}::CoreAddons
-    KF${KF_MAJOR_VERSION}::I18n
-    KF${KF_MAJOR_VERSION}::XmlGui
-    KF${KF_MAJOR_VERSION}::KIOWidgets
-    KF${KF_MAJOR_VERSION}::Crash
+    KF6::CoreAddons
+    KF6::I18n
+    KF6::XmlGui
+    KF6::KIOWidgets
+    KF6::Crash
 )
-if (QT_MAJOR_VERSION STREQUAL "6")
-    target_link_libraries(skanlite PRIVATE KSaneWidgets6)
-else()
-    target_link_libraries(skanlite PRIVATE KF5::Sane)
-endif()
+  target_link_libraries(skanlite PRIVATE KSaneWidgets6)
 
 install(TARGETS skanlite ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 install(PROGRAMS org.kde.skanlite.desktop DESTINATION ${KDE_INSTALL_APPDIR})
