@@ -33,6 +33,7 @@ SaveLocation::SaveLocation(QWidget *parent)
 
 SaveLocation::~SaveLocation()
 {
+    delete m_ui;
 }
 
 void SaveLocation::updateGui()
