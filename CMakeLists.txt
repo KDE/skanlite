@@ -31,6 +31,7 @@ include(CheckFunctionExists)
 include(GenerateExportHeader)
 include(ECMQtDeclareLoggingCategory)
 include(ECMInstallIcons)
+include(ECMDeprecationSettings)
 
 ecm_setup_version(
   ${SKANLITE_VERSION_STRING}
@@ -57,12 +58,10 @@ set_package_properties(KF6DocTools PROPERTIES DESCRIPTION
 
 find_package(KSaneWidgets6 "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE_VERSION_MINOR}" REQUIRED)
 
-add_definitions(
-    -DQT_DISABLE_DEPRECATED_BEFORE=0x050F00
-    -DQT_DEPRECATED_WARNINGS_SINCE=0x060000
-    -DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x055800
-    -DKF_DEPRECATED_WARNINGS_SINCE=0x060000
+ecm_set_disabled_deprecation_versions(QT 6.7.2
+    KF 6.7.0
 )
+
 
 # Subdirectories
 add_subdirectory(src)
