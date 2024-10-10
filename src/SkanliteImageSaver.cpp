@@ -26,7 +26,7 @@ struct SkanliteImageSaver::Private {
     QString    m_fileFormat;
     int        m_quality;
 
-    SkanliteImageSaver *q;
+    SkanliteImageSaver *q = nullptr;
 
     bool saveQImage();
     bool savePDF();
