@@ -166,7 +166,7 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
         // fill m_filterList (...)
         {
             QStringList namedMimeTypes;
-            for (const QString &mimeStr : qAsConst(m_filterList)) {
+            for (const QString &mimeStr : std::as_const(m_filterList)) {
                 QMimeType mimeType = QMimeDatabase().mimeTypeForName(mimeStr);
                 namedMimeTypes.append(mimeType.name());
 
