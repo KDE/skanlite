@@ -4,3 +4,4 @@
 skanlite.kdev4
 src/.kdev_include_paths
 CMakeLists.txt.user
+.clang-format
