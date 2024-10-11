@@ -20,13 +20,13 @@
 #include <KLocalizedString>
 
 struct ImageViewer::Private {
-    QGraphicsScene      *scene;
-    QImage              *img;
+    QGraphicsScene      *scene = nullptr;
+    QImage              *img = nullptr;
 
-    QAction *zoomInAction;
-    QAction *zoomOutAction;
-    QAction *zoom100Action;
-    QAction *zoom2FitAction;
+    QAction *zoomInAction = nullptr;
+    QAction *zoomOutAction = nullptr;
+    QAction *zoom100Action = nullptr;
+    QAction *zoom2FitAction = nullptr;
 };
 
 ImageViewer::ImageViewer(QWidget *parent) : QGraphicsView(parent), d(new Private)
