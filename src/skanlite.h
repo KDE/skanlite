@@ -10,19 +10,19 @@
 #ifndef Skanlite_h
 #define Skanlite_h
 
-#include <QUrl>
 #include <QDialog>
 #include <QTimer>
+#include <QUrl>
 
-
-#include "ui_settings.h"
 #include "DBusInterface.h"
+#include "ui_settings.h"
 
 class ShowImageDialog;
 class SaveLocation;
 class QProgressBar;
 
-namespace KSaneIface {
+namespace KSaneIface
+{
 class KSaneWidget;
 }
 
@@ -80,27 +80,26 @@ protected:
     void closeEvent(QCloseEvent *event) override;
 
 private:
-    KSaneIface::KSaneWidget             *m_ksanew = nullptr;
-    QProgressBar            *m_saveProgressBar = nullptr;
-    QPushButton             *m_btnReselectDevice = nullptr;
-    QUrl                     m_currentSaveUrl;
-    QTimer                   m_saveUpdateTimer;
-    Ui::SkanliteSettings     m_settingsUi;
-    QDialog                 *m_settingsDialog = nullptr;
-    ShowImageDialog         *m_showImgDialog = nullptr;
-    SaveLocation            *m_saveLocation = nullptr;
-    QString                  m_deviceName;
-    QString                  m_deviceVendor;
-    QString                  m_deviceModel;
-    QMap<QString, QString>   m_defaultScanOpts;
-    QMap<QString, QString>   m_pendingApplyScanOpts;
-    QImage                   m_img;
+    KSaneIface::KSaneWidget *m_ksanew = nullptr;
+    QProgressBar *m_saveProgressBar = nullptr;
+    QPushButton *m_btnReselectDevice = nullptr;
+    QUrl m_currentSaveUrl;
+    QTimer m_saveUpdateTimer;
+    Ui::SkanliteSettings m_settingsUi;
+    QDialog *m_settingsDialog = nullptr;
+    ShowImageDialog *m_showImgDialog = nullptr;
+    SaveLocation *m_saveLocation = nullptr;
+    QString m_deviceName;
+    QString m_deviceVendor;
+    QString m_deviceModel;
+    QMap<QString, QString> m_defaultScanOpts;
+    QMap<QString, QString> m_pendingApplyScanOpts;
+    QImage m_img;
 
-    DBusInterface            m_dbusInterface;
-    QStringList              m_filterList;
-    QStringList              m_filter16BitList;
-    bool                     m_firstImage;
+    DBusInterface m_dbusInterface;
+    QStringList m_filterList;
+    QStringList m_filter16BitList;
+    bool m_firstImage;
 };
 
 #endif
-

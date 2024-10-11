@@ -1,27 +1,27 @@
 /* ============================================================
-* Date        : 2008-08-26
-* Description : Preview image viewer.
-*
-* SPDX-FileCopyrightText: 2008-2012 Kåre Särs <kare.sars@iki .fi>
-*
-* SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
-*
-* ============================================================ */
+ * Date        : 2008-08-26
+ * Description : Preview image viewer.
+ *
+ * SPDX-FileCopyrightText: 2008-2012 Kåre Särs <kare.sars@iki .fi>
+ *
+ * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
+ *
+ * ============================================================ */
 
 #include "ImageViewer.h"
 
+#include <QAction>
 #include <QGraphicsPixmapItem>
 #include <QGraphicsScene>
-#include <QScrollBar>
-#include <QAction>
 #include <QIcon>
+#include <QScrollBar>
 #include <QWheelEvent>
 
 #include <KLocalizedString>
 
 struct ImageViewer::Private {
-    QGraphicsScene      *scene = nullptr;
-    QImage              *img = nullptr;
+    QGraphicsScene *scene = nullptr;
+    QImage *img = nullptr;
 
     QAction *zoomInAction = nullptr;
     QAction *zoomOutAction = nullptr;
@@ -29,10 +29,12 @@ struct ImageViewer::Private {
     QAction *zoom2FitAction = nullptr;
 };
 
-ImageViewer::ImageViewer(QWidget *parent) : QGraphicsView(parent), d(new Private)
+ImageViewer::ImageViewer(QWidget *parent)
+    : QGraphicsView(parent)
+    , d(new Private)
 {
-    //setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
-    //setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+    // setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+    // setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     setMouseTracking(true);
 
     // Init the scene
@@ -121,15 +123,12 @@ void ImageViewer::wheelEvent(QWheelEvent *e)
     if (e->modifiers() == Qt::ControlModifier) {
         if (e->angleDelta().y() > 0) {
             zoomIn();
-        }
-        else {
+        } else {
             zoomOut();
         }
-    }
-    else {
+    } else {
         QGraphicsView::wheelEvent(e);
     }
 }
-
 
 #include "moc_ImageViewer.cpp"

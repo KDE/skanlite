@@ -9,8 +9,8 @@
 #ifndef DBusInterface_h
 #define DBusInterface_h
 
-#include <QDBusConnection>
 #include <KSaneWidget>
+#include <QDBusConnection>
 #include <QStringList>
 
 static const bool defaultSelectionFiltering = true;
@@ -23,13 +23,21 @@ class DBusInterface : public QObject
     QStringList m_msgBuffer;
 
 public:
-
-    explicit DBusInterface(QObject* parent = nullptr) : QObject(parent) {}
+    explicit DBusInterface(QObject *parent = nullptr)
+        : QObject(parent)
+    {
+    }
 
     bool setupDBusInterface();
 
-    const QStringList& reply() { return m_msgBuffer; }
-    void setReply(const QStringList &reply) { m_msgBuffer = reply; }
+    const QStringList &reply()
+    {
+        return m_msgBuffer;
+    }
+    void setReply(const QStringList &reply)
+    {
+        m_msgBuffer = reply;
+    }
 
 private:
     // helper method for QDbusViewer compatibility. The details are in .cpp
@@ -54,13 +62,22 @@ public Q_SLOTS:
     // called via D-Bus
 
     // Perform scan operation if is in idle
-    Q_SCRIPTABLE void scan() { Q_EMIT requestedScan(); }
+    Q_SCRIPTABLE void scan()
+    {
+        Q_EMIT requestedScan();
+    }
 
     // Perform preview operation if is in idle
-    Q_SCRIPTABLE void preview() { Q_EMIT requestedPreview(); }
+    Q_SCRIPTABLE void preview()
+    {
+        Q_EMIT requestedPreview();
+    }
 
     // Cancel any ongoing operation
-    Q_SCRIPTABLE void scanCancel() { Q_EMIT requestedScanCancel(); }
+    Q_SCRIPTABLE void scanCancel()
+    {
+        Q_EMIT requestedScanCancel();
+    }
 
     // Return device name, like "Hewlett-Packard:Scanjet 4370"
     Q_SCRIPTABLE QString getDeviceName()
@@ -92,7 +109,8 @@ public Q_SLOTS:
     // Save options to KConfigGroup named ""Options For %Current_Device% - Profile %profile%""
     // Thus it's device specific. Default profile is "1". Could be any string value.
     // Ignores page selection area info if ignoreSelection is true (by default)
-    Q_SCRIPTABLE void saveScannerOptionsToProfile(const QStringList &options, const QString &profile = defaultProfile, bool ignoreSelection = defaultSelectionFiltering)
+    Q_SCRIPTABLE void
+    saveScannerOptionsToProfile(const QStringList &options, const QString &profile = defaultProfile, bool ignoreSelection = defaultSelectionFiltering)
     {
         Q_EMIT requestedSaveScannerOptionsToProfile(ensureStringList(options), profile, ignoreSelection);
     }

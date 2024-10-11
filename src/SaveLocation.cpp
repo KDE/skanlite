@@ -1,20 +1,20 @@
 /* ============================================================
-* Date        : 2010-07-07
-* Description : Save location settings dialog.
-*
-* SPDX-FileCopyrightText: 2010-2012 Kare Sars <kare.sars@iki.fi>
-* SPDX-FileCopyrightText: 2014 Gregor Mitsch : port to KDE5 frameworks
-*
-* SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
-*
-* ============================================================ */
+ * Date        : 2010-07-07
+ * Description : Save location settings dialog.
+ *
+ * SPDX-FileCopyrightText: 2010-2012 Kare Sars <kare.sars@iki.fi>
+ * SPDX-FileCopyrightText: 2014 Gregor Mitsch : port to KDE5 frameworks
+ *
+ * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
+ *
+ * ============================================================ */
 
 #include "SaveLocation.h"
 #include "ui_SaveLocation.h"
 
+#include <QComboBox>
 #include <QFileDialog>
 #include <QPushButton>
-#include <QComboBox>
 #include <QShowEvent>
 #include <QTimer>
 
@@ -42,13 +42,13 @@ void SaveLocation::updateGui()
         m_ui->u_numStartFrom->setValue(1); // Reset the counter whenever the directory or the prefix is changed
     }
     const QString name = QStringLiteral("%1%2.%3")
-    .arg(m_ui->u_imgPrefix->text())
-    .arg(m_ui->u_numStartFrom->value(), 4, 10, QLatin1Char('0'))
-    .arg(m_ui->u_imgFormat->currentText());
+                             .arg(m_ui->u_imgPrefix->text())
+                             .arg(m_ui->u_numStartFrom->value(), 4, 10, QLatin1Char('0'))
+                             .arg(m_ui->u_imgFormat->currentText());
 
     QUrl folderUrl = m_ui->u_urlRequester->url();
     folderUrl.setPath(folderUrl.path() + QLatin1Char('/'));
-    m_ui->u_resultValue->setText(folderUrl.toString(QUrl::PreferLocalFile | QUrl::NormalizePathSegments)+name);
+    m_ui->u_resultValue->setText(folderUrl.toString(QUrl::PreferLocalFile | QUrl::NormalizePathSegments) + name);
 }
 
 QUrl SaveLocation::folderUrl() const
@@ -126,7 +126,9 @@ void SaveLocation::showEvent(QShowEvent *event)
     QDialog::showEvent(event);
 
     if (m_openRequesterOnShow) {
-        QTimer::singleShot(0, this, [this]() { m_ui->u_urlRequester->button()->click(); });
+        QTimer::singleShot(0, this, [this]() {
+            m_ui->u_urlRequester->button()->click();
+        });
     }
 }
 

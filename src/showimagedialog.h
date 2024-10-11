@@ -1,13 +1,13 @@
 /* ============================================================
-*
-* SPDX-FileCopyrightText: 2007-2012 Kåre Särs <kare.sars@iki .fi>
-* SPDX-FileCopyrightText: 2009 Arseniy Lartsev <receive-spam at yandex dot ru>
-* SPDX-FileCopyrightText: 2014 Gregor Mitsch : port to KDE5 frameworks
-* SPDX-FileCopyrightText: 2018 Alexander Volkov <a.volkov@rusbitech.ru>
-*
-* SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
-*
-* ============================================================ */
+ *
+ * SPDX-FileCopyrightText: 2007-2012 Kåre Särs <kare.sars@iki .fi>
+ * SPDX-FileCopyrightText: 2009 Arseniy Lartsev <receive-spam at yandex dot ru>
+ * SPDX-FileCopyrightText: 2014 Gregor Mitsch : port to KDE5 frameworks
+ * SPDX-FileCopyrightText: 2018 Alexander Volkov <a.volkov@rusbitech.ru>
+ *
+ * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
+ *
+ * ============================================================ */
 
 #ifndef SHOWIMAGEDIALOG_H
 #define SHOWIMAGEDIALOG_H

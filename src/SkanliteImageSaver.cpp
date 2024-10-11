@@ -1,30 +1,30 @@
 /* ============================================================
-* Date        : 2010-07-02
-* Description : Image saver class for libksane image data.
-*
-* SPDX-FileCopyrightText: 2010-2012 Kåre Särs <kare.sars@iki .fi>
-*
-* SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
-*
-* ============================================================ */
+ * Date        : 2010-07-02
+ * Description : Image saver class for libksane image data.
+ *
+ * SPDX-FileCopyrightText: 2010-2012 Kåre Särs <kare.sars@iki .fi>
+ *
+ * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
+ *
+ * ============================================================ */
 
 #include "SkanliteImageSaver.h"
 
-#include <QMutex>
-#include <QUrl>
 #include <QImage>
-#include <QPdfWriter>
+#include <QMutex>
 #include <QPainter>
+#include <QPdfWriter>
+#include <QUrl>
 
 struct SkanliteImageSaver::Private {
-    bool   m_savedOk;
+    bool m_savedOk;
     QMutex m_runMutex;
 
-    QUrl       m_url;
-    QString    m_name;
-    QImage     m_image;
-    QString    m_fileFormat;
-    int        m_quality;
+    QUrl m_url;
+    QString m_name;
+    QImage m_image;
+    QString m_fileFormat;
+    int m_quality;
 
     SkanliteImageSaver *q = nullptr;
 
@@ -33,7 +33,9 @@ struct SkanliteImageSaver::Private {
 };
 
 // ------------------------------------------------------------------------
-SkanliteImageSaver::SkanliteImageSaver(QObject *parent) : QThread(parent), d(new Private)
+SkanliteImageSaver::SkanliteImageSaver(QObject *parent)
+    : QThread(parent)
+    , d(new Private)
 {
     d->q = this;
 }
@@ -44,15 +46,15 @@ SkanliteImageSaver::~SkanliteImageSaver()
     delete d;
 }
 
-bool SkanliteImageSaver::saveQImage(const QUrl &url, const QString &name, const QImage &image, const QString& fileFormat, int quality)
+bool SkanliteImageSaver::saveQImage(const QUrl &url, const QString &name, const QImage &image, const QString &fileFormat, int quality)
 {
     if (!d->m_runMutex.tryLock()) {
         return false;
     }
 
-    d->m_url    = url;
-    d->m_name   = name;
-    d->m_image  = image;
+    d->m_url = url;
+    d->m_name = name;
+    d->m_image = image;
     d->m_fileFormat = fileFormat;
     d->m_quality = quality;
 
@@ -80,7 +82,8 @@ bool SkanliteImageSaver::Private::saveQImage()
 
 bool SkanliteImageSaver::Private::savePDF()
 {
-    const QPageSize pageSize = QPageSize(QSizeF(m_image.width() * 1000.0 / m_image.dotsPerMeterX() , m_image.height() * 1000.0 / m_image.dotsPerMeterY()), QPageSize::Millimeter);
+    const QPageSize pageSize =
+        QPageSize(QSizeF(m_image.width() * 1000.0 / m_image.dotsPerMeterX(), m_image.height() * 1000.0 / m_image.dotsPerMeterY()), QPageSize::Millimeter);
     const int dpi = qRound(m_image.dotsPerMeterX() / 1000.0 * 25.4);
 
     QPainter painter;

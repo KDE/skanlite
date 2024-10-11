@@ -1,48 +1,48 @@
 /* ============================================================
-*
-* SPDX-FileCopyrightText: 2007-2012 Kåre Särs <kare.sars@iki .fi>
-* SPDX-FileCopyrightText: 2009 Arseniy Lartsev <receive-spam at yandex dot ru>
-* SPDX-FileCopyrightText: 2014 Gregor Mitsch : port to KDE5 frameworks
-*
-* SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
-*
-* ============================================================ */
+ *
+ * SPDX-FileCopyrightText: 2007-2012 Kåre Särs <kare.sars@iki .fi>
+ * SPDX-FileCopyrightText: 2009 Arseniy Lartsev <receive-spam at yandex dot ru>
+ * SPDX-FileCopyrightText: 2014 Gregor Mitsch : port to KDE5 frameworks
+ *
+ * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
+ *
+ * ============================================================ */
 
 #include "skanlite.h"
 
 #include "SaveLocation.h"
-#include "showimagedialog.h"
 #include "SkanliteImageSaver.h"
+#include "showimagedialog.h"
 
 #include <QApplication>
+#include <QCloseEvent>
+#include <QComboBox>
+#include <QDialogButtonBox>
+#include <QFileDialog>
+#include <QImageWriter>
+#include <QMessageBox>
+#include <QMimeDatabase>
+#include <QMimeType>
+#include <QProgressBar>
 #include <QScrollArea>
 #include <QStringList>
-#include <QFileDialog>
-#include <QDialogButtonBox>
-#include <QComboBox>
-#include <QMessageBox>
 #include <QTemporaryFile>
-#include <QImageWriter>
-#include <QMimeType>
-#include <QMimeDatabase>
-#include <QCloseEvent>
-#include <QProgressBar>
 
-#include <kio_version.h>
-#include <KAboutData>
 #include <KAboutApplicationDialog>
-#include <KLocalizedString>
-#include <KMessageBox>
-#include <KIO/StatJob>
-#include <KIO/Job>
-#include <KIO/StoredTransferJob>
-#include <KJobWidgets>
-#include <kio/global.h>
-#include <KSharedConfig>
+#include <KAboutData>
 #include <KConfigGroup>
 #include <KHelpClient>
 #include <KHelpMenu>
+#include <KIO/Job>
+#include <KIO/StatJob>
+#include <KIO/StoredTransferJob>
+#include <KJobWidgets>
+#include <KLocalizedString>
+#include <KMessageBox>
 #include <KSaneWidget>
+#include <KSharedConfig>
+#include <kio/global.h>
+#include <kio_version.h>
 
 #include <skanlite_debug.h>
 
@@ -75,12 +75,12 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
     connect(m_ksanew, &KSaneWidget::scannedImageReady, this, &Skanlite::imageReady);
     connect(m_ksanew, &KSaneWidget::userMessage, this, &Skanlite::alertUser);
     connect(m_ksanew, &KSaneWidget::buttonPressed, this, &Skanlite::buttonPressed);
-    connect(m_ksanew, &KSaneWidget::scanProgress, this, [this](int percent){
+    connect(m_ksanew, &KSaneWidget::scanProgress, this, [this](int percent) {
         if (percent < 100) {
             m_btnReselectDevice->setEnabled(false);
         }
     });
-    connect(m_ksanew, &KSaneWidget::scanDone, this, [this](){
+    connect(m_ksanew, &KSaneWidget::scanDone, this, [this]() {
         if (!m_pendingApplyScanOpts.isEmpty()) {
             applyScannerOptions(m_pendingApplyScanOpts);
         }
@@ -207,13 +207,11 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
             // could not open a scanner
             KMessageBox::error(nullptr, i18n("Opening the selected scanner failed."));
             exit(1);
-        }
-        else {
+        } else {
             updateWindowTitle(dev, m_ksanew->deviceVendor(), m_ksanew->deviceModel());
             m_deviceName = dev;
         }
-    }
-    else {
+    } else {
         if (deviceVendor.isEmpty()) {
             updateWindowTitle(deviceName);
         } else {
@@ -259,8 +257,7 @@ Skanlite::Skanlite(const QString &device, QWidget *parent)
         connect(m_ksanew, &KSaneWidget::userMessage, &m_dbusInterface, &DBusInterface::userMessage);
         connect(m_ksanew, &KSaneWidget::scanProgress, &m_dbusInterface, &DBusInterface::scanProgress);
         connect(m_ksanew, &KSaneWidget::buttonPressed, &m_dbusInterface, &DBusInterface::buttonPressed);
-    }
-    else {
+    } else {
         // keep working without dbus
     }
 }
@@ -305,8 +302,7 @@ void Skanlite::reselectScannerDevice()
     if (m_ksanew->openDevice(dev) == false) {
         // could not open a scanner
         KMessageBox::error(nullptr, i18n("Opening the selected scanner failed."));
-    }
-    else {
+    } else {
         updateWindowTitle(dev, m_ksanew->deviceVendor(), m_ksanew->deviceModel());
         m_deviceName = dev;
         m_deviceModel = m_ksanew->deviceModel();
@@ -320,8 +316,7 @@ static void perrorMessageBox(const QString &text)
 {
     if (errno != 0) {
         KMessageBox::error(nullptr, i18n("%1: %2", text, QString::fromLocal8Bit(strerror(errno))));
-    }
-    else {
+    } else {
         KMessageBox::error(nullptr, text);
     }
 }
@@ -352,14 +347,13 @@ void Skanlite::readSettings(void)
 
     KConfigGroup general(KSharedConfig::openConfig(), QStringLiteral("General"));
 
-    //m_settingsUi.previewDPI->setCurrentItem(general.readEntry("PreviewDPI", "100"), true); // FIXME KF5 is the 'true' parameter still needed?
+    // m_settingsUi.previewDPI->setCurrentItem(general.readEntry("PreviewDPI", "100"), true); // FIXME KF5 is the 'true' parameter still needed?
     m_settingsUi.previewDPI->setCurrentText(general.readEntry("PreviewDPI", "100"));
 
     m_settingsUi.setPreviewDPI->setChecked(general.readEntry("SetPreviewDPI", false));
     if (m_settingsUi.setPreviewDPI->isChecked()) {
         m_ksanew->setPreviewResolution(m_settingsUi.previewDPI->currentText().toFloat());
-    }
-    else {
+    } else {
         m_ksanew->setPreviewResolution(0.0);
     }
     m_settingsUi.u_disableSelections->setChecked(general.readEntry("DisableAutoSelection", false));
@@ -392,8 +386,7 @@ void Skanlite::showSettingsDialog(void)
         // the previewDPI has to be set here
         if (m_settingsUi.setPreviewDPI->isChecked()) {
             m_ksanew->setPreviewResolution(m_settingsUi.previewDPI->currentText().toFloat());
-        }
-        else {
+        } else {
             // 0.0 means default value.
             m_ksanew->setPreviewResolution(0.0);
         }
@@ -405,9 +398,8 @@ void Skanlite::showSettingsDialog(void)
         m_saveLocation->setImageFormatIndex(m_settingsUi.imgFormat->currentIndex());
 
         m_firstImage = true;
-    }
-    else {
-        //Forget Changes
+    } else {
+        // Forget Changes
         readSettings();
     }
 }
@@ -422,20 +414,18 @@ void Skanlite::imageReady(const QImage &image)
         m_showImgDialog->zoom2Fit();
         m_showImgDialog->exec();
         // save has been done as a result of save or then we got cancel
-    }
-    else {
+    } else {
         saveImage();
     }
 }
 
-bool urlExists(const QUrl& url)
+bool urlExists(const QUrl &url)
 {
     if (url.isLocalFile()) {
         if (!QFileInfo::exists(url.toLocalFile())) {
             return false;
         }
-    }
-    else {
+    } else {
         KIO::StatJob *statJob = KIO::stat(url, KIO::StatJob::DestinationSide, KIO::StatNoDetails);
         KJobWidgets::setWindow(statJob, QApplication::activeWindow());
         if (!statJob->exec()) {
@@ -462,8 +452,7 @@ void Skanlite::saveImage()
             dirExists = urlExists(dirUrl); // check that we actually got an existing folder
             m_firstImage = false;
         }
-    }
-    else if (!dirExists) {
+    } else if (!dirExists) {
         // The save-folder from settings does not exist! Use the users home directory.
         dirUrl = QUrl::fromUserInput(QDir::homePath() + QLatin1Char('/'));
         m_saveLocation->setFolderUrl(dirUrl);
@@ -474,13 +463,13 @@ void Skanlite::saveImage()
     int fileNumber = m_saveLocation->startNumber();
     QStringList filterList;
 
-    if ((m_img.format() == QImage::Format_Grayscale16) ||
-        (m_img.format() == QImage::Format_RGBX64))
-    {
+    if ((m_img.format() == QImage::Format_Grayscale16) || (m_img.format() == QImage::Format_RGBX64)) {
         filterList = m_filter16BitList;
         if (imageMimetype != QLatin1String("image/png") && imageMimetype != QLatin1String("image/tiff")) {
             imageMimetype = QStringLiteral("image/png");
-            KMessageBox::information(this, i18n("The image will be saved in the PNG format, as the selected image type does not support saving 16 bit color images."));
+            KMessageBox::information(
+                this,
+                i18n("The image will be saved in the PNG format, as the selected image type does not support saving 16 bit color images."));
         }
     } else {
         filterList = m_filterList;
@@ -490,10 +479,7 @@ void Skanlite::saveImage()
     QUrl fileUrl;
     QString fname;
     for (int i = fileNumber; i <= m_saveLocation->startNumberMax(); ++i) {
-        fname = QStringLiteral("%1%2.%3")
-                .arg(prefix)
-                .arg(i, 4, 10, QLatin1Char('0'))
-                .arg(m_saveLocation->imageSuffix());
+        fname = QStringLiteral("%1%2.%3").arg(prefix).arg(i, 4, 10, QLatin1Char('0')).arg(m_saveLocation->imageSuffix());
 
         fileUrl = dirUrl;
         fileUrl.setPath(fileUrl.path() + fname);
@@ -548,13 +534,11 @@ void Skanlite::saveImage()
         tmp.open();
         if (suffix.isEmpty()) {
             localName = tmp.fileName();
-        }
-        else {
+        } else {
             localName = QStringLiteral("%1.%2").arg(tmp.fileName(), suffix);
         }
         tmp.close(); // we just want the filename
-    }
-    else {
+    } else {
         localName = fileUrl.toLocalFile();
     }
 
@@ -594,14 +578,12 @@ void Skanlite::saveImage()
         m_saveLocation->setFolderUrl(KIO::upUrl(fileUrl));
         m_saveLocation->setImageFormat(QFileInfo(fileUrl.fileName()).suffix());
     }
-
-
 }
 
 void Skanlite::updateSaveProgress()
 {
     QFileInfo saveInfo(m_currentSaveUrl.toLocalFile());
-    quint64 size = saveInfo.size()/1024;
+    quint64 size = saveInfo.size() / 1024;
     m_saveProgressBar->setMaximum(size);
     m_saveProgressBar->setValue(size);
 }
@@ -623,12 +605,10 @@ void Skanlite::imageSaved(const QUrl &fileUrl, const QString &localName, bool su
         tmpFile.remove();
         if (!ok) {
             KMessageBox::error(nullptr, i18n("Failed to upload image"));
-        }
-        else {
+        } else {
             Q_EMIT m_dbusInterface.imageSaved(fileUrl.toString());
         }
-    }
-    else {
+    } else {
         Q_EMIT m_dbusInterface.imageSaved(localName);
     }
     m_ksanew->setDisabled(false);
@@ -637,7 +617,7 @@ void Skanlite::imageSaved(const QUrl &fileUrl, const QString &localName, bool su
     m_saveProgressBar->setVisible(false);
 }
 
-void writeScannerOptions(const QString &groupName, const QMap <QString, QString> &opts)
+void writeScannerOptions(const QString &groupName, const QMap<QString, QString> &opts)
 {
     KConfigGroup options(KSharedConfig::openStateConfig(), groupName);
     QMap<QString, QString>::const_iterator it = opts.constBegin();
@@ -648,7 +628,7 @@ void writeScannerOptions(const QString &groupName, const QMap <QString, QString>
     options.sync();
 }
 
-void readScannerOptions(const QString &groupName, QMap <QString, QString> &opts)
+void readScannerOptions(const QString &groupName, QMap<QString, QString> &opts)
 {
     KConfigGroup scannerOptions(KSharedConfig::openStateConfig(), groupName);
     opts = scannerOptions.entryMap();
@@ -665,7 +645,7 @@ void Skanlite::saveScannerOptions()
 
     if (!m_deviceName.isEmpty()) {
         KConfigGroup options(KSharedConfig::openStateConfig(), QStringLiteral("Options For %1").arg(m_deviceName));
-        QMap <QString, QString> opts;
+        QMap<QString, QString> opts;
         m_ksanew->getOptionValues(opts);
         writeScannerOptions(QStringLiteral("Options For %1").arg(m_deviceName), opts);
     }
@@ -680,7 +660,7 @@ void Skanlite::defaultScannerOptions()
     applyScannerOptions(m_defaultScanOpts);
 }
 
-void Skanlite::applyScannerOptions(const QMap <QString, QString> &opts)
+void Skanlite::applyScannerOptions(const QMap<QString, QString> &opts)
 {
     if (m_ksanew->setOptionValues(opts) == -1) {
         m_pendingApplyScanOpts = opts;
@@ -699,7 +679,7 @@ void Skanlite::loadScannerOptions()
             return;
         }
 
-        QMap <QString, QString> opts;
+        QMap<QString, QString> opts;
         readScannerOptions(QStringLiteral("Options For %1").arg(m_deviceName), opts);
         applyScannerOptions(opts);
     }
@@ -738,12 +718,11 @@ void deserializeScannerOptions(const QStringList &settings, QMap<QString, QStrin
 {
     for (const QString &s : settings) {
         int i = s.lastIndexOf(QLatin1Char('='));
-        opts[s.left(i)] = s.right(s.length()-i-1);
+        opts[s.left(i)] = s.right(s.length() - i - 1);
     }
 }
 
-static const auto selectionSettings = { QLatin1String("tl-x"), QLatin1String("tl-y"),
-                                        QLatin1String("br-x"), QLatin1String("br-y") };
+static const auto selectionSettings = {QLatin1String("tl-x"), QLatin1String("tl-y"), QLatin1String("br-x"), QLatin1String("br-y")};
 
 void filterSelectionSettings(QMap<QString, QString> &opts)
 {
@@ -766,17 +745,16 @@ void Skanlite::processSelectionOptions(QMap<QString, QString> &opts, bool ignore
 {
     if (ignoreSelection) {
         filterSelectionSettings(opts);
-    }
-    else {
+    } else {
         if (containsSelectionSettings(opts)) { // make sure we really have selection to apply
-            m_ksanew->setSelection(QPointF(0,0), QPointF(1,1)); // bcs settings have no effect if nothing was selected beforehand (Bug 377009)
+            m_ksanew->setSelection(QPointF(0, 0), QPointF(1, 1)); // bcs settings have no effect if nothing was selected beforehand (Bug 377009)
         }
     }
 }
 
 void Skanlite::updateWindowTitle(const QString &deviceName, const QString &deviceVendor, const QString &deviceModel)
 {
-    if (!deviceVendor.isEmpty() &&  !deviceModel.isEmpty()) {
+    if (!deviceVendor.isEmpty() && !deviceModel.isEmpty()) {
         setWindowTitle(i18nc("@title:window %1 = scanner maker, %2 = scanner model", "%1 %2 - Skanlite", deviceVendor, deviceModel));
     } else if (!deviceName.isEmpty()) {
         setWindowTitle(i18nc("@title:window %1 = scanner device", "%1 - Skanlite", deviceName));
@@ -790,7 +768,7 @@ void Skanlite::updateWindowTitle(const QString &deviceName, const QString &devic
 void Skanlite::getScannerOptions()
 {
     if (!m_deviceName.isEmpty()) {
-        QMap <QString, QString> opts;
+        QMap<QString, QString> opts;
         m_ksanew->getOptionValues(opts);
         m_dbusInterface.setReply(serializeScannerOptions(opts));
     }
@@ -799,13 +777,12 @@ void Skanlite::getScannerOptions()
 void Skanlite::setScannerOptions(const QStringList &options, bool ignoreSelection)
 {
     if (!m_deviceName.isEmpty()) {
-        QMap <QString, QString> opts;
+        QMap<QString, QString> opts;
         deserializeScannerOptions(options, opts);
         processSelectionOptions(opts, ignoreSelection);
         applyScannerOptions(opts);
     }
 }
-
 
 void Skanlite::getDefaultScannerOptions()
 {
@@ -817,7 +794,7 @@ static const QLatin1String defaultProfileGroup("Options For %1 - Profile %2"); /
 void Skanlite::saveScannerOptionsToProfile(const QStringList &options, const QString &profile, bool ignoreSelection)
 {
     if (!m_deviceName.isEmpty()) {
-        QMap <QString, QString> opts;
+        QMap<QString, QString> opts;
         deserializeScannerOptions(options, opts);
         processSelectionOptions(opts, ignoreSelection);
         writeScannerOptions(QString(defaultProfileGroup).arg(m_deviceName, profile), opts);
@@ -827,7 +804,7 @@ void Skanlite::saveScannerOptionsToProfile(const QStringList &options, const QSt
 void Skanlite::switchToProfile(const QString &profile, bool ignoreSelection)
 {
     if (!m_deviceName.isEmpty()) {
-        QMap <QString, QString> opts;
+        QMap<QString, QString> opts;
         readScannerOptions(QString(defaultProfileGroup).arg(m_deviceName, profile), opts);
 
         if (opts.empty()) {
@@ -849,11 +826,11 @@ void Skanlite::getDeviceName()
 void Skanlite::getSelection()
 {
     if (!m_deviceName.isEmpty()) {
-        QMap <QString, QString> opts;
+        QMap<QString, QString> opts;
         m_ksanew->getOptionValues(opts);
 
         QStringList reply;
-        for (const auto &key : selectionSettings ) {
+        for (const auto &key : selectionSettings) {
             if (opts.contains(key)) {
                 reply.append(key + QLatin1Char('=') + opts[key]);
             }
