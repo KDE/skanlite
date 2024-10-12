@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 86ff119b1606fcaa910d6b44fc14b611\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-31 01:46+0000\n"
+"POT-Creation-Date: 2024-10-12 00:38+0000\n"
 "PO-Revision-Date: 2023-03-03 17:31\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@gmail.com>\n"
 "Language-Team: Belarusian\n"
@@ -21,124 +21,124 @@ msgstr ""
 "X-Crowdin-File: /main/be/skanlite/skanlite.po\n"
 "X-Crowdin-File-ID: 8589\n"
 
-#: ImageViewer.cpp:43
+#: ImageViewer.cpp:45
 #, kde-format
 msgid "Zoom In"
 msgstr "Павялічыць"
 
-#: ImageViewer.cpp:46
+#: ImageViewer.cpp:48
 #, kde-format
 msgid "Zoom Out"
 msgstr "Паменшыць"
 
-#: ImageViewer.cpp:49
+#: ImageViewer.cpp:51
 #, kde-format
 msgid "Zoom to Actual size"
 msgstr "Маштабаваць да сапраўднага памеру"
 
-#: ImageViewer.cpp:52
+#: ImageViewer.cpp:54
 #, kde-format
 msgid "Zoom to Fit"
 msgstr "Маштабаваць па памеры"
 
-#: main.cpp:33 skanlite.cpp:788
+#: main.cpp:30 skanlite.cpp:762
 #, kde-format
 msgid "Skanlite"
 msgstr "Skanlite"
 
-#: main.cpp:35
+#: main.cpp:32
 #, kde-format
 msgid "Scanning application by KDE based on libksane."
 msgstr "Праграма KDE для сканавання на аснове libksane."
 
-#: main.cpp:37
+#: main.cpp:34
 #, kde-format
 msgid "(C) 2008-2020 Kåre Särs"
 msgstr "(C) 2008-2020 Kåre Särs"
 
-#: main.cpp:42
+#: main.cpp:39
 #, kde-format
 msgid "Kåre Särs"
 msgstr "Kåre Särs"
 
-#: main.cpp:43
+#: main.cpp:39
 #, kde-format
 msgid "developer"
 msgstr "распрацоўнік"
 
-#: main.cpp:46
+#: main.cpp:41
 #, kde-format
 msgid "Gregor Mi"
 msgstr "Gregor Mi"
 
-#: main.cpp:47 main.cpp:50
+#: main.cpp:41 main.cpp:43
 #, kde-format
 msgid "contributor"
 msgstr "удзельнік"
 
-#: main.cpp:49
+#: main.cpp:43
 #, kde-format
 msgid "Arseniy Lartsev"
 msgstr "Arseniy Lartsev"
 
-#: main.cpp:52
+#: main.cpp:45
 #, kde-format
 msgid "Gilles Caulier"
 msgstr "Gilles Caulier"
 
-#: main.cpp:53 main.cpp:59
+#: main.cpp:45 main.cpp:49
 #, kde-format
 msgid "Importing libksane to extragear"
 msgstr "Імпартаванне libksane у extragear"
 
-#: main.cpp:55
+#: main.cpp:47
 #, kde-format
 msgid "Anne-Marie Mahfouf"
 msgstr "Anne-Marie Mahfouf"
 
-#: main.cpp:56
+#: main.cpp:47
 #, kde-format
 msgid "Writing the user manual"
 msgstr "Напісанне дапаможніка карыстальніка"
 
-#: main.cpp:58
+#: main.cpp:49
 #, kde-format
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
 
-#: main.cpp:61
+#: main.cpp:51
 #, kde-format
 msgid "Chusslove Illich"
 msgstr "Chusslove Illich"
 
-#: main.cpp:62 main.cpp:65
+#: main.cpp:51 main.cpp:53
 #, kde-format
 msgid "Help with translations"
 msgstr "Дапамога з перакладам"
 
-#: main.cpp:64
+#: main.cpp:53
 #, kde-format
 msgid "Albert Astals Cid"
 msgstr "Albert Astals Cid"
 
-#: main.cpp:68
+#: main.cpp:56
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "Дарафей Праляскоўскі, Antikruk"
 
-#: main.cpp:69
+#: main.cpp:56
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "komzpa@licei2.com, nashtlumach@gmail.com"
 
-#: main.cpp:78
+#: main.cpp:66
 #, kde-format
 msgid "Sane scanner device name. Use 'test' for test device."
 msgstr "Назва сканера Sane. Выкарыстоўвайце \"test\" для тэставання прылады."
 
-#: main.cpp:78
+#: main.cpp:67
 #, kde-format
 msgid "device"
 msgstr "прылада"
@@ -321,23 +321,23 @@ msgstr "Захаванне: %v Кб"
 msgid "Skanlite Settings"
 msgstr "Налады Skanlite"
 
-#: skanlite.cpp:208 skanlite.cpp:307
+#: skanlite.cpp:208 skanlite.cpp:304
 #, kde-format
 msgid "Opening the selected scanner failed."
 msgstr "Не ўдалося адкрыць абраны сканер."
 
-#: skanlite.cpp:322
+#: skanlite.cpp:318
 #, kde-format
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: skanlite.cpp:342
+#: skanlite.cpp:337
 #, kde-format
 msgctxt "prefix for auto naming"
 msgid "Image-"
 msgstr "Выява-"
 
-#: skanlite.cpp:487
+#: skanlite.cpp:472
 #, kde-format
 msgid ""
 "The image will be saved in the PNG format, as the selected image type does "
@@ -346,28 +346,28 @@ msgstr ""
 "Выява будзе захаваная ў фармаце PNG, бо абраны тып выявы не падтрымлівае "
 "захаванне 16-бітавых выяў."
 
-#: skanlite.cpp:512
+#: skanlite.cpp:494
 #, kde-format
 msgid "New Image File Name"
 msgstr "Назва файла новай выявы"
 
-#: skanlite.cpp:616
+#: skanlite.cpp:594
 #, kde-format
 msgid "Failed to save image"
 msgstr "Не ўдалося захаваць выяву"
 
-#: skanlite.cpp:629
+#: skanlite.cpp:607
 #, kde-format
 msgid "Failed to upload image"
 msgstr "Не ўдалося запампаваць выяву"
 
-#: skanlite.cpp:784
+#: skanlite.cpp:758
 #, kde-format
 msgctxt "@title:window %1 = scanner maker, %2 = scanner model"
 msgid "%1 %2 - Skanlite"
 msgstr "%1 %2 - Skanlite"
 
-#: skanlite.cpp:786
+#: skanlite.cpp:760
 #, kde-format
 msgctxt "@title:window %1 = scanner device"
 msgid "%1 - Skanlite"

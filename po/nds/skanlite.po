@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skanlite\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-31 01:46+0000\n"
+"POT-Creation-Date: 2024-10-12 00:38+0000\n"
 "PO-Revision-Date: 2014-05-28 18:32+0200\n"
 "Last-Translator: Sönke Dibbern <s_dibbern@web.de>\n"
 "Language-Team: Low Saxon <kde-i18n-doc@kde.org>\n"
@@ -19,127 +19,127 @@ msgstr ""
 "X-Generator: Lokalize 1.5\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: ImageViewer.cpp:43
+#: ImageViewer.cpp:45
 #, kde-format
 msgid "Zoom In"
 msgstr "Grötter"
 
-#: ImageViewer.cpp:46
+#: ImageViewer.cpp:48
 #, kde-format
 msgid "Zoom Out"
 msgstr "Lütter"
 
-#: ImageViewer.cpp:49
+#: ImageViewer.cpp:51
 #, kde-format
 msgid "Zoom to Actual size"
 msgstr "Redig Grött"
 
-#: ImageViewer.cpp:52
+#: ImageViewer.cpp:54
 #, kde-format
 msgid "Zoom to Fit"
 msgstr "Grött topassen"
 
-#: main.cpp:33 skanlite.cpp:788
+#: main.cpp:30 skanlite.cpp:762
 #, kde-format
 msgid "Skanlite"
 msgstr "Skanlite"
 
-#: main.cpp:35
+#: main.cpp:32
 #, fuzzy, kde-format
 #| msgid "This is a scanning application for KDE based on libksane."
 msgid "Scanning application by KDE based on libksane."
 msgstr "Dit is en Inleesprogramm för KDE, dat op \"libksane\" opbuut."
 
-#: main.cpp:37
+#: main.cpp:34
 #, fuzzy, kde-format
 #| msgid "(C) 2008-2014 Kåre Särs"
 msgid "(C) 2008-2020 Kåre Särs"
 msgstr "(C) 2008-2014 Kåre Särs"
 
-#: main.cpp:42
+#: main.cpp:39
 #, kde-format
 msgid "Kåre Särs"
 msgstr "Kåre Särs"
 
-#: main.cpp:43
+#: main.cpp:39
 #, kde-format
 msgid "developer"
 msgstr "Schriever"
 
-#: main.cpp:46
+#: main.cpp:41
 #, kde-format
 msgid "Gregor Mi"
 msgstr ""
 
-#: main.cpp:47 main.cpp:50
+#: main.cpp:41 main.cpp:43
 #, kde-format
 msgid "contributor"
 msgstr "Bidreger"
 
-#: main.cpp:49
+#: main.cpp:43
 #, kde-format
 msgid "Arseniy Lartsev"
 msgstr "Arseniy Lartsev"
 
-#: main.cpp:52
+#: main.cpp:45
 #, kde-format
 msgid "Gilles Caulier"
 msgstr "Gilles Caulier"
 
-#: main.cpp:53 main.cpp:59
+#: main.cpp:45 main.cpp:49
 #, kde-format
 msgid "Importing libksane to extragear"
 msgstr "Importeren vun \"libksane\" na \"extragear\""
 
-#: main.cpp:55
+#: main.cpp:47
 #, kde-format
 msgid "Anne-Marie Mahfouf"
 msgstr "Anne-Marie Mahfouf"
 
-#: main.cpp:56
+#: main.cpp:47
 #, kde-format
 msgid "Writing the user manual"
 msgstr "Schrieven vun't Brukerhandbook"
 
-#: main.cpp:58
+#: main.cpp:49
 #, kde-format
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
 
-#: main.cpp:61
+#: main.cpp:51
 #, kde-format
 msgid "Chusslove Illich"
 msgstr "Chusslove Illich"
 
-#: main.cpp:62 main.cpp:65
+#: main.cpp:51 main.cpp:53
 #, kde-format
 msgid "Help with translations"
 msgstr "Hülp bi de Översetten"
 
-#: main.cpp:64
+#: main.cpp:53
 #, kde-format
 msgid "Albert Astals Cid"
 msgstr "Albert Astals Cid"
 
-#: main.cpp:68
+#: main.cpp:56
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "Sönke Dibbern, Manfred Wiese"
 
-#: main.cpp:69
+#: main.cpp:56
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "s_dibbern@web.de, m.j.wiese@web.de"
 
-#: main.cpp:78
+#: main.cpp:66
 #, fuzzy, kde-format
 #| msgid "Sane scanner device name."
 msgid "Sane scanner device name. Use 'test' for test device."
 msgstr "Sane sien Inleesreedschap-Naam"
 
-#: main.cpp:78
+#: main.cpp:67
 #, kde-format
 msgid "device"
 msgstr ""
@@ -324,23 +324,23 @@ msgstr ""
 msgid "Skanlite Settings"
 msgstr "Skanlite-Instellen"
 
-#: skanlite.cpp:208 skanlite.cpp:307
+#: skanlite.cpp:208 skanlite.cpp:304
 #, kde-format
 msgid "Opening the selected scanner failed."
 msgstr "Dat Opmaken vun den utsöchten Inleser is fehlslaan."
 
-#: skanlite.cpp:322
+#: skanlite.cpp:318
 #, kde-format
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: skanlite.cpp:342
+#: skanlite.cpp:337
 #, kde-format
 msgctxt "prefix for auto naming"
 msgid "Image-"
 msgstr "Bild-"
 
-#: skanlite.cpp:487
+#: skanlite.cpp:472
 #, fuzzy, kde-format
 #| msgid ""
 #| "The image will be saved in the PNG format, as Skanlite only supports "
@@ -352,28 +352,28 @@ msgstr ""
 "Dat Bild warrt as PNG sekert, wiel Skanlite 16-Bit-Klöörbiller bloots as PNG "
 "sekern kann."
 
-#: skanlite.cpp:512
+#: skanlite.cpp:494
 #, kde-format
 msgid "New Image File Name"
 msgstr "Nieg Bilddatei-Naam"
 
-#: skanlite.cpp:616
+#: skanlite.cpp:594
 #, kde-format
 msgid "Failed to save image"
 msgstr "Bild lett sik nich sekern."
 
-#: skanlite.cpp:629
+#: skanlite.cpp:607
 #, kde-format
 msgid "Failed to upload image"
 msgstr "Bild lett sik nich hoochladen."
 
-#: skanlite.cpp:784
+#: skanlite.cpp:758
 #, kde-format
 msgctxt "@title:window %1 = scanner maker, %2 = scanner model"
 msgid "%1 %2 - Skanlite"
 msgstr "%1 %2 - Skanlite"
 
-#: skanlite.cpp:786
+#: skanlite.cpp:760
 #, kde-format
 msgctxt "@title:window %1 = scanner device"
 msgid "%1 - Skanlite"

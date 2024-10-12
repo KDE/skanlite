@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skanlite\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-31 01:46+0000\n"
+"POT-Creation-Date: 2024-10-12 00:38+0000\n"
 "PO-Revision-Date: 2014-10-20 20:13+0000\n"
 "Last-Translator: Samir Ribić <Unknown>\n"
 "Language-Team: bosanski <bs@li.org>\n"
@@ -22,127 +22,127 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: ImageViewer.cpp:43
+#: ImageViewer.cpp:45
 #, kde-format
 msgid "Zoom In"
 msgstr "Uvećaj"
 
-#: ImageViewer.cpp:46
+#: ImageViewer.cpp:48
 #, kde-format
 msgid "Zoom Out"
 msgstr "Umanji"
 
-#: ImageViewer.cpp:49
+#: ImageViewer.cpp:51
 #, kde-format
 msgid "Zoom to Actual size"
 msgstr "Uvećaj do stvarne veličine"
 
-#: ImageViewer.cpp:52
+#: ImageViewer.cpp:54
 #, kde-format
 msgid "Zoom to Fit"
 msgstr "Uveličaj do uklapanja"
 
-#: main.cpp:33 skanlite.cpp:788
+#: main.cpp:30 skanlite.cpp:762
 #, kde-format
 msgid "Skanlite"
 msgstr "Skanlite"
 
-#: main.cpp:35
+#: main.cpp:32
 #, fuzzy, kde-format
 #| msgid "This is a scanning application for KDE based on libksane."
 msgid "Scanning application by KDE based on libksane."
 msgstr "Ovo je skeniranje aplikacija za KDE bazirana na temelju libksane."
 
-#: main.cpp:37
+#: main.cpp:34
 #, fuzzy, kde-format
 #| msgid "(C) 2008-2014 Kåre Särs"
 msgid "(C) 2008-2020 Kåre Särs"
 msgstr "(C) 2008-2014 Kåre Särs"
 
-#: main.cpp:42
+#: main.cpp:39
 #, kde-format
 msgid "Kåre Särs"
 msgstr "Kåre Särs"
 
-#: main.cpp:43
+#: main.cpp:39
 #, kde-format
 msgid "developer"
 msgstr "programer"
 
-#: main.cpp:46
+#: main.cpp:41
 #, kde-format
 msgid "Gregor Mi"
 msgstr ""
 
-#: main.cpp:47 main.cpp:50
+#: main.cpp:41 main.cpp:43
 #, kde-format
 msgid "contributor"
 msgstr "doprinosilac"
 
-#: main.cpp:49
+#: main.cpp:43
 #, kde-format
 msgid "Arseniy Lartsev"
 msgstr "Arseniy Lartsev"
 
-#: main.cpp:52
+#: main.cpp:45
 #, kde-format
 msgid "Gilles Caulier"
 msgstr "Gilles Caulier"
 
-#: main.cpp:53 main.cpp:59
+#: main.cpp:45 main.cpp:49
 #, kde-format
 msgid "Importing libksane to extragear"
 msgstr "Uvoz libksane u extragear"
 
-#: main.cpp:55
+#: main.cpp:47
 #, kde-format
 msgid "Anne-Marie Mahfouf"
 msgstr "Anne-Marie Mahfouf"
 
-#: main.cpp:56
+#: main.cpp:47
 #, kde-format
 msgid "Writing the user manual"
 msgstr "Pisanje korisničkog priručnika"
 
-#: main.cpp:58
+#: main.cpp:49
 #, kde-format
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
 
-#: main.cpp:61
+#: main.cpp:51
 #, kde-format
 msgid "Chusslove Illich"
 msgstr "Časlav Ilić"
 
-#: main.cpp:62 main.cpp:65
+#: main.cpp:51 main.cpp:53
 #, kde-format
 msgid "Help with translations"
 msgstr "Pomoć pri prevodu"
 
-#: main.cpp:64
+#: main.cpp:53
 #, kde-format
 msgid "Albert Astals Cid"
 msgstr "Albert Astals Cid"
 
-#: main.cpp:68
+#: main.cpp:56
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "Maida Curic,Samir Ribić,Amra Dautbegovic"
 
-#: main.cpp:69
+#: main.cpp:56
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "Mc@etf.ba,samir.ribic@etf.unsa.ba,adautbegov1@etf.unsa.ba"
 
-#: main.cpp:78
+#: main.cpp:66
 #, fuzzy, kde-format
 #| msgid "Sane scanner device name."
 msgid "Sane scanner device name. Use 'test' for test device."
 msgstr "Ime skenera po SANE standardu."
 
-#: main.cpp:78
+#: main.cpp:67
 #, kde-format
 msgid "device"
 msgstr ""
@@ -327,23 +327,23 @@ msgstr ""
 msgid "Skanlite Settings"
 msgstr "Skanlite podešavanja"
 
-#: skanlite.cpp:208 skanlite.cpp:307
+#: skanlite.cpp:208 skanlite.cpp:304
 #, kde-format
 msgid "Opening the selected scanner failed."
 msgstr "Otvaranje odabranog skenera nije uspjelo."
 
-#: skanlite.cpp:322
+#: skanlite.cpp:318
 #, kde-format
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: skanlite.cpp:342
+#: skanlite.cpp:337
 #, kde-format
 msgctxt "prefix for auto naming"
 msgid "Image-"
 msgstr "Slika-"
 
-#: skanlite.cpp:487
+#: skanlite.cpp:472
 #, fuzzy, kde-format
 #| msgid ""
 #| "The image will be saved in the PNG format, as Skanlite only supports "
@@ -355,28 +355,28 @@ msgstr ""
 "Slika će biti sačuvana u PNG formatu, jer Skanlite podržava samo snimanje "
 "slike 16-bitne boja u PNG formatu."
 
-#: skanlite.cpp:512
+#: skanlite.cpp:494
 #, kde-format
 msgid "New Image File Name"
 msgstr "Novo ime datoteke slike"
 
-#: skanlite.cpp:616
+#: skanlite.cpp:594
 #, kde-format
 msgid "Failed to save image"
 msgstr "Snimanje slike nije uspjelo"
 
-#: skanlite.cpp:629
+#: skanlite.cpp:607
 #, kde-format
 msgid "Failed to upload image"
 msgstr "Neuspjelo postavljanje slike"
 
-#: skanlite.cpp:784
+#: skanlite.cpp:758
 #, kde-format
 msgctxt "@title:window %1 = scanner maker, %2 = scanner model"
 msgid "%1 %2 - Skanlite"
 msgstr "%1 %2 - Skanlite"
 
-#: skanlite.cpp:786
+#: skanlite.cpp:760
 #, kde-format
 msgctxt "@title:window %1 = scanner device"
 msgid "%1 - Skanlite"

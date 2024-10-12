@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: playground-graphics/glimpse.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-31 01:46+0000\n"
+"POT-Creation-Date: 2024-10-12 00:38+0000\n"
 "PO-Revision-Date: 2008-01-31 14:07-0500\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -17,127 +17,127 @@ msgstr ""
 "Plural-Forms: nplurals=5; plural=n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n < 11 ? "
 "3 : 4\n"
 
-#: ImageViewer.cpp:43
+#: ImageViewer.cpp:45
 #, kde-format
 msgid "Zoom In"
 msgstr "Súmáil Isteach"
 
-#: ImageViewer.cpp:46
+#: ImageViewer.cpp:48
 #, kde-format
 msgid "Zoom Out"
 msgstr "Súmáil Amach"
 
-#: ImageViewer.cpp:49
+#: ImageViewer.cpp:51
 #, kde-format
 msgid "Zoom to Actual size"
 msgstr ""
 
-#: ImageViewer.cpp:52
+#: ImageViewer.cpp:54
 #, kde-format
 msgid "Zoom to Fit"
 msgstr "Cuir in Oiriúint"
 
-#: main.cpp:33 skanlite.cpp:788
+#: main.cpp:30 skanlite.cpp:762
 #, kde-format
 msgid "Skanlite"
 msgstr "Skanlite"
 
-#: main.cpp:35
+#: main.cpp:32
 #, fuzzy, kde-format
 #| msgid "This is a scanning application for KDE based on libksane."
 msgid "Scanning application by KDE based on libksane."
 msgstr "Feidhmchlár scanta le haghaidh KDE, bunaithe ar libksane."
 
-#: main.cpp:37
+#: main.cpp:34
 #, fuzzy, kde-format
 #| msgid "(C) 2008-2012 Kåre Särs"
 msgid "(C) 2008-2020 Kåre Särs"
 msgstr "© 2008-2012 Kåre Särs"
 
-#: main.cpp:42
+#: main.cpp:39
 #, kde-format
 msgid "Kåre Särs"
 msgstr "Kåre Särs"
 
-#: main.cpp:43
+#: main.cpp:39
 #, kde-format
 msgid "developer"
 msgstr "forbróir"
 
-#: main.cpp:46
+#: main.cpp:41
 #, kde-format
 msgid "Gregor Mi"
 msgstr ""
 
-#: main.cpp:47 main.cpp:50
+#: main.cpp:41 main.cpp:43
 #, kde-format
 msgid "contributor"
 msgstr "cuiditheoir"
 
-#: main.cpp:49
+#: main.cpp:43
 #, kde-format
 msgid "Arseniy Lartsev"
 msgstr "Arseniy Lartsev"
 
-#: main.cpp:52
+#: main.cpp:45
 #, kde-format
 msgid "Gilles Caulier"
 msgstr "Gilles Caulier"
 
-#: main.cpp:53 main.cpp:59
+#: main.cpp:45 main.cpp:49
 #, kde-format
 msgid "Importing libksane to extragear"
 msgstr "As libksane a iompórtáil go extragear"
 
-#: main.cpp:55
+#: main.cpp:47
 #, kde-format
 msgid "Anne-Marie Mahfouf"
 msgstr "Anne-Marie Mahfouf"
 
-#: main.cpp:56
+#: main.cpp:47
 #, kde-format
 msgid "Writing the user manual"
 msgstr "As an lámhleabhar a scríobh"
 
-#: main.cpp:58
+#: main.cpp:49
 #, kde-format
 msgid "Laurent Montel"
 msgstr "Laurent Montel"
 
-#: main.cpp:61
+#: main.cpp:51
 #, kde-format
 msgid "Chusslove Illich"
 msgstr "Chusslove Illich"
 
-#: main.cpp:62 main.cpp:65
+#: main.cpp:51 main.cpp:53
 #, kde-format
 msgid "Help with translations"
 msgstr "Cabhair le haistriúcháin"
 
-#: main.cpp:64
+#: main.cpp:53
 #, kde-format
 msgid "Albert Astals Cid"
 msgstr "Albert Astals Cid"
 
-#: main.cpp:68
+#: main.cpp:56
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "Kevin Scannell"
 
-#: main.cpp:69
+#: main.cpp:56
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "kscanne@gmail.com"
 
-#: main.cpp:78
+#: main.cpp:66
 #, fuzzy, kde-format
 #| msgid "Sane scanner device name."
 msgid "Sane scanner device name. Use 'test' for test device."
 msgstr "Ainm an scanóra Sane."
 
-#: main.cpp:78
+#: main.cpp:67
 #, kde-format
 msgid "device"
 msgstr ""
@@ -322,52 +322,52 @@ msgstr ""
 msgid "Skanlite Settings"
 msgstr "Socruithe Skanlite"
 
-#: skanlite.cpp:208 skanlite.cpp:307
+#: skanlite.cpp:208 skanlite.cpp:304
 #, kde-format
 msgid "Opening the selected scanner failed."
 msgstr "Níorbh fhéidir an scanóir roghnaithe a oscailt."
 
-#: skanlite.cpp:322
+#: skanlite.cpp:318
 #, kde-format
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: skanlite.cpp:342
+#: skanlite.cpp:337
 #, kde-format
 msgctxt "prefix for auto naming"
 msgid "Image-"
 msgstr "Íomhá-"
 
-#: skanlite.cpp:487
+#: skanlite.cpp:472
 #, kde-format
 msgid ""
 "The image will be saved in the PNG format, as the selected image type does "
 "not support saving 16 bit color images."
 msgstr ""
 
-#: skanlite.cpp:512
+#: skanlite.cpp:494
 #, kde-format
 msgid "New Image File Name"
 msgstr "Ainm na hÍomhá Nuaí"
 
-#: skanlite.cpp:616
+#: skanlite.cpp:594
 #, kde-format
 msgid "Failed to save image"
 msgstr "Theip ar íomhá a shábháil"
 
-#: skanlite.cpp:629
+#: skanlite.cpp:607
 #, fuzzy, kde-format
 #| msgid "Failed to save image"
 msgid "Failed to upload image"
 msgstr "Theip ar íomhá a shábháil"
 
-#: skanlite.cpp:784
+#: skanlite.cpp:758
 #, kde-format
 msgctxt "@title:window %1 = scanner maker, %2 = scanner model"
 msgid "%1 %2 - Skanlite"
 msgstr "%1 %2 - Skanlite"
 
-#: skanlite.cpp:786
+#: skanlite.cpp:760
 #, kde-format
 msgctxt "@title:window %1 = scanner device"
 msgid "%1 - Skanlite"

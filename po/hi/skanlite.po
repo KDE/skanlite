@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: skanlite\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-31 01:46+0000\n"
+"POT-Creation-Date: 2024-10-12 00:38+0000\n"
 "PO-Revision-Date: 2022-02-17 23:01+0530\n"
 "Last-Translator: Raghavendra Kamath <raghu@raghukamath.com>\n"
 "Language-Team: Hindi <kde-l10n-hi@kde.org>\n"
@@ -17,124 +17,124 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "X-Generator: Lokalize 21.12.2\n"
 
-#: ImageViewer.cpp:43
+#: ImageViewer.cpp:45
 #, kde-format
 msgid "Zoom In"
 msgstr "ज़ूम इन"
 
-#: ImageViewer.cpp:46
+#: ImageViewer.cpp:48
 #, kde-format
 msgid "Zoom Out"
 msgstr "ज़ूम आउट"
 
-#: ImageViewer.cpp:49
+#: ImageViewer.cpp:51
 #, kde-format
 msgid "Zoom to Actual size"
 msgstr "वास्तविक आकार पर ज़ूम करें"
 
-#: ImageViewer.cpp:52
+#: ImageViewer.cpp:54
 #, kde-format
 msgid "Zoom to Fit"
 msgstr "आकार के अनुरूप ज़ूम"
 
-#: main.cpp:33 skanlite.cpp:788
+#: main.cpp:30 skanlite.cpp:762
 #, kde-format
 msgid "Skanlite"
 msgstr "स्कैनलाइट"
 
-#: main.cpp:35
+#: main.cpp:32
 #, kde-format
 msgid "Scanning application by KDE based on libksane."
 msgstr "केडीई द्वारा लिबकेसेन पर आधारित छवि स्कैन करने का अनुप्रयोग।"
 
-#: main.cpp:37
+#: main.cpp:34
 #, kde-format
 msgid "(C) 2008-2020 Kåre Särs"
 msgstr "(C) २००८-२०२० कारे सार्स"
 
-#: main.cpp:42
+#: main.cpp:39
 #, kde-format
 msgid "Kåre Särs"
 msgstr "कारे सार्स"
 
-#: main.cpp:43
+#: main.cpp:39
 #, kde-format
 msgid "developer"
 msgstr "विकासकर्ता"
 
-#: main.cpp:46
+#: main.cpp:41
 #, kde-format
 msgid "Gregor Mi"
 msgstr "ग्रेगर मी"
 
-#: main.cpp:47 main.cpp:50
+#: main.cpp:41 main.cpp:43
 #, kde-format
 msgid "contributor"
 msgstr "सहयोगी"
 
-#: main.cpp:49
+#: main.cpp:43
 #, kde-format
 msgid "Arseniy Lartsev"
 msgstr "अरसेनिय लार्तसेव"
 
-#: main.cpp:52
+#: main.cpp:45
 #, kde-format
 msgid "Gilles Caulier"
 msgstr "गिल्स काउलिएर"
 
-#: main.cpp:53 main.cpp:59
+#: main.cpp:45 main.cpp:49
 #, kde-format
 msgid "Importing libksane to extragear"
 msgstr "एक्स्ट्रा गियर में लिबकेसेन को आयात करना"
 
-#: main.cpp:55
+#: main.cpp:47
 #, kde-format
 msgid "Anne-Marie Mahfouf"
 msgstr "एन्ने मैरी मेहफोफ"
 
-#: main.cpp:56
+#: main.cpp:47
 #, kde-format
 msgid "Writing the user manual"
 msgstr "सहाय्य पुस्तिका लिखना"
 
-#: main.cpp:58
+#: main.cpp:49
 #, kde-format
 msgid "Laurent Montel"
 msgstr "लारेंट मोंटेल"
 
-#: main.cpp:61
+#: main.cpp:51
 #, kde-format
 msgid "Chusslove Illich"
 msgstr "चुसलोव इलिच"
 
-#: main.cpp:62 main.cpp:65
+#: main.cpp:51 main.cpp:53
 #, kde-format
 msgid "Help with translations"
 msgstr "अनुवादों में सहायक"
 
-#: main.cpp:64
+#: main.cpp:53
 #, kde-format
 msgid "Albert Astals Cid"
 msgstr "अलबर्ट एस्टल्स सिड"
 
-#: main.cpp:68
+#: main.cpp:56
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "राघवेंद्र कामत"
 
-#: main.cpp:69
+#: main.cpp:56
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "raghu@raghukamath.com"
 
-#: main.cpp:78
+#: main.cpp:66
 #, kde-format
 msgid "Sane scanner device name. Use 'test' for test device."
 msgstr "सेन स्कैन उपकरण का नाम। परीक्षण उपकरण के लिए 'test' का प्रयोग करें।"
 
-#: main.cpp:78
+#: main.cpp:67
 #, kde-format
 msgid "device"
 msgstr "उपकरण"
@@ -317,23 +317,23 @@ msgstr "सहेजा जा रहा है : %v केबी"
 msgid "Skanlite Settings"
 msgstr "स्कैनलाइट विन्यास"
 
-#: skanlite.cpp:208 skanlite.cpp:307
+#: skanlite.cpp:208 skanlite.cpp:304
 #, kde-format
 msgid "Opening the selected scanner failed."
 msgstr "चयनित स्कैनर को खोलना विफल रहा।"
 
-#: skanlite.cpp:322
+#: skanlite.cpp:318
 #, kde-format
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: skanlite.cpp:342
+#: skanlite.cpp:337
 #, kde-format
 msgctxt "prefix for auto naming"
 msgid "Image-"
 msgstr "छवि-"
 
-#: skanlite.cpp:487
+#: skanlite.cpp:472
 #, kde-format
 msgid ""
 "The image will be saved in the PNG format, as the selected image type does "
@@ -342,28 +342,28 @@ msgstr ""
 "छवि पीएनजी प्रारूप में सहेजी जाएगी, क्योंकि चयनित छवि का प्रकार १६ बिट रंग की छवियों "
 "को सहेजने में असमर्थ है।"
 
-#: skanlite.cpp:512
+#: skanlite.cpp:494
 #, kde-format
 msgid "New Image File Name"
 msgstr "नया छवि फ़ाइल नाम"
 
-#: skanlite.cpp:616
+#: skanlite.cpp:594
 #, kde-format
 msgid "Failed to save image"
 msgstr "छवि सहेजनें में असफल"
 
-#: skanlite.cpp:629
+#: skanlite.cpp:607
 #, kde-format
 msgid "Failed to upload image"
 msgstr "छवि को अपलोड करने में असफल"
 
-#: skanlite.cpp:784
+#: skanlite.cpp:758
 #, kde-format
 msgctxt "@title:window %1 = scanner maker, %2 = scanner model"
 msgid "%1 %2 - Skanlite"
 msgstr "%1 %2 - स्कैनलाइट"
 
-#: skanlite.cpp:786
+#: skanlite.cpp:760
 #, kde-format
 msgctxt "@title:window %1 = scanner device"
 msgid "%1 - Skanlite"
