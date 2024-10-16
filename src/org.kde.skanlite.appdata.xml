@@ -37,6 +37,7 @@
   <name xml:lang="ka">Skanlite</name>
   <name xml:lang="ko">Skanlite</name>
   <name xml:lang="lt">Skanlite</name>
+  <name xml:lang="lv">Skanlite</name>
   <name xml:lang="nl">Skanlite</name>
   <name xml:lang="nn">Skanlite</name>
   <name xml:lang="pl">Skanlite</name>
@@ -82,6 +83,7 @@
   <summary xml:lang="ka">სურათების სკანირების აპლიკაცია</summary>
   <summary xml:lang="ko">그림 스캐닝 앱</summary>
   <summary xml:lang="lt">Paveikslų skenavimo programa</summary>
+  <summary xml:lang="lv">Attēlu skenēšanas programma</summary>
   <summary xml:lang="nl">Afbeeldingscanprogramma</summary>
   <summary xml:lang="nn">Biletskanningsprogram</summary>
   <summary xml:lang="pl">Program do skanowania obrazów</summary>
@@ -128,6 +130,7 @@
     <p xml:lang="ka">Skanlite მარტივი სურათების სკანირების პროგრამაა. ის ოპტიმიზირებულია ბრტყელი სკანერებისთვის. Skanlite -ს შეუძლია არა მხოლოდ სურათებისა და დოკუმენტების სკანირება, არამედ გამჭვირვალე სლაიდებისა და ლენტებისაც, თუ ამის მხარდაჭერა სკანერს გააჩნია.</p>
     <p xml:lang="ko">Skanlite는 그림을 스캔하고 저장하는 간단한 도구입니다. 플랫베드 스캐너에 최적화되어 있습니다. Skanlite를 사용하여 사진이나 문서뿐만 아니라 슬라이드 및 네거티브 필름도 스캔할 수 있습니다(지원하는 스캐너 필요).</p>
     <p xml:lang="lt">Skanlite yra paprasta paveikslų skenavimo programa, skirta skenuoti bei įrašyti paveikslus. Ji yra optimizuota skenavimui naudojant plokščiuosius skenerius. Skanlite gali įamžinti ne tik nuotraukas ir dokumentus, bet naudojant palaikomus skenerius, gali skenuoti ir permatomas skaidres bei diafilmus.</p>
+    <p xml:lang="lv">„Skanlite“ ir vienkārša attēlu skenēšanas un skenēto attēlu saglabāšanas programma. Tā ir pielāgota skenēšanai ar plakanvirsmas skeneri. „Skanlite“ spēj noskenēt ne vien fotogrāfijas un dokumentus, bet arī caurspīdīgas</p>
     <p xml:lang="nl">Skanlite is eenvoudige toepassing voor het scannen en opslaan van afbeeldingen. Het is geoptimaliseerd voor scannen met flatbedscanners. Skanlite kan niet alleen foto's en documenten opnemen, maar ook transparante dia's en filmstrips, met ondersteunde scanners.</p>
     <p xml:lang="nn">Skanlite er eit enkelt program for å skanna og lagra bilete. Det er optimert for bruk med plan­skannarar og kan skanna både foto, tekst, transparentar og film­negativ (viss støtta av skannaren).</p>
     <p xml:lang="pl">Skanlite jest prostą aplikacją do skanowania i zapisywania obrazów. Jest dostosowana do skanowania na płaskich skanerach. Skanlite może skanować nie tylko zdjęcia i dokumenty, ale także przezrocza oraz taśmy filmowe na skanerach, które to obsługują.</p>
@@ -173,6 +176,7 @@
     <p xml:lang="ka">თვისებები:</p>
     <p xml:lang="ko">기능:</p>
     <p xml:lang="lt">Ypatybės:</p>
+    <p xml:lang="lv">Iespējas:</p>
     <p xml:lang="nl">Mogelijkheden:</p>
     <p xml:lang="nn">Funksjonar:</p>
     <p xml:lang="pl">Możliwości:</p>
@@ -219,6 +223,7 @@
       <li xml:lang="ka">შენახვის ფანჯარა ყოველი დასკანერებულია გამოსახულებისთვის ან გამოსახულებების ავტომატური შენახვა მითითებულ საქაღალდეში, ავტომატურად გენერირებული სახელითა და ფორმატით</li>
       <li xml:lang="ko">스캔한 그림마다 이름을 지정하거나 지정한 폴더에 자동 생성한 이름으로 저장</li>
       <li xml:lang="lt">Įrašymo dialogas kiekvienam nuskenuotam paveikslui arba betarpiškas paveikslų įrašymas į nurodytą aplanką su automatiškai sugeneruotais pavadinimais bei formatu</li>
+      <li xml:lang="lv">Saglabāšanas lodziņš katram noskenētajam attēlam vai attēla automātiska saglabāšana noteiktā mapē ar automātiski ģenerētiem nosaukumiem un formātu</li>
       <li xml:lang="nl">De dialoog voor opslaan van elke gescande afbeelding of het onmiddellijk in een een gespecificeerde map opslaan met automatisch gegenereerde namen en formaten.</li>
       <li xml:lang="nn">Lagringsvindauge for kvart bilete som skannast, eller automatisk lagring i sjølvvald mappe med biletnamn og -format som programmet genererer.</li>
       <li xml:lang="pl">Okno dialogowe zapisywania dla każdego zeskanowanego obrazu lub zapisywanie obrazów bezpośrednio w podanym katalogu z samodzielnie utworzonymi nazwami i wybranym formatem</li>
@@ -263,6 +268,7 @@
       <li xml:lang="ka">ქსელური სკანერების მხარდაჭერა</li>
       <li xml:lang="ko">네트워크 스캐너 지원</li>
       <li xml:lang="lt">Tinklo skenerių palaikymas</li>
+      <li xml:lang="lv">Tīkla skeneru atbalsts</li>
       <li xml:lang="nl">Ondersteuning voor scanners in het netwerk</li>
       <li xml:lang="nn">Støtte for nettverksskannarar</li>
       <li xml:lang="pl">Obsługa skanerów w sieci</li>
@@ -307,6 +313,7 @@
       <li xml:lang="ka">მინიატურა მონიშვნის თვისებით, საბოლოო სკანირებისთვის</li>
       <li xml:lang="ko">미리 보기 기능 및 일부만 최종 스캔</li>
       <li xml:lang="lt">Peržiūra su galutinio skenavimo pasirinkimo ypatybe</li>
+      <li xml:lang="lv">Priekšskatījums ar atlasīšanas iespēju skenēšanas pabeigšanai</li>
       <li xml:lang="nl">Voorbeeldweergave met geselecteerde functie voor de uiteindelijke scan</li>
       <li xml:lang="nn">Førehandsvising med veljing av utsnittet som skal takast med i skanninga</li>
       <li xml:lang="pl">Podgląd z możliwością zaznaczenia ostatecznego skanowania</li>
@@ -351,6 +358,7 @@
       <li xml:lang="ka">გამოსახულების მრავალი მონიშნულის სკანირება</li>
       <li xml:lang="ko">한 그림의 여러 선택 영역 스캔</li>
       <li xml:lang="lt">Kelių paveikslo pasirinkimų skenavimas</li>
+      <li xml:lang="lv">Vairāku atlasītu vietu attēlā skenēšana</li>
       <li xml:lang="nl">Scannen van meerdere selecties van een afbeelding</li>
       <li xml:lang="nn">Skanning av fleire utsnitt frå eitt bilete</li>
       <li xml:lang="pl">Skanowanie wielu obszarów obrazu</li>
@@ -386,11 +394,13 @@
       <caption xml:lang="he">מסך האפשרויות הבסיסיות של Skanlite עם התמונה הסרוקה גלויה</caption>
       <caption xml:lang="hu">A Skanlite alap beállítóképernyője a beolvasott képpel együtt</caption>
       <caption xml:lang="ia">Schermo de optiones basic de Skanlite con un imagine scandite visibile </caption>
+      <caption xml:lang="id">Layar opsi dasar Skanlite dengan gambar pindaian yang terlihat</caption>
       <caption xml:lang="is">Skjár með grunnstillingum Skanlite og skannaðri mynd sýnilegri</caption>
       <caption xml:lang="it">Schermata delle opzioni di base di Skanlite con un'immagine scansionata visibile</caption>
       <caption xml:lang="ka">Skanlite-ის ძირითადი პარამეტრების ფანჯარა, საიდანაც დასკანრებული გამოსახულება ხილულია</caption>
       <caption xml:lang="ko">Skanlite의 기본 옵션과 스캔된 그림</caption>
       <caption xml:lang="lt">Skanlite pagrindinių parinkčių langas su matomu nuskenuotu paveikslu</caption>
+      <caption xml:lang="lv">„Skanlite“ pamata opciju ekrāns ar redzamu noskenētu attēlu</caption>
       <caption xml:lang="nl">Het scherm met de basisopties van Skanlite met zichtbaar een gescande afbeelding</caption>
       <caption xml:lang="nn">Skanlite med grunnval og eit skanna bilete synleg</caption>
       <caption xml:lang="pl">Podstawowy ekran ustawień Skanlite z widocznym zeskanowanym obrazem</caption>
