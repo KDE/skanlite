@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: extragear-graphics-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-10-12 00:38+0000\n"
-"PO-Revision-Date: 2024-09-23 15:21+0300\n"
+"PO-Revision-Date: 2024-12-11 22:32+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 24.11.70\n"
+"X-Generator: Lokalize 25.03.70\n"
 
 #: ImageViewer.cpp:45
 #, kde-format
@@ -90,12 +90,12 @@ msgstr "Gilles Caulier"
 #: main.cpp:45 main.cpp:49
 #, kde-format
 msgid "Importing libksane to extragear"
-msgstr "libksane'i, extragear'a içe aktarma"
+msgstr "libksane’i, extragear’a içe aktarma"
 
 #: main.cpp:47
 #, kde-format
 msgid "Anne-Marie Mahfouf"
-msgstr "Anne-Marie Mahfouf"
+msgstr "Anne–Marie Mahfouf"
 
 #: main.cpp:47
 #, kde-format
@@ -137,7 +137,7 @@ msgstr "emre@emrealadag.com, emir_sari@icloud.com"
 #: main.cpp:66
 #, kde-format
 msgid "Sane scanner device name. Use 'test' for test device."
-msgstr "Sane tarayıcı aygıtı adı. Sınama aygıtı için 'test' kullanın."
+msgstr "Sane tarayıcı aygıtı adı. Sınama aygıtı için “test” kullanın."
 
 #: main.cpp:67
 #, kde-format
@@ -305,7 +305,7 @@ msgstr "Tarayıcı seçeneklerini öntanımlı değerlerine geri döndür"
 #: skanlite.cpp:64
 #, kde-format
 msgid "Configure..."
-msgstr "Yapılandır..."
+msgstr "Yapılandır…"
 
 #: skanlite.cpp:68
 #, kde-format
@@ -366,10 +366,10 @@ msgstr "Görseli karşıya yükleme başarısız"
 #, kde-format
 msgctxt "@title:window %1 = scanner maker, %2 = scanner model"
 msgid "%1 %2 - Skanlite"
-msgstr "%1 %2 - Skanlite"
+msgstr "%1 %2 — Skanlite"
 
 #: skanlite.cpp:760
 #, kde-format
 msgctxt "@title:window %1 = scanner device"
 msgid "%1 - Skanlite"
-msgstr "%1 - Skanlite"
+msgstr "%1 — Skanlite"
