@@ -45,6 +45,7 @@
   <name xml:lang="pt-BR">Skanlite</name>
   <name xml:lang="ro">Skanlite</name>
   <name xml:lang="ru">Skanlite</name>
+  <name xml:lang="sa">स्कैनलाइट्</name>
   <name xml:lang="sk">Skanlite</name>
   <name xml:lang="sl">Skanlite</name>
   <name xml:lang="sv">Skanlite</name>
@@ -91,6 +92,7 @@
   <summary xml:lang="pt-BR">Aplicativo para digitalização de imagens</summary>
   <summary xml:lang="ro">Aplicație de scanare a imaginilor</summary>
   <summary xml:lang="ru">Сканирование изображений</summary>
+  <summary xml:lang="sa">छवि स्कैनिङ्ग अनुप्रयोग</summary>
   <summary xml:lang="sk">Aplikácia na skenovanie obrázkov</summary>
   <summary xml:lang="sl">Program za optično branje slik</summary>
   <summary xml:lang="sv">Bildinläsningsprogram</summary>
@@ -138,6 +140,7 @@
     <p xml:lang="pt-BR">Skanlite é um aplicativo simples para digitalizar e salvar imagens. Ele é otimizado para digitalizar com scanners de mesa. O Skanlite pode capturar não apenas fotos e documentos, mas também slides transparentes e negativos de filmes com os scanners suportados</p>
     <p xml:lang="ro">Skanlite e o aplicație simplă de scanare și salvare a imaginilor. Aceasta e optimizată pentru scanare cu scanere plate. Skanlite poate captura nu doar fotografii și documente, dar și diapozitive transparente sau filme fotografice.</p>
     <p xml:lang="ru">Skanlite — простое приложение для получения и сохранения изображения со сканеров. Приложение ориентировано на работу с планшетными сканерами. Skanlite может использоваться для сканирования не только изображений и документов, но также слайдов и плёнок, если используемое оборудование поддерживает эти функции.</p>
+    <p xml:lang="sa">Skanlite इति सरलं चित्रस्कैनिङ्ग-अनुप्रयोगं चित्राणि स्कैन् कर्तुं रक्षितुं च । इदं फ्लैटबेड् स्कैनर् इत्यनेन स्कैनिङ्गं कर्तुं अनुकूलितम् अस्ति । स्कान्लाइट् न केवलं छायाचित्रं दस्तावेजं च, अपितु पारदर्शकस्लाइड्, फिल्मस्ट्रिप् च, समर्थितस्कैनर्-सहितं गृहीतुं शक्नोति ।</p>
     <p xml:lang="sk">Skanlite je jednoduchá aplikácia na skenovanie a ukladanie obrázkov. Skanlite je založený na libksane, rozhraní pre knižnicu SANE na ovládanie obrazových skenerov.</p>
     <p xml:lang="sl">Skanlite je preprosta aplikacija za optičnega branja slik za skeniranje in shranjevanje slik. Je optimizirana za skeniranje z namiznimi bralniki. Skanlite lahko zajema ne samo fotografije in dokumente, ampak tudi diapozitive in filme s podprtimi bralniki.</p>
     <p xml:lang="sv">Skanlite är ett enkelt bildläsningsprogram för att läsa in och spara bilder. Det är optimerat för inläsning med flatbäddsbildläsare. Skanlite kan inte bara läsa in foton och dokument, utan också transparenta bilder och filmremsor, med bildläsare som stöder det.</p>
@@ -184,6 +187,7 @@
     <p xml:lang="pt-BR">Recursos:</p>
     <p xml:lang="ro">Caracteristici:</p>
     <p xml:lang="ru">Возможности:</p>
+    <p xml:lang="sa">गुणाः:</p>
     <p xml:lang="sk">Funkcie:</p>
     <p xml:lang="sl">Zmožnosti:</p>
     <p xml:lang="sv">Funktioner:</p>
@@ -231,6 +235,7 @@
       <li xml:lang="pt-BR">Caixa de diálogo de gravação para todas as imagens digitalizadas ou gravação imediata das imagens em uma pasta específica, com nomes e formato gerados automaticamente</li>
       <li xml:lang="ro">Dialog de salvare pentru fiecare imagine scanată sau salvarea imediată a imaginilor într-un dosar specificat cu denumiri și formate generate automat</li>
       <li xml:lang="ru">Показ диалога сохранения для каждого полученного со сканера изображения или автоматическое сохранения в заданную папку с формированием автоматическим формированием имён файлов по заданным правилам;</li>
+      <li xml:lang="sa">स्कैन् कृतस्य प्रत्येकस्य चित्रस्य कृते संवादं रक्षन्तु अथवा स्वतः उत्पन्ननामभिः प्रारूपेण च निर्दिष्टे पुटे तत्क्षणमेव चित्राणि रक्षन्तु</li>
       <li xml:lang="sk">Dialógové okno ukladania pre každý naskenovaný obrázok alebo uložiť obrázky okamžite v určenom priečinku s automaticky generovanými názvami a formátom</li>
       <li xml:lang="sl">Pogovorno okno za shranjevanje posamičnih slik ali paketno shranjevanje slik v navedeno mapo s samodejno ustvarjenimi imeni in vrsto datotek</li>
       <li xml:lang="sv">Dialog för att spara varje bild som läses in, eller spara bilderna omedelbart i en angiven katalog med automatiskt genererade namn och format</li>
@@ -276,6 +281,7 @@
       <li xml:lang="pt-BR">Suporte para scanners de rede</li>
       <li xml:lang="ro">Susținere pentru scanere de rețea</li>
       <li xml:lang="ru">Поддержка сетевых сканеров;</li>
+      <li xml:lang="sa">नेटवर्क्स् स्कैनर् कृते समर्थनम्</li>
       <li xml:lang="sk">Podpora pre sieťové skenery</li>
       <li xml:lang="sl">Podpora omrežnim optičnim bralnikom</li>
       <li xml:lang="sv">Stöd för nätverksbildläsare</li>
@@ -321,6 +327,7 @@
       <li xml:lang="pt-BR">Visualização com funcionalidade de seleção para a digitalização final</li>
       <li xml:lang="ro">Previzualizare cu funcție de selectare pentru scanarea finală</li>
       <li xml:lang="ru">Предварительный просмотр с выбором области для сканирования;</li>
+      <li xml:lang="sa">अन्तिमस्कैन् कृते चयनविशेषता सह पूर्वावलोकनम्</li>
       <li xml:lang="sk">Náhľad s funkciou výberu pre finálny sken</li>
       <li xml:lang="sl">Predogled z zmožnostjo izbire območja za končno optično branje</li>
       <li xml:lang="sv">Förhandsgranskning med markeringsfunktion för slutlig bild</li>
@@ -366,6 +373,7 @@
       <li xml:lang="pt-BR">Digitalização de várias seleções de uma imagem</li>
       <li xml:lang="ro">Scanarea selecțiilor multiple dintr-o imagine</li>
       <li xml:lang="ru">Сканирование нескольких областей одного изображения.</li>
+      <li xml:lang="sa">चित्रस्य बहुविधचयनं स्कैनिङ्गं करणम्</li>
       <li xml:lang="sk">Skenovanie viacerých výberov obrázka</li>
       <li xml:lang="sl">Optično branje več izborov na sliki</li>
       <li xml:lang="sv">Läs in flera markeringar i en bild</li>
@@ -405,6 +413,7 @@
       <caption xml:lang="nn">Skanlite med grunnval og eit skanna bilete synleg</caption>
       <caption xml:lang="pl">Podstawowy ekran ustawień Skanlite z widocznym zeskanowanym obrazem</caption>
       <caption xml:lang="pt-BR">Tela de opções básicas do Skanlite com uma imagem digitalizada visível</caption>
+      <caption xml:lang="sa">Skanlite इत्यस्य मूलभूतविकल्पानां स्क्रीनः स्कैन् कृतं चित्रं दृश्यमानं भवति</caption>
       <caption xml:lang="sl">Zaslon z osnovnimi možnostmi Skanlite z vidno optično prebrano sliko</caption>
       <caption xml:lang="sv">Skanlite's grundalternativskärm som visar en inläst bild</caption>
       <caption xml:lang="tr">Taranan bir görseli gösteren Skanlite temel seçenekleri</caption>
