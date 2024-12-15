@@ -120,13 +120,13 @@ msgstr "अल्बर्ट एस्टल्स सिड"
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr ""
+msgstr "भवतः नामानि"
 
 #: main.cpp:56
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr ""
+msgstr "भवतः ईमेलपत्राणि"
 
 #: main.cpp:66
 #, kde-format
@@ -330,7 +330,7 @@ msgstr "%1: %2"
 #, kde-format
 msgctxt "prefix for auto naming"
 msgid "Image-"
-msgstr ""
+msgstr "छवि-"
 
 #: skanlite.cpp:472
 #, kde-format
@@ -360,10 +360,10 @@ msgstr "चित्रं अपलोड् कर्तुं असफलम
 #, kde-format
 msgctxt "@title:window %1 = scanner maker, %2 = scanner model"
 msgid "%1 %2 - Skanlite"
-msgstr ""
+msgstr "%1 %2 - स्कैनलाइट्"
 
 #: skanlite.cpp:760
 #, kde-format
 msgctxt "@title:window %1 = scanner device"
 msgid "%1 - Skanlite"
-msgstr ""
+msgstr "%1 - स्कैनलाइट्"
