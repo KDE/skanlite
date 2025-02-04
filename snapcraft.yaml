@@ -22,20 +22,20 @@ apps:
       - raw-usb
       - cups
 plugs:
-    foo-install-cups:
-        interface: content
-        content: foo
-        default-provider: cups
-        target: $SNAP_DATA/foo
+foo-install-cups:
+  interface: content
+  content: foo
+  default-provider: cups
+  target: $SNAP_DATA/foo
 environment:
-    PYTHONPYCACHEPREFIX: "$SNAP_USER_COMMON/.pycache"
-    PYTHONUSERBASE: $SNAP_USER_COMMON/.local
-    PYTHONPATH: "$PYTHONUSERBASE/lib/python3.10/site-packages:$SNAP/lib/python3.10/site-packages:$SNAP/usr/lib/python3/dist-packages"
+  PYTHONPYCACHEPREFIX: "$SNAP_USER_COMMON/.pycache"
+  PYTHONUSERBASE: $SNAP_USER_COMMON/.local
+  PYTHONPATH: "$PYTHONUSERBASE/lib/python3.10/site-packages:$SNAP/lib/python3.10/site-packages:$SNAP/usr/lib/python3/dist-packages"
 layout:
-    /etc:
-      bind: $SNAP/etc
-    /usr/lib/sane:
-      bind: $SNAP/usr/lib/sane
+  /etc:
+    bind: $SNAP/etc
+  /usr/lib/sane:
+    bind: $SNAP/usr/lib/sane
 slots:
   session-dbus-interface:
     interface: dbus
@@ -157,7 +157,6 @@ parts:
       - -DCMAKE_INSTALL_LIBDIR=lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR
       - --log-level=STATUS
       - -DCMAKE_LIBRARY_PATH=lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR
-        build-environment:
     build-environment:
       - LDFLAGS: "-L$CRAFT_STAGE/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR"
       - CFLAGS: "-I$CRAFT_STAGE/usr/include/KF6"
@@ -165,7 +164,7 @@ parts:
 
   skanlite:
     after:
-     - libksane
+      - libksane
     parse-info:
       - usr/share/metainfo/org.kde.skanlite.appdata.xml
     plugin: cmake
@@ -214,4 +213,3 @@ parts:
       for snap in "core22" "kf6-core22" "qt-common-themes"; do
           cd "/snap/$snap/current" && find . -type f,l -exec rm -rf "${CRAFT_PRIME}/{}" \;
       done
-
