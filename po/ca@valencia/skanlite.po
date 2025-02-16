@@ -213,7 +213,7 @@ msgstr "Vista prèvia abans de guardar:"
 #: settings.ui:46
 #, kde-format
 msgid "Save mode:"
-msgstr "Mode del guardada:"
+msgstr "Mode de la guardada:"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, saveModeCB)
 #: settings.ui:60
