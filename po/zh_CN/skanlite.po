@@ -14,8 +14,8 @@ msgstr ""
 "X-Crowdin-Project: kdeorg\n"
 "X-Crowdin-Project-ID: 269464\n"
 "X-Crowdin-Language: zh-CN\n"
-"X-Crowdin-File: /kf6-trunk/messages/skanlite/skanlite.pot\n"
-"X-Crowdin-File-ID: 55810\n"
+"X-Crowdin-File: /kf6-stable/messages/skanlite/skanlite.pot\n"
+"X-Crowdin-File-ID: 56538\n"
 
 #: ImageViewer.cpp:45
 #, kde-format
