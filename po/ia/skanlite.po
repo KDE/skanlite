@@ -1,13 +1,13 @@
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Giovanni Sora <g.sora@tiscali.it>, 2012, 2013, 2014, 2016, 2017, 2020, 2021, 2022.
+# SPDX-FileCopyrightText: 2012, 2013, 2014, 2016, 2017, 2020, 2021, 2022, 2025 Giovanni Sora <g.sora@tiscali.it>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-10-12 00:38+0000\n"
-"PO-Revision-Date: 2022-01-22 10:46+0100\n"
+"PO-Revision-Date: 2025-03-12 12:39+0100\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 21.12.1\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #: ImageViewer.cpp:45
 #, kde-format
@@ -133,7 +133,7 @@ msgstr "g.sora@tiscali.it"
 #, kde-format
 msgid "Sane scanner device name. Use 'test' for test device."
 msgstr ""
-"Nomine de dispositivo de scander Sane. Usa  'test' pro dispositivo de "
+"Nomine de dispositivo de scander de Sane. Usa  'test' pro dispositivo de "
 "essayar."
 
 #: main.cpp:67
@@ -297,7 +297,7 @@ msgstr "Dishabilita selectiones automatic"
 #: settings.ui:319
 #, kde-format
 msgid "Revert scanner options to default values"
-msgstr "Retorna optiones de scanner al valores predefinite"
+msgstr "Retorna optiones de scanditor al valores predefinite"
 
 #: skanlite.cpp:64
 #, kde-format
@@ -307,7 +307,7 @@ msgstr "Configura..."
 #: skanlite.cpp:68
 #, kde-format
 msgid "Reselect scanner device"
-msgstr "Reselectiona le dispositivo  scanner"
+msgstr "Reselectiona le dispositivo  scanditor"
 
 #: skanlite.cpp:92
 #, kde-format
@@ -322,7 +322,7 @@ msgstr "Preferentias de Skanlite"
 #: skanlite.cpp:208 skanlite.cpp:304
 #, kde-format
 msgid "Opening the selected scanner failed."
-msgstr "Il falleva a aperir le scanner seligite."
+msgstr "Il falleva a aperir le scanditor seligite."
 
 #: skanlite.cpp:318
 #, kde-format
