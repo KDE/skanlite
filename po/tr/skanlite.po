@@ -6,13 +6,13 @@
 # H. İbrahim Güngör <ibrahim@pardus.org.tr>, 2011.
 # obsoleteman <tulliana@gmail.com>, 2008-2009,2012.
 # Volkan Gezer <volkangezer@gmail.com>, 2013-2014, 2017, 2021.
-# SPDX-FileCopyrightText: 2022, 2023, 2024 Emir SARI <emir_sari@icloud.com>
+# SPDX-FileCopyrightText: 2022, 2023, 2024, 2025 Emir SARI <emir_sari@icloud.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: extragear-graphics-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-10-12 00:38+0000\n"
-"PO-Revision-Date: 2024-12-11 22:32+0300\n"
+"PO-Revision-Date: 2025-03-18 17:10+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 25.03.70\n"
+"X-Generator: Lokalize 25.07.70\n"
 
 #: ImageViewer.cpp:45
 #, kde-format
@@ -35,12 +35,12 @@ msgstr "Uzaklaştır"
 #: ImageViewer.cpp:51
 #, kde-format
 msgid "Zoom to Actual size"
-msgstr "Özgün Boyut"
+msgstr "Özgün boyut"
 
 #: ImageViewer.cpp:54
 #, kde-format
 msgid "Zoom to Fit"
-msgstr "Ekrana Sığdır"
+msgstr "Ekrana sığdır"
 
 #: main.cpp:30 skanlite.cpp:762
 #, kde-format
@@ -115,7 +115,7 @@ msgstr "Chusslove Illich"
 #: main.cpp:51 main.cpp:53
 #, kde-format
 msgid "Help with translations"
-msgstr "Çevirilerde yardımcı"
+msgstr "Çevirilerde yardım"
 
 #: main.cpp:53
 #, kde-format
@@ -155,13 +155,13 @@ msgstr "Kaydetme Konumu"
 #: SaveLocation.ui:28 settings.ui:80
 #, kde-format
 msgid "Save Location:"
-msgstr "Kaydetme Konumu:"
+msgstr "Kaydetme konumu:"
 
 #. i18n: ectx: property (text), widget (QLabel, namePrefixLabel)
 #: SaveLocation.ui:55
 #, kde-format
 msgid "Name & Format:"
-msgstr "Ad & Biçim:"
+msgstr "Ad ve biçim:"
 
 #. i18n: ectx: property (text), widget (QLabel, numberLabel)
 #. i18n: ectx: property (text), widget (QLabel, label_3)
@@ -198,7 +198,7 @@ msgstr "Ayarlar"
 #: settings.ui:20
 #, kde-format
 msgid "Image saving"
-msgstr "Görsel kaydetme"
+msgstr "Görsel Kaydetme"
 
 #. i18n: ectx: property (text), widget (QLabel, label_7)
 #: settings.ui:26
@@ -228,7 +228,7 @@ msgstr "Yalnızca ilk görsel için kaydetme penceresini aç"
 #: settings.ui:90
 #, kde-format
 msgid "Name && Format:"
-msgstr "Ad ve Biçim:"
+msgstr "Ad ve biçim:"
 
 #. i18n: ectx: property (text), widget (QLineEdit, imgPrefix)
 #: settings.ui:105
@@ -294,13 +294,13 @@ msgstr "300"
 #: settings.ui:286
 #, kde-format
 msgid "Disable automatic selections"
-msgstr "Otomatik seçimleri devre dışı bırak"
+msgstr "Kendiliğinden seçimleri devre dışı bırak"
 
 #. i18n: ectx: property (text), widget (QPushButton, revertOptions)
 #: settings.ui:319
 #, kde-format
 msgid "Revert scanner options to default values"
-msgstr "Tarayıcı seçeneklerini öntanımlı değerlerine geri döndür"
+msgstr "Öntanımlı Değerlere Dön"
 
 #: skanlite.cpp:64
 #, kde-format
@@ -310,7 +310,7 @@ msgstr "Yapılandır…"
 #: skanlite.cpp:68
 #, kde-format
 msgid "Reselect scanner device"
-msgstr "Tarayıcıyı yeniden seç"
+msgstr "Tarayıcıyı Yeniden Seç"
 
 #: skanlite.cpp:92
 #, kde-format
