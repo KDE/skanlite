@@ -10,7 +10,6 @@
     "finish-args": ["--share=ipc", "--socket=fallback-x11", "--socket=wayland", "--filesystem=home", "--device=all",
                     "--share=network", "--system-talk-name=org.freedesktop.Avahi" ],
     "separate-locales": false,
-
     "modules": [
         {
             "name": "ksane-dependencies",
