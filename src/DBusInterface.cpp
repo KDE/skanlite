@@ -32,7 +32,7 @@ bool DBusInterface::setupDBusInterface()
     return true;
 }
 
-// QDbusViewer (qttools5-dev-tools) is a very convinient tool to test D-Bus messaging (QTBUG-7341)
+// QDbusViewer (qttools5-dev-tools) is a very convenient tool to test D-Bus messaging (QTBUG-7341)
 // But it can't pass string list parameters. It passes them as one string in following format:
 // "{"KSane::InvertColors=false", "blue-gamma-table=0:0:100", "br-x=220", "br-y=300", "button 0=false", "button 1=false", "button 2=false", "button 3=false",
 // "depth=8 битов", "green-gamma-table=0:0:100", "mode=Color", "opt_chipid=4", "opt_chipname=RTS8822L-02A", "opt_dbgimages=false", "opt_emulategray=false",

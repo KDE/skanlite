@@ -6,7 +6,7 @@
 # prints it and remove file. (the last two commands are disabled by default)
 
 # gimp provides much more powerful tools for image processing
-# in particulary for color balance correction
+# in particularly for color balance correction
 # in this example we decreasing Highlights (brightest pixels) gamma's red by 18
 
 interface=org.kde.skanlite

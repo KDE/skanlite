@@ -9,7 +9,7 @@ Major issues
 * fix all KIO::NetAccess
 * Settings dialog: ...-Button to select target directory shows wrong dialog due to bug in frameworksintegration
   * see comments in 'void Skanlite::getDir(void)'
-* Save Image Dialog: KDE Save Dialog is borken (see https://git.reviewboard.kde.org/r/115238/)
+* Save Image Dialog: KDE Save Dialog is broken (see https://git.reviewboard.kde.org/r/115238/)
    * probably due to a bug in QFileDialog integration the desired file type filter will not be selected (it defaults to png)
 
 Questions
