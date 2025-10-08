@@ -580,8 +580,7 @@
 >Переклад українською: Юрій Чорноіван <email
 >yurchor@ukr.net</email
 ></para
-> 
-&underFDL; <para
+> &underFDL; <para
 >&skanlite; ліцензовано відповідно до ліцензії GPL, а бібліотеку libksane, яку використовує &skanlite;, ліцензовано відповідно до ліцензії LGPL. Зауваження: libsane ліцензовано відповідно до ліцензії GPL з одним виключенням. </para>
 </chapter>
 
