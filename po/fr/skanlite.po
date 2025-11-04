@@ -13,7 +13,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-10-12 00:38+0000\n"
 "PO-Revision-Date: 2022-01-21 15:29+0100\n"
-"Last-Translator: Xavier Besnard <xavier.besnard@neuf.fr>\n"
+"Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: French <kde-francophone@kde.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -221,14 +221,14 @@ msgstr "Mode d'enregistrement :"
 #: settings.ui:60
 #, kde-format
 msgid "Open the save dialog for every image"
-msgstr "Ouvrir la boîte de dialogue d'enregistrement pour chaque image"
+msgstr "Ouvrir la boite de dialogue d'enregistrement pour chaque image"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, saveModeCB)
 #: settings.ui:65
 #, kde-format
 msgid "Open the save dialog for the first image only"
 msgstr ""
-"Ouvrir la boîte de dialogue d'enregistrement uniquement pour la première "
+"Ouvrir la boite de dialogue d'enregistrement uniquement pour la première "
 "image"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
