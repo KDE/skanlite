@@ -110,7 +110,7 @@
 <title
 >Introduction</title>
 <para
->&skanlite; est une application de numérisation simplifiée qui ne fait rien d'autre que de numériser des images et les enregistrer. &skanlite; peut ouvrir une boîte de dialogue pour enregistrer chaque image scannée, ou enregistrer immédiatement les images dans un dossier spécifié avec des noms et extensions générés automatiquement. L'utilisateur peut aussi choisir d'afficher l'image scannée avant son enregistrement.</para>
+>&skanlite; est une application de numérisation simplifiée qui ne fait rien d'autre que de numériser des images et les enregistrer. &skanlite; peut ouvrir une boite de dialogue pour enregistrer chaque image scannée, ou enregistrer immédiatement les images dans un dossier spécifié avec des noms et extensions générés automatiquement. L'utilisateur peut aussi choisir d'afficher l'image scannée avant son enregistrement.</para>
 <para
 >&skanlite; peut enregistrer les images dans tous les formats pris en charge par &Qt;. Par exemple, les formats suivants : <itemizedlist>
 <listitem
@@ -147,7 +147,7 @@
 <para
 >Un périphérique de numérisation par défaut peut être défini dans la ligne de commande de &skanlite; en utilisant <userinput
 >skanlite -d [nom du périphérique]</userinput
-> dans un terminal. Si le scanner sélectionné est inaccessible ou si aucun scanner par défaut n'a été défini, une boîte de dialogue apparaîtra pour sélectionner un scanner. </para>
+> dans un terminal. Si le scanner sélectionné est inaccessible ou si aucun scanner par défaut n'a été défini, une boite de dialogue apparaitra pour sélectionner un scanner. </para>
 
 <screenshot>
      <screeninfo
@@ -382,9 +382,9 @@
 >Effacer les sélections</guilabel
 >. </para>
 <para
->Si vous avez positionné dans votre scanner deux images ou photos distinctes, et si vous effectuez un aperçu alors &skanlite; sélectionnera automatiquement les différentes zones. Cette fonctionnalité peut être désactivée depuis la boîte de configuration. </para>
+>Si vous avez positionné dans votre scanner deux images ou photos distinctes, et si vous effectuez un aperçu alors &skanlite; sélectionnera automatiquement les différentes zones. Cette fonctionnalité peut être désactivée depuis la boite de configuration. </para>
 <para
->Une fois que vous êtes satisfaits de vos sélections, vous pouvez effectuer leur numérisation de manière groupée. Les images seront alors enregistrées en utilisant les fonctionnalités de renommage par lot définies dans la boîte de configuration. </para>
+>Une fois que vous êtes satisfaits de vos sélections, vous pouvez effectuer leur numérisation de manière groupée. Les images seront alors enregistrées en utilisant les fonctionnalités de renommage par lot définies dans la boite de configuration. </para>
 </sect1>
 
 <sect1 id="settings">
@@ -393,11 +393,11 @@
 <para
 >Le bouton <guibutton
 >Paramètres</guibutton
-> permet d'afficher une boîte de dialogue. Vous pouvez définir ici les principaux paramètres. </para>
+> permet d'afficher une boite de dialogue. Vous pouvez définir ici les principaux paramètres. </para>
 
 <screenshot>
     <screeninfo
->Voici un aperçu de la boîte de dialogue des paramètres de &skanlite;</screeninfo>
+>Voici un aperçu de la boite de dialogue des paramètres de &skanlite;</screeninfo>
     <mediaobject>
         <imageobject>
             <imagedata fileref="settings.png" format="PNG"/>
@@ -431,14 +431,14 @@
 <listitem>
 <para
 >Ce paramètre permet de définir comment &skanlite; enregistre les images. Si vous choisissez <guilabel
->Ouvrir la boîte de dialogue d'enregistrement pour toutes les images</guilabel
->, alors une boîte de dialogue s'ouvrira pour chaque image numérisée. Si vous préférez que &skanlite; enregistre automatiquement (en créant automatiquement un nom de fichier et en l'enregistrant dans un dossier prédéfini), alors vous pouvez choisir l'option <guilabel
->Ouvrir la boîte de dialogue d'enregistrement pour la première image seulement</guilabel
->. Cette option ouvrira la boîte de dialogue d'« emplacement de l'enregistrement » avec la première image scannée.</para>
+>Ouvrir la boite de dialogue d'enregistrement pour toutes les images</guilabel
+>, alors une boite de dialogue s'ouvrira pour chaque image numérisée. Si vous préférez que &skanlite; enregistre automatiquement (en créant automatiquement un nom de fichier et en l'enregistrant dans un dossier prédéfini), alors vous pouvez choisir l'option <guilabel
+>Ouvrir la boite de dialogue d'enregistrement pour la première image seulement</guilabel
+>. Cette option ouvrira la boite de dialogue d'« emplacement de l'enregistrement » avec la première image scannée.</para>
 <para>
     <screenshot>
         <screeninfo
->Voici un aperçu de la boîte de dialogue « emplacement de l'enregistrement » de &skanlite;</screeninfo>
+>Voici un aperçu de la boite de dialogue « emplacement de l'enregistrement » de &skanlite;</screeninfo>
         <mediaobject>
             <imageobject>
                 <imagedata fileref="save-location.png" format="PNG"/>
@@ -473,7 +473,7 @@
 ></term>
 <listitem
 ><para
->Ce paramètre définit le préfixe pour les images enregistrées automatiquement. Il définit aussi le nom proposé par défaut dans la boîte de dialogue d'enregistrement des images. Les images enregistrées automatiquement auront un suffixe numérique (les ### seront remplacés par des nombres) qui sera incrémenté pour chaque nouvel enregistrement. </para
+>Ce paramètre définit le préfixe pour les images enregistrées automatiquement. Il définit aussi le nom proposé par défaut dans la boite de dialogue d'enregistrement des images. Les images enregistrées automatiquement auront un suffixe numérique (les ### seront remplacés par des nombres) qui sera incrémenté pour chaque nouvel enregistrement. </para
 ><para
 >Vous pouvez aussi définir le format d'enregistrement, qui par défaut est le png.</para>
 </listitem>
@@ -521,7 +521,7 @@
 ></term>
 <listitem
 ><para
->Les paramètres utilisés lors de la dernière utilisation sont de nouveau chargés au démarrage. Si vous avez mal configuré les options (par exemple si vous avez changé les paramètres de correction des couleurs, qui sont disponibles avec certains moteurs de traitement, mais dont vous ne maîtrisez pas le sens), l'image scannée peut paraître très bizarre. Dans ce cas, cette option vous permet de remettre les différents paramètres à leur valeur par défaut, qui est une combinaison des valeurs par défaut de libksane et de celles du moteur de traitement. </para
+>Les paramètres utilisés lors de la dernière utilisation sont de nouveau chargés au démarrage. Si vous avez mal configuré les options (par exemple si vous avez changé les paramètres de correction des couleurs, qui sont disponibles avec certains moteurs de traitement, mais dont vous ne maîtrisez pas le sens), l'image scannée peut paraitre très bizarre. Dans ce cas, cette option vous permet de remettre les différents paramètres à leur valeur par défaut, qui est une combinaison des valeurs par défaut de libksane et de celles du moteur de traitement. </para
 ></listitem>
 </varlistentry>
 </variablelist
@@ -561,9 +561,9 @@
 >Aide</guibutton
 > démarre le centre d'aide de &kde; avec le manuel de &skanlite;. Le bouton <guibutton
 >À propos</guibutton
-> ouvre la boîte de dialogue correspondante. Le bouton <guibutton
+> ouvre la boite de dialogue correspondante. Le bouton <guibutton
 >Paramètres</guibutton
-> affiche la boîte de configuration, et le bouton <guibutton
+> affiche la boite de configuration, et le bouton <guibutton
 >Fermer</guibutton
 > permet de terminer &skanlite;.</para>
 </sect1>
