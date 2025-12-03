@@ -328,7 +328,7 @@ msgstr "Configureu Skanlite"
 #: skanlite.cpp:208 skanlite.cpp:304
 #, kde-format
 msgid "Opening the selected scanner failed."
-msgstr "No s'ha pogut obrir l'escàner seleccionat."
+msgstr "Ha fallat mentre s'obria l'escàner seleccionat."
 
 #: skanlite.cpp:318
 #, kde-format
@@ -358,12 +358,12 @@ msgstr "Nom nou del fitxer d'imatge"
 #: skanlite.cpp:594
 #, kde-format
 msgid "Failed to save image"
-msgstr "No s'ha pogut guardar la imatge"
+msgstr "Ha fallat mentre es guardava la imatge"
 
 #: skanlite.cpp:607
 #, kde-format
 msgid "Failed to upload image"
-msgstr "No s'ha pogut pujar la imatge"
+msgstr "Ha fallat mentre es pujava la imatge"
 
 #: skanlite.cpp:758
 #, kde-format
