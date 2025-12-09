@@ -1,19 +1,19 @@
-# translation of ksanetest.po to Spanish
-# Copyright (C) YEAR This_file_is_part_of_KDE
-# This file is distributed under the same license as the PACKAGE package.
+# Spanish translations for skanlite.po package.
+# Copyright (C) 2007-2025 This file is copyright:
+# This file is distributed under the same license as the skanlite package.
 #
-# Alberto Garcia <info@trebol-a.com>, 2007.
-# Jaime Robles <jaime@kde.org>, 2008.
-# Ignacio Poggi <ignaciop.3@gmail.com>, 2008.
-# Eloy Cuadra <ecuadra@eloihr.net>, 2009, 2010, 2012, 2013, 2014, 2015, 2016, 2017, 2019, 2020, 2021, 2022.
-# Pablo Pita Leira <pablo.pita@gmail.com>, 2010.
-# Aitor Morant <fromhell091@gmail.com>, 2013.
+# SPDX-FileCopyrightText: 2007 Alberto Garcia <info@trebol-a.com>
+# SPDX-FileCopyrightText: 2008 Jaime Robles <jaime@kde.org>
+# SPDX-FileCopyrightText: 2008 Ignacio Poggi <ignaciop.3@gmail.com>
+# SPDX-FileCopyrightText: 2009, 2010, 2012, 2013, 2014, 2015, 2016, 2017, 2019, 2020, 2021, 2022, 2025 Eloy Cuadra <ecuadra@eloihr.net>
+# SPDX-FileCopyrightText: 2010 Pablo Pita Leira <pablo.pita@gmail.com>
+# SPDX-FileCopyrightText: 2013 Aitor Morant <fromhell091@gmail.com>
 msgid ""
 msgstr ""
-"Project-Id-Version: ksanetest\n"
+"Project-Id-Version: skanlite\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 11:50+0000\n"
-"PO-Revision-Date: 2022-01-22 00:55+0100\n"
+"PO-Revision-Date: 2025-12-08 12:03+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -308,7 +308,7 @@ msgstr "Devolver las opciones del escáner a sus valores por omisión"
 #: skanlite.cpp:64
 #, kde-format
 msgid "Configure..."
-msgstr "Configurar..."
+msgstr "Configurar…"
 
 #: skanlite.cpp:68
 #, kde-format
@@ -376,24 +376,3 @@ msgstr "%1 %2 - Skanlite"
 msgctxt "@title:window %1 = scanner device"
 msgid "%1 - Skanlite"
 msgstr "%1 - Skanlite"
-
-#~ msgid "About"
-#~ msgstr "Acerca de"
-
-#~ msgid "..."
-#~ msgstr "..."
-
-#~ msgid "Directory doesn't exist, do you wish to create it?"
-#~ msgstr "El directorio no existe. ¿Desea crearlo?"
-
-#~ msgid "Could not create directory %1"
-#~ msgstr "No se ha podido crear el directorio %1"
-
-#~ msgid "Do you want to overwrite \"%1\"?"
-#~ msgstr "¿Desea sobrescribir «%1»?"
-
-#~ msgid "Overwrite"
-#~ msgstr "Sobrescribir"
-
-#~ msgid "Save"
-#~ msgstr "Guardar"
