@@ -43,16 +43,14 @@ msgid "Skanlite"
 msgstr "Skanlite"
 
 #: main.cpp:32
-#, fuzzy, kde-format
-#| msgid "This is a scanning application for KDE based on libksane."
+#, kde-format
 msgid "Scanning application by KDE based on libksane."
-msgstr "Feidhmchlár scanta le haghaidh KDE, bunaithe ar libksane."
+msgstr ""
 
 #: main.cpp:34
-#, fuzzy, kde-format
-#| msgid "(C) 2008-2012 Kåre Särs"
+#, kde-format
 msgid "(C) 2008-2020 Kåre Särs"
-msgstr "© 2008-2012 Kåre Särs"
+msgstr ""
 
 #: main.cpp:39
 #, kde-format
@@ -132,10 +130,9 @@ msgid "Your emails"
 msgstr "kscanne@gmail.com"
 
 #: main.cpp:66
-#, fuzzy, kde-format
-#| msgid "Sane scanner device name."
+#, kde-format
 msgid "Sane scanner device name. Use 'test' for test device."
-msgstr "Ainm an scanóra Sane."
+msgstr ""
 
 #: main.cpp:67
 #, kde-format
@@ -164,10 +161,9 @@ msgstr "Ainm agus Formáid:"
 #. i18n: ectx: property (text), widget (QLabel, numberLabel)
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: SaveLocation.ui:74 settings.ui:112
-#, fuzzy, kde-format
-#| msgid "###."
+#, kde-format
 msgid "####."
-msgstr "###."
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, numStartFromLabel)
 #: SaveLocation.ui:86
@@ -307,10 +303,9 @@ msgid "Configure..."
 msgstr ""
 
 #: skanlite.cpp:68
-#, fuzzy, kde-format
-#| msgid "Opening the selected scanner failed."
+#, kde-format
 msgid "Reselect scanner device"
-msgstr "Níorbh fhéidir an scanóir roghnaithe a oscailt."
+msgstr ""
 
 #: skanlite.cpp:92
 #, kde-format
@@ -356,10 +351,9 @@ msgid "Failed to save image"
 msgstr "Theip ar íomhá a shábháil"
 
 #: skanlite.cpp:607
-#, fuzzy, kde-format
-#| msgid "Failed to save image"
+#, kde-format
 msgid "Failed to upload image"
-msgstr "Theip ar íomhá a shábháil"
+msgstr ""
 
 #: skanlite.cpp:758
 #, kde-format
@@ -372,75 +366,3 @@ msgstr "%1 %2 - Skanlite"
 msgctxt "@title:window %1 = scanner device"
 msgid "%1 - Skanlite"
 msgstr "%1 - Skanlite"
-
-#~ msgid "About"
-#~ msgstr "Maidir Leis"
-
-#~ msgid "..."
-#~ msgstr "..."
-
-#~ msgid "Do you want to overwrite \"%1\"?"
-#~ msgstr "An bhfuil fonn ort \"%1\" a fhorscríobh?"
-
-#~ msgid "Overwrite"
-#~ msgstr "Forscríobh"
-
-#~ msgid "Save"
-#~ msgstr "Sábháil"
-
-#~ msgid "Save without asking for a filename"
-#~ msgstr "Sábháil gan ainm comhaid a iarraidh"
-
-#~ msgid "Saving Failed!"
-#~ msgstr "Theip ar Shábháil!"
-
-#~ msgid "Auto Saving Failed!"
-#~ msgstr "Theip ar Shábháil Uathoibríoch!"
-
-#~ msgid "File name prefix"
-#~ msgstr "Réimír ainm comhaid"
-
-#~ msgid "Do not show this dialog on startup"
-#~ msgstr "Ná taispeáin an dialóg seo ag am tosaithe"
-
-#~ msgid "Glimpse"
-#~ msgstr "Glimpse"
-
-#~ msgid "Warning"
-#~ msgstr "Rabhadh"
-
-#~ msgid "Close"
-#~ msgstr "Dún"
-
-#~ msgid "Could not find a suitable filename."
-#~ msgstr "Níorbh fhéidir ainm oiriúnach a aimsiú don chomhad."
-
-#~ msgid "Auto save."
-#~ msgstr "Uathshábháil."
-
-#~ msgid "PNG"
-#~ msgstr "PNG"
-
-#~ msgid "JPG"
-#~ msgstr "JPG"
-
-#~ msgid "JPEG"
-#~ msgstr "JPEG"
-
-#~ msgid "BMP"
-#~ msgstr "BMP"
-
-#~ msgid "PPM"
-#~ msgstr "PPM"
-
-#~ msgid "XBM"
-#~ msgstr "XBM"
-
-#~ msgid "XPM"
-#~ msgstr "XPM"
-
-#~ msgid "OK"
-#~ msgstr "OK"
-
-#~ msgid "Cancel"
-#~ msgstr "Cealaigh"
