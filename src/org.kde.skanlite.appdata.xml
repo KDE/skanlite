@@ -110,6 +110,7 @@
     <p xml:lang="bg">Skanlite е просто приложение за сканиране и запазване на изображения. То е оптимизирано за сканиране с плоски скенери. Skanlite може да заснема не само снимки и документи, но и прозрачни слайдове и филмови ленти, с поддържани скенери.</p>
     <p xml:lang="ca">L'Skanlite és una aplicació d'escaneig d'imatges per a escanejar imatges i desar-les. Està optimitzada per a l'escaneig amb escàners de superfície plana. L'Skanlite no només pot capturar fotos i documents, també diapositives transparents i tires de pel·lícula, amb els escàners acceptats.</p>
     <p xml:lang="ca-valencia">Skanlite és una aplicació d'escaneig d'imatges per a escanejar imatges i guardar-les. Està optimitzada per a l'escaneig amb escàners de superfície plana. Skanlite no només pot capturar fotos i documents, també diapositives transparents i tires de pel·lícula, amb els escàners acceptats.</p>
+    <p xml:lang="cs">Skanlite je jednoduchá aplikace pro skenování a ukládání obrázků. Je optimalizována pro skenování pomocí plochých skenerů. Skanlite dokáže zachytit nejen fotografie a dokumenty, ale také průhledné diapozitivy a filmové pásky, a to pomocí podporovaných skenerů.</p>
     <p xml:lang="da">Skanlite er et simpelt scannerprogram til at scanne og gemme billeder. Skanlite er optimeret til at scanne med flatbed-scannere. Skanlite kan ikke kun scanne billeder og dokumenter, men også transparenter og filmruller med scannere der understøtter det.</p>
     <p xml:lang="de">Skanlite ist eine einfache Anwendung zum Scannen und Speichern von Bildern. Skanlite ist für das Scannen mit Flachbettscannern optimiert. Skanlite kann nicht nur Fotos und Dokumente erfassen, sondern auch transparente Diapositive und Filmstreifen bei unterstützenden Scannern.</p>
     <p xml:lang="el">Το Skanlite είναι μια απλή εφαρμογή σάρωσης και αποθήκευσης εικόνων. Η βέλτιστη απόδοση είναι για σάρωση με επίπεδους σαρωτές. Το Skanlite δεν συλλαμβάνει μόνο φωτογραφίες και έγγραφα, αλλά και διαφάνειες και λωρίδες φιλμ με τους υποστηριζόμενους σαρωτές.</p>
@@ -201,6 +202,7 @@
 определена папка с автоматично генерирани имена и формат</li>
       <li xml:lang="ca">Diàleg per a desar cada imatge escanejada o desar les imatges immediatament en una carpeta especificada amb noms i format generats automàticament</li>
       <li xml:lang="ca-valencia">Diàleg per a guardar cada imatge escanejada o guardar les imatges immediatament en una carpeta especificada amb noms i format generats automàticament</li>
+      <li xml:lang="cs">Dialogové okno pro uložení pro každý naskenovaný obrázek nebo okamžité uložení obrázků do určené složky s automaticky generovanými názvy a formátem</li>
       <li xml:lang="da">Gemmedialog for hvert billede der scannes eller gemning af billeder direkte i en angiven mappe med autogenererede navne og format</li>
       <li xml:lang="de">Dialog zum Speichern für jedes eingescannte Bild oder Speichern der Bilder sofort in einem angegebenen Ordner wit automatisch generierten Namen und Format</li>
       <li xml:lang="el">Αποθήκευση διαλόγου για κάθε εικόνα μετά τη σάρωση ή αποθήκευση των εικόνων αμέσως σε έναν δοσμένο φάκελο με αυτόματη εκχώρηση ονομάτων και τύπου αποθήκευσης</li>
@@ -246,6 +248,7 @@
       <li xml:lang="bg">Поддръжка за мрежови скенери</li>
       <li xml:lang="ca">Implementació per a escàners en xarxa</li>
       <li xml:lang="ca-valencia">Implementació per a escàners en xarxa</li>
+      <li xml:lang="cs">Podpora síťových skenerů</li>
       <li xml:lang="da">Understøttelse af netværksscannere</li>
       <li xml:lang="de">Unterstützung für Netzwerk-Scanner</li>
       <li xml:lang="el">Υποστήριξη για δικτυακούς σαρωτές</li>
@@ -291,6 +294,7 @@
       <li xml:lang="bg">Предварителен преглед с възможност за допълнителна селекция за сканиране</li>
       <li xml:lang="ca">Vista prèvia amb la característica de selecció per a l'escaneig final</li>
       <li xml:lang="ca-valencia">Vista prèvia amb la característica de selecció per a l'escaneig final</li>
+      <li xml:lang="cs">Náhled s funkcí výběru pro finální skenování</li>
       <li xml:lang="da">Forhåndsvisning med vælgefunktion til den endelige scanning</li>
       <li xml:lang="de">Vorschau mit der Auswahlfunktion für den endgültigen Scan</li>
       <li xml:lang="el">Προεπισκόπηση με το επιλεγμένο χαρακτηριστικό για την τελική σάρωση</li>
@@ -336,6 +340,7 @@
       <li xml:lang="bg">Сканиране на множество селекции на изображение</li>
       <li xml:lang="ca">Escaneig de múltiples seleccions d'una imatge</li>
       <li xml:lang="ca-valencia">Escaneig de múltiples seleccions d'una imatge</li>
+      <li xml:lang="cs">Skenování více výběrů obrazu</li>
       <li xml:lang="da">Scanning af flere markeringer af et billede</li>
       <li xml:lang="de">Sannen mehrerer Bereiche eines Fotos</li>
       <li xml:lang="el">Σάρωση πολλών επιλογών μιας εικόνας</li>
@@ -385,6 +390,7 @@
       <caption xml:lang="bg">Основният екран с опции на Skanlite с показано сканирано изображение</caption>
       <caption xml:lang="ca">Pantalla d'opcions bàsiques de l'Skanlite amb una imatge escanejada visible</caption>
       <caption xml:lang="ca-valencia">Pantalla d'opcions bàsiques de Skanlite amb una imatge escanejada visible</caption>
+      <caption xml:lang="cs">Základní obrazovka programu Skanlite se zobrazeným naskenovaným obrázkem</caption>
       <caption xml:lang="de">Skanlites Grundfunktionsbildschirm mit einem sichtbaren gescannten Bild</caption>
       <caption xml:lang="en-GB">Skanlite's basic options screen with a scanned image visible</caption>
       <caption xml:lang="eo">Ekrano de bazaj elektebloj de Skanlite kun skanita bildo videbla</caption>
