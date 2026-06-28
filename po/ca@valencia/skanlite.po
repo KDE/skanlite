@@ -369,10 +369,10 @@ msgstr "Ha fallat mentre es pujava la imatge"
 #, kde-format
 msgctxt "@title:window %1 = scanner maker, %2 = scanner model"
 msgid "%1 %2 - Skanlite"
-msgstr "%1 %2 - Skanlite"
+msgstr "%1 %2 – Skanlite"
 
 #: skanlite.cpp:760
 #, kde-format
 msgctxt "@title:window %1 = scanner device"
 msgid "%1 - Skanlite"
-msgstr "%1 - Skanlite"
+msgstr "%1 – Skanlite"
