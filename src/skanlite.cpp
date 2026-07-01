@@ -42,7 +42,6 @@
 #include <KSaneWidget>
 #include <KSharedConfig>
 #include <kio/global.h>
-#include <kio_version.h>
 
 #include <skanlite_debug.h>
 
