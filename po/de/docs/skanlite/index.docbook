@@ -125,7 +125,7 @@
 
 <chapter id="using-skanlite">
 <title
->&skanlite; benutzen</title>
+>&skanlite; verwenden</title>
 
 <sect1 id="scanner-selection">
 <title
@@ -209,7 +209,7 @@
 >Basis-Einstellungen</guilabel
 > enthält die gebräuchlichsten Parameter, die der SANE-Scannertreiber zur Verfügung stellt. Die Karteikarte <guilabel
 >Scanner-spezifische Einstellungen</guilabel
-> enthält zusätzliche Optionen. Die hier aufgezählten Optionen hängen von der SANE-Unterstützung Ihres Treibers ab: libksane, das &skanlite; benutzt, sollte die meisten Parameter, die SANE zur Verfügung stellt, anzeigen. Analoge Gammatabellen werden zurzeit nicht unterstützt. </para>
+> enthält zusätzliche Optionen. Die hier aufgezählten Optionen hängen von der SANE-Unterstützung Ihres Treibers ab: libksane, das &skanlite; verwendet, sollte die meisten Parameter, die SANE zur Verfügung stellt, anzeigen. Analoge Gammatabellen werden zurzeit nicht unterstützt. </para>
 
 <screenshot>
      <screeninfo
@@ -229,7 +229,7 @@
 >Die Scanner-spezifischen Einstellungen enthalten zusätzliche Optionen des Treibers. &skanlite; (libksane) behandelt diese Optionen nicht besonders. </para>
 
 <para
->Haben Sie alles nach Ihren Wünschen eingestellt, können Sie den kleinen Pfeil oben an der Trennlinie zum Einstellungsbereich benutzen. Klicken Sie darauf, um die Einstellungen ein- oder auszublenden. Dieser Ausblendknopf überdeckt den Vorschaubereich, verblasst aber, wenn der Mauszeiger ihn verlässt.</para
+>Haben Sie alles nach Ihren Wünschen eingestellt, können Sie den kleinen Pfeil oben an der Trennlinie zum Einstellungsbereich verwenden. Klicken Sie darauf, um die Einstellungen ein- oder auszublenden. Dieser Ausblendknopf überdeckt den Vorschaubereich, verblasst aber, wenn der Mauszeiger ihn verlässt.</para
 >  
 
 <sect1 id="scanning">
@@ -347,7 +347,7 @@
 <title
 >Mehrere Bereiche einscannen</title>
 <para
->Manchmal brauchen Sie nur bestimmte Teile eines Bildes. Anstatt das ganze Bild zu scannen und dann mit einem Grafikprogramm wie &eg; &kolourpaint; die verschiedenen Teile des Bildes in einzelne Dateien zu speichern, verwenden Sie die Funktion Mehrfachauswahl von &skanlite;. </para>
+>Manchmal benötigen Sie nur bestimmte Teile eines Bildes. Anstatt das ganze Bild zu scannen und dann mit einem Grafikprogramm wie &eg; &kolourpaint; die verschiedenen Teile des Bildes in einzelne Dateien zu speichern, verwenden Sie die Funktion Mehrfachauswahl von &skanlite;. </para>
 <screenshot>
      <screeninfo
 >Mehrfachauswahl</screeninfo>
@@ -476,9 +476,9 @@
 ></term>
 <listitem
 ><para
->Der Anwender kann die zum Speichern benutzte Bildqualität anpassen. Dieser Wert ändert auch den Kompressionswert beim Speichern. Wenn <guilabel
+>Der Anwender kann die zum Speichern verwendete Bildqualität anpassen. Dieser Wert ändert auch den Kompressionswert beim Speichern. Wenn <guilabel
 >Wählen Sie die Bildqualität zum Speichern</guilabel
-> nicht ausgewählt ist, dann wird der Standardwert von &Qt; benutzt. </para
+> nicht ausgewählt ist, dann wird der Standardwert von &Qt; verwendet. </para
 ></listitem>
 </varlistentry>
 
@@ -489,7 +489,7 @@
 ></term>
 <listitem
 ><para
->&skanlite; benutzt ein heuristisches Verfahren, um eine brauchbare Auflösung zu ermitteln. Versagt dieses Verfahren und die vorgeschlagenen Auflösung ist zu hoch oder zu niedrig, dann benutzen Sie diese Einstellung, um die Auflösung der Vorschau festzulegen. </para
+>&skanlite; verwendet ein heuristisches Verfahren, um eine brauchbare Auflösung zu ermitteln. Versagt dieses Verfahren und die vorgeschlagenen Auflösung ist zu hoch oder zu niedrig, dann verwenden Sie diese Einstellung, um die Auflösung der Vorschau festzulegen. </para
 ></listitem>
 </varlistentry>
 <varlistentry>
@@ -557,7 +557,7 @@
 >Einstellungen</guibutton
 > zeigt den Dialog für die Einstellungen und  <guibutton
 >Schließen</guibutton
-> kann benutzt werden, um &skanlite; zu beenden.</para>
+> kann verwendet werden, um &skanlite; zu beenden.</para>
 </sect1>
 </chapter>
 
@@ -587,7 +587,7 @@
 >kde@doerr-privat.de</email
 ></para
 > &underFDL; <para
->&skanlite; ist unter der GPL lizensiert und die libksane-Bibliothek, die von &skanlite; benutzt wird, unter LGPL. Achtung: libsane ist unter der GPL  mit einer Ausnahme lizensiert. </para>
+>&skanlite; ist unter der GPL lizensiert und die libksane-Bibliothek, die von &skanlite; verwendet wird, unter LGPL. Achtung: libsane ist unter der GPL  mit einer Ausnahme lizensiert. </para>
 </chapter>
 
 &documentation.index;
