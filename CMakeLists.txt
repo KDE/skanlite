@@ -58,7 +58,14 @@ set_package_properties(KF6DocTools PROPERTIES DESCRIPTION
     TYPE OPTIONAL
 )
 
-find_package(KSaneWidgets6 "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE_VERSION_MINOR}" REQUIRED)
+# The intention here is to depend on a release from at least the same release
+# branch and to accomodate the jump from a RC version to .0 (eg. 26.07.90 to
+# 26.08.0), where we shouldn't really add breaking changes anyway.
+math(EXPR KSANEWIDGETS_RELEASE_BRANCH_VERSION "${RELEASE_SERVICE_VERSION_MINOR} - (${RELEASE_SERVICE_VERSION_MINOR} -3) % 4")
+if(KSANEWIDGETS_RELEASE_BRANCH_VERSION LESS "10")
+    string(PREPEND KSANEWIDGETS_RELEASE_BRANCH_VERSION "0") # pad with 0
+endif()
+find_package(KSaneWidgets6 "${RELEASE_SERVICE_VERSION_MAJOR}.${KSANEWIDGETS_RELEASE_BRANCH_VERSION}" REQUIRED)
 
 ecm_set_disabled_deprecation_versions(QT 6.7.2
     KF 6.7.0
