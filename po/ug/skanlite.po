@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: skanlite\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-07-04 00:42+0000\n"
-"PO-Revision-Date: 2026-06-01 18:42-0400\n"
+"PO-Revision-Date: 2026-09-22 18:03+0900\n"
 "Last-Translator: Abduqadir Abliz <sahranbay@gmail.com>\n"
-"Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
+"Language-Team: Uyghur <kde-i18n-doc@kde.org>\n"
 "Language: ug\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -56,7 +56,7 @@ msgstr ""
 #: main.cpp:39
 #, kde-format
 msgid "Kåre Särs"
-msgstr "Kåre Särs"
+msgstr ""
 
 #: main.cpp:39
 #, kde-format
@@ -91,7 +91,7 @@ msgstr ""
 #: main.cpp:47
 #, kde-format
 msgid "Anne-Marie Mahfouf"
-msgstr "Anne-Marie Mahfouf"
+msgstr ""
 
 #: main.cpp:47
 #, kde-format
@@ -101,7 +101,7 @@ msgstr "ئىشلەتكۈچى قوللانمىسىنى يازغۇچى"
 #: main.cpp:49
 #, kde-format
 msgid "Laurent Montel"
-msgstr "Laurent Montel"
+msgstr ""
 
 #: main.cpp:51
 #, kde-format
@@ -116,7 +116,7 @@ msgstr "تەرجىمىگە ياردەملەشكۈچى"
 #: main.cpp:53
 #, kde-format
 msgid "Albert Astals Cid"
-msgstr "Albert Astals Cid"
+msgstr ""
 
 #: main.cpp:56
 #, kde-format
@@ -242,7 +242,7 @@ msgstr ""
 #: settings.ui:192
 #, no-c-format, kde-format
 msgid "%"
-msgstr "%"
+msgstr ""
 
 #. i18n: ectx: property (title), widget (QGroupBox, generalGB)
 #: settings.ui:233
@@ -272,7 +272,7 @@ msgstr ""
 #: settings.ui:263
 #, kde-format
 msgid "100"
-msgstr "100"
+msgstr ""
 
 #. i18n: ectx: property (text), item, widget (QComboBox, previewDPI)
 #: settings.ui:268
@@ -326,7 +326,7 @@ msgstr "تاللانغان تارىغۇچنى ئاچالمىدى."
 #: skanlite.cpp:317
 #, kde-format
 msgid "%1: %2"
-msgstr "%1: %2"
+msgstr ""
 
 #: skanlite.cpp:336
 #, kde-format
