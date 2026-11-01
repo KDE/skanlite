@@ -1,14 +1,14 @@
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
 # Safa Alfulaij <safa1996alfulaij@gmail.com>, 2016.
-# SPDX-FileCopyrightText: 2021, 2022, 2025 Zayed Al-Saidi <zayed.alsaidi@gmail.com>
+# SPDX-FileCopyrightText: 2021, 2022, 2025, 2026 Zayed Al-Saidi <zayed.alsaidi@gmail.com>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-07-04 00:42+0000\n"
-"PO-Revision-Date: 2025-08-04 18:48+0400\n"
+"PO-Revision-Date: 2026-10-03 15:22+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Lokalize 23.08.5\n"
+"X-Generator: Lokalize 25.12.3\n"
 
 #: ImageViewer.cpp:45
 #, kde-format
@@ -102,12 +102,12 @@ msgstr "كتابة دليل المستخدم"
 #: main.cpp:49
 #, kde-format
 msgid "Laurent Montel"
-msgstr "Laurent Montel"
+msgstr "لوران مونتال"
 
 #: main.cpp:51
 #, kde-format
 msgid "Chusslove Illich"
-msgstr "Chusslove Illich"
+msgstr "جوسلوف إليج"
 
 #: main.cpp:51 main.cpp:53
 #, kde-format
@@ -117,7 +117,7 @@ msgstr "المساعدة بالتّرجمة"
 #: main.cpp:53
 #, kde-format
 msgid "Albert Astals Cid"
-msgstr "Albert Astals Cid"
+msgstr "البرت استالس كيد"
 
 #: main.cpp:56
 #, kde-format
