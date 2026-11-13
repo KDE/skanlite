@@ -1,0 +1,597 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Arabic "INCLUDE"
+><!-- change language only here -->
+]>
+
+<book id="skanlite" lang="&language;">
+
+<bookinfo>
+<title
+>دليل سكانلايت</title>
+
+<authorgroup>
+<author
+><firstname
+>Kåre</firstname
+> <surname
+>Särs</surname
+> <affiliation
+> <address
+><email
+>kare dot sars at iki dot fi</email
+></address>
+</affiliation>
+</author>
+<author
+><firstname
+>Anne-Marie</firstname
+> <surname
+>Mahfouf</surname
+> <affiliation
+> <address
+>&Anne-Marie.Mahfouf.mail;</address>
+</affiliation>
+</author>
+<othercredit role="translator"
+><firstname
+>زايد</firstname
+><surname
+>السعيدي</surname
+><affiliation
+><address
+><email
+>zayed.alsaidi@gmail.com</email
+></address
+></affiliation
+><contrib
+>التّرجمة العربيّة</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2008, 2013</year>
+<holder
+>Kåre Särs</holder>
+</copyright>
+<copyright>
+<year
+>2008</year>
+<holder
+>&Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2016-08-24</date>
+<releaseinfo
+>سكانلايت 2.0.0</releaseinfo>
+
+<abstract>
+<para
+>سكانلايت هو تطبيق لمسح الصور ضوئيًا لا يقوم بأكثر من مسح الصور وحفظها. </para>
+<para
+>يعتمد سكانلايت على libksane، وهي واجهة كيدي لمكتبة SANE للتحكم في الماسحات الضوئية.</para>
+</abstract>
+
+<keywordset>
+<keyword
+>كيدي</keyword>
+<keyword
+>kdegraphics</keyword>
+<keyword
+>ماسح ضوئي</keyword>
+<keyword
+>صور</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>مقدمة</title>
+<para
+>سكانلايت هو تطبيق بسيط لمسح الصور ضوئيًا لا يقوم بأكثر من مسح الصور وحفظها. يستطيع سكانلايت فتح حوار حفظ لكل صورة تُمسح ضوئيًا أو حفظ الصور فورًا في مجلد محدد بأسماء وتنسيقات مولدة آليًا. يمكن للمستخدم أيضًا اختيار إظهار الصورة الممسوحة قبل حفظها.</para>
+<para
+>يستطيع سكانلايت حفظ الصور بجميع التنسيقات التي تدعمها Qt. على سبيل المثال التنسيقات التالية: <itemizedlist>
+<listitem
+><para
+>png (8 و 16 بت لكل لون) </para
+></listitem>
+<listitem
+><para
+>jpeg, jpg, jpeg 2000 </para
+></listitem>
+<listitem
+><para
+>bmp </para
+></listitem>
+</itemizedlist>
+</para>
+
+<note
+><para
+>يمكنك التحقق من حالة دعم ماسحك الضوئي من موقع مشروع SANE عبر <ulink url="http://www.sane-project.org/sane-supported-devices.html"
+>صفحة الأجهزة المدعومة على موقع SANE</ulink
+>.</para
+></note>
+
+</chapter>
+
+<chapter id="using-skanlite">
+<title
+>استخدام سكانلايت</title>
+
+<sect1 id="scanner-selection">
+<title
+>اختيار الماسح الضوئي</title>
+<para
+>يمكن تحديد ماسح ضوئي مبدئي عبر سطر الأوامر لسكانلايت باستخدام <userinput
+>skanlite -d [اسم الجهاز]</userinput
+> في الطرفية. إذا تعذر فتح الماسح المختار أو لم يُوفر ماسح مبدئي، يُفتح حوار اختيار الماسح الضوئي. </para>
+
+<screenshot>
+     <screeninfo
+>حوار اختيار الماسح الضوئي في سكانلايت</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="choose-scanner.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>حوار اختيار الماسح الضوئي في سكانلايت</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>يمكن للمستخدم اختيار الماسح المراد استخدامه والضغط على <guibutton
+>موافق</guibutton
+> لفتحه. يؤدي الضغط على <guibutton
+>إلغاء</guibutton
+> إلى خروج سكانلايت. </para>
+
+<screenshot>
+     <screeninfo
+>لم يُعثر على ماسح ضوئي</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="no-scanner-found.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>لم يُعثر على ماسح ضوئي</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>في حال عدم العثور على أجهزة، فربما لأن الماسح الضوئي غير موصل أو مطفأ، لذا صحح ذلك. ثم يمكن استخدام <guibutton
+>أعد تحميل قائمة الأجهزة</guibutton
+> لإعادة تحميل قائمة الماسحات الضوئية.</para
+> 
+<note
+><para
+>لا تدعم جميع التعريفات/الخلفيات هذه الميزة. في هذه الحالة، أغلق سكانلايت، وصل ماسحك الضوئي وأعد تشغيل التطبيق.</para>
+</note>
+
+</sect1>
+</chapter>
+
+<chapter id="main-window">
+<title
+>نافذة سكانلايت الرئيسة</title>
+<screenshot>
+     <screeninfo
+>نافذة سكانلايت الرئيسة</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="main-window.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>نافذة سكانلايت الرئيسة</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>في النافذة الرئيسة، يمتلك المستخدم مجموعتين من خيارات المسح: <guilabel
+>خيارات أساسية</guilabel
+> و <guilabel
+>خيارات خاصة بالماسح</guilabel
+>. يحتوي لسان <guilabel
+>خيارات أساسية</guilabel
+> على المعاملات الأكثر شيوعًا التي توفرها خلفيات SANE، بينما يحتوي لسان <guilabel
+>خيارات خاصة بالماسح</guilabel
+> على جميع خيارات الخلفية. تعتمد الخيارات المدرجة هنا على دعم SANE لتعريفك: يجب أن تكون libksane (التي يستخدمها سكانلايت) قادرة على عرض معظم أنواع المعاملات التي توفرها SANE (جداول غاما التناظرية غير مدعومة حاليًا). </para>
+
+<screenshot>
+     <screeninfo
+>لسان خيارات خاصة بالماسح</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="other-options.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>لسان خيارات خاصة بالماسح</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>تحتوي الخيارات الخاصة بالماسح على خيارات أكثر تفصيلًا للخلفيات. لا يملك سكانلايت (libksane) أي معالجة خاصة لهذه الخيارات. </para>
+
+<para
+>إذا كنت راضيًا عن إعداداتك، يمكنك استخدام السهم الصغير في أعلى فاصل الخيارات. عند النقر عليه، فإنه يطوي الخيارات أو يوسعها. قد يتداخل الطي مع منطقة المعاينة، لكنه يتلاشى عند تحريك مؤشر الفأرة بعيدًا عنه.</para
+>  
+
+<sect1 id="scanning">
+<title
+>المسح</title>
+<para
+>لمسح صورة ضوئيًا، يمكن للمستخدم البدء بمسح معاينة ثم اختيار جزء من منطقة المسح لإجراء المسح النهائي عليه. يُبدأ مسح المعاينة بالضغط على زر المعاينة. </para>
+
+<screenshot>
+     <screeninfo
+>زر المعاينة</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="preview-button.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>زر المعاينة</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>عند مسح المعاينة ضوئيًا، يمكن اختيار المنطقة المخصصة للصورة النهائية. </para>
+<screenshot>
+     <screeninfo
+>الاختيار والتقريب</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="zoom-in.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>الاختيار والتقريب</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>لاختيار الصورة بشكل أفضل، يمكن للمستخدم التقريب، والتبعيد، والتقريب إلى الاختيار الحالي، أو التقريب لملاءمة كامل المعاينة مع النافذة. </para>
+<screenshot>
+     <screeninfo
+>زر "قرب للملاءمة"</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="zoom-to-fit.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>زر "قرب للملاءمة"</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>عند اختيار الصورة، يمكن الحصول على الصورة النهائية بالضغط على زر المسح النهائي. </para>
+
+<screenshot>
+     <screeninfo
+>زر المسح النهائي</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="final-button.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>زر المسح النهائي</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>سترى تقدم عملية المسح. </para>
+<screenshot>
+     <screeninfo
+>المسح جارٍ</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="scanning.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>المسح جارٍ</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>إذا حُدد <guilabel
+>عاين قبل الحفظ</guilabel
+> في الإعدادات، تُعرض الصورة الممسوحة في نافذة معاينة كما ترى في لقطة الشاشة أدناه. إذا ضُغط على <guibutton
+>احفظ</guibutton
+>، تُحفظ الصورة، وإذا ضُغط على <guibutton
+>انبذ</guibutton
+>، تُنبذ المعاينة وتعود إلى النافذة الرئيسة. </para>
+<screenshot>
+     <screeninfo
+>نافذة المعاينة</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="preview.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>نافذة المعاينة</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+</sect1>
+
+<sect1 id="scanning-multiple-selections">
+<title
+>مسح اختيارات متعددة ضوئيًا</title>
+<para
+>تحتاج أحيانًا إلى أجزاء معينة فقط من الصورة. بدلًا من مسح الصورة كاملة ثم استخدام تطبيق رسوميات (مثل كولوربينت) لحفظ أجزاء الصورة المختلفة في ملفات منفصلة، استخدم ميزة الاختيار المتعدد في سكانلايت. </para>
+<screenshot>
+     <screeninfo
+>اختيارات متعددة</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="multiple-selections.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>اختيارات متعددة</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>امسح معاينة ثم استخدم زر الفأرة الأيسر لاختيار الجزء الأول من الصورة في المعاينة. حوم فوق المنطقة المختارة بمؤشر الفأرة وانقر على أيقونة <guiicon
+>+</guiicon
+> الخضراء لاختيار المنطقة. يُشار إلى المناطق المختارة بحدود حمراء. الآن اختر الأجزاء التالية من الصورة بالطريقة نفسها.</para>
+<para
+>لإزالة اختيار واحد حوم فوق المنطقة بمؤشر الفأرة وانقر على أيقونة <guiicon
+>-</guiicon
+> الحمراء. وباستخدام <guilabel
+>امسح الاختيارات</guilabel
+> من القائمة السياقية التي تُفتح بزر الفأرة الأيمن، يمكن إزالة جميع الاختيارات في المعاينة. </para>
+<para
+>إذا وضعت صورتين أو صورتين فوتوغرافيتين منفصلتين على ماسحك الضوئي وبدأت المعاينة، فسيقوم سكانلايت آليًا باختيار المناطق المختلفة مسبقًا. يمكن إيقاف هذا السلوك في حوار الإعدادات. </para>
+<para
+>إذا كنت راضيًا عن اختيارك، فابدأ المسح الدفعي النهائي لجميع الاختيارات. تُحفظ الصور باستخدام ميزة إعادة التسمية الدفعية الموضحة في حوار الإعدادات. </para>
+</sect1>
+
+<sect1 id="settings">
+<title
+>إعدادات سكانلايت</title>
+<para
+>بالنقر على زر <guibutton
+>الإعدادات</guibutton
+>، يُعرض حوار الإعدادات أمام النافذة الرئيسة. يمكنك اختيار الإعدادات الأكثر أهمية هنا. </para>
+
+<screenshot>
+    <screeninfo
+>إليك لقطة شاشة لحوار إعدادات سكانلايت</screeninfo>
+    <mediaobject>
+        <imageobject>
+            <imagedata fileref="settings.png" format="PNG"/>
+        </imageobject>
+        <textobject>
+            <phrase
+>حوار إعدادات سكانلايت</phrase>
+        </textobject>
+    </mediaobject>
+</screenshot>
+
+<para
+><variablelist>
+<varlistentry>
+<term
+><guilabel
+>عاين قبل الحفظ:</guilabel
+></term>
+<listitem
+><para
+>يمكن للمستخدم اختيار معاينة الصورة قبل حفظها. في هذه الحالة، يمكن ترك خيار <guilabel
+>عاين قبل الحفظ</guilabel
+> محددًا. إذا كان المستخدم لا يرغب في معاينة الصورة، فيجب إلغاء تحديد هذا الخيار. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>نمط الحفظ:</guilabel
+></term>
+<listitem>
+<para
+>يسمح لك هذا الإعداد باختيار كيفية حفظ سكانلايت للصور. إذا اخترت <guilabel
+>افتح حوار الحفظ لكل صورة</guilabel
+>، فسيُفتح حوار الحفظ لكل صورة ممسوحة. إذا كنت تفضل أن يقوم سكانلايت بالحفظ آليًا (عن طريق توليد اسم آليًا وحفظ الصورة في مجلد محدد مسبقًا)، يمكنك اختيار <guilabel
+>افتح حوار الحفظ للصورة الأولى فقط</guilabel
+>. سيفتح هذا الخيار حوار "مكان الحفظ" التالي للصورة الأولى الممسوحة.</para>
+<para>
+    <screenshot>
+        <screeninfo
+>إليك لقطة شاشة لحوار مكان حفظ سكانلايت</screeninfo>
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="save-location.png" format="PNG"/>
+            </imageobject>
+            <textobject>
+                <phrase
+>حوار مكان حفظ سكانلايت.</phrase>
+            </textobject>
+        </mediaobject>
+    </screenshot>
+</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>مكان الحفظ:</guilabel
+></term>
+<listitem
+><para
+>يحدد هذا الإعداد مكان الحفظ المبدئي وتسمية الملفات. مكان الحفظ المبدئي هو مجلد المنزل الخاص بك ويمكنك تغيير هذا المكان بالنقر على الزر <guibutton
+>...</guibutton
+>. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>تنسيق الاسم:</guilabel
+></term>
+<listitem
+><para
+>يحدد هذا المعامل بادئة الصورة للصور المحفوظة آليًا وهو أيضًا الاسم المقترح للصورة في حوار الحفظ. ستحتوي الصورة المحفوظة آليًا على لاحقة رقمية (سيُستبدل ### بالأرقام) تزيد في كل مرة تُحفظ فيها صورة. </para
+><para
+>يمكنك أيضًا اختيار تنسيق حفظ الملف، التنسيق المبدئي هو png.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>حدد جودة الحفظ:</guilabel
+></term>
+<listitem
+><para
+>يمكن للمستخدم اختيار تحديد جودة الصورة المراد استخدامها لحفظ الصور. يؤثر إعداد جودة الصورة على مستوى الضغط المستخدم في الحفظ. إذا لم يُحدد <guilabel
+>حدد جودة الحفظ</guilabel
+>، تكون الجودة هي القيمة المبدئية التي تختارها Qt. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>اضبط ميز المعاينة (DPI)</guilabel
+></term>
+<listitem
+><para
+>يستخدم سكانلايت الاستدلال لمحاولة الحصول على ميز معقول، ولكن إذا فشل ذلك وكان الميز مرتفعًا جدًا أو منخفضًا جدًا، فيمكن ضبط ميز المعاينة يدويًا باستخدام هذا الخيار. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>عطل الاختيارات الآلية</guilabel
+></term>
+<listitem
+><para
+>تُفعل الاختيارات الآلية مبدئيًا؛ وبعد المعاينة، تحاول libksane اختيار الصور في المعاينة آليًا ويجب عليها مسح المناطق المختارة دفعيًا. على سبيل المثال، إذا وضعت صورتين فوتوغرافيتين على الماسح وأجريت معاينة، فسيضيف سكانلايت آليًا اختيارات للصور.</para>
+<para
+>من ناحية أخرى، إذا كنت تمسح المستندات عادةً، فقد يختار الاختيار الآلي الكثير من الأجزاء المختلفة في المستندات وسيتعين عليك إزالة الاختيارات يدويًا. لتجنب ذلك، حدد خانة الاختيار وعطل الاختيار الآلي. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>استعد خيارات الماسح إلى قيمها المبدئية</guilabel
+></term>
+<listitem
+><para
+>تُعاد حُمولة آخر الإعدادات المستخدمة عند بدء التشغيل. إذا أفسدت الخيارات (على سبيل المثال إذا غيرت إعدادات تصحيح الألوان، المتوفرة في بعض الخلفيات، دون معرفة معناها)، فقد تبدأ الصورة في الظهور بشكل غريب جدًا. لهذا السيناريو، يوفر هذا الخيار طريقة لاستعادة الإعداد إلى القيم المبدئية، وهي مزيج من القيم المبدئية للخلفية وlibksane. </para
+></listitem>
+</varlistentry>
+</variablelist
+></para>
+</sect1>
+
+<sect1 id="help">
+<title
+>المساعدة، وحول، والإعدادات، وإغلاق</title>
+<para
+>تجد في أسفل النافذة الرئيسة أزرار <guibutton
+>المساعدة</guibutton
+>، و<guibutton
+>حول</guibutton
+>، و<guibutton
+>الإعدادات</guibutton
+>، و<guibutton
+>إغلاق</guibutton
+>.</para>
+
+<screenshot>
+     <screeninfo
+>أزرار النافذة الرئيسة</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="buttons-main.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>أزرار النافذة الرئيسة</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>يفتح زر <guibutton
+>المساعدة</guibutton
+> مركز مساعدة كيدي مع دليل سكانلايت. يفتح زر <guibutton
+>حول</guibutton
+> حوار "حول كيدي" لسكانلايت. يعرض زر <guibutton
+>الإعدادات</guibutton
+> حوار الإعدادات ويُستخدم زر <guibutton
+>إغلاق</guibutton
+> للخروج من سكانلايت.</para>
+</sect1>
+</chapter>
+
+<chapter id="credits">
+
+<title
+>الحقوق والترخيص</title>
+<para
+>سكانلايت </para>
+<para
+>حقوق نشر البرنامج 2007 Kåre Särs <email
+>kare dot sars at iki dot fi</email
+> </para>
+<para
+>المساهمون: <itemizedlist
+> <listitem
+><para
+>المؤلف: Kåre Särs <email
+>kare dot sars at iki dot fi</email
+></para>
+</listitem>
+</itemizedlist>
+</para>
+
+<para
+>الترجمة: زايد السعيدي <email
+>zayed.alsaidi@gmail.com</email
+></para
+> &underFDL; <para
+>سكانلايت مرخص بموجب GPL ومكتبة libksane، التي يستخدمها سكانلايت، مرخصة بموجب LGPL. ملاحظة: libsane مرخصة بموجب GPL مع استثناء. </para>
+</chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->
