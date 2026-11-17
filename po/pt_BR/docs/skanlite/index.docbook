@@ -42,7 +42,7 @@
 ><affiliation
 ><address
 ><email
->marcus.gama@gmail.com</email
+>marcus.gama@kde.org</email
 ></address
 ></affiliation
 ><contrib
@@ -578,7 +578,7 @@
 
 <para
 >Tradução de Marcus Gama <email
->marcus.gama@gmail.com</email
+>marcus.gama@kde.org</email
 ></para
 > &underFDL; <para
 >O &skanlite; está licenciado sob os termos da GPL e a biblioteca 'libksane, usada pelo &skanlite;, está licenciada segundo a LGPL. Nota: a 'libsane' está licenciada segundo a GPL com uma exceção. </para>
