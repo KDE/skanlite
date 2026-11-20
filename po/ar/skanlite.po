@@ -1,14 +1,14 @@
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
 # Safa Alfulaij <safa1996alfulaij@gmail.com>, 2016.
-# SPDX-FileCopyrightText: 2021, 2022, 2025, 2026 Zayed Al-Saidi <zayed.alsaidi@gmail.com>
+# SPDX-FileCopyrightText: 2021-2022, 2025-2026 Zayed Al-Saidi <zayed.alsaidi@gmail.com>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-07-04 00:42+0000\n"
-"PO-Revision-Date: 2026-10-03 15:22+0400\n"
+"PO-Revision-Date: 2026-11-18 23:00+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Lokalize 25.12.3\n"
+"X-Generator: Lokalize 26.08.1\n"
 
 #: ImageViewer.cpp:45
 #, kde-format
@@ -57,7 +57,7 @@ msgstr "الحقوق محفوظة © 2008-2020 Kåre Särs"
 #: main.cpp:39
 #, kde-format
 msgid "Kåre Särs"
-msgstr "Kåre Särs"
+msgstr "كاري سارس"
 
 #: main.cpp:39
 #, kde-format
@@ -82,7 +82,7 @@ msgstr "Arseniy Lartsev"
 #: main.cpp:45
 #, kde-format
 msgid "Gilles Caulier"
-msgstr "Gilles Caulier"
+msgstr "جيل كولييه"
 
 #: main.cpp:45 main.cpp:49
 #, kde-format
@@ -92,7 +92,7 @@ msgstr "استيراد libksane إلى extragear"
 #: main.cpp:47
 #, kde-format
 msgid "Anne-Marie Mahfouf"
-msgstr "Anne-Marie Mahfouf"
+msgstr "آن ماري محفوف"
 
 #: main.cpp:47
 #, kde-format
